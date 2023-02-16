@@ -220,3 +220,8 @@ let jhon22:syam ={
 };
 console.log(fun8(jhon22));
 
+
+export interface sundar{
+    boy:string;
+    gril:string;
+}

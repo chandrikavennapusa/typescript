@@ -1,3 +1,4 @@
+"use strict";
 // tsc -t es5 functions.ts
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = function (d, b) {
@@ -14,6 +15,7 @@ var __extends = (this && this.__extends) || (function () {
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
+Object.defineProperty(exports, "__esModule", { value: true });
 function addnum(a, b) {
     return a + b;
 }
@@ -189,3 +191,39 @@ var incr = /** @class */ (function () {
 var jhon = new incr(1, "ramu");
 var jony = new incr(2, "hat");
 console.log(incr.count);
+var parent1 = /** @class */ (function () {
+    function parent1(fristname, secondname) {
+        this.fristname = fristname;
+        this.secondname = secondname;
+    }
+    parent1.prototype.hen = function () {
+        return "".concat(this.fristname, " ").concat(this.secondname);
+    };
+    parent1.prototype.hat = function () {
+        return "this is".concat(this.gparent());
+    };
+    return parent1;
+}());
+var child1 = /** @class */ (function (_super) {
+    __extends(child1, _super);
+    function child1(fristname, secondname, salary) {
+        var _this = _super.call(this, fristname, secondname) || this;
+        _this.salary = salary;
+        return _this;
+    }
+    child1.prototype.gparent = function () {
+        return this.salary;
+    };
+    return child1;
+}(parent1));
+function fun8(syam) {
+    if (syam.uncle) {
+        return "".concat(syam.father, " ").concat(syam.uncle).concat(syam.mother);
+    }
+    return "".concat(syam.father, " ").concat(syam.mother);
+}
+var jhon22 = {
+    father: "gopal",
+    mother: "venky"
+};
+console.log(fun8(jhon22));
