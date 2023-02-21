@@ -1,0 +1,15 @@
+<!-- <div *ngFor="let item of [1,2,3,44,33,22,]">
+    <p>number is{{item}}</p>
+</div> -->
+
+<div *ngFor="let p of products" class="dicset" [ngStyle]="{backgroundColor:p.avalible === 'avalible' ? 'yellow' : 'pink'}">
+    <div class="a1">{{p.id}}</div>
+    <div class="a1">{{p.name}}</div>
+    <div class="a1">{{p.collage}}</div>
+    <div class="a1" [ngStyle]="{color:p.avalible === 'avalible'? 'green' : 'red'}">{{p.avalible}}</div>
+    <div class="a1"><button class="a2"  class=" btn btn-success">show</button></div>
+    <div class="a1" *ngIf="p.avalible === 'avalible';else nitfyme"><button class="a3" class=" btn btn-danger">buy now</button></div>
+    <ng-template #nitfyme>
+        <div class="a1" ><button class=" btn btn-danger">notify</button></div>
+    </ng-template>
+</div>

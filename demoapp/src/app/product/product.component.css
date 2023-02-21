@@ -1,0 +1,18 @@
+.dicset{
+    display: flex;
+    padding: 10px;
+    margin: 5px;
+}
+.a1{
+    padding: 10px;
+}
+.a2{
+
+    text-align: center;
+    background-color: yellowgreen;
+}
+.a3{
+  
+    text-align: center;
+    background-color:orangered;
+}
