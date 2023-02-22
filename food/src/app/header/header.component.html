@@ -1,0 +1,24 @@
+<div class="header-cont">
+    <div>
+        <app-search (serchvalues)="searchvalume($event)"></app-search>
+        <app-filter [all]="getall()" [free]="grtfree()" [premium]="grtpre()" (radiocontainervalue)="oneventchanes($event)"></app-filter>
+    </div>
+        <div class="headcontainer">
+            <ng-container *ngFor="let c of courses">
+                <div  *ngIf="dispalyvalue === 'All' ||dispalyvalue ===c.type">
+                <div   class="container" *ngIf="searchvaluep === '' || c.type.toLowerCase().includes(searchvaluep)">
+                    <div>{{c.id}}</div>
+                    <div>{{c.rating}}</div>
+                    <div>{{c.price}}</div>s
+                    <div>{{c.description}}</div>
+                    <div class="space">
+                        <div class="btn btn-primary" >{{c.type}}</div>
+                        <div><button class="btn btn-success"  id="gap">show</button></div>
+                        <div><button class=" btn btn-danger"  >buy now</button></div>
+                    </div>
+                    
+                </div>   
+            </div>
+            </ng-container>
+        </div>
+</div>

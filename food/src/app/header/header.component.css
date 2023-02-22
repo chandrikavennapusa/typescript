@@ -1,0 +1,20 @@
+.container{
+    display: felx;
+    padding: 10px;
+    border: 2px double black;
+    margin: 10px;
+}
+.headcontainer{
+    display: flex;
+}
+.space{
+    padding: 5px;
+    display: inline;
+    text-align: center;
+}
+#gap{
+    margin: 10px;
+}
+.header-cont{
+    background-color: aquamarine;
+}

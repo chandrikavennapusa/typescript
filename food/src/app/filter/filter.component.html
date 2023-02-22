@@ -1,0 +1,10 @@
+<div class="filter-container span-container">
+    <span class="span-container">Filter:</span>
+    <input type="radio" name="filter" id="filter1" value="All" class="span-container"  [(ngModel)]="radiovalue" (change)="oneventchane()">
+    <span class="span-container">{{'All courses ('+all+')'}}</span>
+    <input type="radio" name="filter" id="filter2" value="Free" class="span-container" [(ngModel)]="radiovalue"  (change)="oneventchane()">
+    <span class="span-container">{{'Avaliable ('+free+')'}}</span>
+    <input type="radio" name="filter" id="filter3" value="primimum" class="span-container" [(ngModel)]="radiovalue" (change)="oneventchane()">
+    <span class="span-container"> {{'Not avalible ('+premium+')'}}</span>
+
+</div>
