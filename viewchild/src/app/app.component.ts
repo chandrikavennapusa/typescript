@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, ViewChild } from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +6,14 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'viewchild';
+  title = 'Viewchild';
+   @ViewChild('dateof')  dateof:ElementRef;
+   @ViewChild('ageele')  age:ElementRef;
+
+   getage(){
+    let dob = new Date(this.dateof.nativeElement.value).getFullYear();
+    let currentdate = new Date().getFullYear();
+    let age:number = currentdate - dob;
+    this.age.nativeElement.value =age;
+   }
 }

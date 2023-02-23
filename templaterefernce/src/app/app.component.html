@@ -1,2 +1,14 @@
+<div>
+    <input type="text"  #myint>
+    <button (click)="oninputname(myint)">submit</button>
+</div>
+<app-comp2 [value]="inputname">  <p #cont>how to access that one!</p></app-comp2>
+
+
+
 <app-list #myvalue></app-list>
 <p>name is visable:{{myvalue.selectedvalue?.name}}</p>
+
+<app-comp1><button class="a">click</button> <button class="b">call</button></app-comp1>
+
+<app-comp1><button class="a">click</button> <button class="b">call</button> </app-comp1>
