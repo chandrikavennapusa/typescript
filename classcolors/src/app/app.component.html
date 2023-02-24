@@ -1,0 +1,23 @@
+<div  [appAdddirec]="{container:true , fixed:true }">     <!--  -->
+ <h2>hello itorizon !</h2>
+ <p> it is ucbos application. we all are working ucbos application only.</p>
+</div>
+<div class="container1">
+<div *ngFor="let v of vedio " class="container2">
+  <div [appHighlite]="v.share === sortedvedio.share ">
+    <div><a href="#"><img [src]="v.thumbani" alt="" width="200px" height="200px"></a></div>
+  <div>share::{{v.title}}</div>
+  <div><a href="#">like:{{v.share}}</a></div>
+  <div>dislike: {{v.likes}}</div>
+  </div>
+ 
+</div>
+
+</div>
+<div [appFooterstyle] ="{color:'red', border:'2px solid'}">
+  <h2>footer section</h2>
+</div>
+<button>show notice!</button>
+<div>
+  <h2>it is ver</h2>
+</div>

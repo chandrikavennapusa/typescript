@@ -1,0 +1,31 @@
+.container{
+    background-color: tomato;
+    padding: 10px;
+}
+.fixed{
+    border: 5px double green;
+    color: white;
+}
+.container1{
+    padding: 10px;
+    background-color: tomato;
+    width:970px;
+    display: flex;
+    border: 2px double yellowgreen;
+    margin: 80px;
+    text-align: center;
+    position: relative;
+    left: 200px;
+}
+.container2{
+    border: 2px saddlebrown solid;
+    padding: 10px;
+    margin: 10px;
+}
+.container3{
+    border: 2px yellow double;
+    color: wheat;
+}
+.container4{
+    color: antiquewhite;
+}

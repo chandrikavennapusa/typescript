@@ -10,6 +10,7 @@ import { FormsModule } from '@angular/forms';
 import { setbackgroundcolor } from './customDirective/backgroundcolor.directive';
 import { RenDirective } from './customDirective/ren.directive';
 import { HighlateDirective } from './customDirective/highlate.directive';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -18,7 +19,9 @@ import { HighlateDirective } from './customDirective/highlate.directive';
     Comp2Component,
    setbackgroundcolor,
    RenDirective,
-   HighlateDirective
+   HighlateDirective,
+  
+
   ],
   imports: [
     BrowserModule,
