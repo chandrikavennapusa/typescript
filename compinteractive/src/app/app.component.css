@@ -1,0 +1,9 @@
+.container{
+    display: flex;
+    text-align: center;
+    position: relative;
+    left:500px;
+    background-color: antiquewhite;
+    width: 100px;
+    padding: 10px;
+}

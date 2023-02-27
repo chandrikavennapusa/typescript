@@ -5,7 +5,7 @@ import { Directive ,ElementRef , Renderer2 ,Input} from '@angular/core';
 })
 export class FooterstyleDirective {
 
-  constructor(private element:ElementRef,private rendor:Renderer2) { }
+  constructor(private element:ElementRef,private rendor:Renderer2) { }    // custom attribute style
   @Input('appFooterstyle') set styleset(value:object){
       let entry = Object.entries(value);
       console.log(entry);

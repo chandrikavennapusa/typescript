@@ -1,0 +1,11 @@
+.add-container{
+    background-color: aquamarine;
+    width: 300px;
+    text-align: center;
+    left: 500px;
+    position: relative;
+    height: 200px;
+}
+.addchild{
+        margin: 30px;
+}

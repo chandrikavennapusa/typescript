@@ -1,0 +1,13 @@
+.container{
+    display: flex;
+    background-color: aliceblue;
+    width: 300px;
+    text-align: center;
+    left:500px;
+    position: relative;
+}
+.containerchild{
+    background-color: bisque;
+    text-align: center;
+    margin: 10px;
+}

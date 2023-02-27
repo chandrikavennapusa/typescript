@@ -6,8 +6,8 @@ import { Directive ,ElementRef ,Renderer2 ,Input} from '@angular/core';
 })
 export class HighliteDirective {
 
-  constructor(private element:ElementRef , private rendor:Renderer2) { }
-
+  constructor(private element:ElementRef , private rendor:Renderer2) { }   // custom attribute addclass
+ 
      @Input() set appHighlite (condition:boolean){
         if(condition){
           this.rendor.addClass(this.element.nativeElement , 'container3' )

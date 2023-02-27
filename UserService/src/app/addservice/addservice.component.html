@@ -1,0 +1,14 @@
+<div class="add-container">
+    <div class="addchild">
+        <input type="text" placeholder="enter name" [(ngModel)]="useraddname">
+    </div>
+    <div class="addchild">
+       <select name="status" id="status" [(ngModel)]="useraddactive">
+       <option>active</option>
+       <option>inactive</option>
+    </select>
+    </div>
+    <div class="addchild">
+        <button (click)="Adduser()">Create User</button>
+    </div>
+</div>
