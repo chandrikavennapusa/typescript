@@ -1,23 +1,23 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { Userservice } from './services/service';
-import { Loggeruser } from './services/logger.service';
+import { NotificationService } from './service/notification.service';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { AddserviceComponent } from './addservice/addservice.component';
+import { Comp1Component } from './comp1/comp1.component';
+import { Comp2Component } from './comp2/comp2.component';
 import { FormsModule } from '@angular/forms';
-import { SomeTextMessage } from './services/sometextmessage';
 @NgModule({
   declarations: [
     AppComponent,
-    AddserviceComponent
+    Comp1Component,
+    Comp2Component
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule
   ],
-  providers: [ Userservice ,Loggeruser, SomeTextMessage],
+  providers: [NotificationService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -15,8 +15,8 @@ export class AddcomComponent {
     name : {name:string,age:number,university:string}[]=[];
     ngOnInit(){
         this.name=this.name2.name;
-        // this.myobservable.subscribe((val:any)=>console.log(val), 
-        this.dataobservable.subscribe((val:any)=>console.log(val),
+        this.myobservable.subscribe((val:any)=>console.log(val), 
+        // this.dataobservable.subscribe((val:any)=>console.log(val),
         (error:any)=>{
             console.log(error.message);
         },
@@ -27,17 +27,17 @@ export class AddcomComponent {
      this.name2. savedetais(name4);
     }
 
-//  myobservable=new Observable((observer)=> {        // observable
-//  console.log("it is my observable");
-//   setTimeout(() => {
-//     observer.next("1")
-//   }, 1000);
-//   setTimeout(()=>{observer.next("2")},1000);
+ myobservable=new Observable((observer)=> {        // observable
+ console.log("it is my observable");
+  setTimeout(() => {
+    observer.next("1")
+  }, 1000);
+  setTimeout(()=>{observer.next("2")},1000);
 
-//   // setTimeout(()=>{observer.error(new Error("some thing is wrong please check that one!"))},1000)
-//   setTimeout(()=>{observer.complete()},1000);
+  // setTimeout(()=>{observer.error(new Error("some thing is wrong please check that one!"))},1000)
+  setTimeout(()=>{observer.complete()},1000);
  
-// });
+});
  
 // myobservable = Observable.create((observer:any)=>{     // using create method
 //   observer.next("A");
@@ -48,10 +48,10 @@ export class AddcomComponent {
 //   observer.next("D")
 // })
  
-arr1 =[1,2,3,4];
-arr2=["a","b","c","d"];
-// myobservable =of(this.arr1,this.arr2,"hello",11,22,"bye")
-myobservable = from(this.arr1);
- dataobservable = this.myobservable.pipe(map((val)=>val*5));
-  this.myobservable.pipe(filter((val)=> {return val>35}));
+// arr1 =[1,2,3,4];
+// arr2=["a","b","c","d"];
+// // myobservable =of(this.arr1,this.arr2,"hello",11,22,"bye")
+// myobservable = from(this.arr1);
+//  dataobservable = this.myobservable.pipe(map((val)=>val*5));
+   
 }
