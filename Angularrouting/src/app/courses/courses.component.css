@@ -1,0 +1,12 @@
+.coursecontainer{
+    display: flex;
+    padding: 10px;
+    margin: 10px;
+    background-color: beige;
+    text-align: center;
+    width: 450px;
+}
+.coursecon{
+    margin: 10px;
+    text-align: center;
+}

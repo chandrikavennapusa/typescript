@@ -1,0 +1,12 @@
+.nav-container{
+    display: flex;
+    text-align: center;
+   list-style-type: none;
+    position: absolute;
+    left:500px;
+  background-color: aliceblue;
+}
+.list-container{
+    padding: 20px;
+    text-decoration: none;
+}

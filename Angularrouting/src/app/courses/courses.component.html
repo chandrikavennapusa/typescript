@@ -1,0 +1,8 @@
+<p>courses works!</p>
+<div *ngFor="let courses of  courses1" class="coursecontainer">
+    <div class="coursecon">id:{{courses.id}}</div>
+    <div class="coursecon">name:{{courses.name}} </div>
+    <div class="coursecon">university:{{courses.university}}</div>
+    <div class="coursecon">price:{{courses.price}}</div>
+<div><button routerLink="/coures/course/{{courses.id}}">details</button></div>
+</div>

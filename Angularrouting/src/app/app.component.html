@@ -1,0 +1,17 @@
+<div>
+  <div class="nav-container">
+  
+    <li [routerLinkActive]="'class1'" [routerLinkActiveOptions]="{exact: true}"><a routerLink="" class="list-container">HOME</a></li>
+  <li [routerLinkActive]="'class1'"  ><a routerLink="/About" class="list-container">About</a></li>
+  <li [routerLinkActive]="'class1'" ><a routerLink="/Contact"  class="list-container">contact</a></li>
+  <li [routerLinkActive]="'class1'" > <a routerLink="/coures" class="list-container">Courses</a></li>
+  </div>
+  <div>
+    <!-- <app-home></app-home>
+    <app-courses></app-courses>
+    <app-contact></app-contact>
+    <app-about></app-about> -->
+
+   <router-outlet></router-outlet>
+  </div>
+</div>

@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component ,OnDestroy} from '@angular/core';
+import { interval, Observable } from 'rxjs';
 import { NotificationService } from '../service/notification.service';
 
 @Component({
@@ -8,7 +9,7 @@ import { NotificationService } from '../service/notification.service';
 })
 export class Comp2Component {
   fristname:string ='';
-  messageToShow:String='';
+  
   constructor(private notificationservice:NotificationService){
     
   }
@@ -18,5 +19,40 @@ export class Comp2Component {
       (val:string)=>
     this.fristname=val,
     )
+    this.data.subscribe(
+      (_data1: any)=>{console.log(_data1)},
+      (err:any)=>{console.log(err)},
+      ()=>{console.log("completeed!")}
+      
+      )
+      this.interval1= this.intervall.subscribe((data)=>{console.log(data)});
+
+      
    }
+   intervall = interval(1000);
+interval1:any;
+unsub(){
+  this.interval1.unsubscribe();
 }
+          data = Observable.create((_observer: any) =>{
+            let count=0;
+        setInterval(()=>{
+          _observer.next(count);
+          if(count == 5){_observer.complete()}
+          if(count > 5 ){
+            _observer.error(new Error('count is greater then 3'))          }
+          count++;
+        },1000)
+            
+})
+
+}
+
+
+
+
+
+
+
+
+
