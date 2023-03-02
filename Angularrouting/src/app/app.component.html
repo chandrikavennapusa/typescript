@@ -3,8 +3,9 @@
   
     <li [routerLinkActive]="'class1'" [routerLinkActiveOptions]="{exact: true}"><a routerLink="" class="list-container">HOME</a></li>
   <li [routerLinkActive]="'class1'"  ><a routerLink="/About" class="list-container">About</a></li>
-  <li [routerLinkActive]="'class1'" ><a routerLink="/Contact"  class="list-container">contact</a></li>
+  <!-- <li [routerLinkActive]="'class1'" ><a routerLink="/Contact"  class="list-container">contact</a></li> -->
   <li [routerLinkActive]="'class1'" > <a routerLink="/coures" class="list-container">Courses</a></li>
+  <li [routerLinkActive]="'class1'" [routerLinkActiveOptions]="{exact: true}"> <a routerLink="." fragment="/Contact" class="list-container"  >contact</a></li>
   </div>
   <div>
     <!-- <app-home></app-home>
@@ -15,3 +16,22 @@
    <router-outlet></router-outlet>
   </div>
 </div>
+<!-- <ng-container>
+ Hello
+</ng-container> -->
+<!-- <div *ngIf="login; else:temp">yes!</div> -->
+
+<!-- <ng-template #temp>
+ Invalid data(ng-template give the variable reference .)
+</ng-template> -->
+
+<app-content>
+  <p >ng content </p>
+  <p>ng content end</p>
+</app-content>
+<app-content>
+  <p >ng content </p>
+  <p>ng content end</p>
+</app-content>
+
+

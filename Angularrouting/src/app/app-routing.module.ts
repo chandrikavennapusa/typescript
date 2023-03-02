@@ -12,9 +12,13 @@ const routes: Routes = [
   {path:'', component:HomeComponent},
   {path:'HOME', component:HomeComponent},
   {path:'About', component:AboutComponent},
+  {path:'About/:name', component:AboutComponent},
   {path:'Contact', component:ContactComponent},
   {path:'coures', component:CoursesComponent},
-  {path:'coures/course/:id', component:CourseComponent},
+  {path:'coures', children:[
+   { path:'course/:id', component:CourseComponent}
+  ]},
+  // {path:'coures/course/:id', component:CourseComponent},
   {path:'**', component:ErrorComponent}
 ];
 

@@ -3,3 +3,10 @@
 <button  (click)="gohome()">
     go to home
 </button>
+<input type="text" [(ngModel)]="value">
+<p >{{value}}</p>
+
+
+<button (click)="routerpar()"> roterparameter</button>
+<button (click)="querypar()">queerypara</button>
+<!-- <button  [routerLink]="['/About']" [queryParams]="{name:value}"> edit</button> -->
