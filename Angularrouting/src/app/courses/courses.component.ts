@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { CoureserviceService } from '../service/coureservice.service';
 
 @Component({
@@ -7,10 +8,15 @@ import { CoureserviceService } from '../service/coureservice.service';
   styleUrls: ['./courses.component.css']
 })
 export class CoursesComponent {
-    constructor(private courseservie:CoureserviceService){}
+    constructor(private courseservie:CoureserviceService,private activated:ActivatedRoute){}
     courses1:any;
     ngOnInit(){
-        this.courses1 = this.courseservie.coursearray;
+        // this.courses1 = this.courseservie.coursearray;
+        //  this.courseservie.getcourseget().then((data:any)=>
+        //  this.courses1=data
+        //  )
+        this.courses1 = this.activated.snapshot.data['corses'];
+  
     }
 }
 

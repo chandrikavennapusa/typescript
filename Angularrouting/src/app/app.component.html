@@ -3,10 +3,14 @@
   
     <li [routerLinkActive]="'class1'" [routerLinkActiveOptions]="{exact: true}"><a routerLink="" class="list-container">HOME</a></li>
   <li [routerLinkActive]="'class1'"  ><a routerLink="/About" class="list-container">About</a></li>
-  <!-- <li [routerLinkActive]="'class1'" ><a routerLink="/Contact"  class="list-container">contact</a></li> -->
+  <li [routerLinkActive]="'class1'"  ><a routerLink="/PAGE" class="list-container">PAGE</a></li>
+  <li [routerLinkActive]="'class1'" ><a routerLink="/Contact"  class="list-container">contact</a></li>
   <li [routerLinkActive]="'class1'" > <a routerLink="/coures" class="list-container">Courses</a></li>
-  <li [routerLinkActive]="'class1'" [routerLinkActiveOptions]="{exact: true}"> <a routerLink="." fragment="/Contact" class="list-container"  >contact</a></li>
+  <!-- <li [routerLinkActive]="'class1'" [routerLinkActiveOptions]="{exact: true}"> <a routerLink="." fragment="/Contact" class="list-container"  >contact</a></li> -->
   </div>
+         <button (click)="login1()">login</button>
+         <button (click)="logout()">logout</button>
+
   <div>
     <!-- <app-home></app-home>
     <app-courses></app-courses>
@@ -25,7 +29,7 @@
  Invalid data(ng-template give the variable reference .)
 </ng-template> -->
 
-<app-content>
+<!-- <app-content>
   <p >ng content </p>
   <p>ng content end</p>
 </app-content>
@@ -33,5 +37,5 @@
   <p >ng content </p>
   <p>ng content end</p>
 </app-content>
-
+ -->
 

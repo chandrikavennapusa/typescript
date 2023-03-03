@@ -13,4 +13,12 @@ export class CoureserviceService {
     {id:103,name:"alen",university:"sv",price:3000},
     {id:104,name:"jarkand",university:"ru",price:4000},
   ]
+  getcourseget():any{
+      const resolveval = new Promise((resolve,reject)=>{
+        setTimeout(()=>{
+         resolve(this.coursearray)
+        },2000)
+      });
+      return resolveval;
+  }
 }

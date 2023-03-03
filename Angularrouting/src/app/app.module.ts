@@ -11,7 +11,11 @@ import { RouterModule, Routes } from '@angular/router';
 import { ErrorComponent } from './error/error.component';
 import { CourseComponent } from './courses/course/course.component';
 import { ContentComponent } from './content/content.component';
-
+import { coursegurdservices } from './course-gurd.services';
+import { authservice } from './auth-service';
+import { PageComponent } from './page/page.component';
+import { deactivate } from './deactivate.service';
+import { resloveclas } from './reslove.services';
 const approut:Routes=[
   
 ]
@@ -26,7 +30,8 @@ const approut:Routes=[
     CoursesComponent,
     ErrorComponent,
     CourseComponent,
-    ContentComponent
+    ContentComponent,
+    PageComponent
   ],
   imports: [
     BrowserModule,
@@ -34,7 +39,7 @@ const approut:Routes=[
     RouterModule,
     FormsModule
   ],
-  providers: [],
+  providers: [coursegurdservices,authservice, deactivate,resloveclas],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

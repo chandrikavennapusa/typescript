@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Authenticate } from './authservice.service';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,7 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'angularrout';
+    constructor(private authser:Authenticate){}
+  login(){this.authser.login()}
+  logout(){this.authser.logout()}
 }

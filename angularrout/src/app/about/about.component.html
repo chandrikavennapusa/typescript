@@ -1,0 +1,11 @@
+<div *ngFor="let e of employee" class="aboutcontainer">
+    <div  class="aboutcontai" >{{e.id}}</div>
+    <div  class="aboutcontai">{{e.name}}</div>
+    <div  class="aboutcontai">{{e.place}}</div>
+    <div><button routerLink="/ABOUT/ABOUTS/{{e.id}}">show details</button></div>
+</div>
+ 
+ <input type="text" [(ngModel)]="id1"(change)="value()">
+{{id1}} 
+ <button (click)="queery()">click</button> 
+<!-- <button routerLink="/EMP" [queryParams]="{name:id1}" >clcik</button> -->
