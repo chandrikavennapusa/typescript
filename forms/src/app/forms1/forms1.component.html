@@ -1,0 +1,37 @@
+<div>
+    <form (ngSubmit)="onsubmit(forms)" #forms="ngForm">
+        <div ngModelGroup="personaldetalis" #personaldetalis="ngModelGroup">
+           <div  class="formcontainer">
+            <label > name:</label>
+            <input type="text" name="fristname" required ngModel><br>
+           </div>
+           <div class="formcontainer">
+            <label> email:</label>
+            <input type="email" name="email" required ngModel><br>
+           </div>
+        </div>
+           <div *ngIf="personaldetalis.invalid && personaldetalis.touched" class="last">
+            reuired filelds
+           </div>
+
+
+
+
+        <div>
+             <select name="dropdown" class="formcontainer" [(ngModel)]="defalut">
+                <option value="html">html</option>
+                <option value="css">css</option>
+               <option value="js">js</option>
+                 <option value="ts">ts</option>
+             </select><br>
+        </div>
+        <label class="formcontainer"> gender:</label>
+        <div *ngFor="let gen of gender">
+            <input type="radio" id="{{gen.id}}" name="radio" value="{{gen.value}}" [ngModel]="defalutgender">
+            <label >{{gen.value}}</label>
+        </div>
+      
+       
+     <button type="submit">save</button>
+    </form>
+</div>

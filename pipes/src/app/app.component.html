@@ -1,0 +1,19 @@
+<input type="text" placeholder="enter a name"[(ngModel)]="filterTtest">
+
+  <div *ngFor="let l of  filterlist"   (mousemove)="mouseoverOn()">    <!-- | filter:filterTtest" -->
+    <div>marks:{{l.telugu}}</div>
+    <input type="text"value="l.telugu" [(ngModel)]="l.telugu">
+    <div>{{l.name}}</div>
+    <div>{{l.gender | uppercase}}</div>
+    <div>percentage:{{l.telugu  | pipe:totalmarks:2 }} </div>
+    <div>dob:{{l.dob | date:'fullDate'}}</div>
+  </div>
+
+
+<div>
+ <button (click)="addlist()">add list</button>
+ <button (click)="changelist()">change list</button>
+</div>
+<div>
+<h2>totalstudents:{{totallist | async}}</h2>
+</div>

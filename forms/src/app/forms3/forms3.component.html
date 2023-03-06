@@ -1,0 +1,22 @@
+
+
+<form (ngSubmit)="conform()" #fromset="ngForm">
+
+<label > hobbies</label>
+<input type="text" class="formscontainer" name="hobbies"ngModel required><br>
+
+<label >age</label>
+<input type="number"  class="formscontainer"name="age"ngModel required><br>
+
+<label> skills</label>
+<input type="text"  class="formscontainer" name="skills" ngModel required><br>
+
+<button (click)="setdefalutvalues()">set default values</button>
+
+<button type="submit">conform</button>
+</form>
+<div>
+    <p>hobbies:{{hobbies}}</p>
+    <p>age:{{age}}</p>
+    <p>skills:{{skills}}</p>
+</div>

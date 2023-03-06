@@ -1,0 +1,24 @@
+<div>
+    <form (ngSubmit)="onSubmit(myform)" #myform="ngForm">
+      <label > frist name:</label>
+      <input type="text" name="frist name" ngModel required class="formcontainer" #frist="ngModel"> <br>
+      <div class="frist" *ngIf="frist.touched && frist.invalid">frist name is required field.</div>
+  
+  
+      <label > second name:</label>
+      <input type="text" name="second name" ngModel required class="formcontainer" #last="ngModel"><br>
+      <div class="frist" *ngIf="last.touched && last.invalid">last  name is required field.</div>
+  
+  
+      <select name="drap down" ngModel class="formcontainer" [(ngModel)]="defalutvalue">
+        <option value="html">html</option>
+        <option value="css">css</option>
+        <option value="js">js</option>
+        <option value="ts">ts</option>
+      </select><br>
+      <label class="formcontainer">gender</label>
+      <input type="checkbox" name="gender" id="" name="gender" ngModel>female
+      <input type="checkbox" name="gender" id="" name="gender" ngModel>male <br>
+    <button type="submit" value="submit" [disabled]=" !myform.valid" class="formcontainer">submit</button>
+    </form>
+  </div>

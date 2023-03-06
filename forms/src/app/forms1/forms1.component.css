@@ -1,0 +1,10 @@
+.formcontainer{
+    margin: 20px;
+}
+
+input.ng-invalid.ng-touched{
+    border: 2px solid red;
+    }
+    .last{
+        color: red;
+    }
