@@ -29,7 +29,7 @@ export class Forms3Component {
       age:10,
       skills:"java"
     });
-   
+  
   
   }
 }

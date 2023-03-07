@@ -1,0 +1,44 @@
+<div class="myform" [ngClass]="formstatus">
+    <form [formGroup]="reactiveform" (ngSubmit)="submitform()" >
+       <div formGroupName="reactivesubform">
+        <label>name:</label>
+        <input type="text" class="rectcontainer" formControlName="frist">  <br>
+          <!-- <div>
+            <span *ngIf="reactiveform.get('reactivesubform.frist').errors?.['required']">required field. </span>
+            <span *ngIf="reactiveform.get('reactivesubform.frist').errors?.['noSpaceAlloewd']">space is not required</span>
+          </div> -->
+        
+        <label> email:</label>
+        <input type="email" class="rectcontainer" formControlName="email"> <br>
+       
+        <div class="frist1" *ngIf="!reactiveform.get('reactivesubform.email').valid && reactiveform.get('reactivesubform.email').touched">
+            <span>this field is required</span>
+        </div>
+       </div>
+        <select formControlName="country" id="country" class="rectcontainer">
+            <option value="india">India</option>
+            <option value="usa">Usa</option>
+            <option value="uk">UK</option>
+            <option value="america">America</option><br>
+        </select><br>
+        <label>gender:</label>
+                <div *ngFor="let g of gender">
+                    <input type="radio" formControlName="gender1" id="{{g.id}}" value="{{g.value}}" class="rectcontainer">
+                    <label>{{g.value}}</label>
+                </div> <br>
+                <label > age:</label>
+                <input type="number"formControlName="age" id="age">
+
+
+                        <div formArrayName="skills">
+                            <ng-container *ngFor="let s of reactiveform.controls['skills']['controls'];  index as i ">
+                                <input type="text" placeholder="enter skills" formControlName={{i}}>
+                            </ng-container>
+                        </div>
+
+                        
+ 
+
+                <button type="submit">save</button>
+    </form>
+</div>

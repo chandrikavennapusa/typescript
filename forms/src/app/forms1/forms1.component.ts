@@ -10,7 +10,9 @@ export class Forms1Component {
     console.log(forms)
   }
   defalut='html';
+  
     defalutgender='female'
+
   gender=[{id:1,value:"female"},
   {id:2,value:"male"},
   {id:3,value:"others"}

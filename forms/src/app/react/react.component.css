@@ -1,0 +1,21 @@
+.rectcontainer{
+    margin:10px;
+}
+
+input.ng-invalid.ng-touched{
+    border: 2px solid red;
+    }
+
+    .frist1{
+        color: red;
+    }
+
+    .myform.INVALID{
+            border: 1px solid red;
+    }
+    .myform.PENDING{
+        border: 1px solid yellow;
+    }
+    .myform.VALID{
+        border:1px solid green;
+    }
