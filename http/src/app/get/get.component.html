@@ -1,0 +1,9 @@
+<button (click)="getdata()" *ngIf="!data">get</button>
+<div  *ngIf="data">
+    <div *ngFor="let d of data">
+        <div>{{d.id}}</div>
+        <div>{{d.title}}</div>
+        <div>{{d.author}}</div>
+    </div>
+
+</div>

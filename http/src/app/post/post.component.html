@@ -1,0 +1,30 @@
+<form  #productform="ngForm" (ngSubmit)="onProductCreate(productform); OnproductsFecth()"> 
+    <input type="text" placeholder="enter name" name="fullname" class="continer" ngModel> <br>
+    <input type="number" name="age"  placeholder="enter age" class="continer" ngModel> <br>
+    <input type="text" name="group"  placeholder="enter blood group" class="continer" ngModel> <br>
+    <button type="submit" >save</button>
+</form>
+
+<table >
+    <tr>
+        <th>name</th>
+        <th>age</th>
+        <th>Blood group</th>
+    </tr>
+    
+        <tr *ngFor="let p of allproduct;index as i">
+            <td  class="tablecontainer">{{p.fullname}}</td>   
+            <td  class="tablecontainer">{{p.age}}</td> 
+            <td  class="tablecontainer">{{p.group}}</td>
+            <td>{{p.id}}</td>
+            <td>{{i}}</td>
+            <td><button (click)="ondelteproduct(p.id)">delete</button></td>
+         
+        </tr>
+    
+   
+</table>
+
+<button (click)="ondelteproductall()">clear all</button>
+
+

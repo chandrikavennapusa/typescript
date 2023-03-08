@@ -1,0 +1,14 @@
+{
+  "posts": [
+    {
+      "fullname": "gv venn",
+      "age": 23,
+      "group": "A+",
+      "id": 2
+    }
+  ],
+  "comments": [],
+  "profile": {
+    "name": "typicode"
+  }
+}
