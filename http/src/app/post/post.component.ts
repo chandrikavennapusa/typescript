@@ -1,67 +1,113 @@
+import { group } from '@angular/animations';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { map } from 'rxjs';
+import { map, Subscription, tap } from 'rxjs';
+import { __values } from 'tslib';
 import { product } from '../model/productss';
-
+import { ServiceService } from '../service.service';
+import { OnDestroy } from '@angular/core';
+import { NotificationService } from '../notification.service';
 @Component({
   selector: 'app-post',
   templateUrl: './post.component.html',
   styleUrls: ['./post.component.css']
 })
-export class PostComponent {
+export class PostComponent implements OnDestroy {
   allproduct:product[];
-  constructor(private httpclient:HttpClient){}
-    header= new HttpHeaders({'myheader':'product'});
+  isfecthing:boolean=true;
+  errsubscription:Subscription;
 
-
-  onProductCreate(products:NgForm){
-        console.log(products.value);
-        this.httpclient.post<{name:string}>('http://localhost:3000/posts',products.value,{headers: this.header}).subscribe((value)=>{console.log(value);})
+  constructor(private httpclient:HttpClient, private service:ServiceService , private notificationservice:NotificationService){}
+  
+  
+  
+  ngOnDestroy(): void {
+    throw new Error('Method not implemented.');
   }
+   
+@ViewChild('productform') form:NgForm;
+    cuurentid;
+
+    
+  onProductCreate(products:NgForm){                              // form save json data created
+    if(!this.editmode){
+        this.service.productscreate(products)
+    }else{
+      this.service.updatevalues(this.cuurentid,products.value);
+    }
+  }
+
+
+ 
+
+
   ngOnInit(){
     this.fectingdata();
+    this.service.error.subscribe((message)=>{this.errormessage=message})
   }
-  OnproductsFecth(){
-    this.fectingdata();
-   }
 
 
-
-  
-
-
-
-  private fectingdata(){
-    this.httpclient.get<{[key:string]:product}>('http://localhost:3000/posts') .pipe(map((res)=>{
-      const product=[];
-      for(const key in res){
-        if(res.hasOwnProperty(key)){
-          product.push({...res[key] , id: key})
-        }
-      }
-      return product;
-    }))
-    .subscribe((product)=>{
-  
-      this.allproduct=product;})
-  }
-  id1
-
-  ondelteproduct(id){
-    this.id1=Number(id)+1;
-   console.log(id);
-  
-    this.httpclient.delete('http://localhost:3000/posts/'+this.id1+'').subscribe();
-    console.log(typeof(id))
-
+ OnDestroy(){
+   this.errsubscription.unsubscribe();
  }
 
 
+
+      
+  OnproductsFecth(){
+    this.fectingdata();
+   }
+  private fectingdata(){
+    this.isfecthing=false;
+    this.service.fetchingdata().subscribe((data)=>{
+      this.allproduct=data
+    },(err)=>{
+      this.errormessage=err.message
+    });
+  }
+
+   
+  ondelteproduct(id){                                             //delete json server based on id
+ this.service.ondelete(id); 
+ }
+
+errormessage;
 ondelteproductall(){
-  this.httpclient.delete('http://localhost:3000/posts/').subscribe();
+  this.httpclient.delete('http://localhost:3000/posts').subscribe();
+   
+  
  
 }
+
+
+editmode:boolean=false;                                                   // update the data
+updatevalues(id:string){
+  this.cuurentid=id;
+  let currentedit=  this.allproduct.find((p)=>{return  p.id === id});
+
+this.form.setValue({
+    fullname:currentedit.fullname,
+    age:currentedit.age,
+    group:currentedit.group
+   
+  })
+    this.editmode=true;
+  }
+
+
+  setsucessfullmessage=this.notificationservice. suceessmessageaction.pipe(tap (message=>{
+    setTimeout(() => {
+      this.notificationservice.clearAll();
+    }, 2000);
+  }))
+
+ 
+  seterrmessage=this.notificationservice.errormessageaction.pipe(tap (message=>{
+    setTimeout(() => {
+      this.notificationservice.clearAll();
+    }, 2000);
+  }));
 }
 
 

@@ -1,6 +1,9 @@
 <div>
   <div class="nav-container">
-  
+    <a routerLink="lazy" class="list-container">lazy1</a>
+    <a routerLink="lazy/lazy2" class="list-container">lazy2</a>
+
+   
     <li [routerLinkActive]="'class1'" [routerLinkActiveOptions]="{exact: true}"><a routerLink="" class="list-container">HOME</a></li>
   <li [routerLinkActive]="'class1'"  ><a routerLink="/About" class="list-container">About</a></li>
   <li [routerLinkActive]="'class1'"  ><a routerLink="/PAGE" class="list-container">PAGE</a></li>

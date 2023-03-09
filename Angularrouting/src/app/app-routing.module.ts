@@ -25,6 +25,13 @@ const routes: Routes = [
   {path:'coures',canActivateChild:[coursegurdservices],  children:[                                    //
    { path:'course/:id', component:CourseComponent}
   ]},
+
+  {
+    path:"lazy", loadChildren:()=> 
+    import('./lazy1/lazy1-routing.module').then((m) => m.Lazy1RoutingModule) 
+  },
+
+
   // {path:'coures/course/:id', component:CourseComponent},
   {path:'**', component:ErrorComponent}
 ];

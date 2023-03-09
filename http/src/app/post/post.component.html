@@ -1,24 +1,30 @@
-<form  #productform="ngForm" (ngSubmit)="onProductCreate(productform); OnproductsFecth()"> 
+<form  #productform="ngForm" (ngSubmit)="onProductCreate(productform)"> 
     <input type="text" placeholder="enter name" name="fullname" class="continer" ngModel> <br>
     <input type="number" name="age"  placeholder="enter age" class="continer" ngModel> <br>
     <input type="text" name="group"  placeholder="enter blood group" class="continer" ngModel> <br>
-    <button type="submit" >save</button>
+    <input type="submit" value="{{editmode?'update product':' Add product'}}">
 </form>
-
-<table >
+  <button (click)="OnproductsFecth()"  class="continer">fecting data</button>
+<table class="tablecontainer continer">
     <tr>
-        <th>name</th>
-        <th>age</th>
-        <th>Blood group</th>
+        <th class="tablecontainer">name</th>
+        <th class="tablecontainer">age</th>
+        <th class="tablecontainer">Blood group</th>
+        <th class="tablecontainer">id:</th>
+        <th class="tablecontainer">index</th>
+        <th class="tablecontainer" colspan="2">actions</th>
     </tr>
-    
+    <tr *ngIf=" allproduct?.length < 1   && !isfecthing ">
+        <td colspan="6" style="text-align: center;">no products is avalibale</td>
+    </tr >
         <tr *ngFor="let p of allproduct;index as i">
             <td  class="tablecontainer">{{p.fullname}}</td>   
             <td  class="tablecontainer">{{p.age}}</td> 
             <td  class="tablecontainer">{{p.group}}</td>
-            <td>{{p.id}}</td>
-            <td>{{i}}</td>
-            <td><button (click)="ondelteproduct(p.id)">delete</button></td>
+            <td class="tablecontainer">{{p.id}}</td>
+            <td class="tablecontainer"> {{i}}</td>
+            <td class="tablecontainer"><button (click)="ondelteproduct(p.id)">delete</button></td>
+            <td class="tablecontainer"><button (click)="updatevalues(p.id)">edit</button></td>
          
         </tr>
     
@@ -27,4 +33,14 @@
 
 <button (click)="ondelteproductall()">clear all</button>
 
+<p> {{errormessage}}</p>
 
+<div>
+   
+</div>
+<div *ngIf="setsucessfullmessage |async as setsucessfullmessage" style="background-color: green;">
+    {{ setsucessfullmessage}}
+      </div>
+      <div *ngIf="seterrmessage | async as seterrmessage" style="background-color: red;">
+  {{seterrmessage}}
+      </div>
