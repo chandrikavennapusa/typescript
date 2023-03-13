@@ -1,0 +1,58 @@
+<h2>get the data</h2>
+<table>
+  <tr>
+    <th>postid:</th>
+    <th>id:</th>
+    <th>name:</th>
+    <th>email:</th>
+    <th>body:</th>
+  </tr>
+  <tr *ngFor="let com of listcomments">
+    <td>{{com.postid}}</td>
+    <td>{{com.id}}</td>
+    <td>{{com.name}}</td>
+    <td>{{com.email}}</td>
+    <td>{{com.body}}</td>
+  
+  </tr>
+</table>
+<h2>get request using parameters h</h2>
+
+
+<table>
+  <tr>
+   
+    <th>id:</th>
+    <th>postid</th>
+    <th>title:</th>
+    <th>body:</th>
+  </tr>
+  <tr *ngFor="let com of listpost">
+    <td>{{com.id}}</td>
+    <td>{{com.postid}}</td>
+    <td>{{com.name}}</td>
+    <td>{{com.body}}</td>
+  
+  </tr>
+</table>
+<h2>post data return</h2>
+<table>
+  <tr>
+   
+    <th>id:</th>
+    <th>postid</th>
+    <th>title:</th>
+    <th>body:</th>
+  </tr>
+  <tr>
+    
+    <td>{{objpost.postid}}</td>
+    <td>{{objpost.id}}</td>
+    <td>{{objpost.name}}</td>
+    <td>{{objpost.body}}</td>
+  
+  </tr>
+</table>
+
+
+

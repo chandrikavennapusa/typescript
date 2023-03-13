@@ -1,6 +1,6 @@
 import { group } from '@angular/animations';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Component, ViewChild } from '@angular/core';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { map, Subscription, tap } from 'rxjs';
 import { __values } from 'tslib';
@@ -8,23 +8,28 @@ import { product } from '../model/productss';
 import { ServiceService } from '../service.service';
 import { OnDestroy } from '@angular/core';
 import { NotificationService } from '../notification.service';
+
+
+
+
 @Component({
   selector: 'app-post',
   templateUrl: './post.component.html',
   styleUrls: ['./post.component.css']
 })
-export class PostComponent implements OnDestroy {
+
+
+export class PostComponent implements OnDestroy ,OnInit{
+  [x: string]: any;
   allproduct:product[];
   isfecthing:boolean=true;
   errsubscription:Subscription;
 
-  constructor(private httpclient:HttpClient, private service:ServiceService , private notificationservice:NotificationService){}
+  constructor(private httpclient:HttpClient, private service:ServiceService , private notifictionservice:NotificationService){}
   
   
   
-  ngOnDestroy(): void {
-    throw new Error('Method not implemented.');
-  }
+  
    
 @ViewChild('productform') form:NgForm;
     cuurentid;
@@ -33,8 +38,15 @@ export class PostComponent implements OnDestroy {
   onProductCreate(products:NgForm){                              // form save json data created
     if(!this.editmode){
         this.service.productscreate(products)
+        .pipe(tap(post => { this.notifictionservice.setsuccessmessge("suceessfully added");}),
+        map(res => 
+          this.allproduct =res
+          )
+        ) .subscribe()
+       
     }else{
-      this.service.updatevalues(this.cuurentid,products.value);
+      this.service.updatevalues(this.cuurentid,products.value) 
+      .pipe(tap(post => { this.notifictionservice.setsuccessmessge("suceessfully updated");})).subscribe();  ;
     }
   }
 
@@ -60,16 +72,37 @@ export class PostComponent implements OnDestroy {
    }
   private fectingdata(){
     this.isfecthing=false;
-    this.service.fetchingdata().subscribe((data)=>{
+    this.service.fetchingdata().pipe(map((res)=>{
+      const product=[];
+      for(const key in res){
+        if(res.hasOwnProperty(key)){
+          product.push({...res[key]})
+        }
+      }
+      return product;
+    })
+  ).subscribe((data)=>{
       this.allproduct=data
     },(err)=>{
       this.errormessage=err.message
     });
   }
 
+
+
+
+
+
+  
+
+
+
+
+
    
   ondelteproduct(id){                                             //delete json server based on id
- this.service.ondelete(id); 
+ this.service.ondelete(id).pipe(tap(post => { this.notifictionservice.setsuccessmessge("delete suceesfully");}))
+ .subscribe();; 
  }
 
 errormessage;
@@ -96,18 +129,26 @@ this.form.setValue({
   }
 
 
-  setsucessfullmessage=this.notificationservice. suceessmessageaction.pipe(tap (message=>{
+  setsucessfullmessage=this.notifictionservice. suceessmessageaction.pipe(tap (message=>{
     setTimeout(() => {
-      this.notificationservice.clearAll();
+      this.notifictionservice.clearAll();
     }, 2000);
   }))
 
  
-  seterrmessage=this.notificationservice.errormessageaction.pipe(tap (message=>{
+  seterrmessage=this.notifictionservice.errormessageaction.pipe(tap (message=>{
     setTimeout(() => {
-      this.notificationservice.clearAll();
+      this.notifictionservice.clearAll();
     }, 2000);
   }));
+
+
+
+
+
+  ngOnDestroy(): void {
+    throw new Error('Method not implemented.');
+  }
 }
 
 

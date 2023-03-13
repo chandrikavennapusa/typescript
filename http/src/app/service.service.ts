@@ -1,7 +1,7 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { catchError, map, Subject, tap, throwError } from 'rxjs';
+import { catchError, map, Observable, Subject, tap, throwError } from 'rxjs';
 import { product } from './model/productss';
 import { NotificationService } from './notification.service';
 
@@ -9,47 +9,57 @@ import { NotificationService } from './notification.service';
   providedIn: 'root'
 })
 export class ServiceService {
-error=new Subject<string>;
-  constructor(private httpclient:HttpClient , private notifictionservice:NotificationService) { }
+
+  error=new Subject<string>;
+  constructor(private httpclient:HttpClient ) { }
  
    //post the data in server
    header= new HttpHeaders({'myheader':'product'});
 
 
-   productscreate(products:NgForm){
-    console.log(products.value);
-    this.httpclient.post<{name:string}>('http://localhost:3000/posts',products.value,{headers: this.header}).pipe(tap(post => { this.notifictionservice.setsuccessmessge("suceessfully added");}))
-    .subscribe(
-      (value)=>{console.log(value);},
-      (err)=> this.error.next(err.message)
-      )
+   productscreate(products:NgForm): Observable<any>{
+   return this.httpclient.post('http://localhost:3000/posts',products.value,{headers: this.header})
    }
 
    //get the data in server
       fetchingdata(){
-       return  this.httpclient.get<{[key:string]:product}>('http://localhost:3000/posts') .pipe(map((res)=>{
-      const product=[];
-      for(const key in res){
-        if(res.hasOwnProperty(key)){
-          product.push({...res[key]})
-        }
-      }
-      return product;
-    }),catchError( (err)=>{return throwError(err)} )
-    )
-    
+
+         let header  = new HttpHeaders({'authentication':'goodperform',
+            'contenttype':'111',
+            'hero':'super'
+        })
+        //custom headers
+        header =header.set('list-content',"customheaders");
+
+       return  this.httpclient.get('http://localhost:3000/posts',{headers:header}) 
 }
 //dlete data from server
 ondelete(id){
-  this.httpclient.delete('http://localhost:3000/posts/'+id+'')
-  .pipe(tap(post => { this.notifictionservice.setsuccessmessge("delete suceesfully");}))
-  .subscribe();
+
+  const params1 = new HttpParams({
+    fromObject:{
+      id:id,
+    }
+  });
+  
+ return this.httpclient.delete('http://localhost:3000/posts/'+id+'',{params:params1})
+  
 }
 //update the server value
-updatevalues(id:string,value:product)
+updatevalues(id:string,value:product):Observable<any>
 {
- this.httpclient.put('http://localhost:3000/posts/'+id+'',value)
- 
- .pipe(tap(post => { this.notifictionservice.setsuccessmessge("suceessfully updated");})).subscribe();  
+       // let params = new HttpParams();
+  // params = params.append('var1', val1);
+  // params = params.append('var2', val2);
+
+
+  // const params1 = new HttpParams({
+  //   fromObject:{
+  //     id:id,
+  //   }
+  // });
+ let params1 = new HttpParams();
+ params1=params1.append(id,id)
+ return this.httpclient.put('http://localhost:3000/posts/'+id+'',value,{params:params1})
 }
 }

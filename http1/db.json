@@ -1,0 +1,28 @@
+{
+  "posts": [
+    {
+      "fullname": "chndu vennaa",
+      "age": 301,
+      "group": "A+",
+      "id": 3
+    },
+    {
+      "fullname": "chand",
+      "age": 25,
+      "group": "B+",
+      "id": 4
+    },
+    {
+      "fullname": "gv venn",
+      "age": 77,
+      "group": "B",
+      "id": 5
+    },
+    {
+      "fullname": "chandrika vennapusa",
+      "age": 22,
+      "group": "A+",
+      "id": 6
+    }
+  ]
+}
