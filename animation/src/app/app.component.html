@@ -1,0 +1,81 @@
+
+<button (click)="toggle()">toggle</button>
+  <div [@openclose]=" isopen ?'open':'closed'">
+ box color change  {{isopen ?'open':'closed'}}
+  </div>
+   <!-- string interpolation -->
+{{title}}
+<!-- property binding -->
+<input type="text"[disabled]="isdisable">
+<!-- event binding -->
+<button (click)=" eventbinding()">clcick</button>
+<!-- two way databinding -->
+<input type="text" [(ngModel)]="banana">
+{{banana}}
+
+<!-- ngIf structral directives -->
+<div *ngIf="students.length > 0">
+       "the students are two members"
+</div>
+<div *ngIf="students.length == 0">
+  zero students
+</div>
+<div *ngFor="let std of students">
+{{std}}
+</div>
+
+<!-- switchcase -->
+<ul [ngSwitch]="students.length">
+  <li *ngSwitchCase =0 >zero</li>
+  <li *ngSwitchCase = 2>two</li>
+  <li *ngSwitchDefault>more students</li>
+  
+</ul>
+
+<!-- ngstyle -->
+
+<div [ngStyle]="{'background-color':'red'}"> this is static implementation.</div>
+<div [ngStyle]="{'background-color':colorname , 'color':'white'}"> this is dynamic implementation </div>
+
+<!-- ngclasses -->
+<div [ngClass]="classgreen"> 
+this is ngclass in attribute directives.
+</div>
+
+
+
+<div appCustomstrucral>
+  this is a custom attribute directive.
+</div>
+
+<div *appCngif="show" >
+  this custom structral attribute directive.
+</div>
+
+
+<div>
+  {{cdata}}
+</div>
+<app-child (eventemit)="cdata=$event" [format]="75"></app-child>
+
+
+
+<!-- pipes -->
+
+<div>
+ <h2>general pipe </h2>
+ <p>{{12.3 | currency}}</p>
+  {{cdata | uppercase}}</div>
+
+
+  <div>
+    {{person | pipes :wish}}
+  </div>
+ <!-- service -->
+ <h2>services</h2>
+ 
+ <div *ngFor="let s of stud1">
+<div>{{s.id}}</div>
+<div>{{s.name}}</div>
+ </div>
+

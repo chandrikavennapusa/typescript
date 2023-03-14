@@ -1,6 +1,7 @@
 {
   "dependencies": {
     "@angular/core": "^15.1.5",
+    "angular2-notifications": "^12.0.0",
     "bootstrap": "^5.2.3",
     "json": "^11.0.0",
     "react-bootstrap": "^2.7.2",
