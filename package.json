@@ -1,9 +1,13 @@
 {
   "dependencies": {
+    "@angular/cdk": "^15.2.2",
     "@angular/core": "^15.1.5",
     "angular2-notifications": "^12.0.0",
     "bootstrap": "^5.2.3",
+    "font-awesome": "^4.7.0",
     "json": "^11.0.0",
+    "primeicons": "^6.0.1",
+    "primeng": "^15.2.0",
     "react-bootstrap": "^2.7.2",
     "web-animations-js": "^2.3.2"
   }

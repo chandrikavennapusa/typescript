@@ -1,0 +1,54 @@
+
+
+
+   <div class="logincontainer">
+    <form #mylogin="ngForm" (ngSubmit)="login()">
+    <div class="image">
+        <p-image src="./assets/itorizonlogo.png" alt="Image" width="250"></p-image>
+        <h3>Welcome</h3>
+    </div>
+    
+   <div>
+    <p>please use Registerd userName and Password to Login your account </p>
+   </div>
+    <div>
+        <label >User Name*</label>
+    </div>
+   <div>
+    <input type="text"  class="inputEle inputlength"  pInputText   name="userName" [(ngModel)]="userName" />
+   </div>
+   
+    <div>
+        <label >Password*</label>
+    </div>
+    <div >
+             <p-password
+            [toggleMask]="true"
+            styleClass="p-password p-component p-inputwrapper p-input-icon-right"
+            [inputStyle]="{'width':'342px'}"
+            [feedback]="false" indicator="false"
+            class="inputEle"
+            name="password" [(ngModel)]="password" 
+            >
+            </p-password>
+    
+    </div>
+    
+    <div>
+        <a href="" class="forgotpasswordcontent">Forget Password?</a>
+    </div>
+    
+   <div>
+    <button  pButton type="submit" label="Login" class="inputlength"></button>
+   </div>
+    
+    <div>
+        <span>don't have an account?<a href="" class="signupcontent">Sign up</a></span>
+    </div>
+    <div>
+        <button pButton  type=" button" label="reset"></button>
+    </div>
+</form>
+   </div>
+
+

@@ -1,5 +1,6 @@
 import { style, transition, trigger ,animate,state} from '@angular/animations';
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
 import { StudentsService } from './services/students.service';
 
 
@@ -40,6 +41,9 @@ export class AppComponent implements OnInit {
 
   ngOnInit(){
    this.stud1= this.stud.getusers();
+   this.myobservable.subscribe((data)=>{
+    console.log(data);
+   })
   }
            
   isopen:boolean=true;
@@ -60,7 +64,14 @@ cdata: any;
    
    wish="hello good morning";
      
-    
+    myobservable = new Observable((observe)=>{
+      console.log("subscribtion is started");
+      observe.next(1);
+      observe.complete();
+    });
+      promise = new Promise((resolve,reject)=>{
+        console.log("promise is started");
+      })
 
 
   toggle(){
