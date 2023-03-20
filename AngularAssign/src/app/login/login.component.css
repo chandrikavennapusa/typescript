@@ -1,39 +1,39 @@
 .logincontainer{
-    border: 0px solid grey;
-    box-shadow: 0 0 5px grey;
-    background-color: white;
-    width: 400px;
-    height:500px;
-    position: absolute;
-     left: 550px;
-     top: 116px;
-     padding: 20px;
+   border: 0px solid grey;
+   box-shadow: 0 0 5px grey;
+   background-color: white;
+   width: 400px;
+   height:500px;
+   position: absolute;
+    left: 550px;
+    top: 116px;
+    padding: 20px;
+}
+.image{
+   text-align: center;
+}
+.inputlength{
+   width:342px;
+margin-bottom: 10px;
+margin-top: 10px;
+}
+.signupcontent{
+   text-decoration: none;
+   color: lightskyblue;
+}
+.forgotpasswordcontent{
+   color:rgb(23, 19, 134);
+   text-decoration: none;
+}
+:host{
+   background-image: linear-gradient(to bottom, rgba(255,0,0,0),  #15a9e1);
+   position: fixed;
+   top:0;
+   left: 0;
+   width: 100vw;
+   height: 100vh;
  }
- .image{
-    text-align: center;
+ .inputreqmsg{
+  color: red;
  }
- .inputlength{
-    width:342px;
- margin-bottom: 10px;
- margin-top: 10px;
- }
- .signupcontent{
-    text-decoration: none;
-    color: lightskyblue;
- }
- .forgotpasswordcontent{
-    color:rgb(23, 19, 134);
-    text-decoration: none;
- }
- :host{
-    background-image: linear-gradient(to bottom, rgba(255,0,0,0),  #15a9e1);
-    position: fixed;
-    top:0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-  }
-  .inputreqmsg{
-   color: red;
-  }
-  
+ 

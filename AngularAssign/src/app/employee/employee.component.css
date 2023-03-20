@@ -1,0 +1,154 @@
+.navEle{
+    position: relative;
+    top:-20px;
+    background-color:#89cfe8;
+    color:white;
+    height: 100px;
+    margin: 10px;
+}
+.tableEle{
+    position: relative;
+    left:20px;
+    border-collapse: collapse;
+}
+.tableEle th,td{
+    
+    padding:5px;
+    font-size: 15px; 
+}
+.tableEle tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+.EmpList{
+    position: relative;
+    top:-80px;
+    background-color: white;
+    border: px solid grey;
+   box-shadow: 0 0 5px grey;
+   width:1400px;
+   margin-left: 20px;
+}
+.EmpListAddContainer{
+   position: relative;
+   height:70px;
+   
+}
+  .EmpListAddEle{
+    position: relative;
+    top: 21px;
+   
+    width: 130px;
+    height: 36px;
+    left: 1210px;
+
+}
+.EmpListAddPlusEle{
+    position: relative;
+    left: 18px;
+}
+.formContainer{
+    display: grid;
+   grid-template-rows:auto;
+   grid-template-columns: 30% 30% 30%;
+   grid-gap: 10px;
+}
+.photoEle{
+    grid-column: 1/2;
+    grid-row: 1/5;
+}
+.employeeidEle{
+    grid-column:2/4;
+    grid-row: 1/2;
+}
+.fristnameEle{
+    grid-column:2/3;
+    grid-row: 2/3;
+}
+.lastnameEle{
+    grid-column:3/4;
+    grid-row: 2/3;
+}
+.genderEle{
+    grid-column:2/3;
+    grid-row: 3/4;
+}
+.dobEle{
+    grid-column:3/4;
+    grid-row: 3/4;
+}
+.emailEle{
+    grid-column:2/3;
+    grid-row: 4/5;
+}
+.mobilenoEle{
+    grid-column:3/4;
+    grid-row: 4/5;
+}
+.bloodgroupEle{
+    grid-column:2/3;
+    grid-row: 5/6;
+}
+.addressEle{
+    grid-column:3/4;
+    grid-row:5/6
+}
+.deptEle{
+    grid-column:2/3;
+    grid-row: 6/7; 
+}
+.dateOfJoiningEle{
+    grid-column:3/4;
+    grid-row: 6/7;
+}
+.salaryEle{
+    grid-column:2/3;
+    grid-row: 7/8; 
+}
+.shiftEle{
+    grid-column:3/4;
+    grid-row: 7/8; 
+}
+.createdSourceEle{
+    grid-column:2/3;
+    grid-row: 8/9; 
+}
+.createdSourceTypeEle{
+    grid-column:3/4;
+    grid-row: 8/9; 
+}
+.createdDttmEle{
+    grid-column:2/3;
+    grid-row: 9/10; 
+}
+.modifiedSourceEle{
+    grid-column:3/4;
+    grid-row: 9/10; 
+}
+.modifiedSourceTypeEle{
+    grid-column:2/3;
+    grid-row: 10/11; 
+}
+.modifiedDttmEle{
+    grid-column:3/4;
+    grid-row: 10/11; 
+}
+.buttonEle{
+    grid-column:3/4;
+    grid-row: 11/12;   
+ 
+}
+.cancelEle{
+    margin-left: 74px;
+}
+.empidinputlen{
+    width: 650px;
+}
+.AddempContainer{
+    position: relative;
+    border: 0px sold grey;
+    box-shadow: 0px 0px 5px grey;
+    width:1400px;
+    height: 880px;
+    margin-left: 20px;
+    top:-80px
+}

@@ -14,7 +14,13 @@ import { HomeComponent } from './home/home.component';
 import { EmployeeComponent } from './employee/employee.component';
 import { DepartmentComponent } from './department/department.component';
 import { AttendanceComponent } from './attendance/attendance.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule,ReactiveFormsModule } from '@angular/forms';
+import { HeaderComponent } from './header/header.component';
+import {RadioButtonModule} from 'primeng/radiobutton';
+import {CalendarModule} from 'primeng/calendar';
+import {FileUploadModule} from 'primeng/fileupload';
+import {HttpClientModule} from '@angular/common/http';
+
 
 @NgModule({
   declarations: [
@@ -23,7 +29,9 @@ import { FormsModule } from '@angular/forms';
     HomeComponent,
     EmployeeComponent,
     DepartmentComponent,
-    AttendanceComponent
+    AttendanceComponent,
+    HeaderComponent
+   
   ],
   imports: [
     BrowserModule,
@@ -36,9 +44,11 @@ import { FormsModule } from '@angular/forms';
    BrowserAnimationsModule,
    ImageModule,
    FormsModule,
-  
-   
- 
+   RadioButtonModule,
+   ReactiveFormsModule,
+   CalendarModule,
+   FileUploadModule,
+   HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,1 +1,163 @@
 <p>employee works!</p>
+<app-header></app-header>
+<div class="navEle">
+  <h2> <span> <i class="material-icons">people</i> </span>  ADD EMPLIST:</h2>
+</div>
+
+   <div  class="EmpList">
+
+  <div class="EmpListAddContainer">
+    
+
+      <button pButton type="button" label="ADD" class="EmpListAddEle"> <span > <i class="pi pi-plus EmpListAddPlusEle" ></i></span> </button>
+     
+   </div>
+
+   <hr>
+  <div >
+     <table class="tableEle">
+      <tr>
+          <th>EmployeeId</th>
+          <th>First name</th>
+          <th>Last name</th>
+          <th>Dateofbirth</th>
+          <th>Gender</th>
+          <th>PhoneNumber</th>
+          <th>DateOfJoining</th>
+          <th>Salary</th>
+          <th>Shift</th>
+          <th>createdSource</th>
+          <th>createdSourceType</th>
+          <th>createdDttm</th>
+          <th>modifiedSource</th>
+          <th>modifiedSourceType</th>
+          <th>modifiedDttm</th>
+      </tr>
+         <tr>
+         </tr>
+     </table>
+     
+  
+  </div>
+  
+</div>
+
+
+
+<div class="AddempContainer">
+  <div>
+    <h3>Add New Employee</h3>
+  </div>
+  <hr>
+  <h4>Basic Details:</h4>
+  <form [formGroup]="EmployeeForm" (ngSubmit)="onSubmit()">
+  <div class="formContainer">
+
+      <div class="photoEle">
+        <label>photo:</label>
+      </div> 
+
+     <div class="employeeidEle ">
+      <div><label> employeeId </label></div>
+       <input type="text" pInputText formControlName="employeeId" class="empidinputlen " />
+      </div>
+
+      <div class="fristnameEle">
+       <div><label> firstName</label></div>
+       <input type="text" pInputText formControlName="firstName "/>
+      </div>
+
+      <div class="lastnameEle">
+       <div><label> lastName</label></div>
+       <input type="text" pInputText formControlName="lastName" />
+      </div>
+      
+         <div class="genderEle" >
+           <div><label> Gender:</label></div>
+           <p-radioButton name="male" value="gender" formControlName="male"label="male"></p-radioButton>
+           <p-radioButton name="female" value="gender" formControlName="female"label="female"></p-radioButton>
+           <p-radioButton name="customgender" value="gender" formControlName="customgender"label="customgender"></p-radioButton>
+         </div>
+   
+         <div class="dobEle">
+          <div> <label> Date of birth:</label></div>
+           <p-calendar formControlName="dob" [showIcon]="true" ></p-calendar>
+         </div>
+
+         <div class="emailEle">
+           <div><label> Email Id:</label></div>
+           <input type="text" formControlName="email"  pInputText />
+         </div>
+
+         <div class="mobilenoEle">
+          <div> <label> Mobile no:</label></div>
+         </div>
+
+         <div class="bloodgroupEle">
+           <div><label> Blood Group:</label></div>
+       <input type="text" pInputText formControlName="BloodGroup"/>
+         </div>
+
+         <div class="addressEle">
+          <div> <label> Address:</label></div>
+       <input type="text" pInputText formControlName="Address"/>
+         </div>
+
+         <div class="deptEle">
+          <div> <label> Department:</label></div>
+       <input type="text" pInputText formControlName="Department"/>
+         </div>
+         
+         <div class="dateOfJoiningEle">
+          <div> <label> DateOfJoining:</label></div>
+       <input type="text" pInputText formControlName="dateOfJoining"/>
+         </div>
+
+         <div class="salaryEle">
+          <div> <label> salary:</label></div>
+       <input type="text" pInputText formControlName="salary"/>
+         </div>
+         
+         <div class="shiftEle">
+          <div> <label> shift:</label></div>
+       <input type="text" pInputText formControlName="shift"/>
+         </div>
+         
+         <div class="createdSourceEle">
+         <div>  <label> createdSource:</label></div>
+       <input type="text" pInputText formControlName="createdSource"/>
+         </div>
+   
+         <div class="createdSourceTypeEle">
+          <div> <label> createdSourceType:</label></div>
+       <input type="text" pInputText formControlName="createdSourceType"/>
+         </div>
+        
+         <div class="createdDttmEle">
+           <div><label>  createdDttm:</label></div>
+       <input type="text" pInputText formControlName="createdDttm"/>
+         </div>
+
+         <div class="modifiedSourceEle">
+           <div><label>  modifiedSource:</label></div>
+       <input type="text" pInputText formControlName="modifiedSource"/>
+         </div>
+         
+         <div class="modifiedSourceTypeEle">
+          <div> <label> modifiedSourceType:</label></div>
+       <input type="text" pInputText formControlName="modifiedSourceType"/>
+         </div>
+
+         <div class="modifiedDttmEle">
+          <div> <label>  modifiedDttm:</label></div>
+       <input type="text" pInputText formControlName="modifiedDttm"/>
+         </div>
+
+             <div class="buttonEle">
+             
+              <button pButton type="button" label="save"></button>
+              <button pButton type="button" label="cancel"  class="p-button-secondary cancelEle"></button>                    
+           </div>
+    
+   </div> </form>
+</div>
