@@ -1,0 +1,24 @@
+.navEle{
+    position: relative;
+    top:-20px;
+    background-color:#89cfe8;
+    color:white;
+    height: 100px;
+    margin: 10px;
+}
+.tableEle{
+    position: relative;
+    left:50px;
+    border-collapse: collapse;
+    top: -80px;
+    background-color: white;
+    border: px solid grey;
+   box-shadow: 0 0 5px grey;
+}
+.tableEle th,td{ 
+    padding:15px;
+    font-size: 15px; 
+}
+.tableEle tr:nth-child(even) {
+    background-color: #f2f2f2;
+}

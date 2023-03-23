@@ -1,0 +1,96 @@
+.navEle{
+    position: relative;
+    top:-20px;
+    background-color:#89cfe8;
+    color:white;
+    height: 100px;
+    margin: 10px;
+}
+.empidinputlen{
+    width: 728px;
+}
+.attendecelistcontainer{
+    width: 1100px;
+    height: 800px;
+     background-color: white;
+     border: px solid grey;
+    box-shadow: 0 0 5px grey;
+    position: relative;
+    top: -80px;
+    left: 100px;
+   margin-left: 100px;
+}
+.attndenceheaderEle{
+   height: 70px;
+   position: relative;
+   top:50px;
+   font-family: Arial, Helvetica, sans-serif;
+   left: 10px;
+}
+.attencontainerlist{
+    display: grid;
+    grid-template-columns: 50% 50%;
+    grid-template-rows: auto; 
+    grid-gap: 20px;
+    margin-left: 80px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.employeeidEle{
+    grid-column: 1/3;
+    grid-row:1/2 ;
+}
+.monthEle{
+    grid-column: 1/2;
+    grid-row:2/3;
+}
+.dateEle{
+    grid-column: 2/3;
+    grid-row:2/3;
+}.deptidEle{
+    grid-column: 1/2;
+    grid-row:3/4;
+}
+.avalibleEle{
+    grid-column: 2/3;
+    grid-row:3/4;
+}
+.checkinEle{
+    grid-column: 1/2;
+    grid-row:4/5;
+}
+.checkoutEle{
+    grid-column: 2/3;
+    grid-row:4/5;
+}
+.attendencecountEle{
+    grid-column: 1/2;
+    grid-row:5/6;
+}
+.shiftEle{
+    grid-column: 2/3;
+    grid-row:5/6;
+}
+.createdsourceEle{
+    grid-column: 1/2;
+    grid-row:6/7;
+}
+.CreatedSourceTypeEle{
+    grid-column: 2/3;
+    grid-row:6/7;
+}
+.CreatedDttmEle{
+    grid-column: 1/2;
+    grid-row:7/8;
+}
+.ModifiedSourceEle{
+    grid-column: 2/3;
+    grid-row:7/8;
+}
+.ModifiedSourceTypeEle{
+    grid-column: 1/2;
+    grid-row:8/9;
+}
+.ModifiedDttmEle{
+    grid-column: 2/3;
+    grid-row:8/9;
+}

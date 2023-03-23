@@ -1,0 +1,30 @@
+.navEle{
+    position: relative;
+    top:-20px;
+    background-color:#89cfe8;
+    color:white;
+    height: 100px;
+    margin: 10px;
+}
+.tableEle{
+    position: relative;
+    left:20px;
+    border-collapse: collapse;
+}
+.tableEle th,td{
+    
+    padding:5px;
+    font-size: 15px; 
+}
+.tableEle tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+.EmpList{
+    position: relative;
+    top:-80px;
+    background-color: white;
+    border: px solid grey;
+   box-shadow: 0 0 5px grey;
+   width:1400px;
+   margin-left: 20px;
+}

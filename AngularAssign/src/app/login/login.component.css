@@ -36,4 +36,17 @@ margin-top: 10px;
  .inputreqmsg{
   color: red;
  }
- 
+ .signupdialogboxEle{
+   border: 2px solid black;
+   width: 200px;
+   position:relative;
+   text-align: center;
+   top: 252px;
+   left: 617px;
+ }
+ .cancelbtn{
+   margin: 10px;
+ }
+ .errorMessageEle{
+   color: red;
+ }

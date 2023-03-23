@@ -1,0 +1,19 @@
+.navEle{
+    position: relative;
+    top:-70px;
+    background-color:#89cfe8;
+    color:white;
+    height: 150px;
+    margin: 10px;
+}
+.navheadingEle{
+    position: relative;
+    left: 20px;
+    top: 5px;
+    padding: 10px;
+    font-size: 40px;
+}
+.grapele{
+    width:1400px;
+    height: 350px;
+}

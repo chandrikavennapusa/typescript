@@ -5,11 +5,16 @@
     "angular2-notifications": "^12.0.0",
     "bootstrap": "^5.2.3",
     "font-awesome": "^4.7.0",
+    "intl-tel-input": "^17.0.21",
     "json": "^11.0.0",
+    "ng2-tel-input": "^2.3.0",
     "node-modules": "^1.0.1",
     "primeicons": "^6.0.1",
     "primeng": "^15.2.0",
     "react-bootstrap": "^2.7.2",
     "web-animations-js": "^2.3.2"
+  },
+  "devDependencies": {
+    "@angular/cli": "^15.2.4"
   }
 }

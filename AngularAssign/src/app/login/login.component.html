@@ -1,8 +1,10 @@
 
+<p-messages [(value)]="passwordmessage"  [enableService]="false"></p-messages>
+<p-messages [(value)]="errormessage"  [enableService]="false"></p-messages>
 
-
+ 
    <div class="logincontainer">
-    <form #mylogin="ngForm" (ngSubmit)="login()">
+    <form #mylogin="ngForm" (ngSubmit)="login(mylogin)" >
     <div class="image">
         <p-image src="./assets/itorizonlogo.png" alt="Image" width="250"></p-image>
         <h3>Welcome</h3>
@@ -11,13 +13,16 @@
    <div>
     <p>please use Registerd userName and Password to Login your account </p>
    </div>
+   
     <div>
         <label >User Name*</label>
     </div>
    <div>
-    <input type="text"  class="inputEle inputlength"  pInputText   name="userName" [(ngModel)]="userName" />
+    <input type="text"  class="inputEle inputlength"  pInputText   name="UserName" ngModel />
    </div>
+
    
+
     <div>
         <label >Password*</label>
     </div>
@@ -28,28 +33,29 @@
             [inputStyle]="{'width':'342px'}"
             [feedback]="false" indicator="false"
             class="inputEle"
-            name="password" [(ngModel)]="password" 
+            name="password"ngModel
             >
             </p-password>
     
     </div>
     
+   
     <div>
         <a href="" class="forgotpasswordcontent">Forget Password?</a>
     </div>
     
    <div>
-    <a routerLink="HEADER">  <button  pButton type="submit" label="Login" class="inputlength"></button> </a>
+    <button  pButton type="submit" label="Login" class="inputlength"></button>
    
    </div>
-    
+
     <div>
         <span>don't have an account?<a href="" class="signupcontent">Sign up</a></span>
     </div>
-    <div>
-        <button pButton  type=" button" label="reset"></button>
-    </div>
+    
 </form>
+<div>
+    <button pButton  type=" button" label="reset" (click)="reset()"></button>
+</div>
    </div>
-
-
+   

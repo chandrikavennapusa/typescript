@@ -13,7 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/angular-assign",
+            "outputPath": "dist/AngularAssign/browser",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": [
@@ -93,11 +93,71 @@
               "src/assets"
             ],
             "styles": [
+              "node_modules/intl-tel-input/build/css/intlTelInput.css",
+              "node_modules/bootstrap/dist/css/bootstrap.min.css",
               "@angular/material/prebuilt-themes/indigo-pink.css",
               "src/styles.css"
             ],
-            "scripts": ["node_modules/intl-tel-input/build/js/intlTelInput.min.js"]
+            "scripts": [
+              
+            "node_modules/intl-tel-input/build/js/intlTelInput.min.js",
+            
+            "node_modules/bootstrap/dist/js/bootstrap.min.js"
+          ]
           }
+        },
+        "server": {
+          "builder": "@angular-devkit/build-angular:server",
+          "options": {
+            "outputPath": "dist/AngularAssign/server",
+            "main": "server.ts",
+            "tsConfig": "tsconfig.server.json"
+          },
+          "configurations": {
+            "production": {
+              "outputHashing": "media"
+            },
+            "development": {
+              "optimization": false,
+              "sourceMap": true,
+              "extractLicenses": false,
+              "vendorChunk": true
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve-ssr": {
+          "builder": "@nguniversal/builders:ssr-dev-server",
+          "configurations": {
+            "development": {
+              "browserTarget": "AngularAssign:build:development",
+              "serverTarget": "AngularAssign:server:development"
+            },
+            "production": {
+              "browserTarget": "AngularAssign:build:production",
+              "serverTarget": "AngularAssign:server:production"
+            }
+          },
+          "defaultConfiguration": "development"
+        },
+        "prerender": {
+          "builder": "@nguniversal/builders:prerender",
+          "options": {
+            "routes": [
+              "/"
+            ]
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "AngularAssign:build:production",
+              "serverTarget": "AngularAssign:server:production"
+            },
+            "development": {
+              "browserTarget": "AngularAssign:build:development",
+              "serverTarget": "AngularAssign:server:development"
+            }
+          },
+          "defaultConfiguration": "production"
         }
       }
     }

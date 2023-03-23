@@ -1,7 +1,8 @@
-import { Component, ViewChild } from '@angular/core';
-import { FormGroup,FormControl } from '@angular/forms';
+import { Component, ElementRef, EventEmitter, HostListener, Input, Output} from '@angular/core';
+import {  NgForm } from '@angular/forms';
+import { ServicesService } from '../services.service';
 
-import { FileUpload } from 'primeng/fileupload';
+
 
 
 
@@ -11,44 +12,51 @@ import { FileUpload } from 'primeng/fileupload';
   styleUrls: ['./employee.component.css']
 })
 export class EmployeeComponent {
-  EmployeeForm : FormGroup;
- 
+  value='';
+  employeeId='';
+  firstName='';
+  lastName='';
+  Gender='';
+  Gender1:'';
+  Gender2:'';
+  dob='';
+ emailId='';
+  phcode='';
+  PhoneNumber='';
+  BloodGroup='';
+  address='';
+  Department='';
+  dateOfJoining='';
+  Salary='';
+  shift='';
+  createdSource='';
+  createdSourceType='';
+  createdDttm='';
+  modifiedSource='';
+  modifiedSourceType='';
+  modifiedDttm='';
 
- 
-  initialization(){
-  this.EmployeeForm = new FormGroup({
-    'myfile':new FormControl(),
-    'employeeId':new FormControl(),
-    'firstName':new FormControl(),
-    'lastName':new FormControl(),
-    'male':new FormControl(),
-    'female':new FormControl(),
-    'customgender':new FormControl(),
-    'dob':new FormControl(),
-    'email':new FormControl(),
-    'BloodGroup': new FormControl(),
-    'Address': new FormControl(),
-    'Department':new FormControl(),
-    'dateOfJoining':new FormControl(),
-    'salary':new FormControl(),
-    'shift':new FormControl(),
-    'createdSource':new FormControl(),
-    'createdSourceType': new FormControl(),
-    'createdDttm':new FormControl(),
-    'modifiedSource':new FormControl(),
-    'modifiedSourceType':new FormControl(),
-    'modifiedDttm':new FormControl()
-  })
+ empformhidden=true;
+ tableformhidden=false;
+
+ constructor(private service:ServicesService){}
+
+  onSubmit(EmployeeForm:NgForm){
+    this.service.addempdetails(EmployeeForm).subscribe();
+    console.log(EmployeeForm.value);
   }
+  empdDetailForm(){
+    this.empformhidden=false;
+    this.tableformhidden=true;
+      }
+      gettingempdata;
+      errorMessage;
   ngOnInit(){
-    this.initialization();
-    
-  }
-  upload(data){
-    console.log(data)
+    this.service.gettingempdetails().subscribe(
+      data=> this.gettingempdata=data,
+      error => this.errorMessage = error
+    );
   }
 
-  onSubmit(){
-    console.log(this.EmployeeForm.value)
-  }
 }
+

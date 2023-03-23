@@ -14,14 +14,22 @@ import { HomeComponent } from './home/home.component';
 import { EmployeeComponent } from './employee/employee.component';
 import { DepartmentComponent } from './department/department.component';
 import { AttendanceComponent } from './attendance/attendance.component';
-import { FormsModule,ReactiveFormsModule } from '@angular/forms';
+import { FormsModule} from '@angular/forms';
 import { HeaderComponent } from './header/header.component';
 import {RadioButtonModule} from 'primeng/radiobutton';
 import {CalendarModule} from 'primeng/calendar';
 import {FileUploadModule} from 'primeng/fileupload';
-import {HttpClientModule} from '@angular/common/http';
-
-
+import {Ng2TelInputModule} from 'ng2-tel-input';
+import { DeptdetaillistComponent } from './deptdetaillist/deptdetaillist.component';
+import { AttendecelistComponent } from './attendecelist/attendecelist.component';
+import { EmplistComponent } from './emplist/emplist.component';
+import {InputNumberModule} from 'primeng/inputnumber';
+import { ToastModule } from 'primeng/toast';
+import { MessagesModule } from 'primeng/messages';
+import { AuthserviceService } from './authservice.service';
+import { ServicesService } from './services.service';
+import { HttpClientModule } from '@angular/common/http';
+import { TableModule } from 'primeng/table';
 @NgModule({
   declarations: [
     AppComponent,
@@ -30,11 +38,14 @@ import {HttpClientModule} from '@angular/common/http';
     EmployeeComponent,
     DepartmentComponent,
     AttendanceComponent,
-    HeaderComponent
+    HeaderComponent,
+    DeptdetaillistComponent,
+    AttendecelistComponent,
+    EmplistComponent
    
   ],
   imports: [
-    BrowserModule,
+   
     AppRoutingModule,
     InputTextModule,
    RouterModule,
@@ -45,12 +56,17 @@ import {HttpClientModule} from '@angular/common/http';
    ImageModule,
    FormsModule,
    RadioButtonModule,
-   ReactiveFormsModule,
+   TableModule ,
    CalendarModule,
    FileUploadModule,
    HttpClientModule,
+   Ng2TelInputModule,
+   InputNumberModule,
+   ToastModule ,
+   MessagesModule ,
+
   ],
-  providers: [],
+  providers: [AuthserviceService,ServicesService ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

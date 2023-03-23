@@ -7,6 +7,7 @@
   
       <label > second name:</label>
       <input type="text" name="second name" ngModel required class="formcontainer" #last="ngModel"><br>
+      
       <div class="frist" *ngIf="last.touched && last.invalid">last  name is required field.</div>
   
   

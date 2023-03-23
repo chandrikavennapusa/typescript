@@ -1,41 +1,66 @@
-<p>employee works!</p>
+
 <app-header></app-header>
 <div class="navEle">
-  <h2> <span> <i class="material-icons">people</i> </span>  ADD EMPLIST:</h2>
+  <h2> <span> <i class="material-icons">people</i> </span> Employee List</h2>
 </div>
 
-   <div  class="EmpList">
+   <div class="EmpList">
 
   <div class="EmpListAddContainer">
     
 
-      <button pButton type="button" label="ADD" class="EmpListAddEle"> <span > <i class="pi pi-plus EmpListAddPlusEle" ></i></span> </button>
+          <button pButton type="button" label="ADD" class="EmpListAddEle" (click)="empdDetailForm()"> 
+                          <span><i class="pi pi-plus EmpListAddPlusEle"></i></span> 
+          </button>
      
    </div>
 
    <hr>
-  <div >
-     <table class="tableEle">
+  <div [hidden]="tableformhidden">
+    <p-table  [value]="gettingempdata" class="tableEle">
+
+      <ng-template pTemplate="header">
       <tr>
-          <th>EmployeeId</th>
-          <th>First name</th>
-          <th>Last name</th>
-          <th>Dateofbirth</th>
-          <th>Gender</th>
-          <th>PhoneNumber</th>
-          <th>DateOfJoining</th>
-          <th>Salary</th>
-          <th>Shift</th>
-          <th>createdSource</th>
-          <th>createdSourceType</th>
-          <th>createdDttm</th>
-          <th>modifiedSource</th>
-          <th>modifiedSourceType</th>
-          <th>modifiedDttm</th>
-      </tr>
+          <th class="pi pi-sort-alt" >EmployeeId</th>           
+          <th >First name</th>             
+          <th>Last name</th>             
+          <th>Dateofbirth</th>           
+          <th>Gender</th>                 
+          <th>PhoneNumber</th>           
+          <th>DateOfJoining</th>           
+          <th>Salary</th>                  
+          <th>Shift</th>                  
+          <th>createdSource</th>           
+          <th>createdSourceType</th>       
+          <th>createdDttm</th>              
+          <th>modifiedSource</th>            
+          <th>modifiedSourceType</th>       
+          <th>modifiedDttm</th>             
+          <th>Actions</th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-rowData  >
+
          <tr>
+          <td>{{rowData.employeeId}}</td>
+          <td>{{rowData.firstName}}</td>
+          <td>{{rowData.lastName}}</td>
+          <td>{{rowData.dob}}</td>
+          <td>{{rowData.geder}}</td>
+          <td>{{rowData.phoneNumber}}</td>
+          <td>{{rowData.dateOfJoining}}</td>
+          <td>{{rowData.salary}}</td>
+          <td>{{rowData.shift}}</td>
+          <td>{{rowData.createdSource}}</td>
+          <td>{{rowData.createdSourceType}}</td>
+          <td>{{rowData.createdDttm}}</td>
+          <td>{{rowData.modifiedSource}}</td>
+          <td>{{rowData.modifiedSourceType}}</td>
+          <td>{{rowData.modifiedDttm}}</td>
+          <td>><i class="material-icons" >&#xe16c;</i></td>
          </tr>
-     </table>
+        </ng-template> 
+        </p-table>
      
   
   </div>
@@ -44,120 +69,142 @@
 
 
 
-<div class="AddempContainer">
-  <div>
+<div class="AddempContainer" [hidden]="empformhidden">
+  <div class="empformheading">
     <h3>Add New Employee</h3>
   </div>
   <hr>
-  <h4>Basic Details:</h4>
-  <form [formGroup]="EmployeeForm" (ngSubmit)="onSubmit()">
+  <h4 class="formbasicdetailheading">Basic Details:</h4>
+  <form  #EmployeeForm="ngForm" (ngSubmit)="onSubmit(EmployeeForm)">
+
   <div class="formContainer">
-
-      <div class="photoEle">
-        <label>photo:</label>
-      </div> 
-
-     <div class="employeeidEle ">
+     <div class="employeeidEle " >
       <div><label> employeeId </label></div>
-       <input type="text" pInputText formControlName="employeeId" class="empidinputlen " />
+       <input type="text" pInputText name="employeeId" [(ngModel)]="employeeId" class="empidinputlen" #empid="ngModel" pattern="^[0-9]" required />
+       <div class="errmessageEle" *ngIf="empid.touched && empid.invalid" > enter the valid number</div>
       </div>
 
       <div class="fristnameEle">
        <div><label> firstName</label></div>
-       <input type="text" pInputText formControlName="firstName "/>
+       <input type="text" pInputText name="firstName" [(ngModel)]="firstName" #fName="ngModel" required />
+       <div class="errmessageEle" *ngIf="fName.touched && fName.invalid" > enter the valid name</div>
       </div>
 
       <div class="lastnameEle">
        <div><label> lastName</label></div>
-       <input type="text" pInputText formControlName="lastName" />
+       <input type="text" pInputText name="lastName" [(ngModel)]="lastName"  #lName="ngModel" required />
+       <div class="errmessageEle" *ngIf="lName.touched && lName.invalid" > enter the valid name</div>
       </div>
       
          <div class="genderEle" >
-           <div><label> Gender:</label></div>
-           <p-radioButton name="male" value="gender" formControlName="male"label="male"></p-radioButton>
-           <p-radioButton name="female" value="gender" formControlName="female"label="female"></p-radioButton>
-           <p-radioButton name="customgender" value="gender" formControlName="customgender"label="customgender"></p-radioButton>
+
+          <div><label> Gender:</label></div>
+            <p-radioButton name="gender" value="male"  [(ngModel)]="Gender"></p-radioButton>
+            <label>male</label>
+            <p-radioButton name="gender" value="Female" [(ngModel)]="Gender1"></p-radioButton>
+            <label>female</label>
+            <p-radioButton name="gender" value="customgender" [(ngModel)]="Gender2"></p-radioButton>
+            <label>custmgender</label>
+
          </div>
    
          <div class="dobEle">
           <div> <label> Date of birth:</label></div>
-           <p-calendar formControlName="dob" [showIcon]="true" ></p-calendar>
+           <p-calendar [(ngModel)]="dob" name="dob" [showIcon]="true" #dateob="ngModel" [required]="true" > </p-calendar>
+           <div class="errmessageEle" *ngIf="dateob.touched && dateob.invalid" > enter the valid name</div>
          </div>
 
          <div class="emailEle">
            <div><label> Email Id:</label></div>
-           <input type="text" formControlName="email"  pInputText />
+            <input type="text" [(ngModel)]="emailId"  name="mailId" pInputText  #email1="ngModel" required/>
+           <div class="errmessageEle" *ngIf="email1.touched && email1.invalid" > enter the valid name</div>
          </div>
 
          <div class="mobilenoEle">
+
           <div> <label> Mobile no:</label></div>
+          <select name="phcode" id="phcode" class="phcodeEle" [(ngModel)]="phcode">
+            <option value="91">+91</option>
+            <option value="1">+1</option>
+            <option value="92">+92</option>
+            <option value="1-684">+1-684</option>
+          </select>
+          <p-inputNumber [(ngModel)]="PhoneNumber" name="phoneNumber" mode="decimal" ></p-inputNumber>
+          
          </div>
 
          <div class="bloodgroupEle">
            <div><label> Blood Group:</label></div>
-       <input type="text" pInputText formControlName="BloodGroup"/>
+       <input type="text" pInputText  [(ngModel)]="BloodGroup" name="bloodGroup"/>
          </div>
 
          <div class="addressEle">
           <div> <label> Address:</label></div>
-       <input type="text" pInputText formControlName="Address"/>
+       <input type="text" pInputText [(ngModel)]="address" name="address"/>
          </div>
 
          <div class="deptEle">
           <div> <label> Department:</label></div>
-       <input type="text" pInputText formControlName="Department"/>
+       <input type="text" pInputText  [(ngModel)]="Department" name="department"/>
          </div>
          
          <div class="dateOfJoiningEle">
           <div> <label> DateOfJoining:</label></div>
-       <input type="text" pInputText formControlName="dateOfJoining"/>
+          <p-calendar [(ngModel)]="dateOfJoining" name="dateOfJoining"  #doj="ngModel"[required]="true"> </p-calendar>
+          <div class="errmessageEle" *ngIf="doj.touched && doj.invalid" > enter the valid name</div>
          </div>
 
          <div class="salaryEle">
           <div> <label> salary:</label></div>
-       <input type="text" pInputText formControlName="salary"/>
+       <input type="text" pInputText [(ngModel)]="Salary" name="salary" #sal="ngModel" required/>
+       <div class="errmessageEle" *ngIf="sal.touched && sal.invalid" > enter the valid name</div>
          </div>
          
          <div class="shiftEle">
           <div> <label> shift:</label></div>
-       <input type="text" pInputText formControlName="shift"/>
+       <input type="text" pInputText  [(ngModel)]="shift" name="shift" #shift1="ngModel" required/>
+       <div class="errmessageEle" *ngIf="shift1.touched && shift1.invalid" > enter the valid name</div>
          </div>
          
          <div class="createdSourceEle">
          <div>  <label> createdSource:</label></div>
-       <input type="text" pInputText formControlName="createdSource"/>
+       <input type="text" pInputText  [(ngModel)]="createdSource" name="createdSource"/>
          </div>
    
          <div class="createdSourceTypeEle">
           <div> <label> createdSourceType:</label></div>
-       <input type="text" pInputText formControlName="createdSourceType"/>
+       <input type="text" pInputText [(ngModel)]="createdSourceType" name="createdSourceType"/>
          </div>
         
          <div class="createdDttmEle">
            <div><label>  createdDttm:</label></div>
-       <input type="text" pInputText formControlName="createdDttm"/>
+       <input type="text" pInputText  [(ngModel)]="createdDttm" name="createdDttm"/>
          </div>
 
          <div class="modifiedSourceEle">
            <div><label>  modifiedSource:</label></div>
-       <input type="text" pInputText formControlName="modifiedSource"/>
+       <input type="text" pInputText [(ngModel)]="modifiedSource" name="modifiedSource"/>
          </div>
          
          <div class="modifiedSourceTypeEle">
           <div> <label> modifiedSourceType:</label></div>
-       <input type="text" pInputText formControlName="modifiedSourceType"/>
+       <input type="text" pInputText [(ngModel)]="modifiedSourceType" name="modifiedSourceType"/>
          </div>
 
          <div class="modifiedDttmEle">
           <div> <label>  modifiedDttm:</label></div>
-       <input type="text" pInputText formControlName="modifiedDttm"/>
+       <input type="text" pInputText  [(ngModel)]="modifiedDttm" name="modifiedDttm"/>
          </div>
-
+           
              <div class="buttonEle">
-             
-              <button pButton type="button" label="save"></button>
+              <button pButton type="submit" label="save"></button>
               <button pButton type="button" label="cancel"  class="p-button-secondary cancelEle"></button>                    
            </div>
     
    </div> </form>
 </div>
+
+
+
+
+  
