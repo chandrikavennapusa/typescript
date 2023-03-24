@@ -3,23 +3,30 @@
 <div class="navEle">
     <h2> <span> <i class="material-icons">people</i> </span> Department List </h2>
   </div>
-<div >
-    <table  class="tableEle">
-        <tr>
-            <th>DepartmentId    <span> <i class="pi pi-sort-alt"></i></span></th> 
-            <th>DepartmentName <span> <i class="pi pi-sort-alt"></i></span></th>  
-            <th>NoOfEmployee  <span> <i class="pi pi-sort-alt"></i></span></th>   
-            <th>ManagerId  <span> <i class="pi pi-sort-alt"></i></span></th>      
-            <th>CreatedSource  <span> <i class="pi pi-sort-alt"></i></span></th>   
-            <th>CreatedSourceType <span> <i class="pi pi-sort-alt"></i></span></th>   
-            <th>CreatedDttm <span> <i class="pi pi-sort-alt"></i></span></th>     
-            <th>ModifiedSource <span> <i class="pi pi-sort-alt"></i></span></th>    
-            <th>ModifiedSourceType <span> <i class="pi pi-sort-alt"></i></span></th>  
-            <th>ModifiedDttm <span> <i class="pi pi-sort-alt"></i></span></th>    
-        </tr>
-        <tr>
-            
-        </tr>
-    </table>
+
+<div class="depttablecontainer" >
+    <p-table>
+        <ng-template pTemplate="header">
+            <tr>
+                <th pSortableColumn="DepartmentId" >DepartmentId<p-sortIcon field="DepartmentId"></p-sortIcon></th>
+                <th pSortableColumn="DepartmentName">DepartmentName<p-sortIcon field="DepartmentName"></p-sortIcon></th>
+                <th pSortableColumn="NoOfEmployee" >NoOfEmployee<p-sortIcon field="NoOfEmployee"></p-sortIcon></th>  
+                <th pSortableColumn="ManagerId" >ManagerId<p-sortIcon field="ManagerId"></p-sortIcon></th>
+                <th pSortableColumn="createdSource" >createdSource<p-sortIcon field=">createdSource"></p-sortIcon></th>
+        <th pSortableColumn="createdSourceType">createdSourceType<p-sortIcon field="createdSourceType"></p-sortIcon></th>
+        <th pSortableColumn="createdDttm" >createdDttm<p-sortIcon field="createdDttm"></p-sortIcon></th>  
+        <th pSortableColumn="modifiedSource" >modifiedSource<p-sortIcon field="modifiedSource"></p-sortIcon></th>
+        <th pSortableColumn="modifiedSourceType" >modifiedSourceType<p-sortIcon field="modifiedSourceType"></p-sortIcon></th>
+        <th pSortableColumn="modifiedDttm" >modifiedDttm<p-sortIcon field="modifiedDttm"></p-sortIcon></th>
+            </tr>
+        </ng-template>
+        <ng-template >
+            <tr>
+               
+            </tr>
+        </ng-template>
+    </p-table>
+    
 
 </div>
+<app-footer></app-footer>

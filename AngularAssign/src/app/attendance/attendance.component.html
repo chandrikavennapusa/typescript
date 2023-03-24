@@ -3,27 +3,36 @@
 <div class="navEle">
     <h2> <span> <i class="material-icons">people</i> </span> Attendence List </h2>
   </div>
-<div>
-    <table  class="tableEle">
-        <tr>
-            <th>EmployeeId <span> <i class="pi pi-sort-alt"></i></span></th>
-            <th>Month <span> <i class="pi pi-sort-alt"></i></span></th>
-            <th>Date <span> <i class="pi pi-sort-alt"></i></span></th>
-            <th>DepartmentId <span> <i class="pi pi-sort-alt"></i></span></th>
-            <th>Available <span> <i class="pi pi-sort-alt"></i></span></th>
-            <th>CheckIn <span> <i class="pi pi-sort-alt"></i></span></th>
-            <th>Checkout <span> <i class="pi pi-sort-alt"></i></span></th>
-            <th>AttendanceCount <span> <i class="pi pi-sort-alt"></i></span></th>
-            <th>Shift <span> <i class="pi pi-sort-alt"></i></span></th>
-            <th>CreatedSource <span> <i class="pi pi-sort-alt"></i></span></th>
-            <th>CreatedSourceType <span> <i class="pi pi-sort-alt"></i></span></th>
-            <th>CreatedDttm <span> <i class="pi pi-sort-alt"></i></span></th>
-            <th>ModifiedSource <span> <i class="pi pi-sort-alt"></i></span></th>
-            <th>ModifiedSourceType <span> <i class="pi pi-sort-alt"></i></span></th>
-            <th>ModifiedDttm <span> <i class="pi pi-sort-alt"></i></span></th>
-        </tr>
-        <tr>
-            
-        </tr>
-    </table>
+
+
+<div class="attendencetablecontainer">
+    
+
+<p-table>
+        <ng-template pTemplate="header">
+            <tr>
+                <th pSortableColumn="EmployeeId" >EmployeeId<p-sortIcon field="EmployeeId"></p-sortIcon></th>
+                <th pSortableColumn="Month">Month<p-sortIcon field="Month"></p-sortIcon></th>
+                <th pSortableColumn="Date " >Date <p-sortIcon field="Date "></p-sortIcon></th>  
+                <th pSortableColumn="DepartmentId " >DepartmentId <p-sortIcon field="DepartmentId "></p-sortIcon></th>
+		         <th pSortableColumn="Available" >Available<p-sortIcon field="Available"></p-sortIcon></th>
+                <th pSortableColumn="CheckIn">CheckIn<p-sortIcon field="CheckIn"></p-sortIcon></th>
+                <th pSortableColumn="Checkout " >Checkout <p-sortIcon field="Checkout "></p-sortIcon></th> 
+                 <th pSortableColumn="AttendanceCount ">AttendanceCount <p-sortIcon field="AttendanceCount "></p-sortIcon></th>
+                <th pSortableColumn="Shift " >Shift<p-sortIcon field="Shift"></p-sortIcon></th> 
+                <th pSortableColumn="createdSource" >createdSource<p-sortIcon field=">createdSource"></p-sortIcon></th>
+                <th pSortableColumn="createdSourceType">createdSourceType<p-sortIcon field="createdSourceType"></p-sortIcon></th>
+                <th pSortableColumn="createdDttm" >createdDttm<p-sortIcon field="createdDttm"></p-sortIcon></th>  
+                <th pSortableColumn="modifiedSource" >modifiedSource<p-sortIcon field="modifiedSource"></p-sortIcon></th>
+                <th pSortableColumn="modifiedSourceType" >modifiedSourceType<p-sortIcon field="modifiedSourceType"></p-sortIcon></th>
+                 <th pSortableColumn="modifiedDttm" >modifiedDttm<p-sortIcon field="modifiedDttm"></p-sortIcon></th>
+            </tr>
+        </ng-template>
+        <ng-template >
+            <tr>
+               
+            </tr>
+        </ng-template>
+    </p-table>
 </div>
+<app-footer></app-footer>

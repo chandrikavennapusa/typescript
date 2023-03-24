@@ -17,29 +17,137 @@
 
    <hr>
   <div >
-     <table class="tableEle">
-      <tr>
-          <th>EmployeeId</th>
-          <th>First name</th>
-          <th>Last name</th>
-          <th>Dateofbirth</th>
-          <th>Gender</th>
-          <th>PhoneNumber</th>
-          <th>DateOfJoining</th>
-          <th>Salary</th>
-          <th>Shift</th>
-          <th>createdSource</th>
-          <th>createdSourceType</th>
-          <th>createdDttm</th>
-          <th>modifiedSource</th>
-          <th>modifiedSourceType</th>
-          <th>modifiedDttm</th>
-      </tr>
-         <tr>
-         </tr>
-     </table>
-     
+   <form  #EmployeeForm="ngForm" (ngSubmit)="onSubmit(EmployeeForm)" ngNativeValidate>
+
+      <div class="formContainer">
+         <div class="employeeidEle " >
+          <div><label> employeeId </label></div>
+           <input type="text" pInputText name="employeeId" [(ngModel)]="employeeId" class="empidinputlen" #empid="ngModel" pattern="^[0-9]*$" required />
+        
+          </div>
+    
+          <div class="fristnameEle">
+           <div><label> firstName</label></div>
+           <input type="text" pInputText name="firstName" [(ngModel)]="firstName" #fName="ngModel" required pattern="^[a-zA-Z]+$" />
+          
+          </div>
+    
+          <div class="lastnameEle">
+           <div><label> lastName</label></div>
+           <input type="text" pInputText name="lastName" [(ngModel)]="lastName"  #lName="ngModel" required  pattern="^[a-zA-Z]+$"/>
+         
+          </div>
+          
+             <div class="genderEle" >
+    
+              <div><label> Gender:</label></div>
+                <p-radioButton name="gender" value="male"  [(ngModel)]="Gender"></p-radioButton>
+                <label>male</label>
+                <p-radioButton name="gender" value="Female" [(ngModel)]="Gender1"></p-radioButton>
+                <label>female</label>
+                <p-radioButton name="gender" value="customgender" [(ngModel)]="Gender2"></p-radioButton>
+                <label>custmgender</label>
+    
+             </div>
+       
+             <div class="dobEle">
+              <div> <label> Date of birth:</label></div>
+               <p-calendar [(ngModel)]="dob" name="dob" [showIcon]="true" #dateob="ngModel" [required]="true"> </p-calendar>
+             
+             </div>
+    
+             <div class="emailEle">
+               <div><label> Email Id:</label></div>
+                <input type="text" [(ngModel)]="emailId"  name="mailId" pInputText  #email1="ngModel" required pattern="^[a-zA-Z0-9]+(?:\.[a-zA-Z0-9]+)*@[a-zA-Z0-9]+(?:\.[a-zA-Z0-9]+)*$"/>
+             
+             </div>
+    
+             <div class="mobilenoEle">
+    
+              <div> <label> Mobile no:</label></div>
+              <select name="phcode" id="phcode" class="phcodeEle" [(ngModel)]="phcode">
+                <option value="91">+91</option>
+                <option value="1">+1</option>
+                <option value="92">+92</option>
+                <option value="1-684">+1-684</option>
+              </select>
+              <p-inputNumber [(ngModel)]="PhoneNumber" name="phoneNumber" mode="decimal" ></p-inputNumber>
+              
+             </div>
+    
+             <div class="bloodgroupEle">
+               <div><label> Blood Group:</label></div>
+           <input type="text" pInputText  [(ngModel)]="BloodGroup" name="bloodGroup" pattern="^[A-Z]+$"/>
+             </div>
+    
+             <div class="addressEle">
+              <div> <label> Address:</label></div>
+           <input type="text" pInputText [(ngModel)]="address" name="address" pattern="^[-_a-zA-Z0-9.]+$"/>
+             </div>
+    
+             <div class="deptEle">
+              <div> <label> Department:</label></div>
+           <input type="text" pInputText  [(ngModel)]="Department" name="department" pattern="^[a-zA-Z]+$"/>
+             </div>
+             
+             <div class="dateOfJoiningEle">
+              <div> <label> DateOfJoining:</label></div>
+              <p-calendar [(ngModel)]="dateOfJoining" name="dateOfJoining"  #doj="ngModel"[required]="true"> </p-calendar>
+           
+             </div>
+    
+             <div class="salaryEle">
+              <div> <label> salary:</label></div>
+           <input type="text" pInputText [(ngModel)]="Salary" name="salary" #sal="ngModel" required pattern="^[0-9]*$"/>
+           <div class="errmessageEle" *ngIf="sal.touched && sal.invalid" > enter the valid name</div>
+             </div>
+             
+             <div class="shiftEle">
+              <div> <label> shift:</label></div>
+           <input type="text" pInputText  [(ngModel)]="shift" name="shift" #shift1="ngModel" required/>
+             </div>
+             
+             <div class="createdSourceEle">
+             <div>  <label> createdSource:</label></div>
+           <input type="text" pInputText  [(ngModel)]="createdSource" name="createdSource"/>
+             </div>
+       
+             <div class="createdSourceTypeEle">
+              <div> <label> createdSourceType:</label></div>
+           <input type="text" pInputText [(ngModel)]="createdSourceType" name="createdSourceType"/>
+             </div>
+            
+             <div class="createdDttmEle">
+               <div><label>  createdDttm:</label></div>
+           <input type="text" pInputText  [(ngModel)]="createdDttm" name="createdDttm"/>
+             </div>
+    
+             <div class="modifiedSourceEle">
+               <div><label>  modifiedSource:</label></div>
+           <input type="text" pInputText [(ngModel)]="modifiedSource" name="modifiedSource"/>
+             </div>
+             
+             <div class="modifiedSourceTypeEle">
+              <div> <label> modifiedSourceType:</label></div>
+           <input type="text" pInputText [(ngModel)]="modifiedSourceType" name="modifiedSourceType"/>
+             </div>
+    
+             <div class="modifiedDttmEle">
+              <div> <label>  modifiedDttm:</label></div>
+           <input type="text" pInputText  [(ngModel)]="modifiedDttm" name="modifiedDttm"/>
+             </div>
+               
+                 <div class="buttonEle">
+                  <button pButton type="submit" label="save"></button>
+                  <button pButton type="button" label="cancel"  class="p-button-secondary cancelEle" (click)="formcancelbtn()"></button>                    
+               </div>
+        
+       </div> </form>
   
   </div>
   
 </div>
+
+
+{{rowdata1}}
+<!-- <app-footer></app-footer> -->

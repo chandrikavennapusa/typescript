@@ -17,13 +17,15 @@ import { ServicesService } from '../services.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
-  Username:string;
+  UserName:string;
   password:string;
+
   errormessage:Message[];
   passwordmessage:Message[];
 
   ishidden=false;
   @ViewChild('mylogin') form :NgForm;
+
   succmessage: Message[];
 
   constructor(private router:Router,private services:ServicesService,private authgurdservice:AuthserviceService){}
@@ -32,12 +34,16 @@ export class LoginComponent {
 
 
   login(mylogin){
+    this.services.createdSource=this.form.value.UserName;
+    this.services.createdSourceType=this.form.value.password;
+   console.log(this.form.value.UserName)
                  this.services.usercheck(mylogin)
                  .subscribe(
                   response=>{
                     if(response == true){
                       this.router.navigate(['/HOME']);
                       this.authgurdservice.IsAutheticated();
+                     
                     }
                     else{
                         this.passwordmessage=[

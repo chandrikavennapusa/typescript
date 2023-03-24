@@ -30,6 +30,7 @@ import { AuthserviceService } from './authservice.service';
 import { ServicesService } from './services.service';
 import { HttpClientModule } from '@angular/common/http';
 import { TableModule } from 'primeng/table';
+import { FooterComponent } from './footer/footer.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -41,8 +42,8 @@ import { TableModule } from 'primeng/table';
     HeaderComponent,
     DeptdetaillistComponent,
     AttendecelistComponent,
-    EmplistComponent
-   
+    EmplistComponent,
+    FooterComponent
   ],
   imports: [
    

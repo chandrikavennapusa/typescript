@@ -6,27 +6,15 @@
     height: 100px;
     margin: 10px;
 }
-/* .tableEle{
-    width:1300px;
-    position: relative;
-    left:20px;
-    border-collapse: collapse;
-} */
-/* .tableEle th,td{
-    padding-right:5px;
-    font-size: 13px; 
-} */
-/* .tableEle tr:nth-child(even) {
-    background-color: #f2f2f2;
-} */
+
 .EmpList{
     position: relative;
-    top:-80px;
+    top:-70px;
     background-color: white;
     border: px solid grey;
    box-shadow: 0 0 5px grey;
-   width:1420px;
-   margin-left: 20px;
+   width:1400px;
+   left:30px;
 }
 .EmpListAddContainer{
    position: relative;
@@ -147,8 +135,8 @@
     box-shadow: 0px 0px 5px grey;
     width:1400px;
     height: 880px;
-    margin-left: 20px;
-    top:-99px;
+   left:30px;
+    top: -116px;
     background-color:white;
 }
 .empformheading{
@@ -171,6 +159,23 @@
 input.ng-touched.ng-invalid{
     border: 2px solid red;
     }
-.errmessageEle{
+  .errmessageEle{
         color: red;
     }
+    .dialogempidform{
+        border: 2px solid black;
+        width: 300px;
+        text-align: center;
+        padding: 30px;
+        box-shadow: 0px 0px 5px grey;
+        position: relative;
+        top: -50px;
+        left: 600px;
+    }
+    .btnformEle{
+        padding: 10px;
+    }
+    .footerBottomEle{
+    bottom: -450px;
+    }
+    

@@ -12,6 +12,8 @@ export class ServicesService {
 
   constructor(private httpclient:HttpClient) { }
 
+  createdSource='';
+  createdSourceType='';
  usercheck(mylogin){
   const params = new HttpParams().set('Username',mylogin.value.UserName).set('password',mylogin.value.password)
 
@@ -27,5 +29,20 @@ export class ServicesService {
    gettingempdetails(){
     return this.httpclient.get('http://localhost:9091/employeedetail/findallemployees');
    }
+   
+    deleteempid(id){
+      const params = new HttpParams().set('employeeId',id);
+ return this.httpclient.delete('http://localhost:9091/employeedetail/deletebyempid',{params:params});
+    }
+
+      rowdata;
+    setData(rowdata){
+      this.rowdata =rowdata;
+      console.log(this.rowdata);
+    }
+    getData(){
+      return this.rowdata;
+    }
+
     
 }
