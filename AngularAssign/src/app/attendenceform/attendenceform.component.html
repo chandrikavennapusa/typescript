@@ -1,0 +1,102 @@
+
+<app-header></app-header>
+<div class="navEle">
+    <h2> <span> <i class="material-icons">people</i> </span> Attendence List </h2>
+  </div>
+<div class="attdenceFormcontainer">
+<div class="basicattendecedetailEle">
+<h4>Basic Attendence Details</h4>
+</div><hr>
+          <form  #AttendenceForm="ngForm" (ngSubmit)="onSubmit(AttendenceForm)" ngNativeValidate>
+    
+            <div class="formcontainer">
+               <div >
+                <div><label> employeeId </label></div>
+                 <input type="text" pInputText name="employeeId" [(ngModel)]="employeeId" [disabled]="editmode" />
+                </div>
+    
+                   <div >
+                    <div> <label>month</label></div>
+                     <p-calendar [(ngModel)]="month" name="month"  view="month" dateFormat="mm"  [required]="true" [disabled]="editmode"> </p-calendar>
+                    </div>
+                    <div >
+                        <div> <label>Date</label></div>
+                         <p-calendar [(ngModel)]="date" name="date" view="date" dateFormat="d" [required]="true" [disabled]="editmode"> </p-calendar>
+                        </div>
+    
+                            <div class="deptEle">
+                            <div><label> DepartmentId </label></div>
+                             <input type="text" pInputText name="departmentId" [(ngModel)]="departmentId" [disabled]="editmode"/>
+                            </div>
+          
+                   <div >
+                     <div><label> Avaliable</label></div>
+                     <p-radioButton name="available"  [value]="true"  [(ngModel)]="Available" [disabled]="editmode"></p-radioButton>
+                     <label>true</label>
+                     <p-radioButton name="available" [value]="false" [(ngModel)]="Available1" [disabled]="editmode"></p-radioButton>
+                     <label>false</label>
+                   </div>
+          
+                   <div>
+                     <div><label>CheckIn</label></div>
+                 <input type="text" pInputText  [(ngModel)]="checkIn" name="checkIn" [disabled]="editmode"/>
+                   </div>
+          
+                   <div >
+                    <div> <label> Checkout:</label></div>
+                 <input type="text" pInputText [(ngModel)]="checkout" name="checkout" [disabled]="editmode" />
+                   </div>
+          
+                   <div>
+                    <div> <label>AttendanceCount</label></div>
+                 <input type="text" pInputText [(ngModel)]="attendanceCount" name="attendanceCount" [disabled]="editmode"/>
+            
+                   </div>
+                   
+                   <div >
+                    <div> <label> shift:</label></div>
+                 <input type="text" pInputText  [(ngModel)]="shift" name="shift" [disabled]="editmode"/>
+                
+                   </div>
+                   
+                   <div>
+                   <div>  <label> createdSource:</label></div>
+                 <input type="text" pInputText  [(ngModel)]="createdSource" name="createdSource" [disabled]="editmode"/>
+                   </div>
+             
+                   <div>
+                    <div> <label> createdSourceType:</label></div>
+                 <input type="text" pInputText [(ngModel)]="createdSourceType" name="createdSourceType" [disabled]="editmode"/>
+                   </div>
+                  
+                   <div>
+                     <div><label>  createdDttm:</label></div>
+                     <p-calendar [(ngModel)]="createdDttm" name="createdDttm" [required]="true" [disabled]="editmode"> </p-calendar>
+                 
+                   </div>
+          
+                   <div>
+                     <div><label>  modifiedSource:</label></div>
+                 <input type="text" pInputText [(ngModel)]="modifiedSource" name="modifiedSource" [disabled]="editmode"/>
+                   </div>
+                   
+                   <div>
+                    <div> <label> modifiedSourceType:</label></div>
+                 <input type="text" pInputText [(ngModel)]="modifiedSourceType" name="modifiedSourceType"[disabled]="editmode" />
+                   </div>
+          
+                   <div >
+                    <div> <label>  modifiedDttm:</label></div>
+                    <p-calendar [(ngModel)]="modifiedDttm" name="modifiedDttm" [required]="true" [disabled]="editmode"> </p-calendar>
+                 
+                   </div>
+                     
+                       <div class="buttonEle">
+                        <button pButton type="submit" label="Save" ></button>
+                        <button pButton type="button" label="EDIT" class="savebtnEle" (click)="editattende()" ></button>
+                        <button pButton type="button" label="BACK"  class="p-button-secondary" (click)="backattend()"></button>                    
+                     </div>
+              
+             </div> 
+            </form>
+      </div>

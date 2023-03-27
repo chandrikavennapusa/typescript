@@ -12,5 +12,10 @@
    grid-template-columns: 30% 30% 30%;
    grid-gap: 10px;
    position: relative;
-    left:100px
+    left:100px;
+}
+.savebtnEle{
+   position: relative;
+   margin-left: 20px;
+   margin-right: 20px;
 }

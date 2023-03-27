@@ -6,6 +6,12 @@
     height: 100px;
     margin: 10px;
 }
+.backgroundcolor{
+    z-index: -1;
+    position: relative;
+    background-color:white;
+    opacity: 0.3;
+}
 
 .EmpList{
     position: relative;
@@ -33,144 +39,18 @@
     position: relative;
     left: 18px;
 }
-.formContainer{
-    display: grid;
-   grid-template-rows:auto;
-   grid-template-columns: 30% 30%;
-   grid-gap: 10px;
-   position: relative;
-   left: 400px;
-}
 
-.employeeidEle{
-    grid-column:1/3;
-    grid-row: 1/2;
-}
-.fristnameEle{
-    grid-column:1/2;
-    grid-row: 2/3;
-}
-.lastnameEle{
-    grid-column:2/3;
-    grid-row: 2/3;
-}
-.genderEle{
-    grid-column:1/2;
-    grid-row: 3/4;
-}
-.dobEle{
-    grid-column:2/3;
-    grid-row: 3/4;
-}
-.emailEle{
-    grid-column:1/2;
-    grid-row: 4/5;
-}
-.mobilenoEle{
-    grid-column:2/3;
-    grid-row: 4/5;
-}
-.bloodgroupEle{
-    grid-column:1/2;
-    grid-row: 5/6;
-}
-.addressEle{
-    grid-column:2/3;
-    grid-row:5/6
-}
-.deptEle{
-    grid-column:1/2;
-    grid-row: 6/7; 
-}
-.dateOfJoiningEle{
-    grid-column:2/3;
-    grid-row: 6/7;
-}
-.salaryEle{
-    grid-column:1/2;
-    grid-row: 7/8; 
-}
-.shiftEle{
-    grid-column:2/3;
-    grid-row: 7/8; 
-}
-.createdSourceEle{
-    grid-column:1/2;
-    grid-row: 8/9; 
-}
-.createdSourceTypeEle{
-    grid-column:2/3;
-    grid-row: 8/9; 
-}
-.createdDttmEle{
-    grid-column:1/2;
-    grid-row: 9/10; 
-}
-.modifiedSourceEle{
-    grid-column:2/3;
-    grid-row: 9/10; 
-}
-.modifiedSourceTypeEle{
-    grid-column:1/2;
-    grid-row: 10/11; 
-}
-.modifiedDttmEle{
-    grid-column:2/3;
-    grid-row: 10/11; 
-}
-.buttonEle{
-    grid-column:2/3;
-    grid-row: 11/12;   
- 
-}
-.cancelEle{
-    margin-left: 50px;
-}
-.empidinputlen{
-    width: 650px;
-}
-.AddempContainer{
-    position: relative;
-    border: 0px sold grey;
-    box-shadow: 0px 0px 5px grey;
-    width:1400px;
-    height: 880px;
-   left:30px;
-    top: -116px;
-    background-color:white;
-}
-.empformheading{
-    height: 70px;
-    margin-left: 15px;
-    position: relative;
-    top: 40px;
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-}
-.formbasicdetailheading{
-    position: relative;
-    left: 430px;
-}
-.phcodeEle{
-    position:relative;
-    top: -2px;
-    width:60px;
-    height: 40px;
-}
-input.ng-touched.ng-invalid{
-    border: 2px solid red;
-    }
-  .errmessageEle{
-        color: red;
-    }
+
     .dialogempidform{
         border: 2px solid black;
         width: 300px;
         text-align: center;
         padding: 30px;
-        box-shadow: 0px 0px 5px grey;
+        box-shadow: 0px 0px 5px rgb(90, 62, 62);
         position: relative;
-        top: -50px;
-        left: 600px;
+        left: 600px;  
+        top:-300px;
+      
     }
     .btnformEle{
         padding: 10px;
@@ -178,4 +58,6 @@ input.ng-touched.ng-invalid{
     .footerBottomEle{
     bottom: -450px;
     }
-    
+    .cancelEle{
+        margin-left: 50px;
+    }

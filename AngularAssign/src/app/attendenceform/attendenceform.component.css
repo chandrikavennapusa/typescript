@@ -1,0 +1,39 @@
+.attdenceFormcontainer{
+    background-color: white;
+    border: px solid grey;
+   box-shadow: 0 0 5px grey; 
+   margin: 10px; 
+   height: 500px;
+   position: relative;
+    top: -80px;
+    width: 1430px;
+   left: 20px;
+}
+.formcontainer{
+    display: grid;
+    grid-template-rows:auto;
+    grid-template-columns: 30% 30% 30%;
+    grid-gap: 10px;
+    position: relative;
+   left: 100px;
+}
+  .formheadingEle{
+    height: 60px;
+  }
+  .navEle{
+    position: relative;
+    top:-20px;
+    background-color:#89cfe8;
+    color:white;
+    height: 100px;
+    margin: 10px;
+}
+.basicattendecedetailEle{
+    text-align: center;
+    position: relative;
+    top: 5px;
+}
+.savebtnEle{
+  margin-left: 20px;
+  margin-right: 20px;
+}

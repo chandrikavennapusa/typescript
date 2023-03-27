@@ -14,6 +14,9 @@ export class ServicesService {
 
   createdSource='';
   createdSourceType='';
+  emplyeeid='';
+  EmployeeId='';
+  DepartmentId='';
  usercheck(mylogin){
   const params = new HttpParams().set('Username',mylogin.value.UserName).set('password',mylogin.value.password)
 
@@ -38,11 +41,50 @@ export class ServicesService {
       rowdata;
     setData(rowdata){
       this.rowdata =rowdata;
-      console.log(this.rowdata);
     }
     getData(){
       return this.rowdata;
     }
 
+    updateempid(EmployeeForm){
+     return this.httpclient.put('http://localhost:9091/employeedetail/updateemployee',EmployeeForm.value)
+    }
+
+     addAttendence(AttendenceForm){
+     return this.httpclient.post('http://localhost:9091/attendanceDetail/addAttendance',AttendenceForm.value)
+     }
     
+
+   gettingDeptdata(){
+    return this.httpclient.get('http://localhost:9091/departmentdetail/findalldepartment');
+   }
+   deptdata 
+    setdeptData(data){
+        this.deptdata = data
+    }
+    getdeptData(){
+      return this.deptdata;
+    }
+    gettingAttendencedetails(){
+      return this.httpclient.get('http://localhost:9091/attendanceDetail/findAllAttendance');
+    }
+    attendencedata;
+    setAttendencedata(data){
+      this.attendencedata=data;
+    }
+    getAttendencedata(){
+      return this.attendencedata;
+    }
+
+    updateattence(attendenceform){
+      return this.httpclient.put('http://localhost:9091/attendanceDetail/updateAttendance',attendenceform.value);
+    }
+
+    deletebasedonempiddeptid(empid,deptid){
+      const params = new HttpParams().set('employeeId',empid).set('departmentId',deptid);
+      return this.httpclient.delete('http://localhost:9091/attendanceDetail/deleteByEmpIdDepId',{params:params})
+    }
+    addattendencedata(form){
+      return this.httpclient.post('http://localhost:9091/attendanceDetail/addAttendance',form.value)
+    }
 }

@@ -5,14 +5,14 @@
   </div>
 
 <div class="depttablecontainer" >
-    <p-table>
+    <p-table [value]="getDeptDetails">
         <ng-template pTemplate="header">
             <tr>
-                <th pSortableColumn="DepartmentId" >DepartmentId<p-sortIcon field="DepartmentId"></p-sortIcon></th>
-                <th pSortableColumn="DepartmentName">DepartmentName<p-sortIcon field="DepartmentName"></p-sortIcon></th>
-                <th pSortableColumn="NoOfEmployee" >NoOfEmployee<p-sortIcon field="NoOfEmployee"></p-sortIcon></th>  
-                <th pSortableColumn="ManagerId" >ManagerId<p-sortIcon field="ManagerId"></p-sortIcon></th>
-                <th pSortableColumn="createdSource" >createdSource<p-sortIcon field=">createdSource"></p-sortIcon></th>
+                <th pSortableColumn="departmentId" >DepartmentId<p-sortIcon field="departmentId"></p-sortIcon></th>
+                <th pSortableColumn="departmentName">DepartmentName<p-sortIcon field="departmentName"></p-sortIcon></th>
+                <th pSortableColumn="noOfEmployee" >NoOfEmployee<p-sortIcon field="noOfEmployee"></p-sortIcon></th>  
+                <th pSortableColumn="managerId" >ManagerId<p-sortIcon field="managerId"></p-sortIcon></th>
+                <th pSortableColumn="createdSource" >createdSource<p-sortIcon field="createdSource"></p-sortIcon></th>
         <th pSortableColumn="createdSourceType">createdSourceType<p-sortIcon field="createdSourceType"></p-sortIcon></th>
         <th pSortableColumn="createdDttm" >createdDttm<p-sortIcon field="createdDttm"></p-sortIcon></th>  
         <th pSortableColumn="modifiedSource" >modifiedSource<p-sortIcon field="modifiedSource"></p-sortIcon></th>
@@ -20,9 +20,18 @@
         <th pSortableColumn="modifiedDttm" >modifiedDttm<p-sortIcon field="modifiedDttm"></p-sortIcon></th>
             </tr>
         </ng-template>
-        <ng-template >
-            <tr>
-               
+        <ng-template pTemplate="body" let-rowData>
+            <tr (dblclick)="doubleClick(rowData)">
+         <td>{{rowData.departmentId}}</td>
+          <td>{{rowData.departmentName}}</td>
+          <td>{{rowData.noOfEmployee}}</td>
+          <td>{{rowData.managerId}}</td>
+          <td>{{rowData.createdSource}}</td>
+          <td>{{rowData.createdSourceType}}</td>
+          <td>{{rowData.createdDttm}}</td>
+          <td>{{rowData.modifiedSource}}</td>
+          <td>{{rowData.modifiedSourceType}}</td>
+          <td>{{rowData.modifiedDttm}}</td>
             </tr>
         </ng-template>
     </p-table>

@@ -9,72 +9,84 @@
         <h3>Attendece list:</h3>
     </div>
     <hr>
-<form>
+<form #attendencedetails="ngForm" (ngSubmit)="onsubmit()">
         <div class="attencontainerlist">
             
-            <div class="employeeidEle">
+            <div>
                 <div><label> employeeId:</label></div>
-                <input type="text" pInputText  class="empidinputlen" />
+                <input type="text" pInputText name="employeeId" [(ngModel)]="employeeId" readonly/>
             </div>
-            <div class="monthEle">
+            <div>
                 <div><label> Month:</label></div>
-                <input type="text" pInputText />
+                <p-calendar  name="month" [(ngModel)]="month" view="month" dateFormat="mm.yy"  [showIcon]="true"  > </p-calendar>
+              
             </div>
-            <div class="dateEle">
+            <div>
                 <div><label>Date:</label></div>
-                <p-calendar></p-calendar>
+                <p-calendar  name="date" [(ngModel)]="date" view="date" dateFormat="dd"  [showIcon]="true"  > </p-calendar>
             </div>
-            <div class="deptidEle">
+            <div>
                 <div><label>DepartmentId:</label></div>
-                <input type="text" pInputText />
+                <input type="text" pInputText name="departmentId" [(ngModel)]="departmentId" readonly/>
             </div>
-            <div class="avalibleEle"> 
+            <div> 
                 <div><label>Available:</label></div>
-                <input type="text" pInputText />
+             
+                <p-radioButton name="available" value="true" [(ngModel)]="available"></p-radioButton>
+                <label>yes</label>
+                <p-radioButton name="available" value="false" [(ngModel)]="available1"></p-radioButton>
+                <label>no</label>
+               
             </div>
-            <div class="checkinEle">
+            <div>
                 <div><label>CheckIn:</label></div>
-                <input type="text" pInputText />
+                <input type="text" pInputText name="checkIn" [(ngModel)]="checkIn"/>
             </div>
-            <div class="checkoutEle">
+            <div>
                 <div><label>Checkout:</label></div>
-                <input type="text" pInputText />
+                <input type="text" pInputText name="checkout" [(ngModel)]="checkout"/>
             </div>
-            <div class="attendencecountEle">
+            <div>
                 <div><label>AttendanceCount:</label></div>
-                <input type="text" pInputText />
+                <input type="text" pInputText name="attendanceCount" [(ngModel)]="attendanceCount"/>
             </div>
-            <div class="shiftEle">
+            <div>
                 <div><label>Shift:</label></div>
-                <input type="text" pInputText />
+                <input type="text" pInputText name="shift" [(ngModel)]="shift"/>
             </div>
-            <div class="createdsourceEle">
+            <div>
                 <div><label>CreatedSource:</label></div>
-                <input type="text" pInputText />
+                <input type="text" pInputText name="createdSource" [(ngModel)]="createdSource" />
             </div>
-            <div class="CreatedSourceTypeEle">
+            <div>
                 <div><label>CreatedSourceType:</label></div>
-                <input type="text" pInputText />
+                <input type="text" pInputText name="createdSourceType" [(ngModel)]="createdSourceType"/>
             </div>
-            <div class="CreatedDttmEle">
+            <div>
                 <div><label>CreatedDttm:</label></div>
-                <input type="text" pInputText />
+                <p-calendar name="createdDttm"[(ngModel)]=createdDttm   dateFormat="dd.mm.yy"  [showIcon]="true"  > </p-calendar>
+               
             </div>
-            <div class="ModifiedSourceEle">
+            <div>
                 <div><label>ModifiedSource:</label></div>
-                <input type="text" pInputText />
+                <input type="text" pInputText name="modifiedSource" [(ngModel)]="modifiedSource" />
+               
             </div>
-            <div class="ModifiedSourceTypeEle">
+            <div>
                 <div><label>ModifiedSourceType:</label></div>
-                <input type="text" pInputText />
+                <input type="text" pInputText name="modifiedSourceType" [(ngModel)]="modifiedSourceType" />
             </div>
-            <div class="ModifiedDttmEle">
+            <div>
                 <div><label>ModifiedDttm:</label></div>
-                <input type="text" pInputText />
+                <p-calendar  name="modifiedDttm" [(ngModel)]="modifiedDttm"   dateFormat="dd.mm.yy"  [showIcon]="true"  > </p-calendar>
+               
+            </div>
+            <div>
+                <button pButton type="submit" label="save"></button>
+                <button pButton type="button" label="cancel"  class="p-button-secondary cancelbtn" (click)="gobackatten()" ></button>
             </div>
     </div>
-    <div>
-        
+    <div>    
     </div>
 </form>
 </div>

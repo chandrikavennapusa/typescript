@@ -6,9 +6,47 @@
     height: 100px;
     margin: 10px;
 }
-.attendencetablecontainer{
+.attendenceAddbtnEle{
     position: relative;
-    width: 1490px;
-    left:30px;
-    top: -50px;
+    width: 130px;
+    height: 36px;
+    left: 1210px;
+    top:20px;
+}
+.attendenceaddbtnContainer{
+    position: relative;
+    height: 70px;
+}
+.attendencetablecontainerEle{
+    position: relative;
+    top:-70px;
+    background-color: white;
+    border: px solid grey;
+   box-shadow: 0 0 5px grey;
+   width:1430px;
+   left:30px;
+}
+.empidanddeptid{
+    text-align: center;
+    background-color: white;
+    border: px solid grey;
+   box-shadow: 0 0 5px grey;
+   width: 300px;
+   height: 250px;
+   padding: 20px;
+   position:relative;
+   left:600px;
+   top:-350px;
+}
+.cancelEle{
+    margin-left: 50px;
+}
+.deptidEle{
+    margin: 20px;
+}
+.backgroundcolor{
+    z-index: -1;
+    position: relative;
+    background-color:white;
+    opacity: 0.2;
 }

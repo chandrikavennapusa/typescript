@@ -1,25 +1,73 @@
 
 <app-header></app-header>
-<div class="navEle">
-    <h2> <span> <i class="material-icons">people</i> </span> Department List </h2>
-  </div>
-<div>
-    <table  class="tableEle">
-        <tr>
-            <th>DepartmentId</th>
-            <th>DepartmentName</th>
-            <th>NoOfEmployee</th>
-            <th>ManagerId</th>
-            <th>CreatedSource</th>
-            <th>CreatedSourceType</th>
-            <th>CreatedDttm</th>
-            <th>ModifiedSource</th>
-            <th>ModifiedSourceType</th>
-            <th>ModifiedDttm</th>
-        </tr>
-        <tr>
-            
-        </tr>
-    </table>
-</div>
+<hr>
+<form>
+    <div class="formContainer">
+       <div>
+        <div><label> departmentId </label></div>
+         <input type="text" pInputText name="departmentId" [(ngModel)]="departmentId" [disabled]="!editmode" />
+      
+        </div>
+  
+        <div>
+         <div><label>departmentName</label></div>
+         <input type="text" pInputText name="departmentName" [(ngModel)]="departmentName" [disabled]="!editmode" />
+        
+        </div>
+  
+        <div>
+         <div><label>noOfEmployee</label></div>
+         <input type="text" pInputText name="noOfEmployee" [(ngModel)]="noOfEmployee" [disabled]="!editmode"/>
+       
+        </div>
+        
+
+     
+  
+           <div>
+            <div> <label> managerId</label></div>
+         <input type="text" pInputText [(ngModel)]="managerId" name="managerId"[disabled]="!editmode"/>
+      
+           </div>
+           
+ 
+           
+           <div>
+           <div>  <label> createdSource:</label></div>
+         <input type="text" pInputText  [(ngModel)]="createdSource" name="createdSource" [disabled]="!editmode"/>
+           </div>
+     
+           <div>
+            <div> <label> createdSourceType:</label></div>
+         <input type="text" pInputText [(ngModel)]="createdSourceType" name="createdSourceType" [disabled]="!editmode"/>
+           </div>
+          
+           <div>
+             <div><label>  createdDttm:</label></div>
+             <p-calendar  [(ngModel)]="createdDttm1" name="createdDttm"  dateFormat="dd.mm.yy" [disabled]="!editmode" [required]="true"> </p-calendar>
+        
+           </div>
+  
+           <div>
+             <div><label>  modifiedSource:</label></div>
+         <input type="text" pInputText [(ngModel)]="modifiedSource" name="modifiedSource" [disabled]="!editmode"/>
+           </div>
+           
+           <div>
+            <div> <label> modifiedSourceType:</label></div>
+         <input type="text" pInputText [(ngModel)]="modifiedSourceType" name="modifiedSourceType" [disabled]="!editmode"/>
+           </div>
+  
+           <div>
+            <div> <label>  modifiedDttm:</label></div>
+         <input type="text" pInputText  [(ngModel)]="modifiedDttm" name="modifiedDttm" [disabled]="!editmode"/>
+           </div>
+             
+               <div >
+                <button pButton type="button" label="BACK"  class="p-button-secondary" (click)="backtodept()"></button>                    
+             </div>
+      
+     </div> 
+    </form>
+    <hr>
 <app-footer></app-footer>

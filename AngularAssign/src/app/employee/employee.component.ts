@@ -1,7 +1,10 @@
-import { Component, ElementRef, EventEmitter, HostListener, Input, Output} from '@angular/core';
+import { Component, ElementRef, EventEmitter, HostListener, Input, Output, ViewChild} from '@angular/core';
 import {  NgForm } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRouteSnapshot, Router, RouterStateSnapshot } from '@angular/router';
 import { table } from 'console';
+import { ConfirmationService, Message } from 'primeng/api';
+import { Observable } from 'rxjs';
+
 import { ServicesService } from '../services.service';
 
 
@@ -14,71 +17,49 @@ import { ServicesService } from '../services.service';
   styleUrls: ['./employee.component.css']
 })
 export class EmployeeComponent {
-  value='';
-  employeeId='';
-  firstName='';
-  lastName='';
-  Gender='';
-  Gender1='';
-  Gender2='';
-  dob='';
- emailId='';
-  phcode='91';
-  PhoneNumber='';
-  BloodGroup='';
-  address='';
-  Department='';
-  dateOfJoining='';
-  Salary='';
-  shift='';
-  createdSource='';
-  createdSourceType='';
-  createdDttm='';
-  modifiedSource='';
-  modifiedSourceType='';
-  modifiedDttm='';
-  empId='';
-
- empformhidden=false;
- tableformhidden=true;
- dialogempidform=false;
+  gettingempdata: any;
+  errorMessage: any;
+  empId: string;
 
 
- successmessagedataEle=false;
- errormessagedataEle=false;
- gettingempdata;
- errorMessage;
-
- sucessmessagedata ;
- errormessagedata;
- constructor(private service:ServicesService,private router:Router){}
-
-  onSubmit(EmployeeForm:NgForm){
-    this.service.addempdetails(EmployeeForm).subscribe();
-    this.empformhidden=false;
-    this.tableformhidden=true;
-    this.successmessagedataEle=true;
-    this.errormessagedataEle=false;
-    this.sucessmessagedata=
-    [
-      {
-        severity: 'success', 
-        summary: 'Employee list', 
-        detail:"form successfully added"
-      }
-    ]
-    location.reload();
+  dialogFormHidden=false;
+  successmessagedataEle=false;
+  errormessagedataEle=false;
+  errormessagedata: Message[];
+  sucessmessagedata: Message[];
+  constructor(private service:ServicesService,private router:Router ,private confirmationService: ConfirmationService){}
+  ngOnInit(){
+    this.service.gettingempdetails().subscribe(
+       data=> this.gettingempdata=data,
+       error => this.errorMessage = error
+     );
+   }
+   doubleClick(rowdata){
+    this.service.setData(rowdata);
+    this.router.navigate(['/EMPLIST']);
   }
-  empdDetailForm(){
-    this.empformhidden=false;
-    this.tableformhidden=false;
-    this.dialogempidform=true;
-     
-   
-      }
 
-      
-   isboolean;
+  deletebasedonempid(id){
+
+    this.confirmationService.confirm({
+      message: 'Row Delete Congormation Box.',
+      header: 'Employee Row',
+      accept: () => this.service.deleteempid(id).subscribe((data)=>{
+      }),
+  });
+  this.fetchData();
+  }
+
+  fetchData(){
+    this.service.gettingempdetails().subscribe();
+  }
+  cancelempidbtn(){
+    this.empId='';
+    this.dialogFormHidden=false;
+   
+  }
+
+  isboolean;
       empidcheck(){
         this.isboolean=false;
         console.log(this.gettingempdata);
@@ -95,23 +76,17 @@ export class EmployeeComponent {
         if(this.isboolean == true){
           this.errormessagedata=[
                                               {
-                                                    severity: 'error', 
+                                                   severity: 'error', 
                                                     summary: 'Employee list', 
                                                   detail:"the id is alredy exist"
                                                   }
             
                                  ] 
-                                             this.successmessagedataEle=false;
-                                                this.errormessagedataEle=true;
-
-
-            this.empformhidden=false;
-            this.tableformhidden=true;
-           this.dialogempidform=false;
-
+                                 this.successmessagedataEle=false;
+                                 this.errormessagedataEle=true;
+                                this.dialogFormHidden=false;
         }
         else{
-          this.employeeId=this.empId;
           this.sucessmessagedata=
           [
             {
@@ -120,80 +95,22 @@ export class EmployeeComponent {
               detail:"enter the table fields"
             }
           ]
-          this.createdSource=this.service.createdSource;
-          console.log(this.service.createdSource)
-          this.successmessagedataEle=true;
-          this.errormessagedataEle=false;
-          this.empformhidden=true;
-          this.tableformhidden=false;
-          this.dialogempidform=false;
+          
+             this.successmessagedataEle=true;
+            this.errormessagedataEle=false;
+            this.dialogFormHidden=false;
+            this.router.navigate(['/EMPFORM']);
+            this.service.emplyeeid=this.empId;
+         
+         
         }
         this.empId='';
       }
-     
-      
+      empiddialogbox(){
+        this.dialogFormHidden=true;
+      }
 
-  ngOnInit(){
-    this.createdSource=this.service.createdSource;
-    console.log(this.createdSource);
-    
-   this.service.gettingempdetails().subscribe(
-      data=> this.gettingempdata=data,
-      error => this.errorMessage = error
-    );
-  }
-
-  cancelempidbtn(){
-    this.empId='';
-    this.dialogempidform=false;
-    this.empformhidden=false;
-    this.tableformhidden=true;
-  }
-
-  formcancelbtn(){
-  this.employeeId='';
-  this.firstName='';
-  this.lastName='';
-  this.Gender='';
-  this.Gender1='';
-  this.Gender2='';
-  this.dob='';
-  this.emailId='';
-  this.phcode='';
-  this.PhoneNumber='';
-  this.BloodGroup='';
-  this.address='';
-  this.Department='';
-  this.dateOfJoining='';
-  this.Salary='';
-  this.shift='';
-  this.createdSource='';
-  this.createdSourceType='';
-  this.createdDttm='';
-  this.modifiedSource='';
-  this.modifiedSourceType='';
-  this.modifiedDttm='';
-  this.tableformhidden=true;
-  this.empformhidden=false;
-  }
-
-
-
-  deletebasedonempid(id){
-    let isdelete= confirm('Are you sure?');
-
-    if(isdelete){
-    this.service.deleteempid(id).subscribe();
-    }
-    location.reload();
-  }
-
-  doubleClick(rowdata){
-    console.log(this.gettingempdata.length);
-    console.log(rowdata);
-    this.service.setData(rowdata);
-    this.router.navigate(['/EMPLIST']);
-  }
- 
 }
+
+
 

@@ -31,6 +31,10 @@ import { ServicesService } from './services.service';
 import { HttpClientModule } from '@angular/common/http';
 import { TableModule } from 'primeng/table';
 import { FooterComponent } from './footer/footer.component';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { ConfirmationService } from 'primeng/api';
+import { AttendenceformComponent } from './attendenceform/attendenceform.component';
+import { EmpformComponent } from './empform/empform.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -43,7 +47,9 @@ import { FooterComponent } from './footer/footer.component';
     DeptdetaillistComponent,
     AttendecelistComponent,
     EmplistComponent,
-    FooterComponent
+    FooterComponent,
+    AttendenceformComponent,
+    EmpformComponent 
   ],
   imports: [
    
@@ -65,9 +71,9 @@ import { FooterComponent } from './footer/footer.component';
    InputNumberModule,
    ToastModule ,
    MessagesModule ,
-
+   ConfirmDialogModule
   ],
-  providers: [AuthserviceService,ServicesService ],
+  providers: [AuthserviceService,ServicesService,ConfirmationService ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

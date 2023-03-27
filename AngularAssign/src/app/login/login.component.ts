@@ -35,7 +35,9 @@ export class LoginComponent {
 
   login(mylogin){
     this.services.createdSource=this.form.value.UserName;
+ 
     this.services.createdSourceType=this.form.value.password;
+   
    console.log(this.form.value.UserName)
                  this.services.usercheck(mylogin)
                  .subscribe(
