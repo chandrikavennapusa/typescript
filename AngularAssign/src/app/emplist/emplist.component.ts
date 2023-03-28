@@ -34,17 +34,26 @@ export class EmplistComponent {
   modifiedDttm='';
   rowdata1;
 
+  disabledsubmitcancelbtn=false;
+  disablededitbackbtn=true;
+  editmode =false; 
+  editbtndisable=true;
 constructor(private service:ServicesService , private router:Router){}
 
   onSubmit(EmployeeForm:NgForm){
     console.log(EmployeeForm)
     this.service.updateempid(EmployeeForm).subscribe();
-    this.router.navigate(['/EMP']);
+    this.editmode=false;
+    this.disabledsubmitcancelbtn=false;
+    this.disablededitbackbtn=true;
+    
   }
+
   backtoemplistbtn(){
     this.router.navigate(['/EMP']);
   }
  ngOnInit(){
+  
   let rowdata1 = this.service.getData();
   this.employeeId=rowdata1.employeeId;
   this.firstName=rowdata1.firstName;
@@ -68,11 +77,28 @@ constructor(private service:ServicesService , private router:Router){}
   this.modifiedSource=rowdata1.modifiedSource
   this.modifiedSourceType=rowdata1.modifiedSourceType
   this.modifiedDttm=rowdata1.modifiedDttm;
+
+  let username =localStorage.getItem("username");
+  if(username == "employee" ){
+
+    this.editbtndisable=false;
+}
+
  }
 
- editmode =false; 
+
+
+
+
  editbtnviewmode(){
   this.editmode=true;
+  this.disabledsubmitcancelbtn=true;
+  this.disablededitbackbtn=false;
+ }
+ cancelbtn(){
+  this.editmode=false;
+  this.disabledsubmitcancelbtn=false;
+  this.disablededitbackbtn=true;
  }
   
 }

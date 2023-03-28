@@ -26,7 +26,7 @@ import { EmplistComponent } from './emplist/emplist.component';
 import {InputNumberModule} from 'primeng/inputnumber';
 import { ToastModule } from 'primeng/toast';
 import { MessagesModule } from 'primeng/messages';
-import { AuthserviceService } from './authservice.service';
+
 import { ServicesService } from './services.service';
 import { HttpClientModule } from '@angular/common/http';
 import { TableModule } from 'primeng/table';
@@ -35,6 +35,7 @@ import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { ConfirmationService } from 'primeng/api';
 import { AttendenceformComponent } from './attendenceform/attendenceform.component';
 import { EmpformComponent } from './empform/empform.component';
+import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -49,7 +50,8 @@ import { EmpformComponent } from './empform/empform.component';
     EmplistComponent,
     FooterComponent,
     AttendenceformComponent,
-    EmpformComponent 
+    EmpformComponent,
+    PagenotfoundComponent  
   ],
   imports: [
    
@@ -73,7 +75,7 @@ import { EmpformComponent } from './empform/empform.component';
    MessagesModule ,
    ConfirmDialogModule
   ],
-  providers: [AuthserviceService,ServicesService,ConfirmationService ],
+  providers: [ServicesService,ConfirmationService ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

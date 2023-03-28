@@ -11,7 +11,7 @@
   <div class="EmpListAddContainer">
     <p-messages [(value)]="sucessmessagedata" *ngIf="successmessagedataEle" ></p-messages>
           <p-messages [(value)]="errormessagedata" *ngIf="errormessagedataEle" ></p-messages>
-          <button pButton type="button" label="ADD" class="EmpListAddEle" (click)="empiddialogbox()" > 
+          <button pButton type="button" label="ADD" class="EmpListAddEle" (click)="empiddialogbox()"  *ngIf="addbtndisable"> 
                           <span><i class="pi pi-plus EmpListAddPlusEle"></i></span> 
           </button>
           
@@ -21,7 +21,15 @@
 
 
   <div >
-    <p-table  [value]="gettingempdata" class="tableEle" >
+    <p-table  [value]="gettingempdata" class="tableEle" 
+    [paginator]="true"
+    [rows]="10"
+    [showCurrentPageReport]="true"
+    [tableStyle]="{ 'min-width': '50rem' }"
+    currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+    [rowsPerPageOptions]="[5,10,15,20]"
+    
+    >
 
       <ng-template pTemplate="header">
       <tr>
@@ -64,7 +72,7 @@
           <td>{{rowData.modifiedDttm}}</td>
           
         
-          <td><p-button (click)="deletebasedonempid(rowData.employeeId)" icon="pi pi-times" label="Delete" class="p-button-danger"></p-button>
+          <td><p-button (click)="deletebasedonempid(rowData.employeeId)" icon="pi pi-times" label="Delete" class="p-button-danger" *ngIf="deleteviewmode"></p-button>
           </td>
           
          </tr>
@@ -92,5 +100,5 @@
  </div>
 
 
-  <!-- <app-footer class="footerBottomEle"></app-footer> -->
+  <app-footer></app-footer>
 

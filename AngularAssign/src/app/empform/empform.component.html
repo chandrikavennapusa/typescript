@@ -11,7 +11,7 @@
     </div>
     <hr>
     <h4 >Basic Details:</h4>
-    <form  #EmployeeForm="ngForm" (ngSubmit)="onSubmit(EmployeeForm)" ngNativeValidate>
+    <form  #EmployeeForm="ngForm" (ngSubmit)="onSubmit(EmployeeForm) && EmployeeForm.form.invalid" ngNativeValidate>
   
     <div class="formContainer">
        <div class="employeeidEle " >
@@ -35,13 +35,13 @@
            <div class="genderEle" >
   
             <div><label> Gender:</label></div>
-              <p-radioButton name="gender" value="male"  [(ngModel)]="Gender"></p-radioButton>
+              <p-radioButton name="gender" value="male"  [(ngModel)]="Gender" [required]="true" #g="ngModel" ></p-radioButton>
               <label>male</label>
-              <p-radioButton name="gender" value="Female" [(ngModel)]="Gender1"></p-radioButton>
+              <p-radioButton name="gender" value="Female" [(ngModel)]="Gender1" [required]="true" #g="ngModel" ></p-radioButton>
               <label>female</label>
-              <p-radioButton name="gender" value="customgender" [(ngModel)]="Gender2"></p-radioButton>
+              <p-radioButton name="gender" value="customgender" [(ngModel)]="Gender2" [required]="true" #g="ngModel" ></p-radioButton>
               <label>custmgender</label>
-  
+              <div class="errmessageEle" *ngIf="g.touched && g.invalid" > enter the valid name</div>
            </div>
      
            <div class="dobEle">
@@ -105,17 +105,18 @@
            
            <div class="createdSourceEle">
            <div>  <label> createdSource:</label></div>
-         <input type="text" pInputText  [(ngModel)]="createdSource" name="createdSource"/>
+         <input type="text" pInputText  [(ngModel)]="createdSource" name="createdSource" readonly="readonly"/>
            </div>
      
            <div class="createdSourceTypeEle">
             <div> <label> createdSourceType:</label></div>
-         <input type="text" pInputText [(ngModel)]="createdSourceType" name="createdSourceType"/>
+         <input type="text" pInputText [(ngModel)]="createdSourceType" name="createdSourceType"  readonly="readonly"/>
            </div>
           
            <div class="createdDttmEle">
              <div><label>createdDttm:</label></div>
-             <p-calendar [(ngModel)]="createdDttm" name="createdDttm" dateFormat="dd.mm.yy" [required]="true"> </p-calendar>
+             <input type="text" pInputText   [(ngModel)]="createdDttm" name="createdDttm"  readonly="readonly"/>
+           
          
            </div>
   
@@ -142,4 +143,4 @@
       
      </div> </form>
   </div>
-  
+  <app-footer></app-footer>

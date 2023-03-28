@@ -12,8 +12,8 @@ export class ServicesService {
 
   constructor(private httpclient:HttpClient) { }
 
-  createdSource='';
-  createdSourceType='';
+  
+ 
   emplyeeid='';
   EmployeeId='';
   DepartmentId='';
@@ -23,6 +23,12 @@ export class ServicesService {
   return this.httpclient.get('http://localhost:9091/userAccount/checkuserexists',{params:params});
   
  }
+
+   gettinguserdata(){
+    return this.httpclient.get('http://localhost:9091/userAccount/findalluseraccounts');
+   }
+
+
  
   addempdetails(EmployeeForm){
 
@@ -86,5 +92,10 @@ export class ServicesService {
     }
     addattendencedata(form){
       return this.httpclient.post('http://localhost:9091/attendanceDetail/addAttendance',form.value)
+    }
+
+    gettingattendedatabasedonempid(empid){
+      let params =new HttpParams().set('employeeid',empid);
+      return this.httpclient.get('http://localhost:9091/attendanceDetail/findAttendanceByEmpId',{params:params})
     }
 }

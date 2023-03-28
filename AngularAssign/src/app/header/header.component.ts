@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ServicesService } from '../services.service';
 
 
 @Component({
@@ -7,5 +8,16 @@ import { Component } from '@angular/core';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent {
+constructor(private service:ServicesService){}
+employeeuserhide=true;
+  
+  ngOnInit(){
+    let username =localStorage.getItem("username");
+     if(username == "employee" ){
+      this.employeeuserhide=false; 
+  }
+
+ 
+ }
 
 }

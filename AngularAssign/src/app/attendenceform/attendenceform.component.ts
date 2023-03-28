@@ -26,14 +26,24 @@ export class AttendenceformComponent {
   modifiedSourceType='';
   modifiedDttm:Date;
 
+  editbtndisable=true;
+  editmode=true;
+  disablesavecancelbtn=false;
+  disableeditbackbtn=true;
+
   onSubmit(AttendenceForm){
       this.service.updateattence(AttendenceForm).subscribe();
-      this.router.navigate(['/ATDE']);
+      this.editmode=true;
+    this. disablesavecancelbtn=false;
+    this.disableeditbackbtn=true;
+      
   }
 
+  backtoatend(){
+this.router.navigate(['/ATDE']);
+  }
   ngOnInit(){
     let atddata= this.service.getAttendencedata();
-    console.log(atddata)
     this.employeeId=atddata.employeeId;
     this.month=new Date(atddata.month);
     this.date= new Date(atddata.date);
@@ -50,13 +60,25 @@ export class AttendenceformComponent {
     this.modifiedSource=atddata.modifiedSource;
     this.modifiedSourceType=atddata.modifiedSourceType;
     this.modifiedDttm=new Date(atddata.modifiedDttm);
+    let username =localStorage.getItem("username");
+    if(username == "employee" ){
+  
+      this.editbtndisable=false;
+  }
+    
   }
   
-  backattend(){
-    this.router.navigate(['/ATDE'])
-  }
-  editmode=true;
+   
+ 
   editattende(){
     this.editmode=false;
+    this.disablesavecancelbtn=true;
+    this.disableeditbackbtn=false;
   }
+
+  cancelbtn(){
+    this.editmode=true;
+    this.disablesavecancelbtn=false;
+    this.disableeditbackbtn=true;
+   }
 }

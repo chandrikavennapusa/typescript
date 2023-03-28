@@ -9,7 +9,7 @@
         <h3>Attendece list:</h3>
     </div>
     <hr>
-<form #attendencedetails="ngForm" (ngSubmit)="onsubmit()">
+<form #attendencedetails="ngForm" (ngSubmit)="onsubmit()" ngNativeValidate>
         <div class="attencontainerlist">
             
             <div>
@@ -18,12 +18,12 @@
             </div>
             <div>
                 <div><label> Month:</label></div>
-                <p-calendar  name="month" [(ngModel)]="month" view="month" dateFormat="mm.yy"  [showIcon]="true"  > </p-calendar>
-              
+                <p-calendar  name="month" [(ngModel)]="month" view="month" dateFormat="mm.yy"  [showIcon]="true" #month1="ngModel" [required]="true" > </p-calendar>
+                <div class="errmessageEle" *ngIf="month1.touched && month1.invalid" > enter the valid name</div>
             </div>
             <div>
                 <div><label>Date:</label></div>
-                <p-calendar  name="date" [(ngModel)]="date" view="date" dateFormat="dd"  [showIcon]="true"  > </p-calendar>
+                <p-calendar  name="date" [(ngModel)]="date" view="date" dateFormat="dd"  [showIcon]="true"  [required]="true"> </p-calendar>
             </div>
             <div>
                 <div><label>DepartmentId:</label></div>
@@ -48,11 +48,13 @@
             </div>
             <div>
                 <div><label>AttendanceCount:</label></div>
-                <input type="text" pInputText name="attendanceCount" [(ngModel)]="attendanceCount"/>
+                <input type="text" pInputText name="attendanceCount" [(ngModel)]="attendanceCount" #count="ngModel" required/>
+                <div class="errmessageEle" *ngIf="count.touched && count.invalid" > enter the valid name</div>
             </div>
             <div>
                 <div><label>Shift:</label></div>
-                <input type="text" pInputText name="shift" [(ngModel)]="shift"/>
+                <input type="text" pInputText name="shift" [(ngModel)]="shift" required #shift1="ngModel"/>
+                <div class="errmessageEle" *ngIf="shift1.touched && shift1.invalid" > enter the valid name</div>
             </div>
             <div>
                 <div><label>CreatedSource:</label></div>

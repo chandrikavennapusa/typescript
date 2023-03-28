@@ -44,8 +44,8 @@
           
            <div>
              <div><label>  createdDttm:</label></div>
-             <p-calendar  [(ngModel)]="createdDttm1" name="createdDttm"  dateFormat="dd.mm.yy" [disabled]="!editmode" [required]="true"> </p-calendar>
-        
+           
+             <input type="text" pInputText   [(ngModel)]="createdDttm" name="createdDttm"  [disabled]="!editmode"/>
            </div>
   
            <div>

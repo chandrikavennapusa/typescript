@@ -6,9 +6,14 @@
 
   <div class="attendencetablecontainerEle">
     <div class="attendenceaddbtnContainer">
-        <button pButton type="button" label="ADD" class="attendenceAddbtnEle" (click)="addAttendece()"> 
+        <button pButton type="button" label="ADD" class="attendenceAddbtnEle" (click)="addAttendece()" *ngIf="addbtndisable"> 
             <span><i class="pi pi-plus"></i></span> 
         </button>
+        <span class="p-input-icon-left serachEle">
+            <i class="pi pi-search"></i>
+            <input type="text" pInputText [(ngModel)]="serchempidvalue"  (click)="searching()"/>
+        </span>
+        <!-- <button pButton type="submit" label="click" (click)="searching()" class="serachEle"></button> -->
     </div>
     
     <hr>
@@ -52,7 +57,7 @@
                     <td>{{rowData.modifiedSourceType}}</td>
                     <td>{{rowData.modifiedDttm}}</td>
                     <td><p-button  icon="pi pi-times" label="Delete" class="p-button-danger"
-                         (click)="deletebasedonempiddeptid(rowData.employeeId ,rowData.departmentId)"></p-button>
+                         (click)="deletebasedonempiddeptid(rowData.employeeId ,rowData.departmentId)" *ngIf="deleteviewmode"></p-button>
                     </td>
                 </tr>
             </ng-template>
@@ -81,4 +86,4 @@
  </div>
 
 
-<!-- <app-footer></app-footer> -->
+<app-footer></app-footer>

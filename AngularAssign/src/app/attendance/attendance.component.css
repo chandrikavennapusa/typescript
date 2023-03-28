@@ -17,6 +17,11 @@
     position: relative;
     height: 70px;
 }
+.serachEle{
+    position: relative;
+    left:780px;
+    top:23px;
+}
 .attendencetablecontainerEle{
     position: relative;
     top:-70px;

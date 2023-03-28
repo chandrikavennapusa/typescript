@@ -104,16 +104,20 @@
              </div>
                
                  <div class="buttonEle" >
-                  <button pButton type="submit" label="save" [disabled]="!editmode"></button>
-                  <button pButton type="button" label="EDIT" (click)="editbtnviewmode()" class="savebtnEle"></button>
-                  <button pButton type="button" label="BACK"  class="p-button-secondary " (click)="backtoemplistbtn()"></button>                    
+                 <div *ngIf="disabledsubmitcancelbtn">
+                  <button pButton type="submit" label="save"></button>
+                  <button pButton type="button" label="cancel"  class="savebtnEle" (click)="cancelbtn()"></button>
+                 </div>
+                  <div *ngIf="disablededitbackbtn">
+                    <button pButton type="button" label="EDIT"  class="savebtnEle" (click)="editbtnviewmode()" *ngIf="editbtndisable"></button>
+                  <button pButton type="button" label="BACK"  class="p-button-secondary "  (click)="backtoemplistbtn()"  ></button>
+                  </div>                    
                </div>
-        
-       </div> 
+         </div> 
       </form>
   
  
 
 
 
-<!-- <app-footer></app-footer> -->
+<app-footer></app-footer>

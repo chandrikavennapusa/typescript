@@ -14,7 +14,7 @@ export class DeptdetaillistComponent {
   managerId='';
   createdSource='';
   createdSourceType='';
-  createdDttm1='';
+  createdDttm='';
   modifiedSource='';
   modifiedSourceType='';
   modifiedDttm='';
@@ -29,7 +29,7 @@ constructor(private service:ServicesService, private router:Router){}
     this.managerId=deptdata.managerId;
     this.createdSource=deptdata.createdSource;
     this.createdSourceType=deptdata.createdSourceType
-    this.createdDttm1=deptdata.createdDttm
+    this.createdDttm= deptdata.createdDttm;
    this.modifiedSource=deptdata.modifiedSource
     this.modifiedSourceType=deptdata.modifiedSourceType;
     this.modifiedDttm=deptdata.modifiedDttm;

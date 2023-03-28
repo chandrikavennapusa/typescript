@@ -12,6 +12,7 @@ import { EmployeeComponent } from './employee/employee.component';
 import { HeaderComponent } from './header/header.component';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
+import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
 
 const routes: Routes = [
   {path:'',component:LoginComponent},
@@ -25,7 +26,7 @@ const routes: Routes = [
   {path:'ATDE',component:AttendanceComponent},
   {path:'ATDELIST',component:AttendecelistComponent},
   {path:'ATTDEFORM',component:AttendenceformComponent},
- 
+  {path:'**', component:PagenotfoundComponent}
 ];
 
 @NgModule({

@@ -7,7 +7,6 @@ import { Message } from 'primeng/api';
 import { Observable } from 'rxjs';
 import { throwError } from 'rxjs/internal/observable/throwError';
 import { catchError, tap } from 'rxjs/operators';
-import { AuthserviceService } from '../authservice.service';
 import { ServicesService } from '../services.service';
 
 
@@ -20,32 +19,33 @@ export class LoginComponent {
   UserName:string;
   password:string;
 
+  succmessage: Message[];
   errormessage:Message[];
   passwordmessage:Message[];
 
   ishidden=false;
   @ViewChild('mylogin') form :NgForm;
 
-  succmessage: Message[];
+  
 
-  constructor(private router:Router,private services:ServicesService,private authgurdservice:AuthserviceService){}
+  constructor(private router:Router,private services:ServicesService){}
 
 
 
 
   login(mylogin){
-    this.services.createdSource=this.form.value.UserName;
- 
-    this.services.createdSourceType=this.form.value.password;
-   
-   console.log(this.form.value.UserName)
+//     this.services.username=this.form.value.UserName;
+//  console.log(this.form.value.UserName)
+//     this.services.password=this.form.value.password;
+//     console.log(this.form.value.password)
+  //  console.log(this.form.value.UserName)
+
                  this.services.usercheck(mylogin)
                  .subscribe(
-                  response=>{
+                  response =>{
                     if(response == true){
+                      localStorage.setItem('username',mylogin.value.UserName);
                       this.router.navigate(['/HOME']);
-                      this.authgurdservice.IsAutheticated();
-                     
                     }
                     else{
                         this.passwordmessage=[

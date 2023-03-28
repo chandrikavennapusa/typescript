@@ -1,3 +1,4 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { ConfirmationService } from 'primeng/api';
@@ -14,16 +15,21 @@ export class AttendanceComponent {
   
   employeeId='';
   departmentid='';
+  serchempidvalue='';
   attendenceempidhidden=false;
-
-  gettingattendencedata;
+  addbtndisable=true;
+  deleteviewmode=true;
+  gettingattendencedata:any=[];
   constructor(private service:ServicesService,private router:Router,private confirmationService: ConfirmationService){}
   
     ngOnInit(){
       
-      this.service.gettingAttendencedetails().subscribe(
-        data => this.gettingattendencedata =data
-      )
+      this.gettingData();
+      let username =localStorage.getItem("username");
+      if(username == "employee" ){
+        this.addbtndisable=false;
+       this.deleteviewmode=false;
+   }
       
     }
     
@@ -41,9 +47,8 @@ export class AttendanceComponent {
      })
      if(this.isboolean == true){
       this.attendenceempidhidden=false;
-    
-        
-
+      this.employeeId='';
+      this.departmentid='';
      }
      else{
 
@@ -68,17 +73,58 @@ export class AttendanceComponent {
       this.confirmationService.confirm({
         message: 'Row Delete Congormation Box.',
         header: 'Employee Row',
-        accept: () => this.service.deletebasedonempiddeptid(empid,deptid).subscribe(),
+        accept: () =>{this.deleteempiddepid(empid,deptid)}
     });
-    this.fetchData();
+    this.gettingData();
     }
+
+
+    deleteempiddepid(empid,deptid){
+      this.service.deletebasedonempiddeptid(empid,deptid).subscribe(
+        response=>{ console.log(response);
+          console.log("response block");
+          } ,
+
+          (err:HttpErrorResponse) =>{
+            console.log(err.error)
+            console.log("error block");
+            this.gettingData();
+          },
+          ()=>{
+            console.log("complete");
+            console.log("sucess block");
+          }
+
+      )
+    }
+
   
-    fetchData(){
-      this.service.gettingempdetails().subscribe();
+    gettingData(){
+      this.service.gettingAttendencedetails().subscribe(
+        data => this.gettingattendencedata =data
+      )
     }
    
     doubleClick(rowData){
       this.router.navigate(['/ATTDEFORM']);
       this.service.setAttendencedata(rowData);
+      }
+      searching(){
+        console.log(this.serchempidvalue);
+      this.service.gettingattendedatabasedonempid(this.serchempidvalue).subscribe(
+        response =>{
+          this.gettingattendencedata= response;
+          console.log(this.gettingattendencedata)
+          console.log(response);
+          console.log("data is cominf")
+        },
+        (err:HttpErrorResponse)=>{
+         console.log(err.error)
+        },
+        () => {
+       console.log("completed");
+        });
+
+      
       }
   }

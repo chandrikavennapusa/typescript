@@ -29,7 +29,7 @@ export class EmpformComponent {
   shift='';
   createdSource='';
   createdSourceType='';
-  createdDttm:Date;
+  createdDttm='';
   modifiedSource='';
   modifiedSourceType='';
   modifiedDttm;
@@ -70,7 +70,7 @@ export class EmpformComponent {
     this.shift='';
     this.createdSource='';
     this.createdSourceType='';
-    this.createdDttm.setDate(null);
+    this.createdDttm='';
     this.modifiedSource='';
     this.modifiedSourceType='';
     this.modifiedDttm='';

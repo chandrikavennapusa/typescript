@@ -3,8 +3,8 @@
    
     <a  routerLink="/HOME"  class="anchorEle">HOME</a>
      <div class="homepagecontent"> <a routerLink="/EMP"     class="anchorEle"  >EMPLOYEE</a></div>
-      <div class="homepagecontent"> <a routerLink="/DEPT"     class="anchorEle"  >DEPARTMENT</a></div>
+      <div class="homepagecontent" *ngIf="employeeuserhide"> <a routerLink="/DEPT"     class="anchorEle"  >DEPARTMENT</a></div>
       <div class="homepagecontent"> <a routerLink="/ATDE"     class="anchorEle"  >ATTENDENCE</a></div>
-     <div class="homepagecontent"> <a href="" class="logoutEle" > LOGOUT</a></div>
+     <div class="homepagecontent"> <a routerLink= "/" class="logoutEle" > LOGOUT</a></div>
 </div>
 

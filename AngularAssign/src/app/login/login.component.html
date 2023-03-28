@@ -1,12 +1,12 @@
 
-<p-messages [(value)]="passwordmessage"  ></p-messages>
-<p-messages [(value)]="errormessage"  ></p-messages>
+<div class="backgroundcolor">
+    <p-messages [(value)]="passwordmessage"  ></p-messages>
+    <p-messages [(value)]="errormessage"  ></p-messages>
 
- 
    <div class="logincontainer">
     <form #mylogin="ngForm" (ngSubmit)="login(mylogin)" >
     <div class="image">
-        <p-image src="./assets/itorizonlogo.png" alt="Image" width="250"></p-image>
+         <img src="./assets/itorizonlogo.png" alt="Image" class="itorizonimg">  <!-- width=250px-->
         <h3>Welcome</h3>
     </div>
     
@@ -20,9 +20,6 @@
    <div>
     <input type="text"  class="inputEle inputlength"  pInputText   name="UserName" ngModel />
    </div>
-
-   
-
     <div>
         <label >Password*</label>
     </div>
@@ -58,3 +55,4 @@
 </div>
    </div>
    
+</div>

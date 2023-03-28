@@ -1,3 +1,4 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component, ElementRef, EventEmitter, HostListener, Input, Output, ViewChild} from '@angular/core';
 import {  NgForm } from '@angular/forms';
 import { ActivatedRouteSnapshot, Router, RouterStateSnapshot } from '@angular/router';
@@ -25,34 +26,68 @@ export class EmployeeComponent {
   dialogFormHidden=false;
   successmessagedataEle=false;
   errormessagedataEle=false;
+
+  addbtndisable=true;
+  deleteviewmode=true;
   errormessagedata: Message[];
   sucessmessagedata: Message[];
+  first = 0;
+
+  rows = 10;
   constructor(private service:ServicesService,private router:Router ,private confirmationService: ConfirmationService){}
-  ngOnInit(){
-    this.service.gettingempdetails().subscribe(
-       data=> this.gettingempdata=data,
-       error => this.errorMessage = error
-     );
-   }
+
    doubleClick(rowdata){
     this.service.setData(rowdata);
     this.router.navigate(['/EMPLIST']);
   }
 
-  deletebasedonempid(id){
+  ngOnInit(){
+    this.gettingData();
+    let username =localStorage.getItem("username");
+    if(username == "employee" ){
+      this.addbtndisable=false;
+     this.deleteviewmode=false;
+ }
+  
+   }
 
+
+  deletebasedonempid(id){
     this.confirmationService.confirm({
       message: 'Row Delete Congormation Box.',
       header: 'Employee Row',
-      accept: () => this.service.deleteempid(id).subscribe((data)=>{
-      }),
+      accept: () =>{this.delete(id)} 
   });
-  this.fetchData();
+   
   }
 
-  fetchData(){
-    this.service.gettingempdetails().subscribe();
+
+  delete(id){
+        this.service.deleteempid(id).subscribe( 
+          response=>{ console.log(response);
+          console.log("response block");
+          } ,
+
+          (err:HttpErrorResponse) =>{
+            console.log(err.error)
+            console.log("error block");
+            this.gettingData();
+          },
+          ()=>{
+            console.log("complete");
+            console.log("sucess block");
+          }
+        );
   }
+
+  gettingData(){
+    this.service.gettingempdetails().subscribe(
+    data=> this.gettingempdata=data,
+    error => this.errorMessage = error
+  );
+   }
+
+
   cancelempidbtn(){
     this.empId='';
     this.dialogFormHidden=false;
@@ -109,6 +144,26 @@ export class EmployeeComponent {
       empiddialogbox(){
         this.dialogFormHidden=true;
       }
+
+      next() {
+        this.first = this.first + this.rows;
+    }
+
+    prev() {
+        this.first = this.first - this.rows;
+    }
+
+    reset() {
+        this.first = 0;
+    }
+
+    isLastPage(): boolean {
+        return this.gettingempdata ? this.first === this.gettingempdata.length - this.rows : true;
+    }
+
+    isFirstPage(): boolean {
+        return this.gettingempdata ? this.first === 0 : true;
+    }
 
 }
 
