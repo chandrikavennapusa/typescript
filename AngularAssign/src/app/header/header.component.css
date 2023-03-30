@@ -1,4 +1,4 @@
-.homecontainer{
+/* .homecontainer{
     display: flex;
     margin: 10px;
     background-color:  #15a9e1;
@@ -8,15 +8,15 @@
     left:20px;
     position: relative;
     margin-right: 20px;
-}
+} */
 .anchorEle{
     text-decoration: none;
     position: relative;
     color: white;
 }
-.logoutEle{
+/* .logoutEle{
     position: relative;
     right:-900px;
     text-decoration: none;
     color: white;
-}
+} */

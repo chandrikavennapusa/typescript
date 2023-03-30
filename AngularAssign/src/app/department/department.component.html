@@ -5,7 +5,16 @@
   </div>
 
 <div class="depttablecontainer" >
-    <p-table [value]="getDeptDetails">
+    <p-table [value]="getDeptDetails"   
+    styleClass="p-datatable-striped"
+    [paginator]="true"
+    [rows]="5"
+    [showCurrentPageReport]="true"
+    [tableStyle]="{ 'min-width': '50rem' }"
+    currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+    [rowsPerPageOptions]="[10, 25, 50]"
+    
+    >
         <ng-template pTemplate="header">
             <tr>
                 <th pSortableColumn="departmentId" >DepartmentId<p-sortIcon field="departmentId"></p-sortIcon></th>

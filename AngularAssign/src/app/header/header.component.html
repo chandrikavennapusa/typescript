@@ -1,10 +1,33 @@
-
+<!-- 
 <div class="homecontainer">
-   
     <a  routerLink="/HOME"  class="anchorEle">HOME</a>
      <div class="homepagecontent"> <a routerLink="/EMP"     class="anchorEle"  >EMPLOYEE</a></div>
       <div class="homepagecontent" *ngIf="employeeuserhide"> <a routerLink="/DEPT"     class="anchorEle"  >DEPARTMENT</a></div>
       <div class="homepagecontent"> <a routerLink="/ATDE"     class="anchorEle"  >ATTENDENCE</a></div>
      <div class="homepagecontent"> <a routerLink= "/" class="logoutEle" > LOGOUT</a></div>
-</div>
+</div> -->
 
+
+
+<div class="card">
+    <div class="flex flex-column md:flex-row card-container  bg-blue-300">
+    
+        <div class="flex align-items-center justify-content-center   text-white m-4">
+            <a  routerLink="/HOME"  class="anchorEle">HOME</a>
+        </div>
+        <div class="flex align-items-center justify-content-center   text-white m-4">
+            <a routerLink="/EMP"class="anchorEle"  >EMPLOYEE</a>
+            </div>
+            <div class="flex align-items-center justify-content-center   text-white m-4" *ngIf="employeeuserhide">
+                <a routerLink="/DEPT" class="anchorEle"  >DEPARTMENT</a>
+            </div>
+
+            <div class="flex align-items-center justify-content-center   text-white m-4">
+                <a routerLink="/ATDE"     class="anchorEle"  >ATTENDENCE</a>
+            </div>
+
+            <div class="flex align-items-center justify-content-center relative right-10  text-white m-4">
+                <a routerLink= "/" class="anchorEle"  > LOGOUT</a>
+                </div>
+    </div>
+</div>

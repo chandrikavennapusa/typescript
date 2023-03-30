@@ -2,6 +2,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { ConfirmationService } from 'primeng/api';
+import { map } from 'rxjs';
 
 
 import { ServicesService } from '../services.service';
@@ -12,23 +13,27 @@ import { ServicesService } from '../services.service';
   styleUrls: ['./attendance.component.css']
 })
 export class AttendanceComponent {
-  
+  error:any;
   employeeId='';
   departmentid='';
   serchempidvalue='';
   attendenceempidhidden=false;
   addbtndisable=true;
   deleteviewmode=true;
+  serachempview=false;
   gettingattendencedata:any=[];
   constructor(private service:ServicesService,private router:Router,private confirmationService: ConfirmationService){}
+
   
     ngOnInit(){
-      
+     
+     
       this.gettingData();
       let username =localStorage.getItem("username");
       if(username == "employee" ){
         this.addbtndisable=false;
        this.deleteviewmode=false;
+       this.serachempview=true;
    }
       
     }
@@ -104,27 +109,40 @@ export class AttendanceComponent {
         data => this.gettingattendencedata =data
       )
     }
+
+
    
     doubleClick(rowData){
       this.router.navigate(['/ATTDEFORM']);
       this.service.setAttendencedata(rowData);
       }
+
+
       searching(){
         console.log(this.serchempidvalue);
+        if(this.serchempidvalue==''){
+          this.service.gettingAttendencedetails().subscribe(
+       data => this.gettingattendencedata =data
+     )
+         }else{
       this.service.gettingattendedatabasedonempid(this.serchempidvalue).subscribe(
         response =>{
-          this.gettingattendencedata= response;
+          this.gettingattendencedata=[];
+         this.gettingattendencedata.push(response);
           console.log(this.gettingattendencedata)
-          console.log(response);
-          console.log("data is cominf")
+          
         },
         (err:HttpErrorResponse)=>{
-         console.log(err.error)
+          this.gettingattendencedata=[];
+          // this.gettingattendencedata.push(err.error);
+           this.error=err.error;
+         console.log(err.error);
+         console.log(this.gettingattendencedata)
         },
         () => {
        console.log("completed");
         });
 
-      
+         }
       }
   }

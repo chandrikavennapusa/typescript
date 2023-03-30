@@ -41,11 +41,13 @@ export class EmplistComponent {
 constructor(private service:ServicesService , private router:Router){}
 
   onSubmit(EmployeeForm:NgForm){
-    console.log(EmployeeForm)
+    console.log(EmployeeForm.value)
     this.service.updateempid(EmployeeForm).subscribe();
+    console.log()
     this.editmode=false;
     this.disabledsubmitcancelbtn=false;
     this.disablededitbackbtn=true;
+    this.router.navigate(['/EMP']);
     
   }
 

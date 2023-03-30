@@ -18,7 +18,7 @@ import { ServicesService } from '../services.service';
   styleUrls: ['./employee.component.css']
 })
 export class EmployeeComponent {
-  gettingempdata: any;
+  gettingempdata;
   errorMessage: any;
   empId: string;
 
@@ -145,25 +145,7 @@ export class EmployeeComponent {
         this.dialogFormHidden=true;
       }
 
-      next() {
-        this.first = this.first + this.rows;
-    }
-
-    prev() {
-        this.first = this.first - this.rows;
-    }
-
-    reset() {
-        this.first = 0;
-    }
-
-    isLastPage(): boolean {
-        return this.gettingempdata ? this.first === this.gettingempdata.length - this.rows : true;
-    }
-
-    isFirstPage(): boolean {
-        return this.gettingempdata ? this.first === 0 : true;
-    }
+     
 
 }
 

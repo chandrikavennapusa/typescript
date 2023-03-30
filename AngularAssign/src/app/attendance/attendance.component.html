@@ -9,16 +9,25 @@
         <button pButton type="button" label="ADD" class="attendenceAddbtnEle" (click)="addAttendece()" *ngIf="addbtndisable"> 
             <span><i class="pi pi-plus"></i></span> 
         </button>
-        <span class="p-input-icon-left serachEle">
-            <i class="pi pi-search"></i>
-            <input type="text" pInputText [(ngModel)]="serchempidvalue"  (click)="searching()"/>
-        </span>
-        <!-- <button pButton type="submit" label="click" (click)="searching()" class="serachEle"></button> -->
+       
+        <span class="p-input-icon-right serachEle" *ngIf="serachempview">
+            
+            <input type="text" pInputText [(ngModel)]="serchempidvalue"  (keyup)="searching()" />
+            <i class="pi pi-search" ></i>
+        </span>   
     </div>
     
     <hr>
     <div >
-    <p-table [value]="gettingattendencedata">
+    <p-table [value]="gettingattendencedata" 
+    styleClass="p-datatable-striped"
+    [paginator]="true"
+    [rows]="5"
+    [showCurrentPageReport]="true"
+    [tableStyle]="{ 'min-width': '50rem' }"
+    currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+    [rowsPerPageOptions]="[10, 25, 50]"
+    >
             <ng-template pTemplate="header">
                 <tr>
                     <th pSortableColumn="employeeId" >EmployeeId<p-sortIcon field="employeeId"></p-sortIcon></th>
@@ -40,7 +49,9 @@
                     </tr>
             </ng-template>
             <ng-template pTemplate="body" let-rowData  >
+                
                 <tr (dblclick)="doubleClick(rowData)" >
+                
                     <td>{{rowData.employeeId}}</td>
                     <td>{{rowData.month}}</td>
                     <td>{{rowData.date}}</td>
@@ -61,6 +72,7 @@
                     </td>
                 </tr>
             </ng-template>
+            <!-- <tr> <td>   {{error}}</td></tr> -->
         </p-table>
     </div>
     <p-confirmDialog [style]="{width: '50vw'}"></p-confirmDialog>

@@ -34,12 +34,16 @@ export class EmpformComponent {
   modifiedSourceType='';
   modifiedDttm;
   sucessmessagedata: Message[];
+ 
+
 
   constructor(private service:ServicesService,private router:Router ){}
   @ViewChild('EmployeeForm')myform:NgForm;
 
   ngOnInit(){
     this.employeeId=this.service.emplyeeid;
+
+  
   }
   onSubmit(EmployeeForm:NgForm){
     this.service.addempdetails(EmployeeForm).subscribe();

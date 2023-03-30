@@ -36,7 +36,7 @@ export class AttendenceformComponent {
       this.editmode=true;
     this. disablesavecancelbtn=false;
     this.disableeditbackbtn=true;
-      
+    this.router.navigate(['/ATDE']);
   }
 
   backtoatend(){

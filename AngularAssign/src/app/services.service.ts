@@ -1,6 +1,7 @@
 import { HttpClient, HttpErrorResponse, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { Message } from 'primeng/api/message';
 
 
 
@@ -17,6 +18,7 @@ export class ServicesService {
   emplyeeid='';
   EmployeeId='';
   DepartmentId='';
+  userloginsucessmessage: Message[];
  usercheck(mylogin){
   const params = new HttpParams().set('Username',mylogin.value.UserName).set('password',mylogin.value.password)
 

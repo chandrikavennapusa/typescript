@@ -36,6 +36,8 @@ import { ConfirmationService } from 'primeng/api';
 import { AttendenceformComponent } from './attendenceform/attendenceform.component';
 import { EmpformComponent } from './empform/empform.component';
 import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
+import { CanactivateService } from './canactivate.service';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -75,7 +77,7 @@ import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
    MessagesModule ,
    ConfirmDialogModule
   ],
-  providers: [ServicesService,ConfirmationService ],
+  providers: [ServicesService,ConfirmationService , CanactivateService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

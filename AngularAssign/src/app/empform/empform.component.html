@@ -11,8 +11,8 @@
     </div>
     <hr>
     <h4 >Basic Details:</h4>
-    <form  #EmployeeForm="ngForm" (ngSubmit)="onSubmit(EmployeeForm) && EmployeeForm.form.invalid" ngNativeValidate>
-  
+    <form  #EmployeeForm="ngForm" (ngSubmit)=" EmployeeForm.form.valid && onSubmit(EmployeeForm) " ngNativeValidate>
+  {{EmployeeForm.form.valid}}
     <div class="formContainer">
        <div class="employeeidEle " >
         <div><label> employeeId </label></div>
@@ -35,13 +35,18 @@
            <div class="genderEle" >
   
             <div><label> Gender:</label></div>
-              <p-radioButton name="gender" value="male"  [(ngModel)]="Gender" [required]="true" #g="ngModel" ></p-radioButton>
+
+                <p-radioButton type="radio"  name="gender" value="male"  [(ngModel)]="Gender" #g="ngModel" required></p-radioButton>
+            
               <label>male</label>
-              <p-radioButton name="gender" value="Female" [(ngModel)]="Gender1" [required]="true" #g="ngModel" ></p-radioButton>
+              <p-radioButton  type="radio"   name="gender" value="Female" [(ngModel)]="Gender1" required></p-radioButton>
               <label>female</label>
-              <p-radioButton name="gender" value="customgender" [(ngModel)]="Gender2" [required]="true" #g="ngModel" ></p-radioButton>
+              <p-radioButton  type="radio"   name="gender" value="customgender" [(ngModel)]="Gender2" required></p-radioButton>
               <label>custmgender</label>
-              <div class="errmessageEle" *ngIf="g.touched && g.invalid" > enter the valid name</div>
+              <div *ngIf="EmployeeForm.form.invalid && EmployeeForm.form.touched && g.invalid" class="errmessageEle">
+                select required filed
+              </div>
+          
            </div>
      
            <div class="dobEle">
@@ -49,7 +54,7 @@
              <p-calendar [(ngModel)]="dob" name="dob" dateFormat="dd.mm.yy"  [showIcon]="true" #dateob="ngModel" [required]="true"> </p-calendar>
              <div class="errmessageEle" *ngIf="dateob.touched && dateob.invalid" > enter the valid date</div>
            </div>
-  
+           
            <div class="emailEle">
              <div><label> Email Id:</label></div>
               <input type="text" [(ngModel)]="emailId"  name="mailId" pInputText  #email1="ngModel" required pattern="^[a-zA-Z0-9]+(?:\.[a-zA-Z0-9]+)*@[a-zA-Z0-9]+(?:\.[a-zA-Z0-9]+)*$"/>

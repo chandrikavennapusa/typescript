@@ -23,22 +23,25 @@ export class LoginComponent {
   errormessage:Message[];
   passwordmessage:Message[];
 
+  visable:boolean=true;
+  changetype:boolean=true;
+
+  viewpress(){
+    this.visable = ! this.visable;
+    this.changetype=! this.changetype;
+  }
   ishidden=false;
   @ViewChild('mylogin') form :NgForm;
 
-  
+ 
 
   constructor(private router:Router,private services:ServicesService){}
 
 
 
 
-  login(mylogin){
-//     this.services.username=this.form.value.UserName;
-//  console.log(this.form.value.UserName)
-//     this.services.password=this.form.value.password;
-//     console.log(this.form.value.password)
-  //  console.log(this.form.value.UserName)
+  loginUserAccount(mylogin){
+
 
                  this.services.usercheck(mylogin)
                  .subscribe(
@@ -68,11 +71,11 @@ export class LoginComponent {
                     ]
                   },
                   () => {
-                  this.succmessage=  [
+                  this.services.userloginsucessmessage=  [
                       {
-                        severity: 'Sucees', 
-                        summary: ' user account', 
-                        detail:"completed sucess"
+                        severity: 'success', 
+                        summary: 'user login completelly successfull', 
+                        detail:""
                       }
                     ]
                   });
