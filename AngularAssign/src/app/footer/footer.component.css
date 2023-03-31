@@ -1,8 +1,5 @@
 .footercontainer{
-    background-color:#15a9e1;
-    position:fixed;
-    height: 40px;
-    bottom: 0px;
     width: 100%;
-    text-align: center;
+   margin-left: 0px;
+   margin-bottom: 0px;
 }

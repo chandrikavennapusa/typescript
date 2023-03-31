@@ -122,7 +122,7 @@ export class AttendanceComponent {
         console.log(this.serchempidvalue);
         if(this.serchempidvalue==''){
           this.service.gettingAttendencedetails().subscribe(
-       data => this.gettingattendencedata =data
+        data => this.gettingattendencedata =data
      )
          }else{
       this.service.gettingattendedatabasedonempid(this.serchempidvalue).subscribe(

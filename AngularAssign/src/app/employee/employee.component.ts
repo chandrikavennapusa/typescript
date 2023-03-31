@@ -31,9 +31,7 @@ export class EmployeeComponent {
   deleteviewmode=true;
   errormessagedata: Message[];
   sucessmessagedata: Message[];
-  first = 0;
 
-  rows = 10;
   constructor(private service:ServicesService,private router:Router ,private confirmationService: ConfirmationService){}
 
    doubleClick(rowdata){
@@ -95,7 +93,8 @@ export class EmployeeComponent {
   gettingData(){
     this.service.gettingempdetails().subscribe(
     data=> this.gettingempdata=data,
-    error => this.errorMessage = error
+    error => this.errorMessage = error,
+    
   );
    }
 
@@ -109,15 +108,12 @@ export class EmployeeComponent {
   isboolean;
       empidcheck(){
         this.isboolean=false;
-        console.log(this.gettingempdata);
+      
 
        this.gettingempdata.find((empdata)=> { 
           if(empdata.employeeId == this.empId){
-            console.log("alredy exit that number");
             this.isboolean=true;
-          } else{
-            console.log("id is not their");
-             }
+          } 
         })
 
         if(this.isboolean == true){
@@ -153,6 +149,8 @@ export class EmployeeComponent {
         }
         this.empId='';
       }
+
+      
       empiddialogbox(){
         this.dialogFormHidden=true;
       }

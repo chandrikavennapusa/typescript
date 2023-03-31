@@ -54,7 +54,11 @@
     .cancelEle{
         margin-left: 50px;
     } */
-
+.emptablecontainer{
+    width: 100%;
+    margin-right: 0px;
+    margin-left: 0px;
+}
     .addbtnEle{
         top:15px;
         left:20px;

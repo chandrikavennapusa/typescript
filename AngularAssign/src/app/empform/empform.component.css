@@ -1,4 +1,4 @@
-.navEle{
+/* .navEle{
     position: relative;
     top:-20px;
     background-color:#89cfe8;
@@ -131,4 +131,97 @@ input.ng-touched.ng-invalid{
 .buttonEle{
     grid-column:2/3;
     grid-row: 11/12;   
+} 
+/* .emplistheader{
+    width: 100%;
+    margin-right: 0px;
+    margin-left: 0px;
+} */
+
+.saveEle{
+    margin-left: 40px;
+    margin-right: 40px;
+}
+.emplistcontainer{
+ height: 100%;
+position:relative;
+left: 70px;
+}
+.headerEle{
+    width:1650px
+}
+.emplistheader{
+    width: 1656px;
+}
+.errmessageEle{
+    color: red;
+}
+@media (max-width:666px) and (min-width:320px){
+
+  .headingEle{
+    font-size: 29px;
+  }  
+.formtablecontainer{
+    position: relative;
+    font-family: none;
+    width: 750px;
+    font-size:40px;
+    top: -74px;
+    left: 261px;
+}
+.canecelEle{
+position: relative;
+left: 218px;
+top: -37px;
+}
+
+.inputlenEle{
+    height: 85px;
+    width: 534px;
+}
+ ::ng-deep .p-calendar input{
+    height: 65px !important;
+    width: 900px !important;
+}
+.backEle{
+width: 154px;
+    font-size: 44px;
+}
+.saveEle{
+font-size: 48px;
+    width: 172px;
+}
+.canecelEle{
+font-size: 44px;
+    width: 188px;
+    top: -71px;
+    left: 446px;
+}
+
+.p-radiobutton .p-radiobutton-box {
+    width:100px;
+}
+
+:host ::ng-deep .radio-style.p-radiobutton {
+    border: 3px solid black;
+    border-radius: 50px;
+    /* padding: 19px; */
+    margin: 10px;
+    
+  }
+  :host ::ng-deep .radio-style.p-radiobutton.p-highlight:hover {
+    border-color: #005b9f;
+    background: #005b9f;
+    color: #ffffff;
+  }
+}
+@media (max-width:768px) and (min-width:666px){
+
+.formtablecontainer{
+    position: relative;
+    left:200px;
+    font-size: 26px;
+    margin-right: -493px;
+    margin-left: -96px;
+}
 }

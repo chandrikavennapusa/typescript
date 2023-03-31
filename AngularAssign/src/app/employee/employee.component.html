@@ -1,13 +1,9 @@
 <div  [ngClass]="{backgroundcolor:dialogFormHidden}">
-<div class="grid">
-<div class="col "><app-header></app-header></div>
-</div>
+  <app-header></app-header>
 
-<div class="grid bg-cyan-100 ">
+
+<div class="grid bg-cyan-100 emptablecontainer ">
   <div  class="col  text-left text-1xl"> <h2> <span> <i class="material-icons">people</i> </span> Employee List</h2> </div> </div>
-  
- 
-  
   <div>
                      <div class="grid">
                                            <div class="flex h-3rem">
@@ -30,7 +26,6 @@
   <p-table  [value]="gettingempdata" 
 
   [scrollable]="true"
-
   [resizableColumns]="true" columnResizeMode="expand" [tableStyle]="{'min-width': '50rem'}"
   [paginator]="true"
   [rows]="10"
@@ -90,10 +85,7 @@
 </div>
   <p-confirmDialog [style]="{width: '279px'}"></p-confirmDialog>
   </div>
-
-  <div>
-    <app-footer></app-footer>
-  </div>
+  <app-footer></app-footer>
 </div>
   <div class="grid border-solid border-200 p-5 w-min absolute text-center   empidformcontainer" *ngIf="dialogFormHidden">
     <form  #EmpidForm="ngForm" (ngSubmit)="empidcheck()">

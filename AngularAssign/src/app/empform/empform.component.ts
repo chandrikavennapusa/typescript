@@ -19,7 +19,7 @@ export class EmpformComponent {
   Gender2='';
   dob:Date;
   emailId='';
-  phcode='91';
+  // phcode='91';
   PhoneNumber='';
   BloodGroup='';
   address='';
@@ -64,7 +64,7 @@ export class EmpformComponent {
     this.Gender2='';
     this.dob.setDate(null);
     this.emailId='';
-    this.phcode='';
+    // this.phcode='';
     this.PhoneNumber='';
     this.BloodGroup='';
     this.address='';
