@@ -1,107 +1,109 @@
-
-
-<div [ngClass]="{backgroundcolor:dialogFormHidden}" >
-<app-header></app-header>
-<div class="navEle">
-  <h2> <span> <i class="material-icons">people</i> </span> Employee List</h2>
+<div  [ngClass]="{backgroundcolor:dialogFormHidden}">
+<div class="grid">
+<div class="col "><app-header></app-header></div>
 </div>
 
-   <div class="EmpList">
-
-  <div class="EmpListAddContainer">
-    <p-messages [(value)]="sucessmessagedata" *ngIf="successmessagedataEle" ></p-messages>
-          <p-messages [(value)]="errormessagedata" *ngIf="errormessagedataEle" ></p-messages>
-          <button pButton type="button" label="ADD" class="EmpListAddEle" (click)="empiddialogbox()"  *ngIf="addbtndisable"> 
-                          <span><i class="pi pi-plus EmpListAddPlusEle"></i></span> 
-          </button>
-          
-   </div>
-   
-   <hr>
-
-
-  <div >
-    <p-table  [value]="gettingempdata" class="tableEle" 
-
-    styleClass="p-datatable-striped"
+<div class="grid bg-cyan-100 ">
+  <div  class="col  text-left text-1xl"> <h2> <span> <i class="material-icons">people</i> </span> Employee List</h2> </div> </div>
   
-    [paginator]="true"
-    [rows]="10"
-    [showCurrentPageReport]="true"
-    [tableStyle]="{ 'min-width': '50rem' }"
-    currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
-    [rowsPerPageOptions]="[5,10,15,20]"
-    
-    >
-
-      <ng-template pTemplate="header">
-      <tr>
-        <th pSortableColumn="employeeId" >EmployeeId<p-sortIcon field="employeeId"></p-sortIcon></th>
-        <th pSortableColumn="firstName" >Firstname<p-sortIcon field="firstName"></p-sortIcon></th>
-        <th pSortableColumn="lastName" >Lastname<p-sortIcon field="lastName"></p-sortIcon></th>
-        <th pSortableColumn="dob">Dateofbirth<p-sortIcon field="dob"></p-sortIcon></th>  
-        <th pSortableColumn="gender" >Gender<p-sortIcon field="gender"></p-sortIcon></th>
-        <th pSortableColumn="phoneNumber" >PhoneNumber<p-sortIcon field="phoneNumber"></p-sortIcon></th>
-        <th pSortableColumn="dateOfJoining" >DateOfJoining<p-sortIcon field="dateOfJoining"></p-sortIcon></th>
-        <th pSortableColumn="salary" >Salary<p-sortIcon field="salary"></p-sortIcon></th>              
-        <th pSortableColumn="shift" >Shift<p-sortIcon field="shift"></p-sortIcon></th>
-        <th pSortableColumn="createdSource" >createdSource<p-sortIcon field="createdSource"></p-sortIcon></th>
-        <th pSortableColumn="createdSourceType">createdSourceType<p-sortIcon field="createdSourceType"></p-sortIcon></th>
-        <th pSortableColumn="createdDttm" >createdDttm<p-sortIcon field="createdDttm"></p-sortIcon></th>  
-        <th pSortableColumn="modifiedSource" >modifiedSource<p-sortIcon field="modifiedSource"></p-sortIcon></th>
-        <th pSortableColumn="modifiedSourceType" >modifiedSourceType<p-sortIcon field="modifiedSourceType"></p-sortIcon></th>
-        <th pSortableColumn="modifiedDttm" >modifiedDttm<p-sortIcon field="modifiedDttm"></p-sortIcon></th>
-        <th pSortableColumn="Actions" >Actions<p-sortIcon field="Actions"></p-sortIcon></th>          
-          
-        </tr>
-      </ng-template>
-      <ng-template pTemplate="body" let-rowData>
-
-         <tr (dblclick)="doubleClick(rowData)">
-          <td>{{rowData.employeeId}}</td>
-          <td>{{rowData.firstName}}</td>
-          <td>{{rowData.lastName}}</td>
-          <td>{{rowData.dob}}</td>
-          <td>{{rowData.gender}}</td>
-          <td>{{rowData.phoneNumber}}</td>
-          <td>{{rowData.dateOfJoining}}</td>
-          <td>{{rowData.salary}}</td>
-          <td>{{rowData.shift}}</td>
-          <td>{{rowData.createdSource}}</td>
-          <td>{{rowData.createdSourceType}}</td>
-          <td>{{rowData.createdDttm}}</td>
-          <td>{{rowData.modifiedSource}}</td>
-          <td>{{rowData.modifiedSourceType}}</td>
-          <td>{{rowData.modifiedDttm}}</td>
-          
-        
-          <td><p-button (click)="deletebasedonempid(rowData.employeeId)" icon="pi pi-times" label="Delete" class="p-button-danger" *ngIf="deleteviewmode"></p-button>
-          </td>
-          
-         </tr>
-        </ng-template> 
-        </p-table>
-        
-        <p-confirmDialog [style]="{width: '50vw'}"></p-confirmDialog>
+ 
   
+  <div>
+                     <div class="grid">
+                                           <div class="flex h-3rem">
+                                                  <div class="relative addbtnEle ">
+                                                       <button pButton type="button" label="ADD" (click)="empiddialogbox()"  *ngIf="addbtndisable"> 
+                                                           <span><i class="pi pi-plus"></i></span>   </button>  
+                                                                                                     
+                                                   </div>
+                                                  
+                                                   <div class="absolute sucessmessageEle">
+                                                    <p-messages [(value)]="sucessmessagedata" *ngIf="successmessagedataEle" ></p-messages>
+                                                    <p-messages [(value)]="errormessagedata" *ngIf="errormessagedataEle"></p-messages>
+                                                   </div>
+                                              </div>
+                                              
+                     </div> 
+<hr>
+<div class=" card w-12 surface-section  ">
+  
+  <p-table  [value]="gettingempdata" 
+
+  [scrollable]="true"
+
+  [resizableColumns]="true" columnResizeMode="expand" [tableStyle]="{'min-width': '50rem'}"
+  [paginator]="true"
+  [rows]="10"
+  [showCurrentPageReport]="true"
+  currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+  [rowsPerPageOptions]="[5,10,15,20]"
+  >
+
+    <ng-template pTemplate="header">
+    <tr>
+      <th pSortableColumn="employeeId" >EmployeeId<p-sortIcon field="employeeId"></p-sortIcon></th>
+      <th pSortableColumn="firstName" >FirstName<p-sortIcon field="firstName"></p-sortIcon></th>
+      <th pSortableColumn="lastName" >LastName<p-sortIcon field="lastName"></p-sortIcon></th>
+      <th pSortableColumn="dob">DateOfBirth<p-sortIcon field="dob"></p-sortIcon></th>  
+      <th pSortableColumn="gender" >Gender<p-sortIcon field="gender"></p-sortIcon></th>
+      <th pSortableColumn="phoneNumber" >PhoneNumber<p-sortIcon field="phoneNumber"></p-sortIcon></th>
+      <th pSortableColumn="dateOfJoining" >DateOfJoining<p-sortIcon field="dateOfJoining"></p-sortIcon></th>
+      <th pSortableColumn="salary" >Salary<p-sortIcon field="salary"></p-sortIcon></th>              
+      <th pSortableColumn="shift" >Shift<p-sortIcon field="shift"></p-sortIcon></th>
+      <th pSortableColumn="createdSource" >CreatedSource<p-sortIcon field="createdSource"></p-sortIcon></th>
+      <th pSortableColumn="createdSourceType">CreatedSourceType<p-sortIcon field="createdSourceType"></p-sortIcon></th>
+      <th pSortableColumn="createdDttm" >CreatedDttm<p-sortIcon field="createdDttm"></p-sortIcon></th>  
+      <th pSortableColumn="modifiedSource" >ModifiedSource<p-sortIcon field="modifiedSource"></p-sortIcon></th>
+      <th pSortableColumn="modifiedSourceType" >ModifiedSourceType<p-sortIcon field="modifiedSourceType"></p-sortIcon></th>
+      <th pSortableColumn="modifiedDttm" >ModifiedDttm<p-sortIcon field="modifiedDttm"></p-sortIcon></th>
+      <th pSortableColumn="Actions" >Actions<p-sortIcon field="Actions"></p-sortIcon></th>          
+        
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-rowData>
+
+       <tr (dblclick)="doubleClick(rowData)">
+        <td>{{rowData.employeeId}}</td>
+        <td>{{rowData.firstName}}</td>
+        <td>{{rowData.lastName}}</td>
+        <td>{{rowData.dob}}</td>
+        <td>{{rowData.gender}}</td>
+        <td>{{rowData.phoneNumber}}</td>
+        <td>{{rowData.dateOfJoining}}</td>
+        <td>{{rowData.salary}}</td>
+        <td>{{rowData.shift}}</td>
+        <td>{{rowData.createdSource}}</td>
+        <td>{{rowData.createdSourceType}}</td>
+        <td>{{rowData.createdDttm}}</td>
+        <td>{{rowData.modifiedSource}}</td>
+        <td>{{rowData.modifiedSourceType}}</td>
+        <td>{{rowData.modifiedDttm}}</td>
+        
+      
+        <td><p-button (click)="deletebasedonempid(rowData.employeeId)" icon="pi pi-times" label="Delete" class="p-button-danger" *ngIf="deleteviewmode"></p-button>
+        </td>
+        
+       </tr>
+      </ng-template> 
+      </p-table>
+      
+</div>
+  <p-confirmDialog [style]="{width: '279px'}"></p-confirmDialog>
   </div>
-  
-</div>
-</div>
 
-<div class="dialogempidform" *ngIf="dialogFormHidden" >  
-  <form  #EmpidForm="ngForm" (ngSubmit)="empidcheck()">
-    <div>
-      <div><label> employeeId </label></div>
-      <input type="text" pInputText name="employeeId" [(ngModel)]="empId" pattern="^(0|[1-9][0-9]{0,100})$" required />
+  <div>
+    <app-footer></app-footer>
+  </div>
+</div>
+  <div class="grid border-solid border-200 p-5 w-min absolute text-center   empidformcontainer" *ngIf="dialogFormHidden">
+    <form  #EmpidForm="ngForm" (ngSubmit)="empidcheck()">
+    <div class="col">
+      <div><label> EmployeeId </label></div>
+      <input type="text" pInputText name="employee Id" [(ngModel)]="empId" pattern="^(0|[1-9][0-9]{0,100})$" required />
     </div>
-    <div class="btnformEle">
-           <button pButton type="submit" label="save"></button>
-            <button pButton type="button" label="cancel"  class="p-button-secondary cancelEle" (click)="cancelempidbtn()" ></button> 
+    <div class="col">
+      <button pButton type="submit" label="Save" class= "mr-4"></button>
+      <button pButton type="button" label="Cancel"  class="p-button-secondary ml-4" (click)="cancelempidbtn()" ></button> 
     </div>
   </form>
- </div>
-
-
-  <app-footer></app-footer>
-
+  </div>

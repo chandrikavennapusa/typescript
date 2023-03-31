@@ -1,4 +1,4 @@
-.navEle{
+/* .navEle{
     position: relative;
     top:-20px;
     background-color:#89cfe8;
@@ -14,8 +14,22 @@
    position: relative;
     left:100px;
 }
-.savebtnEle{
-   position: relative;
-   margin-left: 20px;
-   margin-right: 20px;
+/
+/* .empformEle{
+    position: relative;
+    left: 130px;
+    top: 32px;
+    
+} */
+.formcontainer{
+    left:30px;
+    margin-top: 30px;
+    margin-bottom: 45px;
+    
 }
+
+.savebtnEle{
+    position: relative;
+    margin-left: 20px;
+    margin-right: 20px;
+ } 

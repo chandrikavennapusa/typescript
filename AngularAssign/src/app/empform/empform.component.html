@@ -12,29 +12,29 @@
     <hr>
     <h4 >Basic Details:</h4>
     <form  #EmployeeForm="ngForm" (ngSubmit)=" EmployeeForm.form.valid && onSubmit(EmployeeForm) " ngNativeValidate>
-  {{EmployeeForm.form.valid}}
+ 
     <div class="formContainer">
        <div class="employeeidEle " >
-        <div><label> employeeId </label></div>
+        <div><label> EmployeeId </label></div>
          <input type="text" pInputText name="employeeId" [(ngModel)]="employeeId" class="empidinputlen"   readonly="readonly" />
       
         </div>
   
         <div class="fristnameEle">
-         <div><label> firstName</label></div>
+         <div><label> FirstName</label></div>
          <input type="text" pInputText name="firstName" [(ngModel)]="firstName" #fName="ngModel" required pattern="^[a-zA-Z]+$" />
          <div class="errmessageEle" *ngIf="fName.touched && fName.invalid" > enter the valid name</div>
         </div>
   
         <div class="lastnameEle">
-         <div><label> lastName</label></div>
+         <div><label> LastName</label></div>
          <input type="text" pInputText name="lastName" [(ngModel)]="lastName"  #lName="ngModel" required  pattern="^[a-zA-Z]+$"/>
          <div class="errmessageEle" *ngIf="lName.touched && lName.invalid" > enter the valid name</div>
         </div>
         
            <div class="genderEle" >
   
-            <div><label> Gender:</label></div>
+            <div><label> Gender</label></div>
 
                 <p-radioButton type="radio"  name="gender" value="male"  [(ngModel)]="Gender" #g="ngModel" required></p-radioButton>
             
@@ -50,20 +50,20 @@
            </div>
      
            <div class="dobEle">
-            <div> <label> Date of birth:</label></div>
+            <div> <label> DateOfBirth</label></div>
              <p-calendar [(ngModel)]="dob" name="dob" dateFormat="dd.mm.yy"  [showIcon]="true" #dateob="ngModel" [required]="true"> </p-calendar>
              <div class="errmessageEle" *ngIf="dateob.touched && dateob.invalid" > enter the valid date</div>
            </div>
            
            <div class="emailEle">
-             <div><label> Email Id:</label></div>
+             <div><label> EmailId</label></div>
               <input type="text" [(ngModel)]="emailId"  name="mailId" pInputText  #email1="ngModel" required pattern="^[a-zA-Z0-9]+(?:\.[a-zA-Z0-9]+)*@[a-zA-Z0-9]+(?:\.[a-zA-Z0-9]+)*$"/>
              <div class="errmessageEle" *ngIf="email1.touched && email1.invalid" > enter the valid email id</div>
            </div>
   
            <div class="mobilenoEle">
   
-            <div> <label> Mobile no:</label></div>
+            <div> <label> MobileNo</label></div>
             <select name="phcode" id="phcode" class="phcodeEle" [(ngModel)]="phcode">
               <option value="91">+91</option>
               <option value="1">+1</option>
@@ -75,7 +75,7 @@
            </div>
   
            <div class="bloodgroupEle">
-             <div><label> Blood Group:</label></div>
+             <div><label> BloodGroup</label></div>
          <input type="text" pInputText  [(ngModel)]="BloodGroup" name="bloodGroup" pattern="^[A-Z]+$"/>
            </div>
   

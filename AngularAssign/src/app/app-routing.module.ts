@@ -9,6 +9,7 @@ import { DeptdetaillistComponent } from './deptdetaillist/deptdetaillist.compone
 import { EmpformComponent } from './empform/empform.component';
 import { EmplistComponent } from './emplist/emplist.component';
 import { EmployeeComponent } from './employee/employee.component';
+import { FooterComponent } from './footer/footer.component';
 import { HeaderComponent } from './header/header.component';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
@@ -26,6 +27,7 @@ const routes: Routes = [
   {path:'ATDE',component:AttendanceComponent},
   {path:'ATDELIST',component:AttendecelistComponent},
   {path:'ATTDEFORM',component:AttendenceformComponent},
+  {path:'Foot',component:FooterComponent},
   {path:'**', component:PagenotfoundComponent}
 ];
 

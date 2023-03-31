@@ -69,6 +69,18 @@ export class EmployeeComponent {
           } ,
 
           (err:HttpErrorResponse) =>{
+
+            this.sucessmessagedata=
+            [
+              {
+                severity: 'success', 
+                summary: 'Employee list', 
+                detail:err.error.text
+              }
+            ]
+            
+               this.successmessagedataEle=true;
+              this.errormessagedataEle=false;
             console.log(err.error)
             console.log("error block");
             this.gettingData();

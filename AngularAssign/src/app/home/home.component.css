@@ -1,4 +1,4 @@
-.navEle{
+/* .navEle{
     position: relative;
     top:-70px;
     background-color:#89cfe8;
@@ -16,4 +16,9 @@
 .grapele{
     width:1400px;
     height: 350px;
-}
+} */
+
+
+.fa {
+    font: normal normal normal 31px/1 FontAwesome !important;
+  }

@@ -6,3 +6,11 @@
 @import '../node_modules/primeng/resources/primeng.min.css';
 
 @import "~primeflex/primeflex.css";
+
+body, html {
+    padding: 0;
+    width: 100vw;
+    height: 100vh;
+    margin: 0px;
+  }
+ 
