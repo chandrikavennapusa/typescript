@@ -1,10 +1,10 @@
 <div  [ngClass]="{backgroundcolor:dialogFormHidden}">
-  <app-header></app-header>
+ <div class="p-col bg-cyan-100  h-6rem relative navEle">
+   <h2> <span> <i class="material-icons">people</i> </span> Employee List</h2> </div> 
 
 
-<div class="grid bg-cyan-100 emptablecontainer ">
-  <div  class="col  text-left text-1xl"> <h2> <span> <i class="material-icons">people</i> </span> Employee List</h2> </div> </div>
-  <div>
+
+  <div class="emptabledetailContiner">
                      <div class="grid">
                                            <div class="flex h-3rem">
                                                   <div class="relative addbtnEle ">
@@ -14,14 +14,14 @@
                                                    </div>
                                                   
                                                    <div class="absolute sucessmessageEle">
-                                                    <p-messages [(value)]="sucessmessagedata" *ngIf="successmessagedataEle" ></p-messages>
-                                                    <p-messages [(value)]="errormessagedata" *ngIf="errormessagedataEle"></p-messages>
+                                                    <p-messages [(value)]="sucessmessagedata" position="bottom-center" *ngIf="successmessagedataEle" ></p-messages>
+                                                    <p-messages [(value)]="errormessagedata"  position="bottom-center"  *ngIf="errormessagedataEle"></p-messages>
                                                    </div>
                                               </div>
                                               
                      </div> 
 <hr>
-<div class=" card w-12 surface-section  ">
+<div class=" card  surface-section">
   
   <p-table  [value]="gettingempdata" 
 
@@ -36,6 +36,7 @@
 
     <ng-template pTemplate="header">
     <tr>
+      
       <th pSortableColumn="employeeId" >EmployeeId<p-sortIcon field="employeeId"></p-sortIcon></th>
       <th pSortableColumn="firstName" >FirstName<p-sortIcon field="firstName"></p-sortIcon></th>
       <th pSortableColumn="lastName" >LastName<p-sortIcon field="lastName"></p-sortIcon></th>
@@ -51,13 +52,14 @@
       <th pSortableColumn="modifiedSource" >ModifiedSource<p-sortIcon field="modifiedSource"></p-sortIcon></th>
       <th pSortableColumn="modifiedSourceType" >ModifiedSourceType<p-sortIcon field="modifiedSourceType"></p-sortIcon></th>
       <th pSortableColumn="modifiedDttm" >ModifiedDttm<p-sortIcon field="modifiedDttm"></p-sortIcon></th>
-      <th pSortableColumn="Actions" >Actions<p-sortIcon field="Actions"></p-sortIcon></th>          
+      <th pSortableColumn="Actions" *ngIf="deleteviewmode">Actions<p-sortIcon field="Actions"></p-sortIcon></th>          
         
       </tr>
     </ng-template>
     <ng-template pTemplate="body" let-rowData>
 
-       <tr (dblclick)="doubleClick(rowData)">
+       <tr (dblclick)="doubleClick(rowData.employeeId)">
+
         <td>{{rowData.employeeId}}</td>
         <td>{{rowData.firstName}}</td>
         <td>{{rowData.lastName}}</td>
@@ -75,7 +77,7 @@
         <td>{{rowData.modifiedDttm}}</td>
         
       
-        <td><p-button (click)="deletebasedonempid(rowData.employeeId)" icon="pi pi-times" label="Delete" class="p-button-danger" *ngIf="deleteviewmode"></p-button>
+        <td  *ngIf="deleteviewmode"><p-button (click)="deletebasedonempid(rowData.employeeId)" icon="pi pi-times" label="Delete" class="p-button-danger"></p-button>
         </td>
         
        </tr>
@@ -85,10 +87,10 @@
 </div>
   <p-confirmDialog [style]="{width: '279px'}"></p-confirmDialog>
   </div>
-  <app-footer></app-footer>
+  
 </div>
   <div class="grid border-solid border-200 p-5 w-min absolute text-center   empidformcontainer" *ngIf="dialogFormHidden">
-    <form  #EmpidForm="ngForm" (ngSubmit)="empidcheck()">
+    <form  #EmpidForm="ngForm" (ngSubmit)="empidcheck()" ngNativeValidate>
     <div class="col">
       <div><label> EmployeeId </label></div>
       <input type="text" pInputText name="employee Id" [(ngModel)]="empId" pattern="^(0|[1-9][0-9]{0,100})$" required />

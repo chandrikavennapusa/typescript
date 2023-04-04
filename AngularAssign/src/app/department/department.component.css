@@ -1,14 +1,10 @@
-.navEle{
-    position: relative;
-    top:-20px;
-    background-color:#89cfe8;
-    color:white;
-    height: 100px;
-    margin: 10px;
+
+
+.tableContainer{
+  top: -30px;
+  width:1400px;
+
 }
-.depttablecontainer{
-    width:1400px;
-    position: relative;
-    left: 30px;
-    top: -50px;
+.navEle{
+  top:-20px;
 }

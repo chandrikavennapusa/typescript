@@ -1,15 +1,3 @@
-<!-- 
-<div class="homecontainer">
-    <a  routerLink="/HOME"  class="anchorEle">HOME</a>
-     <div class="homepagecontent"> <a routerLink="/EMP"     class="anchorEle"  >EMPLOYEE</a></div>
-      <div class="homepagecontent" *ngIf="employeeuserhide"> <a routerLink="/DEPT"     class="anchorEle"  >DEPARTMENT</a></div>
-      <div class="homepagecontent"> <a routerLink="/ATDE"     class="anchorEle"  >ATTENDENCE</a></div>
-     <div class="homepagecontent"> <a routerLink= "/" class="logoutEle" > LOGOUT</a></div>
-</div> -->
-
-
-
-
 
 <div class="bg-blue-300 h-4rem headeriner grid">
     <div class="flex justify-content-start flex-wrap card-container   ">
@@ -29,7 +17,7 @@
             </div>
 
             <div class=" flex justify-content-center align-items-center relative right-10  text-white m-2">
-                <a routerLink= "/" class="anchorEle"  > LOGOUT</a>
+                <a class="anchorEle" routerLink="/Login" (click)="islogout()" > LOGOUT</a>
                 </div>
     </div>
 </div>

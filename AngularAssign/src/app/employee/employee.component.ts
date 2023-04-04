@@ -31,16 +31,19 @@ export class EmployeeComponent {
   deleteviewmode=true;
   errormessagedata: Message[];
   sucessmessagedata: Message[];
-
+ 
   constructor(private service:ServicesService,private router:Router ,private confirmationService: ConfirmationService){}
 
-   doubleClick(rowdata){
-    this.service.setData(rowdata);
+   doubleClick(employeeId){
+    this.service.employeeid=employeeId;
+    console.log(employeeId)
+    // this.service.setData(rowdata);
     this.router.navigate(['/EMPLIST']);
   }
 
   ngOnInit(){
     this.gettingData();
+
     let username =localStorage.getItem("username");
     if(username == "employee" ){
       this.addbtndisable=false;
@@ -52,8 +55,8 @@ export class EmployeeComponent {
 
   deletebasedonempid(id){
     this.confirmationService.confirm({
-      message: 'Row Delete Congormation Box.',
-      header: 'Employee Row',
+      message: 'Do you want to delete this record?',
+        header: 'Delete Confirmation',
       accept: () =>{this.delete(id)} 
   });
    
@@ -92,9 +95,9 @@ export class EmployeeComponent {
 
   gettingData(){
     this.service.gettingempdetails().subscribe(
-    data=> this.gettingempdata=data,
+    data=> this.gettingempdata=data
+    ,
     error => this.errorMessage = error,
-    
   );
    }
 
@@ -130,7 +133,7 @@ export class EmployeeComponent {
                                 this.dialogFormHidden=false;
         }
         else{
-          this.sucessmessagedata=
+          this.service.empidsucessmessagedata=
           [
             {
               severity: 'success', 

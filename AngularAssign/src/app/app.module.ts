@@ -26,7 +26,7 @@ import { EmplistComponent } from './emplist/emplist.component';
 import {InputNumberModule} from 'primeng/inputnumber';
 import { ToastModule } from 'primeng/toast';
 import { MessagesModule } from 'primeng/messages';
-
+import {PaginatorModule} from 'primeng/paginator';
 import { ServicesService } from './services.service';
 import { HttpClientModule } from '@angular/common/http';
 import { TableModule } from 'primeng/table';
@@ -37,6 +37,9 @@ import { AttendenceformComponent } from './attendenceform/attendenceform.compone
 import { EmpformComponent } from './empform/empform.component';
 import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
 import { CanactivateService } from './canactivate.service';
+import { EmpService } from './emp.service';
+import { AttenService } from './atten.service';
+import {DropdownModule} from 'primeng/dropdown';
 
 @NgModule({
   declarations: [
@@ -75,9 +78,11 @@ import { CanactivateService } from './canactivate.service';
    InputNumberModule,
    ToastModule ,
    MessagesModule ,
-   ConfirmDialogModule
+   ConfirmDialogModule,
+   PaginatorModule,
+   DropdownModule
   ],
-  providers: [ServicesService,ConfirmationService , CanactivateService],
+  providers: [ServicesService,ConfirmationService , CanactivateService,EmpService,AttenService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

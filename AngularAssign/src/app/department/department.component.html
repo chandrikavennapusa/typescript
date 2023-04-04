@@ -1,10 +1,12 @@
 
-<app-header></app-header>
-<div class="navEle">
-    <h2> <span> <i class="material-icons">people</i> </span> Department List </h2>
-  </div>
+<div class="p-grid">
+    <div class="p-col bg-cyan-100 w-full h-6rem relative navEle">
+        <h2> <span> <i class="material-icons">people</i> </span> Department List </h2>
+    </div>
+</div>
 
-<div class="depttablecontainer" >
+<div class=" card w-12 surface-section relative tableContainer">
+
     <p-table [value]="getDeptDetails"   
     styleClass="p-datatable-striped"
     [paginator]="true"
@@ -13,8 +15,7 @@
     [tableStyle]="{ 'min-width': '50rem' }"
     currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
     [rowsPerPageOptions]="[10, 25, 50]"
-    
-    >
+     >
         <ng-template pTemplate="header">
             <tr>
                 <th pSortableColumn="departmentId" >DepartmentId<p-sortIcon field="departmentId"></p-sortIcon></th>
@@ -46,5 +47,15 @@
     </p-table>
     
 
+
 </div>
-<app-footer></app-footer>
+
+
+
+
+
+
+
+
+
+

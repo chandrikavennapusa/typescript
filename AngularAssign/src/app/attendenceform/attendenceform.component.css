@@ -1,39 +1,40 @@
-.attdenceFormcontainer{
-    background-color: white;
-    border: px solid grey;
-   box-shadow: 0 0 5px grey; 
-   margin: 10px; 
-   height: 500px;
-   position: relative;
-    top: -80px;
-    width: 1430px;
-   left: 20px;
-}
-.formcontainer{
-    display: grid;
-    grid-template-rows:auto;
-    grid-template-columns: 30% 30% 30%;
-    grid-gap: 10px;
-    position: relative;
-   left: 100px;
-}
-  .formheadingEle{
-    height: 60px;
-  }
-  .navEle{
-    position: relative;
-    top:-20px;
-    background-color:#89cfe8;
-    color:white;
-    height: 100px;
-    margin: 10px;
-}
-.basicattendecedetailEle{
-    text-align: center;
-    position: relative;
-    top: 5px;
-}
+
 .savebtnEle{
   margin-left: 20px;
   margin-right: 20px;
+}
+.attendenceform{
+  margin-left: 30px;
+  margin-right: 0px;
+}
+@media (max-width:768px) and (min-width:666px){
+.attendenceform{
+margin-left: 43px;
+margin-right: -208px;
+}
+
+.navEle{
+  top:2px;
+  width: 1010px;
+}
+
+}
+@media (max-width:666px) and (min-width:320px){
+  ::ng-deep .p-calendar input{
+    height: 30px !important;
+    width: 200px !important;
+  }
+  .navEle{
+  position: relative;
+    top: 8px;
+}
+.basicheadingEle{
+position: relative;
+    top: -29px;
+}
+.attendenceform{
+  position: relative;
+  top: -42px;
+  }
+ 
 }

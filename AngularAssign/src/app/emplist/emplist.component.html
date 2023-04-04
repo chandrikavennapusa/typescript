@@ -1,7 +1,5 @@
-<div >
-  <div class="col"><app-header></app-header></div>
-</div>
-<div class="grid bg-cyan-100 ">
+
+<div class="grid bg-cyan-100 navEle ">
   <div class="col  text-left text-1xl">
     <h2> <span> <i class="material-icons">people</i> </span> Update EmpList</h2>
   </div>
@@ -9,21 +7,21 @@
 
 
 <div class="card  relative formcontainer"> 
-  <form  #EmployeeForm="ngForm" (ngSubmit)="onSubmit(EmployeeForm)" ngNativeValidate>
-  <div class="formgrid grid">
+  <form  #EmployeeForm="ngForm" (ngSubmit)="onSubmit()" ngNativeValidate>
+  <div class="formgrid grid formtablecontainer">
                            <div  class="col-12 md:col-3  ">
                             <div><label> Employee Id </label></div>
-                            <input type="text" pInputText name="employeeId" [(ngModel)]="employeeId" readonly [disabled]="!editmode" />
+                            <input type="text" pInputText name="employeeId" [(ngModel)]="empdetailObj.employeeId"  [disabled]="true" />
                             </div>
 
                             <div  class=" field col-12 md:col-3  ">
                               <div><label> First Name</label></div>
-                                <input type="text" pInputText name="firstName" [(ngModel)]="firstName" required pattern="^[a-zA-Z]+$" [disabled]="!editmode" />
+                                <input type="text" pInputText name="firstName" [(ngModel)]="empdetailObj.firstName" required pattern="^[a-zA-Z]+$" [disabled]="!editmode" />
                             </div>
 
                             <div class="field col-12  md:col-6"> 
                               <div><label> Last Name</label></div>
-                             <input type="text" pInputText name="lastName" [(ngModel)]="lastName"  required  pattern="^[a-zA-Z]+$" [disabled]="!editmode"/>
+                             <input type="text" pInputText name="lastName" [(ngModel)]="empdetailObj.lastName"  required  pattern="^[a-zA-Z]+$" [disabled]="!editmode"/>
                             </div>
 
                           
@@ -31,17 +29,17 @@
                              <div><label >Gender</label></div>
                             <div class="formgroup-inline">
                               <div class="field-radiobutton">
-                                <p-radioButton name="gender" value="male"  [(ngModel)]="Gender" [disabled]="!editmode" ></p-radioButton>
+                                <p-radioButton name="gender" value="male"  [(ngModel)]="empdetailObj.gender" [disabled]="!editmode" ></p-radioButton>
                                 <label>Male</label>
                                 </div>
 
                                 <div class="field-radiobutton">
-                                  <p-radioButton name="gender" value="Female" [(ngModel)]="Gender" [disabled]="!editmode" ></p-radioButton>
+                                  <p-radioButton name="gender" value="Female" [(ngModel)]="empdetailObj.gender" [disabled]="!editmode" ></p-radioButton>
                                   <label>Female</label>
                                 </div>
 
                                 <div class="field-radiobutton">
-                                  <p-radioButton name="gender" value="customgender" [(ngModel)]="Gender" [disabled]="!editmode"></p-radioButton>
+                                  <p-radioButton name="gender" value="customgender" [(ngModel)]="empdetailObj.gender" [disabled]="!editmode"></p-radioButton>
                                   <label>Custmgender</label>
                                 </div>
                             
@@ -49,50 +47,50 @@
                             </div>
                             <div class="field col-12 md:col-3 ">
                               <div> <label> Date of Birth</label></div>
-                              <p-calendar [(ngModel)]="dob" name="dob"  dateFormat="dd.mm.yy"   [disabled]="!editmode"> </p-calendar>
+                              <p-calendar [(ngModel)]="empdetailObj.dob" name="dob"  dateFormat="dd/mm/yy" [required]="true"   [disabled]="!editmode"> </p-calendar>
                             </div>
 
                               <div class=" field col-12 md:col-6 ">
                                 <div> <label> Mobile No</label></div>
-                               <p-inputNumber [(ngModel)]="PhoneNumber" name="phoneNumber" mode="decimal" [disabled]="!editmode" ></p-inputNumber>
+                               <p-inputNumber [(ngModel)]="empdetailObj.phoneNumber" name="phoneNumber" mode="decimal" [disabled]="!editmode" ></p-inputNumber>
                               </div>
                               <div class="field col-12 md:col-3">
                                 <div> <label> Date Of Joining</label></div>
-                                <p-calendar [(ngModel)]="dateOfJoining" name="dateOfJoining"  dateFormat="dd.mm.yy"  [required]="true" [disabled]="!editmode"> </p-calendar>
+                                <p-calendar [(ngModel)]="empdetailObj.dateOfJoining" name="dateOfJoining"  dateFormat="dd/mm/yy"  [required]="true" [disabled]="!editmode"> </p-calendar>
                               </div>
 
                               <div class="field col-12 md:col-3">
                                 <div> <label> Salary</label></div>
-                                <input type="text" pInputText [(ngModel)]="Salary" name="salary" required pattern="^[0-9]*$" [disabled]="!editmode"/>
+                                <input type="text" pInputText [(ngModel)]="empdetailObj.salary" name="salary" required pattern="^[0-9]*$" [disabled]="!editmode"/>
                               </div>
                               <div  class="field col-12 md:col-6">
                                 <div> <label> Shift</label></div>
-                                <input type="text" pInputText  [(ngModel)]="shift" name="shift" #shift1="ngModel" required [disabled]="!editmode"/>
+                                <input type="text" pInputText  [(ngModel)]="empdetailObj.shift" name="shift" #shift1="ngModel" required [disabled]="!editmode"/>
                               </div>
                               <div  class="field col-12 md:col-3">
                                 <div>  <label> CreatedSource:</label></div>
-                                <input type="text" pInputText  [(ngModel)]="createdSource" name="createdSource" [disabled]="!editmode"/>
+                                <input type="text" pInputText  [(ngModel)]="empdetailObj.createdSource" readonly  name="createdSource" [disabled]="!editmode"/>
                               </div>
                               <div  class="field col-12 md:col-3">
                                 <div> <label> CreatedSourceType:</label></div>
-                                <input type="text" pInputText [(ngModel)]="createdSourceType" name="createdSourceType" [disabled]="!editmode"/>
+                                <input type="text" pInputText [(ngModel)]="empdetailObj.createdSourceType"  readonly name="createdSourceType" [disabled]="!editmode"/>
                               </div>
                               <div class="field col-12 md:col-6"> 
                                 <div><label>  CreatedDttm:</label></div>
-                                <p-calendar  [(ngModel)]="createdDttm1" name="createdDttm"  dateFormat="dd.mm.yy" [disabled]="!editmode" [required]="true"> </p-calendar>
+                                <p-calendar  [(ngModel)]="empdetailObj.createdDttm" name="createdDttm"   dateFormat="dd/mm/yy" [disabled]="true"  [required]="true"> </p-calendar>
                               </div>
                               <div class="field col-12 md:col-3"> 
                                 <div><label>  ModifiedSource:</label></div>
-                                <input type="text" pInputText [(ngModel)]="modifiedSource" name="modifiedSource" [disabled]="!editmode"/>
+                                <input type="text" pInputText [(ngModel)]="empdetailObj.modifiedSource"  readonly name="modifiedSource" [disabled]="!editmode"/>
                               
                               </div>
                               <div class="field col-12 md:col-3"> 
                                 <div> <label> ModifiedSourceType:</label></div>
-                    <input type="text" pInputText [(ngModel)]="modifiedSourceType" name="modifiedSourceType" [disabled]="!editmode"/>
+                    <input type="text" pInputText [(ngModel)]="empdetailObj.modifiedSourceType"  readonly name="modifiedSourceType" [disabled]="!editmode"/>
                               </div>
                               <div  class="field col-12 md:col-6">
                                 <div> <label>  ModifiedDttm:</label></div>
-                                <p-calendar   [(ngModel)]="modifiedDttm" name="modifiedDttm"   dateFormat="dd.mm.yy" [disabled]="!editmode"> </p-calendar>
+                                <p-calendar [(ngModel)]="empdetailObj.modifiedDttm" name="modifiedDttm"    dateFormat="dd/mm/yy" [disabled]="true"> </p-calendar>
                               </div>
 
                                 <div class="field col-12 md:col-6 m-0">
@@ -115,7 +113,3 @@
 
 
 
-
-<div class="grid">
-  <div class="col"><app-footer></app-footer></div>
-</div>

@@ -6,6 +6,7 @@ import { map } from 'rxjs';
 
 
 import { ServicesService } from '../services.service';
+import { response } from 'express';
 
 @Component({
   selector: 'app-attendance',
@@ -21,13 +22,26 @@ export class AttendanceComponent {
   addbtndisable=true;
   deleteviewmode=true;
   serachempview=false;
+  errormessagedata;
+  sucessmessagedata;
+  successmessagedataEle=false;
+  errormessagedataEle=false;
   gettingattendencedata:any=[];
   constructor(private service:ServicesService,private router:Router,private confirmationService: ConfirmationService){}
 
-  
+  empdata;
+  deptdata;
     ngOnInit(){
+     this.service.gettingempdetails().subscribe(
+      response=>
      
+      this.empdata=(response)
      
+     );
+     
+     this.service.gettingDeptdata().subscribe(
+      data=>this.deptdata=data
+     );
       this.gettingData();
       let username =localStorage.getItem("username");
       if(username == "employee" ){
@@ -42,25 +56,73 @@ export class AttendanceComponent {
         this.attendenceempidhidden=true;
     }
 
+   
+    empid;
+    deptid;
     isboolean;
     empiddeptidcheck(){
-      this.isboolean=false;
-     this.gettingattendencedata.find((empdeptdata)=>{
-      if(empdeptdata.employeeId == this.employeeId && empdeptdata.departmentId== this.departmentid){
+     this. isboolean=false;
+  for(let d of this.empdata){
+
+    if(d.employeeId ==this.employeeId){
+      this.empid = true;
+    }
+    
+  }
+
+   for(let de of this.deptdata){
+    console.log(de.departmentId)
+    if(de.departmentId ==this.departmentid){ 
+      this.deptid= true;
+    }
+    this.gettingattendencedata.find((empdeptdata)=>{
+      if(empdeptdata.employeeId == this.employeeId){
         this.isboolean=true;
       }
-     })
-     if(this.isboolean == true){
-      this.attendenceempidhidden=false;
-      this.employeeId='';
-      this.departmentid='';
-     }
-     else{
+    }
+    )
+   }
 
+   if(this.isboolean == true){
+    this.errormessagedata=[
+      {
+           severity: 'error', 
+            summary: 'Employee list', 
+          detail:"the id is not alredy exist"
+          }
+
+] 
+  this.successmessagedataEle=false;
+    this.errormessagedataEle=true;
+    this.attendenceempidhidden=false;
+    this.employeeId='';
+    this.departmentid='';
+   
+   }
+   
+
+   else if(this.empid && this.deptid){
       this.attendenceempidhidden=false;
       this.router.navigate(['/ATDELIST']);
       this.service.EmployeeId=this.employeeId;
       this.service.DepartmentId=this.departmentid;
+     
+     }
+     else{
+      this.errormessagedata=[
+        {
+             severity: 'error', 
+              summary: 'Employee list', 
+            detail:"the id is not alredy exist"
+            }
+
+] 
+    this.successmessagedataEle=false;
+      this.errormessagedataEle=true;
+      this.attendenceempidhidden=false;
+      this.employeeId='';
+      this.departmentid='';
+     
      }
      
     }
@@ -76,8 +138,8 @@ export class AttendanceComponent {
     deletebasedonempiddeptid(empid,deptid){
 
       this.confirmationService.confirm({
-        message: 'Row Delete Congormation Box.',
-        header: 'Employee Row',
+        message: 'Do you want to delete this record?',
+        header: 'Delete Confirmation',
         accept: () =>{this.deleteempiddepid(empid,deptid)}
     });
     this.gettingData();
@@ -91,8 +153,18 @@ export class AttendanceComponent {
           } ,
 
           (err:HttpErrorResponse) =>{
-            console.log(err.error)
-            console.log("error block");
+          
+            this.sucessmessagedata=
+            [
+              {
+                severity: 'success', 
+                summary: 'Employee list', 
+                detail:err.error.text
+              }
+            ]
+            
+               this.successmessagedataEle=true;
+              this.errormessagedataEle=false;
             this.gettingData();
           },
           ()=>{
@@ -107,6 +179,7 @@ export class AttendanceComponent {
     gettingData(){
       this.service.gettingAttendencedetails().subscribe(
         data => this.gettingattendencedata =data
+       
       )
     }
 
@@ -134,9 +207,19 @@ export class AttendanceComponent {
         },
         (err:HttpErrorResponse)=>{
           this.gettingattendencedata=[];
-          // this.gettingattendencedata.push(err.error);
-           this.error=err.error;
-         console.log(err.error);
+        
+          // this.errormessagedata=[
+          //   {
+          //        severity: 'error', 
+          //         summary: 'Employee list', 
+          //       detail:err.error
+          //       }
+          //     ]
+          //     this.successmessagedataEle=false;
+          //     this.errormessagedataEle=true;
+         
+          //  this.error=err.error;
+        
          console.log(this.gettingattendencedata)
         },
         () => {

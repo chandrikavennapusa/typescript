@@ -1,26 +1,4 @@
-/* .navEle{
-    position: relative;
-    top:-20px;
-    background-color:#89cfe8;
-    color:white;
-    height: 100px;
-    margin: 10px;
-}
-.formContainer{
-    display: grid;
-   grid-template-rows:auto;
-   grid-template-columns: 30% 30% 30%;
-   grid-gap: 10px;
-   position: relative;
-    left:100px;
-}
-/
-/* .empformEle{
-    position: relative;
-    left: 130px;
-    top: 32px;
-    
-} */
+
 .formcontainer{
     left:30px;
     margin-top: 30px;
@@ -28,12 +6,30 @@
     
 }
 
+.navEle{
+    width:1650px;
+}
 .savebtnEle{
     position: relative;
     margin-left: 20px;
     margin-right: 20px;
  } 
  @media (max-width:768px) and (min-width:666px){
+.formtablecontainer{
+    margin-right: -120px;
+    margin-left: 4px;
+}
 
+.navEle{
+    width:926px;
+}
+ }
+ @media (max-width:666px) and (min-width:320px){
+
+ .navEle{
+    width: 368px;
+    position: relative;
+    top: 8px;
 
  }
+}

@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { ServicesService } from '../services.service';
+import { Router } from '@angular/router';
+
 
 
 @Component({
@@ -8,16 +10,17 @@ import { ServicesService } from '../services.service';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent {
-constructor(private service:ServicesService){}
+constructor(private service:ServicesService ,private router:Router){}
 employeeuserhide=true;
-  
+
   ngOnInit(){
     let username =localStorage.getItem("username");
      if(username == "employee" ){
       this.employeeuserhide=false; 
   }
-
- 
  }
-
+ islogout(){
+  localStorage.setItem('empbooleanvalue',"false");
+        this.router.navigate(['/Login']);
+ }
 }

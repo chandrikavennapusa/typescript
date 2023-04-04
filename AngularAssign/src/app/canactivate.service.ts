@@ -1,22 +1,21 @@
 import { Injectable } from '@angular/core';
-import { ActivatedRouteSnapshot, Router, RouterStateSnapshot } from '@angular/router';
+import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot } from '@angular/router';
+
 
 @Injectable({
   providedIn: 'root'
 })
-export class CanactivateService {
+export class CanactivateService implements CanActivate{
 
- 
-  constructor( private router:Router){}
+  constructor( private router: Router) { }
+  canActivate() {
+  
+   if ( String(localStorage.getItem("empbooleanvalue")) == "false") {
+    this.router.navigate(['/Login']);
+ }
+  
+   return true;
+  
+   }
 
-  
-  // canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) : boolean  {
-  //    if(){
-  //             return true;
-  //    }else{
-  //     this.router.navigate(['/HOME']);
-  //             return false;
-  //    }
-  // }
-  
 }

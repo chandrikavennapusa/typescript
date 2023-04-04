@@ -1,95 +1,88 @@
 
-<app-header></app-header>
-<div class="navEle">
+
+<div class="bg-cyan-100 gird relative h-6rem navEle">
     <h2> <span> <i class="material-icons">people</i> </span> Attendence List </h2>
-  </div>
-<div>
-<div class="attendecelistcontainer">
-    <div class="attndenceheaderEle">
-        <h3>Attendece list:</h3>
-    </div>
-    <hr>
+</div>
 <form #attendencedetails="ngForm" (ngSubmit)="onsubmit()" ngNativeValidate>
-        <div class="attencontainerlist">
-            
-            <div>
-                <div><label> employeeId:</label></div>
-                <input type="text" pInputText name="employeeId" [(ngModel)]="employeeId" readonly/>
-            </div>
-            <div>
-                <div><label> Month:</label></div>
-                <p-calendar  name="month" [(ngModel)]="month" view="month" dateFormat="mm.yy"  [showIcon]="true" #month1="ngModel" [required]="true" > </p-calendar>
+
+    <div class="grid formtableconatiner">
+        <div class="col-12 md:col-3">
+            <div><label> Employee Id</label></div>
+                <input type="text" pInputText name="employeeId" [(ngModel)]="attendetailObj.employeeId" class="inputlenEle" readonly/>
+        </div>
+        <div class="col-12 md:col-3">
+            <div><label> Month</label></div>
+            <p-calendar  name="month" [(ngModel)]="attendetailObj.month" view="month" dateFormat="mm.yy" class="inputlenEle"  #month1="ngModel" [required]="true" > </p-calendar>
                 <div class="errmessageEle" *ngIf="month1.touched && month1.invalid" > enter the valid name</div>
             </div>
-            <div>
-                <div><label>Date:</label></div>
-                <p-calendar  name="date" [(ngModel)]="date" view="date" dateFormat="dd"  [showIcon]="true"  [required]="true"> </p-calendar>
+            <div class="col-12 md:col-6"><div><label>Date</label></div>
+            <p-calendar  name="date" [(ngModel)]="attendetailObj.date" view="date" dateFormat="dd"  [required]="true"> </p-calendar>
+        </div>
+        <div class="col-12 md:col-3">
+            <div><label>Department Id</label></div>
+            <input type="text" pInputText name="departmentId" [(ngModel)]="attendetailObj.departmentId" class="inputlenEle" readonly/>
+        </div>
+
+        <div class="col-12 md:col-3">
+            <div><label>Available</label></div>
+            <div class="formgroup-inline">
+                <div class="field-radiobutton">
+                    <p-radioButton name="available" value="true" [(ngModel)]="attendetailObj.available"></p-radioButton>
+                <label>Yes</label>
+                </div>
+                <div class="field-radiobutton">
+                    <p-radioButton name="available" value="false" [(ngModel)]="attendetailObj.available"></p-radioButton>
+                    <label>No</label>
+                 </div>
             </div>
-            <div>
-                <div><label>DepartmentId:</label></div>
-                <input type="text" pInputText name="departmentId" [(ngModel)]="departmentId" readonly/>
+        </div>
+        <div class="col-12 md:col-6">
+            <div><label>Check In</label></div>
+                <input type="text" pInputText name="checkIn" class="inputlenEle" [(ngModel)]="attendetailObj.checkIn"/>
             </div>
-            <div> 
-                <div><label>Available:</label></div>
-             
-                <p-radioButton name="available" value="true" [(ngModel)]="available"></p-radioButton>
-                <label>yes</label>
-                <p-radioButton name="available" value="false" [(ngModel)]="available1"></p-radioButton>
-                <label>no</label>
-               
-            </div>
-            <div>
-                <div><label>CheckIn:</label></div>
-                <input type="text" pInputText name="checkIn" [(ngModel)]="checkIn"/>
-            </div>
-            <div>
-                <div><label>Checkout:</label></div>
-                <input type="text" pInputText name="checkout" [(ngModel)]="checkout"/>
-            </div>
-            <div>
-                <div><label>AttendanceCount:</label></div>
-                <input type="text" pInputText name="attendanceCount" [(ngModel)]="attendanceCount" #count="ngModel" required/>
+            <div class="col-12 md:col-3">
+                <div><label>Check out</label></div>
+                <input type="text" pInputText name="checkout" class="inputlenEle" class="inputlenEle" [(ngModel)]="attendetailObj.checkout"/>
+            </div>  
+            <div class="col-12 md:col-3">
+                <div><label>AttendanceCount</label></div>
+            <input type="text" pInputText name="attendanceCount" class="inputlenEle" [(ngModel)]="attendetailObj.attendanceCount" #count="ngModel" required/>
                 <div class="errmessageEle" *ngIf="count.touched && count.invalid" > enter the valid name</div>
             </div>
-            <div>
-                <div><label>Shift:</label></div>
-                <input type="text" pInputText name="shift" [(ngModel)]="shift" required #shift1="ngModel"/>
+            <div class="col-12 md:col-6">
+                <div><label>Shift</label></div>
+                <input type="text" pInputText name="shift" class="inputlenEle"  [(ngModel)]="attendetailObj.shift" required #shift1="ngModel"/>
                 <div class="errmessageEle" *ngIf="shift1.touched && shift1.invalid" > enter the valid name</div>
             </div>
-            <div>
-                <div><label>CreatedSource:</label></div>
-                <input type="text" pInputText name="createdSource" [(ngModel)]="createdSource" />
+            <div class="col-12 md:col-3">
+                <div><label>CreatedSource</label></div>
+                <input type="text" pInputText name="createdSource" class="inputlenEle" readonly  [(ngModel)]="attendetailObj.createdSource" />
             </div>
-            <div>
-                <div><label>CreatedSourceType:</label></div>
-                <input type="text" pInputText name="createdSourceType" [(ngModel)]="createdSourceType"/>
+            <div class="col-12 md:col-3">
+                <div><label>CreatedSourceType</label></div>
+                <input type="text" pInputText name="createdSourceType" class="inputlenEle" readonly [(ngModel)]="attendetailObj.createdSourceType"/>
             </div>
-            <div>
-                <div><label>CreatedDttm:</label></div>
-                <p-calendar name="createdDttm"[(ngModel)]=createdDttm   dateFormat="dd.mm.yy"  [showIcon]="true"  > </p-calendar>
-               
+            <div class="col-12 md:col-6">
+                <div><label>CreatedDttm</label></div>
+                <input type="text" pInputText name="createdDttm"[(ngModel)]=attendetailObj.createdDttm readonly> 
             </div>
-            <div>
-                <div><label>ModifiedSource:</label></div>
-                <input type="text" pInputText name="modifiedSource" [(ngModel)]="modifiedSource" />
-               
+            <div class="col-12 md:col-3">
+                <div><label>ModifiedSource</label></div>
+                <input type="text" pInputText name="modifiedSource" class="inputlenEle" readonly [(ngModel)]="attendetailObj.modifiedSource" /> 
             </div>
-            <div>
-                <div><label>ModifiedSourceType:</label></div>
-                <input type="text" pInputText name="modifiedSourceType" [(ngModel)]="modifiedSourceType" />
+            <div class="col-12 md:col-3">
+            <div><label>ModifiedSourceType</label></div>
+                <input type="text" pInputText name="modifiedSourceType" class="inputlenEle" readonly [(ngModel)]="attendetailObj.modifiedSourceType" />
             </div>
-            <div>
-                <div><label>ModifiedDttm:</label></div>
-                <p-calendar  name="modifiedDttm" [(ngModel)]="modifiedDttm"   dateFormat="dd.mm.yy"  [showIcon]="true"  > </p-calendar>
-               
+            <div class="col-12 md:col-6">
+            <div><label>ModifiedDttm</label></div>
+            <input type="text" pInputText name="modifiedDttm" [(ngModel)]="attendetailObj.modifiedDttm" readonly> 
             </div>
-            <div>
-                <button pButton type="submit" label="save"></button>
-                <button pButton type="button" label="cancel"  class="p-button-secondary cancelbtn" (click)="gobackatten()" ></button>
+            <div class="col-12 md:col-3">
+                <button pButton type="submit" label="Save" class="saveEle"></button>
+                <button pButton type="button" label="Cancel"  class="p-button-secondary cancelbtn" (click)="gobackatten()" ></button>
+
             </div>
-    </div>
-    <div>    
     </div>
 </form>
-</div>
-<app-footer></app-footer>
+

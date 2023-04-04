@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ServicesService } from '../services.service';
+import { EmpService } from '../emp.service';
 
 @Component({
   selector: 'app-emplist',
@@ -10,40 +11,49 @@ import { ServicesService } from '../services.service';
 })
 export class EmplistComponent {
   
-  employeeId='';
-  firstName='';
-  lastName='';
-  Gender='';
-  Gender1='';
-  Gender2='';
-  dob:Date;
-  emailId='';
-  phcode='';
-  PhoneNumber='';
-  BloodGroup='';
-  address='';
-  Department='';
-  dateOfJoining:Date;
-  Salary='';
-  shift='';
-  createdSource='';
-  createdSourceType='';
-  createdDttm1:Date;
-  modifiedSource='';
-  modifiedSourceType='';
-  modifiedDttm='';
+ 
   rowdata1;
 
   disabledsubmitcancelbtn=false;
   disablededitbackbtn=true;
   editmode =false; 
   editbtndisable=true;
+  fetchingdata;
 constructor(private service:ServicesService , private router:Router){}
 
-  onSubmit(EmployeeForm:NgForm){
-    console.log(EmployeeForm.value)
-    this.service.updateempid(EmployeeForm).subscribe();
-    console.log()
+empdetailObj: EmpService = new EmpService();
+
+empdetailsintialization(){
+ this.empdetailObj={
+  employeeId:'',
+  firstName:'',
+  lastName:'',
+  gender:'',
+  dob:'',
+  emailId:'',
+  phoneNumber:'',
+  BloodGroup:'',
+  address:'',
+  Department:'',
+  dateOfJoining:'',
+  salary:'',
+  shift:'',
+  createdSource:'',
+  createdSourceType:'',
+  createdDttm:'',
+  modifiedSource:'',
+  modifiedSourceType:'',
+  modifiedDttm:''
+ }
+}
+  onSubmit(){
+
+
+    this.empdetailObj.modifiedSource="admin";
+    this.empdetailObj.modifiedSourceType="admin";
+    this.empdetailObj.modifiedDttm= new Date();
+    this.service.updateempid(this.empdetailObj).subscribe();
+    
     this.editmode=false;
     this.disabledsubmitcancelbtn=false;
     this.disablededitbackbtn=true;
@@ -55,30 +65,41 @@ constructor(private service:ServicesService , private router:Router){}
     this.router.navigate(['/EMP']);
   }
  ngOnInit(){
+//  this.service.employeeid;
+ console.log(this.service.employeeid)
+ this.service.getempid(this.service.employeeid).subscribe(
+        data =>{this.fetchingdata=data;
+          this.empdetailObj.employeeId=this.fetchingdata.employeeId;
+  this.empdetailObj.firstName=this.fetchingdata.firstName;
+  this.empdetailObj.lastName=this.fetchingdata.lastName;
+  this.empdetailObj.gender=this.fetchingdata.gender;
+  this.empdetailObj.gender=this.fetchingdata.gender;
+  this.empdetailObj.gender=this.fetchingdata.gender;
+  let dOfb=new Date(this.fetchingdata.dob);
+  this.empdetailObj.dob=dOfb;
+
+  this.empdetailObj.phoneNumber=this.fetchingdata.phoneNumber;
+  let doj = new Date(this.fetchingdata.dateOfJoining);
+  this.empdetailObj.dateOfJoining=doj;
+  this.empdetailObj.salary=this.fetchingdata.salary;
+  this.empdetailObj.shift=this.fetchingdata.shift;
+  this.empdetailObj.createdSource=this.fetchingdata.createdSource;
+  this.empdetailObj.createdSourceType=this.fetchingdata.createdSourceType;
+  let Cd = new Date(this.fetchingdata.createdDttm)
+  this.empdetailObj.createdDttm=Cd;
   
-  let rowdata1 = this.service.getData();
-  this.employeeId=rowdata1.employeeId;
-  this.firstName=rowdata1.firstName;
-  this.lastName=rowdata1.lastName;
-  this.Gender=rowdata1.gender;
-  this.Gender1=rowdata1.gender;
-  this.Gender2=rowdata1.gender;
-  let dOfb=new Date(rowdata1.dob);
-  this.dob=dOfb;
-  this.phcode=rowdata1.phcode;
-  this.PhoneNumber=rowdata1.phoneNumber;
-  let doj = new Date(rowdata1.dateOfJoining);
-  this.dateOfJoining=doj;
-  this.Salary=rowdata1.salary;
-  this.shift=rowdata1.shift;
-  this.createdSource=rowdata1.createdSource;
-  this.createdSourceType=rowdata1.createdSourceType;
-  let Cd = new Date(rowdata1.createdDttm)
-  this.createdDttm1=Cd;
-  
-  this.modifiedSource=rowdata1.modifiedSource
-  this.modifiedSourceType=rowdata1.modifiedSourceType
-  this.modifiedDttm=rowdata1.modifiedDttm;
+  this.empdetailObj.modifiedSource=this.fetchingdata.modifiedSource
+  this.empdetailObj.modifiedSourceType=this.fetchingdata.modifiedSourceType;
+  if( this.fetchingdata.modifiedDttm == ''){
+    this.empdetailObj.modifiedDttm='';
+  }else{
+    this.empdetailObj.modifiedDttm=new Date (this.fetchingdata.modifiedDttm);
+  }
+   
+        }
+  );
+
+ 
 
   let username =localStorage.getItem("username");
   if(username == "employee" ){
@@ -87,13 +108,9 @@ constructor(private service:ServicesService , private router:Router){}
 }
 
  }
-
-
-
-
-
  editbtnviewmode(){
   this.editmode=true;
+  
   this.disabledsubmitcancelbtn=true;
   this.disablededitbackbtn=false;
  }

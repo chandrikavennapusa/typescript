@@ -1,72 +1,7 @@
-/* .navEle{
-    position: relative;
-    top:-20px;
-    background-color:#89cfe8;
-    color:white;
-    height: 100px;
-    margin: 10px;
-}
-
-
-.EmpList{
-    position: relative;
-    top:-70px;
-    background-color: white;
-    border: px solid grey;
-   box-shadow: 0 0 5px grey;
-   width:1400px;
-   left:30px;
-}
-.EmpListAddContainer{
-   position: relative;
-   height:70px;
    
-}
-  .EmpListAddEle{
-    position: relative;
-    top: 21px;
-    width: 130px;
-    height: 36px;
-    left: 1210px;
-
-}
-.EmpListAddPlusEle{
-    position: relative;
-    left: 18px;
-}
-
-
-    .dialogempidform{
-        border: 2px solid black;
-        width: 300px;
-        text-align: center;
-        padding: 30px;
-        box-shadow: 0px 0px 5px rgb(90, 62, 62);
-        position: relative;
-        left: 600px;  
-        top:-300px;
-      
-    }
-    .btnformEle{
-        padding: 10px;
-    }
-    
-    .cancelEle{
-        margin-left: 50px;
-    } */
-.emptablecontainer{
-    width: 100%;
-    margin-right: 0px;
-    margin-left: 0px;
-}
-    .addbtnEle{
-        top:15px;
-        left:20px;
-    }
-    .empidformcontainer{
-        position: absolute;
-        top: 200px;
-       left: 600px;
+    .navEle{
+        top:-20px;
+        
     }
     .backgroundcolor{
         z-index: -1;
@@ -74,16 +9,38 @@
         background-color:white;
         opacity: 0.3;
     }
-    .sucessmessageEle{
-            right: 0px;
+    .empidformcontainer{
+        position: absolute;
+        top: 200px;
+        left:550px;
     }
+    .addbtnEle{
+        left: 1280px;
+        top: 8px;
+    }
+    .emptabledetailContiner{
+        width: 1450px;
+       position: relative;
+         top: -60px;
+         left: 40px;
+         background-color: white;
+    }
+
     @media (max-width:666px) and (min-width:320px){
         .empidformcontainer{
             left: 30px;
+            width: 100%;
         }
+       .headerEle{
+        width:329px;
+       }
+       .navEle{
+        width: 329px;
+       }
      }
      @media (max-width:768px) and (min-width:666px){
         .empidformcontainer{
             left: 242px;
         }
-     }
+     } 
+    

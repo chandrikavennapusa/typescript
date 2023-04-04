@@ -1,73 +1,58 @@
 
-<app-header></app-header>
-<hr>
-<form>
-    <div class="formContainer">
-       <div>
-        <div><label> departmentId </label></div>
-         <input type="text" pInputText name="departmentId" [(ngModel)]="departmentId" [disabled]="!editmode" />
-      
-        </div>
-  
-        <div>
-         <div><label>departmentName</label></div>
-         <input type="text" pInputText name="departmentName" [(ngModel)]="departmentName" [disabled]="!editmode" />
-        
-        </div>
-  
-        <div>
-         <div><label>noOfEmployee</label></div>
-         <input type="text" pInputText name="noOfEmployee" [(ngModel)]="noOfEmployee" [disabled]="!editmode"/>
-       
-        </div>
-        
 
-     
+<div class="p-grid  navEle">
+  <div class="p-col bg-cyan-100 w-full h-6rem relative ">
+      <h2> <span> <i class="material-icons">people</i> </span> Department List </h2>
+  </div>
+</div>
+<form>
+<div class="grid formContainer">
   
-           <div>
-            <div> <label> managerId</label></div>
-         <input type="text" pInputText [(ngModel)]="managerId" name="managerId"[disabled]="!editmode"/>
-      
-           </div>
-           
- 
-           
-           <div>
-           <div>  <label> createdSource:</label></div>
+  <div class="col-12 md:col-4">
+    <div><label> Department Id </label></div>
+    <input type="text" pInputText name="departmentId" [(ngModel)]="departmentId" [disabled]="!editmode" />
+   </div>
+   <div class="col-12 md:col-4">
+    <div><label>Department Name</label></div>
+    <input type="text" pInputText name="departmentName" [(ngModel)]="departmentName" [disabled]="!editmode" />
+   </div>
+   <div class="col-12 md:col-4">
+    <div><label>No Of Employees</label></div>
+    <input type="text" pInputText name="noOfEmployee" [(ngModel)]="noOfEmployee" [disabled]="!editmode"/>
+   </div>
+   <div class="col-12 md:col-4">
+    <div> <label> Manager Id</label></div>
+    <input type="text" pInputText [(ngModel)]="managerId" name="managerId"[disabled]="!editmode"/>
+      </div>
+      <div class="col-12 md:col-4">
+        <div>  <label> CreatedSource:</label></div>
          <input type="text" pInputText  [(ngModel)]="createdSource" name="createdSource" [disabled]="!editmode"/>
            </div>
-     
-           <div>
-            <div> <label> createdSourceType:</label></div>
-         <input type="text" pInputText [(ngModel)]="createdSourceType" name="createdSourceType" [disabled]="!editmode"/>
-           </div>
-          
-           <div>
-             <div><label>  createdDttm:</label></div>
-           
-             <input type="text" pInputText   [(ngModel)]="createdDttm" name="createdDttm"  [disabled]="!editmode"/>
-           </div>
-  
-           <div>
-             <div><label>  modifiedSource:</label></div>
-         <input type="text" pInputText [(ngModel)]="modifiedSource" name="modifiedSource" [disabled]="!editmode"/>
-           </div>
-           
-           <div>
-            <div> <label> modifiedSourceType:</label></div>
-         <input type="text" pInputText [(ngModel)]="modifiedSourceType" name="modifiedSourceType" [disabled]="!editmode"/>
-           </div>
-  
-           <div>
-            <div> <label>  modifiedDttm:</label></div>
-         <input type="text" pInputText  [(ngModel)]="modifiedDttm" name="modifiedDttm" [disabled]="!editmode"/>
-           </div>
-             
-               <div >
-                <button pButton type="button" label="BACK"  class="p-button-secondary" (click)="backtodept()"></button>                    
+           <div class="col-12 md:col-4">
+           <div> <label> CreatedSourceType:</label></div>
+           <input type="text" pInputText [(ngModel)]="createdSourceType" name="createdSourceType" [disabled]="!editmode"/>
              </div>
-      
-     </div> 
-    </form>
-    <hr>
-<app-footer></app-footer>
+             <div class="col-12 md:col-4">
+              <div><label>  CreatedDttm:</label></div>
+              <input type="text" pInputText   [(ngModel)]="createdDttm" name="createdDttm"  [disabled]="!editmode"/>
+           </div>
+           <div class="col-12 md:col-4">
+            <div><label>  ModifiedSource:</label></div>
+            <input type="text" pInputText [(ngModel)]="modifiedSource" name="modifiedSource" [disabled]="!editmode"/>
+              </div>
+              <div class="col-12 md:col-4">
+                <div> <label> ModifiedSourceType:</label></div>
+                <input type="text" pInputText [(ngModel)]="modifiedSourceType" name="modifiedSourceType" [disabled]="!editmode"/>
+              </div>
+              <div class="col-12 md:col-12">
+                <div> <label>  modifiedDttm:</label></div>
+                <input type="text" pInputText  [(ngModel)]="modifiedDttm" name="modifiedDttm" [disabled]="!editmode"/>
+                  </div>
+                  <div class="col-8 md:col-4">
+                    <button pButton type="button" label="Back"  class="p-button-secondary backEle" (click)="backtodept()"></button>                    
+                  </div>
+               
+</div>
+</form>
+
+    

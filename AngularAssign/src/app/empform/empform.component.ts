@@ -4,6 +4,7 @@ import {  Router } from '@angular/router';
 import { Message } from 'primeng/api/message';
 
 import { ServicesService } from '../services.service';
+import { EmpService } from '../emp.service';
 
 @Component({
   selector: 'app-empform',
@@ -11,42 +12,66 @@ import { ServicesService } from '../services.service';
   styleUrls: ['./empform.component.css']
 })
 export class EmpformComponent {
-  employeeId='';
-  firstName='';
-  lastName='';
-  Gender='';
-  Gender1='';
-  Gender2='';
-  dob:Date;
-  emailId='';
-  // phcode='91';
-  PhoneNumber='';
-  BloodGroup='';
-  address='';
-  Department='';
-  dateOfJoining:Date;
-  Salary='';
-  shift='';
-  createdSource='';
-  createdSourceType='';
-  createdDttm='';
-  modifiedSource='';
-  modifiedSourceType='';
-  modifiedDttm;
+  
   sucessmessagedata: Message[];
  
+  maxDate=new Date();
+bloodGroup:any;
+shift:any;
+  constructor(private service:ServicesService,private router:Router){
+   this.bloodGroup =[
+    {name:'A'},
+    {name:'A+'},
+    {name:'B'},
+    {name:'B+'},
+    {
+      name:'AB'
+    }
+   ];
+   this.shift=[
+    {name:'day'},
+    {name:'night'}
+   ]
+  }
 
 
-  constructor(private service:ServicesService,private router:Router ){}
-  @ViewChild('EmployeeForm')myform:NgForm;
+  empdetailObj: EmpService = new EmpService();
+
+empdetailsintialization(){
+ this.empdetailObj={
+  employeeId:'',
+  firstName:'',
+  lastName:'',
+  gender:'',
+  dob:'',
+  emailId:'',
+  phoneNumber:'',
+  BloodGroup:'',
+  address:'',
+  Department:'',
+  dateOfJoining:'',
+  salary:'',
+  shift:'',
+  createdSource:'',
+  createdSourceType:'',
+  createdDttm:'',
+  modifiedSource:'',
+  modifiedSourceType:'',
+  modifiedDttm:''
+ }
+}
 
   ngOnInit(){
-    this.employeeId=this.service.emplyeeid;
-
-  
+   
+    this.sucessmessagedata=this.service.empidsucessmessagedata;
+    this.empdetailsintialization();
+    this.empdetailObj.employeeId=this.service.emplyeeid;
   }
-  onSubmit(EmployeeForm:NgForm){
-    this.service.addempdetails(EmployeeForm).subscribe();
+  onSubmit(){
+    this.empdetailObj.createdSource="admin";
+    this.empdetailObj.createdSourceType="admin";
+    this.empdetailObj.createdDttm= new Date();
+    this.service.addempdetails(this.empdetailObj).subscribe();
     [
       {
         severity: 'success', 
@@ -57,30 +82,24 @@ export class EmpformComponent {
    this.router.navigate(['/EMP']);
   }
   formcancelbtn(){
-    this.firstName='';
-    this.lastName='';
-    this.Gender='';
-    this.Gender1='';
-    this.Gender2='';
-    this.dob.setDate(null);
-    this.emailId='';
-    // this.phcode='';
-    this.PhoneNumber='';
-    this.BloodGroup='';
-    this.address='';
-    this.Department='';
-    this.dateOfJoining.setDate(null);
-    this.Salary='';
-    this.shift='';
-    this.createdSource='';
-    this.createdSourceType='';
-    this.createdDttm='';
-    this.modifiedSource='';
-    this.modifiedSourceType='';
-    this.modifiedDttm='';
+    this.empdetailObj.firstName='';
+    this.empdetailObj.lastName='';
+    this.empdetailObj.dob='';
+    this.empdetailObj.emailId='';
+    this.empdetailObj.phoneNumber='';
+    this.empdetailObj.BloodGroup='';
+    this.empdetailObj.address='';
+    this.empdetailObj.Department='';
+    this.empdetailObj.dateOfJoining='';
+    this.empdetailObj.salary='';
+    this.empdetailObj.shift='';
+    this.empdetailObj.createdSource='';
+    this.empdetailObj.createdSourceType='';
+    this.empdetailObj.createdDttm='';
+    this.empdetailObj.modifiedSource='';
+    this.empdetailObj.modifiedSourceType='';
+    this.empdetailObj.modifiedDttm='';    
+    this.router.navigate(['/EMP']);
+    }
     
-    }
-    backtoemp(){
-      this.router.navigate(['/EMP']);
-    }
 }

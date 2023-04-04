@@ -1,5 +1,5 @@
 import { HttpErrorResponse } from '@angular/common/http';
-import { Component, ViewChild } from '@angular/core';
+import { Component, ViewChild, ViewEncapsulation } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { response } from 'express';
@@ -13,7 +13,8 @@ import { ServicesService } from '../services.service';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  styleUrls: ['./login.component.css'],
+  encapsulation: ViewEncapsulation.None
 })
 export class LoginComponent {
   UserName:string;
@@ -37,17 +38,15 @@ export class LoginComponent {
 
   constructor(private router:Router,private services:ServicesService){}
 
+  loginUserAccount(){
 
 
-
-  loginUserAccount(mylogin){
-
-
-                 this.services.usercheck(mylogin)
+                 this.services.usercheck(this.UserName,this.password)
                  .subscribe(
                   response =>{
                     if(response == true){
-                      localStorage.setItem('username',mylogin.value.UserName);
+                      localStorage.setItem('empbooleanvalue',"true");
+                      localStorage.setItem('username',this.UserName);
                       this.router.navigate(['/HOME']);
                     }
                     else{

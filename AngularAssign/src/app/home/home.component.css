@@ -1,24 +1,32 @@
-/* .navEle{
-    position: relative;
-    top:-70px;
-    background-color:#89cfe8;
-    color:white;
-    height: 150px;
-    margin: 10px;
-}
-.navheadingEle{
-    position: relative;
-    left: 20px;
-    top: 5px;
-    padding: 10px;
-    font-size: 40px;
-}
-.grapele{
-    width:1400px;
-    height: 350px;
-} */
+
 
 
 .fa {
     font: normal normal normal 31px/1 FontAwesome !important;
+  }
+ 
+  .navEle{
+    position: relative;
+   top: -44px;
+    
+  }
+  .dashboardEle {
+    position: relative;
+    left: 107px;
+    top:10px;
+  }
+.homeContainer{
+  top: -70px;
+ 
+  border: 2px solid black;
+  height: 530px;
+  left: 120px;
+  position: relative;
+}
+
+  @media (max-width:666px) and (min-width:320px){
+.navEle{
+    margin: 0px;
+    width: 1280px;
+}
   }
