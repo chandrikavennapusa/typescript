@@ -29,8 +29,8 @@ shift:any;
     }
    ];
    this.shift=[
-    {name:'day'},
-    {name:'night'}
+    {name:'day',code:'day'},
+    {name:'night',code:'day'}
    ]
   }
 
@@ -67,10 +67,21 @@ empdetailsintialization(){
     this.empdetailsintialization();
     this.empdetailObj.employeeId=this.service.emplyeeid;
   }
+
+ shift19;
+ bloddgroup1;
   onSubmit(){
-    this.empdetailObj.createdSource="admin";
-    this.empdetailObj.createdSourceType="admin";
+    console.log(this.empdetailObj);
+
+    this.empdetailObj.BloodGroup=this.bloddgroup1.name;
+    this.empdetailObj.shift=this.shift19.name;
+
+
+    this.empdetailObj.createdSource=localStorage.getItem('username');
+    this.empdetailObj.createdSourceType=localStorage.getItem('username');;
     this.empdetailObj.createdDttm= new Date();
+    console.log(this.shift19);
+
     this.service.addempdetails(this.empdetailObj).subscribe();
     [
       {

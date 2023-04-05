@@ -22,7 +22,7 @@ const routes: Routes = [
   {path:'EMP',canActivate: [CanactivateService],component:EmployeeComponent},
   {path:'EMPLIST',canActivate: [CanactivateService], component:EmplistComponent},
   {path:'EMPFORM',canActivate: [CanactivateService],component:EmpformComponent},
-  {path:'DEPT',component:DepartmentComponent},
+  {path:'DEPT',canActivate: [CanactivateService],component:DepartmentComponent},
   {path:'DEPTLIST',canActivate: [CanactivateService], component:DeptdetaillistComponent},
   {path:'ATDE',canActivate: [CanactivateService],component:AttendanceComponent},
   {path:'ATDELIST',canActivate: [CanactivateService],component:AttendecelistComponent},
@@ -32,7 +32,8 @@ const routes: Routes = [
 
 @NgModule({
   imports: [RouterModule.forRoot(routes, {
-    initialNavigation: 'enabledBlocking'
+    initialNavigation: 'enabledBlocking',
+    // onSameUrlNavigation: 'reload'
 })],
   exports: [RouterModule]
 })

@@ -1,26 +1,27 @@
 
 
-<div class="bg-cyan-100 gird relative h-6rem navEle">
-    <h2> <span> <i class="material-icons">people</i> </span> Attendence List </h2>
-</div>
+<div class="bg-cyan-100 gird w-full relative h-6rem navEle">
+    <h2 class="attendelistEle"> <span> <i class="material-icons">people</i> </span> Attendence List </h2>
+</div >
 <form #attendencedetails="ngForm" (ngSubmit)="onsubmit()" ngNativeValidate>
 
-    <div class="grid formtableconatiner">
+    <div class="grid formtableconatiner ">
         <div class="col-12 md:col-3">
-            <div><label> Employee Id</label></div>
-                <input type="text" pInputText name="employeeId" [(ngModel)]="attendetailObj.employeeId" class="inputlenEle" readonly/>
+            <div><label>Employee Id *</label></div>
+                <input type="text" pInputText name="employeeId" [(ngModel)]="attendetailObj.employeeId" required class="inputlenEle"disabled />
         </div>
         <div class="col-12 md:col-3">
-            <div><label> Month</label></div>
+            <div><label>Month *</label></div>
             <p-calendar  name="month" [(ngModel)]="attendetailObj.month" view="month" dateFormat="mm.yy" class="inputlenEle"  #month1="ngModel" [required]="true" > </p-calendar>
                 <div class="errmessageEle" *ngIf="month1.touched && month1.invalid" > enter the valid name</div>
             </div>
-            <div class="col-12 md:col-6"><div><label>Date</label></div>
+            <div class="col-12 md:col-6">
+                <div><label>Date *</label></div>
             <p-calendar  name="date" [(ngModel)]="attendetailObj.date" view="date" dateFormat="dd"  [required]="true"> </p-calendar>
         </div>
         <div class="col-12 md:col-3">
-            <div><label>Department Id</label></div>
-            <input type="text" pInputText name="departmentId" [(ngModel)]="attendetailObj.departmentId" class="inputlenEle" readonly/>
+            <div><label>* Department Id</label></div>
+            <input type="text" pInputText name="departmentId" [(ngModel)]="attendetailObj.departmentId" required class="inputlenEle" disabled />
         </div>
 
         <div class="col-12 md:col-3">
@@ -38,20 +39,27 @@
         </div>
         <div class="col-12 md:col-6">
             <div><label>Check In</label></div>
-                <input type="text" pInputText name="checkIn" class="inputlenEle" [(ngModel)]="attendetailObj.checkIn"/>
+            <p-calendar [(ngModel)]="attendetailObj.checkIn" 
+            name="checkIn"  dateFormat="dd/mm/yy"  
+            > </p-calendar>
+                <!-- <input type="text" pInputText name="checkIn" class="inputlenEle" [(ngModel)]="attendetailObj.checkIn"/> -->
             </div>
             <div class="col-12 md:col-3">
                 <div><label>Check out</label></div>
-                <input type="text" pInputText name="checkout" class="inputlenEle" class="inputlenEle" [(ngModel)]="attendetailObj.checkout"/>
+                <p-calendar [(ngModel)]="attendetailObj.checkout"
+                name="checkout"  dateFormat="dd/mm/yy"  
+            > </p-calendar>
+                <!-- <input type="text" pInputText name="checkout" class="inputlenEle" class="inputlenEle" [(ngModel)]="attendetailObj.checkout"/> -->
             </div>  
             <div class="col-12 md:col-3">
-                <div><label>AttendanceCount</label></div>
-            <input type="text" pInputText name="attendanceCount" class="inputlenEle" [(ngModel)]="attendetailObj.attendanceCount" #count="ngModel" required/>
+                <div><label>AttendanceCount *</label></div>
+            <input type="text" pInputText name="attendanceCount" class="inputlenEle" pattern="^[0-9]+$" [(ngModel)]="attendetailObj.attendanceCount" #count="ngModel" required/>
                 <div class="errmessageEle" *ngIf="count.touched && count.invalid" > enter the valid name</div>
             </div>
             <div class="col-12 md:col-6">
                 <div><label>Shift</label></div>
-                <input type="text" pInputText name="shift" class="inputlenEle"  [(ngModel)]="attendetailObj.shift" required #shift1="ngModel"/>
+                <p-dropdown [options]="shift" name="shift" class="inputlenEle" 
+                 [(ngModel)]="attendetailObj.shift"  #shift1="ngModel"   optionLabel="name"></p-dropdown>
                 <div class="errmessageEle" *ngIf="shift1.touched && shift1.invalid" > enter the valid name</div>
             </div>
             <div class="col-12 md:col-3">

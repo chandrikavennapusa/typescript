@@ -9,7 +9,19 @@ import { AttenService } from '../atten.service';
   styleUrls: ['./attendecelist.component.css']
 })
 export class AttendecelistComponent {
-
+  
+shift;
+constructor(private service:ServicesService,private router:Router){
+  this.shift=[
+    {name:'day'},
+    {name:'night'}
+   ]
+  }
+  ngOnInit(){
+    this.attendetailsintialization();
+     this.attendetailObj.employeeId=this.service.EmployeeId;
+      this.attendetailObj.departmentId=this.service.DepartmentId;
+  }
   attendetailObj: AttenService= new AttenService();
 
   attendetailsintialization(){
@@ -33,11 +45,12 @@ export class AttendecelistComponent {
     }
 
   }
+ 
 
   onsubmit(){
     
-    this.attendetailObj.createdSource="admin";
-    this.attendetailObj.createdSourceType="admin";
+    this.attendetailObj.createdSource=localStorage.getItem("username");
+    this.attendetailObj.createdSourceType=localStorage.getItem("username");
     this.attendetailObj.createdDttm= new Date;
 
     this.service.addattendencedata(this.attendetailObj).subscribe();
@@ -45,13 +58,9 @@ export class AttendecelistComponent {
     console.log(this.attendetailObj)
 
   }
-  constructor(private service:ServicesService,private router:Router){}
 
-  ngOnInit(){
-    this.attendetailsintialization();
-     this.attendetailObj.employeeId=this.service.EmployeeId;
-      this.attendetailObj.departmentId=this.service.DepartmentId;
-  }
+
+ 
   gobackatten(){
     this.router.navigate(['/ATDE'])
   }

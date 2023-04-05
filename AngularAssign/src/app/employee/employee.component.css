@@ -1,6 +1,7 @@
    
     .navEle{
-        top:-20px;
+        position: relative;
+        top:90px;
         
     }
     .backgroundcolor{
@@ -21,11 +22,15 @@
     .emptabledetailContiner{
         width: 1450px;
        position: relative;
-         top: -60px;
+         top: 50px;
          left: 40px;
          background-color: white;
-    }
-
+    } 
+.emplistEle{
+    position: relative;
+    margin-left: 66px;
+    top: 9px;
+}
     @media (max-width:666px) and (min-width:320px){
         .empidformcontainer{
             left: 30px;

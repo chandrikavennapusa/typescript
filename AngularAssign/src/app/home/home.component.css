@@ -4,25 +4,23 @@
 .fa {
     font: normal normal normal 31px/1 FontAwesome !important;
   }
- 
-  .navEle{
-    position: relative;
-   top: -44px;
-    
-  }
-  .dashboardEle {
-    position: relative;
-    left: 107px;
-    top:10px;
-  }
-.homeContainer{
-  top: -70px;
- 
-  border: 2px solid black;
-  height: 530px;
-  left: 120px;
+ .homeEleContainer{
   position: relative;
-}
+  top:77px;
+ }
+
+ .homeContainer {
+  border: 2px solid;
+ height: 500px;
+ position: relative;
+ top:-40px;
+ left:100px
+ }
+ .dashboardEle{
+  margin-left: 95px;
+    position: relative;
+    top: 11px;
+ }
 
   @media (max-width:666px) and (min-width:320px){
 .navEle{

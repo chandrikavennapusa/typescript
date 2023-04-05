@@ -10,17 +10,20 @@
   <form  #EmployeeForm="ngForm" (ngSubmit)="onSubmit()" ngNativeValidate>
   <div class="formgrid grid formtablecontainer">
                            <div  class="col-12 md:col-3  ">
-                            <div><label> Employee Id </label></div>
-                            <input type="text" pInputText name="employeeId" [(ngModel)]="empdetailObj.employeeId"  [disabled]="true" />
+                            <div><label> Employee Id *</label></div>
+                            <input type="text" pInputText name="employeeId"
+                             [(ngModel)]="empdetailObj.employeeId"  [disabled]="true" />
                             </div>
 
                             <div  class=" field col-12 md:col-3  ">
-                              <div><label> First Name</label></div>
-                                <input type="text" pInputText name="firstName" [(ngModel)]="empdetailObj.firstName" required pattern="^[a-zA-Z]+$" [disabled]="!editmode" />
+                              <div><label>First Name * </label></div>
+                                <input type="text" pInputText name="firstName" 
+                                [(ngModel)]="empdetailObj.firstName" required pattern="^[a-zA-Z]+$" 
+                                [disabled]="!editmode" />
                             </div>
 
                             <div class="field col-12  md:col-6"> 
-                              <div><label> Last Name</label></div>
+                              <div><label> Last Name * </label></div>
                              <input type="text" pInputText name="lastName" [(ngModel)]="empdetailObj.lastName"  required  pattern="^[a-zA-Z]+$" [disabled]="!editmode"/>
                             </div>
 
@@ -46,26 +49,35 @@
                          </div>
                             </div>
                             <div class="field col-12 md:col-3 ">
-                              <div> <label> Date of Birth</label></div>
+                              <div> <label> Date of Birth * </label></div>
                               <p-calendar [(ngModel)]="empdetailObj.dob" name="dob"  dateFormat="dd/mm/yy" [required]="true"   [disabled]="!editmode"> </p-calendar>
                             </div>
 
                               <div class=" field col-12 md:col-6 ">
                                 <div> <label> Mobile No</label></div>
-                               <p-inputNumber [(ngModel)]="empdetailObj.phoneNumber" name="phoneNumber" mode="decimal" [disabled]="!editmode" ></p-inputNumber>
+                                <input type="text" pInputText pKeyFilter="num" [(ngModel)]="empdetailObj.phoneNumber" name="phoneNumber" pattern="^((\\+91-?)|0)?[0-9]{10}$" mode="decimal" [disabled]="!editmode" >
                               </div>
                               <div class="field col-12 md:col-3">
-                                <div> <label> Date Of Joining</label></div>
+                                <div> <label> Date Of Joining *</label></div>
                                 <p-calendar [(ngModel)]="empdetailObj.dateOfJoining" name="dateOfJoining"  dateFormat="dd/mm/yy"  [required]="true" [disabled]="!editmode"> </p-calendar>
                               </div>
 
                               <div class="field col-12 md:col-3">
-                                <div> <label> Salary</label></div>
+                                <div> <label> Salary *</label></div>
                                 <input type="text" pInputText [(ngModel)]="empdetailObj.salary" name="salary" required pattern="^[0-9]*$" [disabled]="!editmode"/>
                               </div>
                               <div  class="field col-12 md:col-6">
-                                <div> <label> Shift</label></div>
-                                <input type="text" pInputText  [(ngModel)]="empdetailObj.shift" name="shift" #shift1="ngModel" required [disabled]="!editmode"/>
+                                <div> <label> Shift *</label></div>
+                                <p-dropdown [options]="shift"  
+                               
+                                [(ngModel)]="shift19" 
+                                name="shift" 
+                                [disabled]="!editmode" 
+                                optionLabel="name"></p-dropdown>
+                           
+                               <!-- <div class="errmessageEle" *ngIf="shift1.touched && shift1.invalid" > enter the valid name</div> -->
+
+                                <!-- <input type="text" pInputText  [(ngModel)]="empdetailObj.shift" name="shift" #shift1="ngModel" required [disabled]="!editmode"/> -->
                               </div>
                               <div  class="field col-12 md:col-3">
                                 <div>  <label> CreatedSource:</label></div>
@@ -77,7 +89,7 @@
                               </div>
                               <div class="field col-12 md:col-6"> 
                                 <div><label>  CreatedDttm:</label></div>
-                                <p-calendar  [(ngModel)]="empdetailObj.createdDttm" name="createdDttm"   dateFormat="dd/mm/yy" [disabled]="true"  [required]="true"> </p-calendar>
+                                <p-calendar  [(ngModel)]="empdetailObj.createdDttm" name="createdDttm" readonly  dateFormat="dd/mm/yy" [disabled]="true"  > </p-calendar>
                               </div>
                               <div class="field col-12 md:col-3"> 
                                 <div><label>  ModifiedSource:</label></div>

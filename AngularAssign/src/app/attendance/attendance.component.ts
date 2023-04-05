@@ -28,21 +28,43 @@ export class AttendanceComponent {
   errormessagedataEle=false;
   gettingattendencedata:any=[];
   constructor(private service:ServicesService,private router:Router,private confirmationService: ConfirmationService){}
-
+  cols;
   empdata;
   deptdata;
     ngOnInit(){
+
+      this.cols = [
+        { field: 'employeeId', header: 'Employee Id' },
+        { field: 'month', header: 'Month' },
+        { field: 'date', header: 'Date' },
+        { field: 'departmentId', header: 'Department Id' },
+        { field: 'available', header: 'Available' },
+        { field: 'checkIn', header: 'Check In' },
+        { field: 'checkout', header: 'Check Out' },
+        { field: 'attendanceCount', header: 'Attendance Count' },
+        { field: 'shift', header: 'Shift' },
+        { field: 'createdSource', header: 'CreatedSource' },
+        { field: 'createdSourceType', header: 'CreatedSourceType' },
+        { field: 'createdDttm', header: 'CreatedDttm' },
+        { field: 'modifiedSource', header: 'ModifiedSource' },
+        { field: 'modifiedSourceType', header: 'ModifiedSourceType' },
+        { field: 'modifiedDttm', header: 'ModifiedDttm' },
+    ];
+  
+
      this.service.gettingempdetails().subscribe(
       response=>
-     
       this.empdata=(response)
-     
      );
      
      this.service.gettingDeptdata().subscribe(
       data=>this.deptdata=data
      );
+
+
       this.gettingData();
+
+
       let username =localStorage.getItem("username");
       if(username == "employee" ){
         this.addbtndisable=false;
@@ -51,6 +73,12 @@ export class AttendanceComponent {
    }
       
     }
+
+
+
+
+
+
     
     addAttendece(){
         this.attendenceempidhidden=true;
@@ -185,9 +213,12 @@ export class AttendanceComponent {
 
 
    
-    doubleClick(rowData){
+    doubleClick(employeeId){
+
+      this.service.attendenceemployeeid = employeeId;
       this.router.navigate(['/ATTDEFORM']);
-      this.service.setAttendencedata(rowData);
+      // this.service.setAttendencedata(rowData);
+    
       }
 
 
@@ -206,21 +237,7 @@ export class AttendanceComponent {
           
         },
         (err:HttpErrorResponse)=>{
-          this.gettingattendencedata=[];
-        
-          // this.errormessagedata=[
-          //   {
-          //        severity: 'error', 
-          //         summary: 'Employee list', 
-          //       detail:err.error
-          //       }
-          //     ]
-          //     this.successmessagedataEle=false;
-          //     this.errormessagedataEle=true;
-         
-          //  this.error=err.error;
-        
-         console.log(this.gettingattendencedata)
+          this.gettingattendencedata=[];     
         },
         () => {
        console.log("completed");

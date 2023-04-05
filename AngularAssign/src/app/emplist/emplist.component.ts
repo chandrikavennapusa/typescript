@@ -19,7 +19,13 @@ export class EmplistComponent {
   editmode =false; 
   editbtndisable=true;
   fetchingdata;
-constructor(private service:ServicesService , private router:Router){}
+  shift;
+constructor(private service:ServicesService , private router:Router){
+  this.shift=[
+    {name:'day',code:'day'},
+    {name:'night',code:'day'}
+   ]
+}
 
 empdetailObj: EmpService = new EmpService();
 
@@ -46,11 +52,14 @@ empdetailsintialization(){
   modifiedDttm:''
  }
 }
+shift19;
+
   onSubmit(){
 
-
-    this.empdetailObj.modifiedSource="admin";
-    this.empdetailObj.modifiedSourceType="admin";
+      this.empdetailObj.shift=this.shift19.name;
+        
+    this.empdetailObj.modifiedSource=localStorage.getItem("username");
+    this.empdetailObj.modifiedSourceType=localStorage.getItem("username");
     this.empdetailObj.modifiedDttm= new Date();
     this.service.updateempid(this.empdetailObj).subscribe();
     
@@ -64,12 +73,21 @@ empdetailsintialization(){
   backtoemplistbtn(){
     this.router.navigate(['/EMP']);
   }
+dropdownshift(){
+  if(this.shift19 == 'night'){
+    this.shift=[{name:'night'}]
+  }else{
+    this.shift=[{name:'day'}]
+  }
+}
+
  ngOnInit(){
 //  this.service.employeeid;
  console.log(this.service.employeeid)
  this.service.getempid(this.service.employeeid).subscribe(
         data =>{this.fetchingdata=data;
-          this.empdetailObj.employeeId=this.fetchingdata.employeeId;
+          console.log(this.fetchingdata)
+  this.empdetailObj.employeeId=this.fetchingdata.employeeId;
   this.empdetailObj.firstName=this.fetchingdata.firstName;
   this.empdetailObj.lastName=this.fetchingdata.lastName;
   this.empdetailObj.gender=this.fetchingdata.gender;
@@ -82,7 +100,12 @@ empdetailsintialization(){
   let doj = new Date(this.fetchingdata.dateOfJoining);
   this.empdetailObj.dateOfJoining=doj;
   this.empdetailObj.salary=this.fetchingdata.salary;
-  this.empdetailObj.shift=this.fetchingdata.shift;
+
+
+ 
+  this.shift19=this.fetchingdata.shift;
+          this.dropdownshift();
+
   this.empdetailObj.createdSource=this.fetchingdata.createdSource;
   this.empdetailObj.createdSourceType=this.fetchingdata.createdSourceType;
   let Cd = new Date(this.fetchingdata.createdDttm)
@@ -110,7 +133,7 @@ empdetailsintialization(){
  }
  editbtnviewmode(){
   this.editmode=true;
-  
+  this.shift=[{name:'day'},{name:'night'}];
   this.disabledsubmitcancelbtn=true;
   this.disablededitbackbtn=false;
  }

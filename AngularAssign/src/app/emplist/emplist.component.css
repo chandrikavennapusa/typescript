@@ -3,11 +3,16 @@
     left:30px;
     margin-top: 30px;
     margin-bottom: 45px;
-    
+    top:119px;
 }
+:host ::ng-deep .p-dropdown {
+    width: 198px;
+    position: relative;
+  }
 
 .navEle{
-    width:1650px;
+    position: relative;
+    top: 130px;
 }
 .savebtnEle{
     position: relative;

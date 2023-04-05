@@ -4,19 +4,25 @@
     margin-right: 23px;
 }
 .emplistcontainer{
- height: 100%;
+    height: 100%;
 position:relative;
 left: 70px;
+top:52px;
 }
 :host ::ng-deep .p-dropdown {
     width: 198px;
   }
   
 .emplistheader{
-    width: 1658px;
+ position: relative;
+ top:120px
 }
 .errmessageEle{
     color: red;
+}
+.emplistEle{
+    position: relative;
+    margin-left: 75px;
 }
 @media (max-width:666px) and (min-width:320px){
 

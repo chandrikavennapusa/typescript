@@ -8,10 +8,14 @@ import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot } from
 export class CanactivateService implements CanActivate{
 
   constructor( private router: Router) { }
-  canActivate() {
+  canActivate(route:ActivatedRouteSnapshot,state:RouterStateSnapshot) {
   
    if ( String(localStorage.getItem("empbooleanvalue")) == "false") {
-    this.router.navigate(['/Login']);
+    this.router.navigate(['/Login'],
+    // {queryParams:{redirectUrl: state.url }}
+   
+    );
+     return false
  }
   
    return true;

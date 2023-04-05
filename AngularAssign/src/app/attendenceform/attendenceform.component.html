@@ -1,7 +1,8 @@
 
     
-   
-     <div class="grid bg-cyan-100 h-6rem navEle">
+   <div class="attendenceFormContainer">
+    
+    <div class="grid bg-cyan-100 h-6rem navEle">
       <h2> <span> <i class="material-icons">people</i> </span> Attendence List </h2>
     </div>
 
@@ -9,20 +10,27 @@
     <form  #AttendenceForm="ngForm" (ngSubmit)="onSubmit()" ngNativeValidate>
     <div class="grid attendenceform">
         <div class="col md:col-3">
-          <div><label>* Employee Id </label></div>
+          <div><label>Employee Id *</label></div>
           <input type="text" pInputText name="employeeId" [(ngModel)]="attendetailObj.employeeId" [disabled]="true" required />
          </div>
          <div class="col md:col-3">
-          <div> <label>Month</label></div>
-          <p-calendar [(ngModel)]="attendetailObj.month" name="month"  view="month" dateFormat="mm"  [required]="true" [disabled]="editmode"> </p-calendar>
-         </div>
+          <div> <label>Month *</label></div>
+          <p-calendar [(ngModel)]="attendetailObj.month" name="month"  #month1="ngModel"
+           view="month" dateFormat="mm"  [required]="true" [disabled]="editmode"> 
+          </p-calendar>
+          <div class="errmessageEle" *ngIf="month1.touched && month1.invalid" > enter the valid month</div>
+        </div>
          <div class="col md:col-6">
-          <div> <label>Date</label></div>
-          <p-calendar [(ngModel)]="attendetailObj.date" name="date" view="date" dateFormat="d" [required]="true" [disabled]="editmode"> </p-calendar>
+          <div> <label>Date *</label></div>
+          <p-calendar [(ngModel)]="attendetailObj.date" #date1="ngModel"
+          name="date" view="date" dateFormat="d" [required]="true" [disabled]="editmode">
+          <div class="errmessageEle" *ngIf="date1.touched && date1.invalid" > enter the valid name</div>
+         </p-calendar>
          </div>
          <div class="col md:col-3">
-          <div><label> DepartmentId </label></div>
-                             <input type="text" pInputText name="departmentId" [(ngModel)]="attendetailObj.departmentId" [disabled]="editmode" readonly/>
+          <div><label>DepartmentId *</label></div>
+                             <input type="text" pInputText name="departmentId"
+                              [(ngModel)]="attendetailObj.departmentId" [disabled]="true"required/>
          </div>
 
                             <div class="col md:col-3">
@@ -41,19 +49,35 @@
                             
                             <div class="col md:col-6">
                               <div><label>Check In</label></div>
-                                 <input type="text" pInputText  [(ngModel)]="attendetailObj.checkIn" name="checkIn" [disabled]="editmode"/>
+                              <p-calendar [(ngModel)]="attendetailObj.checkIn" 
+                              name="checkIn"  dateFormat="dd/mm/yy"  [disabled]="editmode"
+                              > </p-calendar>
+                                 <!-- <input type="text" pInputText  [(ngModel)]="attendetailObj.checkIn" name="checkIn" [disabled]="editmode"/> -->
                             </div>
                             <div class="col md:col-3">
                               <div> <label> Checkout:</label></div>
-                 <input type="text" pInputText [(ngModel)]="attendetailObj.checkout" name="checkout" [disabled]="editmode" />
+                              <p-calendar [(ngModel)]="attendetailObj.checkout"
+                              name="checkout"  dateFormat="dd/mm/yy"  [disabled]="editmode"
+                          > </p-calendar>
+                 <!-- <input type="text" pInputText [(ngModel)]="attendetailObj.checkout" name="checkout" [disabled]="editmode" /> -->
                    </div>
                    <div class="col md:col-3">
-                    <div> <label>AttendanceCount</label></div>
-                    <input type="text" pInputText [(ngModel)]="attendetailObj.attendanceCount" name="attendanceCount" [disabled]="editmode"/>
+                    <div> <label>* AttendanceCount</label></div>
+                    <input type="text" pInputText [(ngModel)]="attendetailObj.attendanceCount" pattern="^[0-9]+$" #count="ngModel"
+                     name="attendanceCount" [disabled]="editmode"/>
+                     <div class="errmessageEle" *ngIf="count.touched && count.invalid" > enter the valid name</div>
                       </div>
                       <div class="col md:col-6">
                         <div> <label> Shift:</label></div>
-                        <input type="text" pInputText  [(ngModel)]="attendetailObj.shift" name="shift" [disabled]="editmode"/>
+
+                        <p-dropdown [options]="shift"
+                         name="shift" class="inputlenEle" 
+                        [(ngModel)]="shift11" 
+                       
+                         #shift1="ngModel"  [disabled]="editmode"  optionLabel="name"></p-dropdown>
+
+                         <!-- dataKey="attendetailObj.shift"  optionValue="attendetailObj.shift" -->
+                        <!-- <input type="text" pInputText  [(ngModel)]="attendetailObj.shift" name="shift" [disabled]="editmode"/> -->
                           </div>
                           <div class="col md:col-3">
                             <div>  <label> CreatedSource:</label></div>
@@ -91,3 +115,5 @@
                  </div>               
     </div>
     </form>
+
+   </div>

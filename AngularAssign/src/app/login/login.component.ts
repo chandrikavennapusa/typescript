@@ -1,7 +1,7 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, ViewChild, ViewEncapsulation } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { response } from 'express';
 import { Message } from 'primeng/api';
 import { Observable } from 'rxjs';
@@ -36,8 +36,11 @@ export class LoginComponent {
 
  
 
-  constructor(private router:Router,private services:ServicesService){}
-
+  constructor(private router:Router,private services:ServicesService , private activatedroute:ActivatedRoute){}
+redirectUrl='';
+ngOnInit(){
+  this.redirectUrl=this.activatedroute.snapshot.queryParamMap.get('redirectUrl')
+}
   loginUserAccount(){
 
 

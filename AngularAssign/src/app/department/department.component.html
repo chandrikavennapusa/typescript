@@ -1,13 +1,13 @@
 
-<div class="p-grid">
-    <div class="p-col bg-cyan-100 w-full h-6rem relative navEle">
-        <h2> <span> <i class="material-icons">people</i> </span> Department List </h2>
+<div class="p-grid navEle">
+    <div class="p-col bg-cyan-100 w-full h-6rem relative ">
+        <h2 class="deptlistEle"> <span> <i class="material-icons">people</i> </span> Department List </h2>
     </div>
 </div>
 
-<div class=" card w-12 surface-section relative tableContainer">
+<div class=" card w-11 surface-section relative tableContainer">
 
-    <p-table [value]="getDeptDetails"   
+    <!-- <p-table [value]="getDeptDetails"   
     styleClass="p-datatable-striped"
     [paginator]="true"
     [rows]="5"
@@ -45,7 +45,37 @@
             </tr>
         </ng-template>
     </p-table>
+     -->
+     <p-table [columns]="cols" [value]="getDeptDetails"
+      [paginator]="true"
+      [rows]="10"
+      [showCurrentPageReport]="true"
+      currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+      [rowsPerPageOptions]="[5,10,15,20]"
+      paginatorPosition="bottom"
+      responsiveLayout="scroll">
+        <ng-template pTemplate="header" let-columns>
+            <tr>
+                <th *ngFor="let col of columns" [pSortableColumn]="col.field">
+                    {{col.header}}
+                    <p-sortIcon [field]="col.field"></p-sortIcon>
+                </th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-rowData let-columns="columns">
+            <tr (dblclick)="doubleClick(rowData.departmentId)">
+                <td *ngFor="let col of columns">
+                    {{rowData[col.field]}}
+                </td>
+            </tr>
+        </ng-template>
     
+      <ng-template pTemplate="emptymessage">
+        <tr>
+    <td colspan="16" style="text-align: center;">No data found</td>
+       </tr>
+    </ng-template>
+    </p-table>
 
 
 </div>

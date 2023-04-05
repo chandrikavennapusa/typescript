@@ -21,7 +21,7 @@ export class EmployeeComponent {
   gettingempdata;
   errorMessage: any;
   empId: string;
-
+  cols;
 
   dialogFormHidden=false;
   successmessagedataEle=false;
@@ -43,6 +43,25 @@ export class EmployeeComponent {
 
   ngOnInit(){
     this.gettingData();
+
+    this.cols = [
+      { field: 'employeeId', header: 'Employee Id' },
+      { field: 'firstName', header: 'First Name' },
+      { field: 'lastName', header: 'Last Name' },
+      { field: 'dob', header: 'Date Of Birth' },
+      { field: 'gender', header: 'Gender' },
+      { field: 'phoneNumber', header: 'Phone Number' },
+      { field: 'dateOfJoining', header: 'Date Of Joining' },
+      { field: 'salary', header: 'Salary' },
+      { field: 'shift', header: 'Shift' },
+      { field: 'createdSource', header: 'CreatedSource' },
+      { field: 'createdSourceType', header: 'CreatedSourceType' },
+      { field: 'createdDttm', header: 'CreatedDttm' },
+      { field: 'modifiedSource', header: 'ModifiedSource' },
+      { field: 'modifiedSourceType', header: 'ModifiedSourceType' },
+      { field: 'modifiedDttm', header: 'ModifiedDttm' },
+      
+  ];
 
     let username =localStorage.getItem("username");
     if(username == "employee" ){
