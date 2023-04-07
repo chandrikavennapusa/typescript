@@ -1,12 +1,18 @@
-
-.navEle{
-    top: 101px;
-   
+.serachEle{
+    position: relative;
+    left:-80px;
 }
-.addattendeneEle{
-margin-left: 1250px;
-position: relative;
-top: 15px;
+.navEle{
+    top: 92px;
+}
+.errmessageEle{
+    color: red;
+}
+:host ::ng-deep .p-button.addbtnEle{
+    float: right;
+    top: 14px;
+    margin-right: 44px;
+
 }
 .attendenceidformcontainer{
 position: absolute;
@@ -43,14 +49,27 @@ left: 600px;
 .attendenceidformcontainer{
     left:20px;
 }
-
 .navEle{
     width: 330px;
+    top:155px;
+}
+.addattendeneEle{
+    margin-left: 196px;
+}
+.attendencetableContainer{
+    margin-left: 15px;
+    top: 125px;
 }
 
 }
 @media (max-width:768px) and (min-width:666px){
     .attendenceidformcontainer{
         left:270px;
+    }
+    .addattendeneEle{
+        margin-left: 589px;
+    }
+    .attendencetableContainer{
+        margin-left: 30px;
     }
 }

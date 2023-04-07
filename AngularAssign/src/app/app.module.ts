@@ -40,7 +40,8 @@ import { CanactivateService } from './canactivate.service';
 import { EmpService } from './emp.service';
 import { AttenService } from './atten.service';
 import {DropdownModule} from 'primeng/dropdown';
-
+import { DialogModule } from 'primeng/dialog';
+import {DatePipe} from '@angular/common';    
 @NgModule({
   declarations: [
     AppComponent,
@@ -80,9 +81,10 @@ import {DropdownModule} from 'primeng/dropdown';
    MessagesModule ,
    ConfirmDialogModule,
    PaginatorModule,
-   DropdownModule
+   DropdownModule,
+   DialogModule
   ],
-  providers: [ServicesService,ConfirmationService , CanactivateService,EmpService,AttenService],
+  providers: [ServicesService,ConfirmationService , CanactivateService,EmpService,AttenService,DatePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

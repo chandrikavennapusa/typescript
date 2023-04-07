@@ -14,6 +14,8 @@ export class DepartmentComponent {
    constructor(private service:ServicesService , private router:Router){}
 
    ngOnInit(){
+    localStorage.setItem('path','DEPT');
+    // Fecthing the Department data
     this.service.gettingDeptdata().subscribe(data => {this.getDeptDetails=data},error => this.errorMessage = error);
 
     this.cols = [
@@ -27,10 +29,11 @@ export class DepartmentComponent {
       { field: 'modifiedSource', header: 'ModifiedSource' },
       { field: 'modifiedSourceType', header: 'ModifiedSourceType' },
       { field: 'modifiedDttm', header: 'ModifiedDttm' },
-      { field: 'Actions', header: 'Actions' },
+     
   ];
-  
    }
+
+   // when we double click on this, we will get row 
    doubleClick(deptid){
    this.router.navigate(['/DEPTLIST']);
    this.service.deptid=deptid;

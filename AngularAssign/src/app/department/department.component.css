@@ -1,16 +1,29 @@
 
 
 .tableContainer{
-  top: 50px;
+  top: 70px;
 margin-left: 50px;
 
 }
 .navEle{
   position: relative;
-  top:100px;
+  top:98px;
 }
 .deptlistEle{
   position: relative;
   margin-left: 55px;
-  top: 10px;
+  top:20px;
+}
+
+@media (max-width:666px) and (min-width:320px){
+.navEle{
+  top: 155px;
+}
+.tableContainer{
+  top: 115px;
+    margin-left: 15px;
+}
+.deptlistEle{
+  margin-left: 0px;
+}
 }

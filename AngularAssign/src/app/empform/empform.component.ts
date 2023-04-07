@@ -5,6 +5,7 @@ import { Message } from 'primeng/api/message';
 
 import { ServicesService } from '../services.service';
 import { EmpService } from '../emp.service';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-empform',
@@ -18,25 +19,27 @@ export class EmpformComponent {
   maxDate=new Date();
 bloodGroup:any;
 shift:any;
-  constructor(private service:ServicesService,private router:Router){
+shift19;
+bloddgroup1;
+myDate;
+  constructor(private service:ServicesService,private router:Router,private datepipe: DatePipe){
    this.bloodGroup =[
     {name:'A'},
     {name:'A+'},
     {name:'B'},
     {name:'B+'},
-    {
-      name:'AB'
-    }
-   ];
+    { name:'AB'}
+      ];
+
    this.shift=[
-    {name:'day',code:'day'},
-    {name:'night',code:'day'}
+    {name:'Day',code:'day'},
+    {name:'Night',code:'night'}
    ]
   }
 
 
-  empdetailObj: EmpService = new EmpService();
-
+empdetailObj: EmpService = new EmpService();
+// Intialization the Employee Values
 empdetailsintialization(){
  this.empdetailObj={
   employeeId:'',
@@ -62,26 +65,23 @@ empdetailsintialization(){
 }
 
   ngOnInit(){
-   
-    this.sucessmessagedata=this.service.empidsucessmessagedata;
     this.empdetailsintialization();
     this.empdetailObj.employeeId=this.service.emplyeeid;
   }
 
- shift19;
- bloddgroup1;
+//  Employee form submission
   onSubmit(){
-    console.log(this.empdetailObj);
-
+    this.myDate = new Date(); 
+    this.empdetailObj.dob=this.datepipe.transform(this.myDate,'medium');
+    this.empdetailObj.dateOfJoining=this.datepipe.transform(this.myDate,'medium');
     this.empdetailObj.BloodGroup=this.bloddgroup1.name;
-    this.empdetailObj.shift=this.shift19.name;
-
+    this.empdetailObj.shift=this.shift19.code;
 
     this.empdetailObj.createdSource=localStorage.getItem('username');
-    this.empdetailObj.createdSourceType=localStorage.getItem('username');;
-    this.empdetailObj.createdDttm= new Date();
-    console.log(this.shift19);
-
+    this.empdetailObj.createdSourceType=localStorage.getItem('username');
+    
+    this.empdetailObj.createdDttm=this.datepipe.transform(this.myDate,'medium');
+   
     this.service.addempdetails(this.empdetailObj).subscribe();
     [
       {
@@ -92,6 +92,8 @@ empdetailsintialization(){
     ]
    this.router.navigate(['/EMP']);
   }
+
+// Clear the all input fileds and Navigate to Employee list Screen
   formcancelbtn(){
     this.empdetailObj.firstName='';
     this.empdetailObj.lastName='';

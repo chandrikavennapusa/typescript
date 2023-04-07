@@ -1,153 +1,89 @@
-<div [ngClass]="{backgroundcolor:attendenceempidhidden}">
-   
-    
- <div class=" bg-cyan-100  h-6rem relative navEle">
+<div class=" bg-cyan-300  h-6rem relative navEle">
     <h2 class="attendlistEle"> <span> <i class="material-icons">people</i> </span> Attendence List </h2>
-    <p-messages [(value)]="sucessmessagedata" *ngIf="successmessagedataEle" ></p-messages>
-    <p-messages [(value)]="errormessagedata" *ngIf="errormessagedataEle"></p-messages>
- </div>
+    <p-toast></p-toast>
+</div>
+
 <div class="attendencetableContainer w-11">
- <div class="relative addattendeneEle h-5rem">
-    <button pButton type="button" label="ADD" class="attendenceAddbtnEle" (click)="addAttendece()" *ngIf="addbtndisable"> 
-        <span><i class="pi pi-plus"></i></span> 
-    </button>
-    <span class="p-input-icon-right serachEle" *ngIf="serachempview">
-        <input type="text" pInputText [(ngModel)]="serchempidvalue"  (keyup)="searching()" />
-        <i class="pi pi-search" ></i>
-    </span>   
- </div>
- <div class="card ">
-    <!-- <p-table [value]="gettingattendencedata" 
-    styleClass="p-datatable-striped"
-    [paginator]="true"
-    [rows]="5"
-    [showCurrentPageReport]="true"
-    currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
-    [rowsPerPageOptions]="[10, 25, 50]"
-    >
-            <ng-template pTemplate="header">
+    <div class="relative  h-5rem">
+        <p-button (click)="showDialog()" icon="pi pi-plus" label="ADD" styleClass="addbtnEle"
+            *ngIf="addbtndisable"></p-button>
+
+        <p-dialog header="Attendence Form" [(visible)]="visible" [breakpoints]="{ '960px': '75vw' }"
+            [style]="{ width: '300px',height:'300px' }" [modal]="true" [draggable]="false" [resizable]="false">
+            <form #deptidEmpidForm="ngForm" (ngSubmit)="empiddeptidcheck()" ngNativeValidate>
+                <div>
+                    <div><label>Employee Id:</label></div>
+                    <input type="text" pInputText [(ngModel)]="employeeId" name="employeeid"
+                        pattern="^[+]?[0-9]+([0-9])*$" #empid="ngModel" required />
+                    <div class="errmessageEle" *ngIf="empid.touched && empid.invalid"> enter the valid name</div>
+                </div>
+
+                <div class="deptidEle">
+                    <div><label>Department Id:</label></div>
+                    <input type="text" pInputText [(ngModel)]="departmentid" name="departmentid" #depid="ngModel"
+                        pattern="^[+]?[0-9]+([0-9])*$" required />
+                    <div class="errmessageEle" *ngIf="depid.touched && depid.invalid"> enter the valid name</div>
+                </div>
+
+                <div>
+                    <button pButton type="submit" label="Save" class="saveEle"></button>
+                    <p-button label="Cancel" styleClass="p-button-secondary " class="cancelEle"
+                        (click)="cancelempiddeptid()"></p-button>
+                </div>
+            </form>
+
+        </p-dialog>
+        <span class="p-input-icon-right serachEle" *ngIf="serachempview">
+            <input type="text" pInputText [(ngModel)]="serchempidvalue" (keyup)="searching()" />
+            <i class="pi pi-search"></i>
+        </span>
+    </div>
+
+
+    <div class="card ">
+        <p-table [columns]="cols" [value]="gettingattendencedata" [paginator]="true" [rows]="5"
+            [showCurrentPageReport]="true"
+            currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+            [rowsPerPageOptions]="[5,10,15,20]" paginatorPosition="bottom" responsiveLayout="scroll">
+            <ng-template pTemplate="header" let-columns>
                 <tr>
-                    <th pSortableColumn="employeeId" >EmployeeId<p-sortIcon field="employeeId"></p-sortIcon></th>
-                    <th pSortableColumn="month">Month<p-sortIcon field="month"></p-sortIcon></th>
-                    <th pSortableColumn="date" >Date <p-sortIcon field="date"></p-sortIcon></th>  
-                    <th pSortableColumn="departmentId" >DepartmentId <p-sortIcon field="departmentId"></p-sortIcon></th>
-                     <th pSortableColumn="available" >Available<p-sortIcon field="available"></p-sortIcon></th>
-                    <th pSortableColumn="checkIn">CheckIn<p-sortIcon field="checkIn"></p-sortIcon></th>
-                    <th pSortableColumn="checkout" >Checkout <p-sortIcon field="checkout"></p-sortIcon></th> 
-                     <th pSortableColumn="attendanceCount">AttendanceCount <p-sortIcon field="attendanceCount"></p-sortIcon></th>
-                    <th pSortableColumn="shift" >Shift<p-sortIcon field="shift"></p-sortIcon></th> 
-                    <th pSortableColumn="createdSource" >CreatedSource<p-sortIcon field=">createdSource"></p-sortIcon></th>
-                    <th pSortableColumn="createdSourceType">CreatedSourceType<p-sortIcon field="createdSourceType"></p-sortIcon></th>
-                    <th pSortableColumn="createdDttm" >CreatedDttm<p-sortIcon field="createdDttm"></p-sortIcon></th>  
-                    <th pSortableColumn="modifiedSource" >ModifiedSource<p-sortIcon field="modifiedSource"></p-sortIcon></th>
-                    <th pSortableColumn="modifiedSourceType" >ModifiedSourceType<p-sortIcon field="modifiedSourceType"></p-sortIcon></th>
-                     <th pSortableColumn="modifiedDttm" >ModifiedDttm<p-sortIcon field="modifiedDttm"></p-sortIcon></th>
-                <th *ngIf="deleteviewmode">Actions</th>
-                    </tr>
+                    <th *ngFor="let col of columns" [pSortableColumn]="col.field">
+                        {{col.header}}
+                        <p-sortIcon [field]="col.field"></p-sortIcon>
+                    </th>
+                    <th *ngIf="deleteviewmode">Actions</th>
+                </tr>
             </ng-template>
-            <ng-template pTemplate="body" let-rowData  >
-                
+            <ng-template pTemplate="body" let-rowData let-columns="columns">
                 <tr (dblclick)="doubleClick(rowData.employeeId)" >
-                
-                    <td>{{rowData.employeeId}}</td>
-                    <td>{{rowData.month}}</td>
-                    <td>{{rowData.date}}</td>
-                    <td>{{rowData.departmentId}}</td>
-                    <td>{{rowData.available}}</td>
-                    <td>{{rowData.checkIn}}</td>
-                    <td>{{rowData.checkout}}</td>
-                    <td>{{rowData.attendanceCount}}</td>
-                    <td>{{rowData.shift}}</td>
-                    <td>{{rowData.createdSource}}</td>
-                    <td>{{rowData.createdSourceType}}</td>
-                    <td>{{rowData.createdDttm}}</td>
-                    <td>{{rowData.modifiedSource}}</td>
-                    <td>{{rowData.modifiedSourceType}}</td>
-                    <td>{{rowData.modifiedDttm}}</td>
-                    <td *ngIf="deleteviewmode"><p-button  icon="pi pi-times" label="Delete" class="p-button-danger"
-                         (click)="deletebasedonempiddeptid(rowData.employeeId ,rowData.departmentId)" ></p-button>
+                    <ng-container *ngFor="let col of columns ">
+
+                        <td  *ngIf="col.field == 'checkIn'  " >
+                            {{ rowData[col.field] |date: "mediumTime"}}
+                         </td>
+                         <td  *ngIf="col.field == 'checkout'">
+                            {{ rowData[col.field] |date: "mediumTime"}}
+                         </td>
+                         <td *ngIf="col.field != 'checkIn' && col.field != 'checkout'">  {{ rowData[col.field]}}</td>
+
+                    </ng-container>
+               
+
+                    
+
+                    <td *ngIf="deleteviewmode"><p-button icon="pi pi-times" label="Delete" class="p-button-danger"
+                            (click)="deletebasedonempiddeptid(rowData.employeeId ,rowData.departmentId)"></p-button>
                     </td>
                 </tr>
             </ng-template>
 
             <ng-template pTemplate="emptymessage">
                 <tr>
-            <td colspan="16" style="text-align: center;">No data found</td>
-               </tr>
+                    <td colspan="16" style="text-align: center;">No data found</td>
+                </tr>
             </ng-template>
-          
-        </p-table> -->
-
-
-        <p-table [columns]="cols" [value]="gettingattendencedata"
-        [paginator]="true"
-        [rows]="5"
-        [showCurrentPageReport]="true"
-        currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
-        [rowsPerPageOptions]="[5,10,15,20]"
-        paginatorPosition="bottom"
-        responsiveLayout="scroll">
-          <ng-template pTemplate="header" let-columns>
-              <tr>
-                  <th *ngFor="let col of columns" [pSortableColumn]="col.field">
-                      {{col.header}}
-                      <p-sortIcon [field]="col.field"></p-sortIcon>
-                  </th>
-                  <th *ngIf="deleteviewmode">Actions</th>
-              </tr>
-          </ng-template>
-          <ng-template pTemplate="body" let-rowData let-columns="columns">
-              <tr (dblclick)="doubleClick(rowData.employeeId)">
-                  <td *ngFor="let col of columns">
-                      {{rowData[col.field]}}
-                  </td>
-                  <td *ngIf="deleteviewmode"><p-button  icon="pi pi-times" label="Delete" class="p-button-danger"
-                    (click)="deletebasedonempiddeptid(rowData.employeeId ,rowData.departmentId)" ></p-button>
-               </td>
-              </tr>
-          </ng-template>
-      
-        <ng-template pTemplate="emptymessage">
-          <tr>
-      <td colspan="16" style="text-align: center;">No data found</td>
-         </tr>
-      </ng-template>
-
-      <ng-template pTemplate="emptymessage">
-        <tr>
-    <td colspan="16" style="text-align: center;">No data found</td>
-       </tr>
-    </ng-template>
-      </p-table>
-
-
-
-
+        </p-table>
     </div>
     <p-confirmDialog [style]="{width: '80vw', height:'70px'}"></p-confirmDialog>
 
- </div>
-
-</div> 
-
-
-
-<div class="grid border-solid border-200 p-5 w-min absolute text-center  attendenceidformcontainer" *ngIf="attendenceempidhidden">
-
-        <form  #deptidEmpidForm="ngForm" (ngSubmit)="empiddeptidcheck()" ngNativeValidate>
-         <div>
-             <div><label>Employee Id:</label></div>
-             <input type="text" pInputText [(ngModel)]="employeeId" name="employeeid" required />
-             </div>
-         
-            <div class="deptidEle">
-             <div><label>Department Id:</label></div>
-             <input type="text" pInputText [(ngModel)]="departmentid" name="departmentid" required />
-            </div>
-         
-             <div>
-                <button pButton type="submit" label="Save" class="saveEle"></button>
-             <p-button label="Cancel" styleClass="p-button-secondary " class="cancelEle" (click)="cancelempiddeptid()"></p-button>
-             </div>
-        </form>
-     </div>  
+</div>

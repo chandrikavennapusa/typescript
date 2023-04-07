@@ -6,7 +6,7 @@
   }
  .homeEleContainer{
   position: relative;
-  top:77px;
+  top:72px;
  }
 
  .homeContainer {
@@ -27,4 +27,20 @@
     margin: 0px;
     width: 1280px;
 }
+.homeEleContainer{
+  top: 130px;
+    width: 320px;
+}
+.homeContainer{
+  left: 31px;
+    height: 376px;
+}
+.dashboardEle{
+  margin-left: 0px;
+}
   }
+  @media (max-width:768px) and (min-width:666px){
+  .homeContainer{
+    height: 436px;
+  }
+}

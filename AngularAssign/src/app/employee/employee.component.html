@@ -1,94 +1,40 @@
-<div  [ngClass]="{backgroundcolor:dialogFormHidden}">
- <div class="p-col bg-cyan-100  h-6rem relative navEle">
-   <h2 class="emplistEle"> <span> <i class="material-icons">people</i> </span> Employee List</h2> </div> 
 
+ <div class=" bg-cyan-300  h-6rem relative navEle">
+   <h2 class="emplistEle"> <span> <i class="material-icons">people</i> </span> Employee List</h2> 
+   
+  
+  </div> 
+     <p-toast></p-toast>
+  <div class="emptabledetailContiner w-11">
+    
+                    
+                                           <div class=" h-5rem  ">
+    
+                                                   <p-dialog header="Employee Id" [(visible)]="visible"
+                                                    [breakpoints]="{ '960px': '75vw' }"
+                                                    [style]="{ width: '280px',height:'250px'}"
+                                                   [modal]="true"
+                                                    [draggable]="false" [resizable]="false">
+                                                    <form  #EmpidForm="ngForm" (ngSubmit)="empidcheck()" ngNativeValidate>
+                                                       <div class="col">
+                                                         <div><label> Employee Id </label></div>
+                                                         <input type="text" pInputText name="employee Id" [(ngModel)]="empId" pattern="^[+]?[0-9]+([0-9])*$" required />
+                                                       </div>
+                                                       <div class="col">
+                                                       
+                                                         <button pButton type="submit" label="Save"   pRipple class= "mr-4"></button>
+                                                         <button pButton type="button" label="Cancel"  class="p-button-secondary ml-4" (click)="cancelempidbtn()"class="cancelbtn" ></button> 
+                                                       </div>
+                                                     </form>
+                                                   </p-dialog>
 
-
-  <div class="emptabledetailContiner">
-                     <div class="grid">
-                                           <div class="flex h-3rem">
-                                                  <div class="relative addbtnEle ">
-                                                       <button pButton type="button" label="ADD" (click)="empiddialogbox()"  *ngIf="addbtndisable"> 
-                                                           <span><i class="pi pi-plus"></i></span>   </button>  
-                                                                                                     
-                                                   </div>
-                                                  
-                                                   <div class="absolute sucessmessageEle">
-                                                    <p-messages [(value)]="sucessmessagedata" position="bottom-center" *ngIf="successmessagedataEle" ></p-messages>
-                                                    <p-messages [(value)]="errormessagedata"  position="bottom-center"  *ngIf="errormessagedataEle"></p-messages>
-                                                   </div>
+                                                   <p-button (click)="showDialog()" icon="pi pi-plus" label="ADD" styleClass="addbtnEle" *ngIf="addbtndisable"></p-button>
                                               </div>
-                                              
-                     </div> 
+                                             
+                                                     
+                    
 
 <div class=" card  surface-section">
-  
-  <!-- <p-table  [value]="gettingempdata" 
-  
-  [scrollable]="true"
-  [resizableColumns]="true" columnResizeMode="expand" [tableStyle]="{'min-width': '50rem'}"
-  [paginator]="true"
-  [rows]="5"
-  [showCurrentPageReport]="true"
-  currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
-  [rowsPerPageOptions]="[5,10,15,20]"
-  >
-  paginatorPosition="top"
-    <ng-template pTemplate="header">
-    <tr>
-      
-      <th pSortableColumn="employeeId" >EmployeeId<p-sortIcon field="employeeId"></p-sortIcon></th>
-      <th pSortableColumn="firstName" >FirstName<p-sortIcon field="firstName"></p-sortIcon></th>
-      <th pSortableColumn="lastName" >LastName<p-sortIcon field="lastName"></p-sortIcon></th>
-      <th pSortableColumn="dob">DateOfBirth<p-sortIcon field="dob"></p-sortIcon></th>  
-      <th pSortableColumn="gender" >Gender<p-sortIcon field="gender"></p-sortIcon></th>
-      <th pSortableColumn="phoneNumber" >PhoneNumber<p-sortIcon field="phoneNumber"></p-sortIcon></th>
-      <th pSortableColumn="dateOfJoining" >DateOfJoining<p-sortIcon field="dateOfJoining"></p-sortIcon></th>
-      <th pSortableColumn="salary" >Salary<p-sortIcon field="salary"></p-sortIcon></th>              
-      <th pSortableColumn="shift" >Shift<p-sortIcon field="shift"></p-sortIcon></th>
-      <th pSortableColumn="createdSource" >CreatedSource<p-sortIcon field="createdSource"></p-sortIcon></th>
-      <th pSortableColumn="createdSourceType">CreatedSourceType<p-sortIcon field="createdSourceType"></p-sortIcon></th>
-      <th pSortableColumn="createdDttm" >CreatedDttm<p-sortIcon field="createdDttm"></p-sortIcon></th>  
-      <th pSortableColumn="modifiedSource" >ModifiedSource<p-sortIcon field="modifiedSource"></p-sortIcon></th>
-      <th pSortableColumn="modifiedSourceType" >ModifiedSourceType<p-sortIcon field="modifiedSourceType"></p-sortIcon></th>
-      <th pSortableColumn="modifiedDttm" >ModifiedDttm<p-sortIcon field="modifiedDttm"></p-sortIcon></th>
-      <th pSortableColumn="Actions" *ngIf="deleteviewmode">Actions<p-sortIcon field="Actions"></p-sortIcon></th>          
-        
-      </tr>
-    </ng-template>
-    <ng-template pTemplate="body" let-rowData>
-
-       <tr (dblclick)="doubleClick(rowData.employeeId)">
-
-        <td>{{rowData.employeeId}}</td>
-        <td>{{rowData.firstName}}</td>
-        <td>{{rowData.lastName}}</td>
-        <td>{{rowData.dob}}</td>
-        <td>{{rowData.gender}}</td>
-        <td>{{rowData.phoneNumber}}</td>
-        <td>{{rowData.dateOfJoining}}</td>
-        <td>{{rowData.salary}}</td>
-        <td>{{rowData.shift}}</td>
-        <td>{{rowData.createdSource}}</td>
-        <td>{{rowData.createdSourceType}}</td>
-        <td>{{rowData.createdDttm}}</td>
-        <td>{{rowData.modifiedSource}}</td>
-        <td>{{rowData.modifiedSourceType}}</td>
-        <td>{{rowData.modifiedDttm}}</td>
-        
-      
-        <td  *ngIf="deleteviewmode"><p-button (click)="deletebasedonempid(rowData.employeeId)" icon="pi pi-times" label="Delete" class="p-button-danger"></p-button>
-        </td>
-        
-       </tr>
-      </ng-template> 
-      <ng-template pTemplate="emptymessage">
-        <tr>
-    <td colspan="16" style="text-align: center;">No data found</td>
-       </tr>
-    </ng-template>
-      </p-table> -->
-
       <p-table [columns]="cols" [value]="gettingempdata"
       [paginator]="true"
       [rows]="5"
@@ -111,7 +57,11 @@
                 <td *ngFor="let col of columns">
                     {{rowData[col.field]}}
                 </td>
-                <td  *ngIf="deleteviewmode"><p-button (click)="deletebasedonempid(rowData.employeeId)" icon="pi pi-times" label="Delete" class="p-button-danger"></p-button>
+                <td  *ngIf="deleteviewmode">
+                  
+
+                  <button type="button" icon="pi pi-times" pButton pRipple (click)="deletebasedonempid(rowData.employeeId)"
+                   label="Delete"  ></button>
                 </td>
             </tr>
         </ng-template>
@@ -121,26 +71,13 @@
     <td colspan="16" style="text-align: center;">No data found</td>
        </tr>
     </ng-template>
+    
     </p-table>
-
-
-
 
       
 </div>
   <p-confirmDialog [style]="{width: '279px'}"></p-confirmDialog>
   </div> 
   
-</div>
-  <div class="grid border-solid border-200 p-5 w-min absolute text-center   empidformcontainer" *ngIf="dialogFormHidden">
-    <form  #EmpidForm="ngForm" (ngSubmit)="empidcheck()" ngNativeValidate>
-    <div class="col">
-      <div><label> EmployeeId </label></div>
-      <input type="text" pInputText name="employee Id" [(ngModel)]="empId" pattern="^(0|[1-9][0-9]{0,100})$" required />
-    </div>
-    <div class="col">
-      <button pButton type="submit" label="Save" class= "mr-4"></button>
-      <button pButton type="button" label="Cancel"  class="p-button-secondary ml-4" (click)="cancelempidbtn()" ></button> 
-    </div>
-  </form>
-  </div>
+
+ 

@@ -21,6 +21,13 @@
   position: relative;
   margin-left: 50px;
 }
+.navEle{
+  position: relative;
+  top: -5px;
+}
+.attendencelistEle{
+  margin-left: 87px;
+}
 @media (max-width:768px) and (min-width:666px){
 .attendenceform{
 margin-left: 43px;
@@ -40,7 +47,7 @@ margin-right: -208px;
   }
   .navEle{
   position: relative;
-    top: 8px;
+  top: 54px;
 }
 .basicheadingEle{
 position: relative;
@@ -48,7 +55,11 @@ position: relative;
 }
 .attendenceform{
   position: relative;
-  top: -42px;
+  top: 18px;
+  padding-bottom: 49px;
   }
- 
+ .basicheadingEle{
+  top: 33px;
+  left: -43px;
+ }
 }

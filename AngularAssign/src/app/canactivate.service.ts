@@ -11,15 +11,11 @@ export class CanactivateService implements CanActivate{
   canActivate(route:ActivatedRouteSnapshot,state:RouterStateSnapshot) {
   
    if ( String(localStorage.getItem("empbooleanvalue")) == "false") {
-    this.router.navigate(['/Login'],
-    // {queryParams:{redirectUrl: state.url }}
-   
-    );
+    this.router.navigate(['/Login']);
      return false
  }
-  
-   return true;
-  
-   }
-
+   return true;  
+   
+   } 
+   
 }

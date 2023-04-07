@@ -1,51 +1,61 @@
    
     .navEle{
-        position: relative;
-        top:90px;
-        
-    }
-    .backgroundcolor{
-        z-index: -1;
-        position: relative;
-        background-color:white;
-        opacity: 0.3;
+        top:90px; 
     }
     .empidformcontainer{
         position: absolute;
         top: 200px;
         left:550px;
     }
-    .addbtnEle{
-        left: 1280px;
-        top: 8px;
-    }
+   
     .emptabledetailContiner{
-        width: 1450px;
        position: relative;
-         top: 50px;
-         left: 40px;
+         top: 60px;
+       margin-left:60px;
          background-color: white;
     } 
+    
 .emplistEle{
     position: relative;
     margin-left: 66px;
-    top: 9px;
+    top: 21px;
 }
+ :host ::ng-deep .p-button.addbtnEle
+{
+    float: right;
+    top: 19px;
+    margin-right: 29px;
+}
+
     @media (max-width:666px) and (min-width:320px){
-        .empidformcontainer{
-            left: 30px;
-            width: 100%;
-        }
-       .headerEle{
-        width:329px;
+       .addbtnEle{
+        left: 202px;
        }
        .navEle{
-        width: 329px;
+        top: 154px;
+
        }
+        .emptabledetailContiner{
+            margin-left: 13px;
+            top: 125px;
+       }
+       .emplistEle{
+        margin-left: 0px;
+       }
+      
      }
      @media (max-width:768px) and (min-width:666px){
         .empidformcontainer{
             left: 242px;
         }
+       .addbtnEle{
+        left: 608px;
+       }
+       .navEle{
+        width:772px;
+       }
+       .emptabledetailContiner{
+        margin-left: 39px;
+       }
      } 
     

@@ -3,7 +3,7 @@ import { Component, ViewChild, ViewEncapsulation } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { response } from 'express';
-import { Message } from 'primeng/api';
+import { Message, MessageService } from 'primeng/api';
 import { Observable } from 'rxjs';
 import { throwError } from 'rxjs/internal/observable/throwError';
 import { catchError, tap } from 'rxjs/operators';
@@ -14,18 +14,18 @@ import { ServicesService } from '../services.service';
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css'],
-  encapsulation: ViewEncapsulation.None
+  providers: [MessageService]
 })
 export class LoginComponent {
   UserName:string;
   password:string;
 
   succmessage: Message[];
-  errormessage:Message[];
-  passwordmessage:Message[];
+ 
 
   visable:boolean=true;
   changetype:boolean=true;
+  userloginsucessmessage:Message [];
 
   viewpress(){
     this.visable = ! this.visable;
@@ -36,14 +36,12 @@ export class LoginComponent {
 
  
 
-  constructor(private router:Router,private services:ServicesService , private activatedroute:ActivatedRoute){}
-redirectUrl='';
-ngOnInit(){
-  this.redirectUrl=this.activatedroute.snapshot.queryParamMap.get('redirectUrl')
-}
+  constructor(private router:Router,private services:ServicesService , private activatedroute:ActivatedRoute,
+    private messageService: MessageService
+    ){}
+
   loginUserAccount(){
-
-
+    
                  this.services.usercheck(this.UserName,this.password)
                  .subscribe(
                   response =>{
@@ -53,27 +51,19 @@ ngOnInit(){
                       this.router.navigate(['/HOME']);
                     }
                     else{
-                        this.passwordmessage=[
-                          {
-                            severity: 'error', 
-                         summary: ' user password', 
-                         detail: "write the correct password"}
-                          
-                        ]
+
+                      this.messageService.add({ severity: 'error', summary: 'user password', detail: 'write the correct password' });
+                    
+                      
                     }
                   },
                   (err:HttpErrorResponse)=>{
-                    this.errormessage=
-                    [
-                      {
-                        severity: 'error', 
-                        summary: ' user account', 
-                        detail:err.error
-                      }
-                    ]
+                    this.messageService.add({ severity: 'error', summary: ' user account', detail: err.error });
+
+                   
                   },
                   () => {
-                  this.services.userloginsucessmessage=  [
+                  this.userloginsucessmessage=  [
                       {
                         severity: 'success', 
                         summary: 'user login completelly successfull', 
@@ -88,7 +78,12 @@ ngOnInit(){
   reset(){
    this.form.reset();
   }
-  
+  ngOnInit(){
+   localStorage.setItem('loginpage',"true");
+    if(localStorage.getItem('empbooleanvalue')=='true'){
+        this.router.navigate(['/HOME']);       
+    }
+  }
   
 }
 

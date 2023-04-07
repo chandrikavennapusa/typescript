@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
 import { Message } from 'primeng/api';
 import { ServicesService } from '../services.service';
-declare let google: any;
+import { Router } from '@angular/router';
+
+
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -9,9 +11,8 @@ declare let google: any;
 })
 
 export class HomeComponent {
-constructor(private service:ServicesService){}
-userscuessloginmessage:Message[];
-ngOnInit(){
-  this.userscuessloginmessage=this.service.userloginsucessmessage;
-}
+constructor(){}
+
+
+
 }

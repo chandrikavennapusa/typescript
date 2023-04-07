@@ -1,51 +1,11 @@
 
 <div class="p-grid navEle">
-    <div class="p-col bg-cyan-100 w-full h-6rem relative ">
+    <div class="p-col bg-cyan-300 w-full h-6rem relative ">
         <h2 class="deptlistEle"> <span> <i class="material-icons">people</i> </span> Department List </h2>
     </div>
 </div>
 
 <div class=" card w-11 surface-section relative tableContainer">
-
-    <!-- <p-table [value]="getDeptDetails"   
-    styleClass="p-datatable-striped"
-    [paginator]="true"
-    [rows]="5"
-    [showCurrentPageReport]="true"
-    [tableStyle]="{ 'min-width': '50rem' }"
-    currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
-    [rowsPerPageOptions]="[10, 25, 50]"
-     >
-        <ng-template pTemplate="header">
-            <tr>
-                <th pSortableColumn="departmentId" >DepartmentId<p-sortIcon field="departmentId"></p-sortIcon></th>
-                <th pSortableColumn="departmentName">DepartmentName<p-sortIcon field="departmentName"></p-sortIcon></th>
-                <th pSortableColumn="noOfEmployee" >NoOfEmployee<p-sortIcon field="noOfEmployee"></p-sortIcon></th>  
-                <th pSortableColumn="managerId" >ManagerId<p-sortIcon field="managerId"></p-sortIcon></th>
-                <th pSortableColumn="createdSource" >createdSource<p-sortIcon field="createdSource"></p-sortIcon></th>
-        <th pSortableColumn="createdSourceType">createdSourceType<p-sortIcon field="createdSourceType"></p-sortIcon></th>
-        <th pSortableColumn="createdDttm" >createdDttm<p-sortIcon field="createdDttm"></p-sortIcon></th>  
-        <th pSortableColumn="modifiedSource" >modifiedSource<p-sortIcon field="modifiedSource"></p-sortIcon></th>
-        <th pSortableColumn="modifiedSourceType" >modifiedSourceType<p-sortIcon field="modifiedSourceType"></p-sortIcon></th>
-        <th pSortableColumn="modifiedDttm" >modifiedDttm<p-sortIcon field="modifiedDttm"></p-sortIcon></th>
-            </tr>
-        </ng-template>
-        <ng-template pTemplate="body" let-rowData>
-            <tr (dblclick)="doubleClick(rowData)">
-         <td>{{rowData.departmentId}}</td>
-          <td>{{rowData.departmentName}}</td>
-          <td>{{rowData.noOfEmployee}}</td>
-          <td>{{rowData.managerId}}</td>
-          <td>{{rowData.createdSource}}</td>
-          <td>{{rowData.createdSourceType}}</td>
-          <td>{{rowData.createdDttm}}</td>
-          <td>{{rowData.modifiedSource}}</td>
-          <td>{{rowData.modifiedSourceType}}</td>
-          <td>{{rowData.modifiedDttm}}</td>
-            </tr>
-        </ng-template>
-    </p-table>
-     -->
      <p-table [columns]="cols" [value]="getDeptDetails"
       [paginator]="true"
       [rows]="10"

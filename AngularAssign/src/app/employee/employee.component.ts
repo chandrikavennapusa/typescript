@@ -3,7 +3,7 @@ import { Component, ElementRef, EventEmitter, HostListener, Input, Output, ViewC
 import {  NgForm } from '@angular/forms';
 import { ActivatedRouteSnapshot, Router, RouterStateSnapshot } from '@angular/router';
 import { table } from 'console';
-import { ConfirmationService, Message } from 'primeng/api';
+import { ConfirmationService, Message, MessageService } from 'primeng/api';
 import { Observable } from 'rxjs';
 
 import { ServicesService } from '../services.service';
@@ -15,29 +15,35 @@ import { ServicesService } from '../services.service';
 @Component({
   selector: 'app-employee',
   templateUrl: './employee.component.html',
-  styleUrls: ['./employee.component.css']
+  styleUrls: ['./employee.component.css'],
+  providers: [MessageService]
 })
 export class EmployeeComponent {
   gettingempdata;
   errorMessage: any;
   empId: string;
   cols;
+  isboolean;
 
-  dialogFormHidden=false;
-  successmessagedataEle=false;
-  errormessagedataEle=false;
 
+@ViewChild('EmpidForm')form:NgForm;
   addbtndisable=true;
   deleteviewmode=true;
   errormessagedata: Message[];
   sucessmessagedata: Message[];
- 
-  constructor(private service:ServicesService,private router:Router ,private confirmationService: ConfirmationService){}
+  visible: boolean;
+  empidsucessmessagedata: Message[];
 
+  showDialog() {
+      this.visible = true;
+  }
+  constructor(private service:ServicesService,private router:Router ,private confirmationService: ConfirmationService,
+    private messageService: MessageService){}
+
+// when we double click on this, we will get row 
    doubleClick(employeeId){
     this.service.employeeid=employeeId;
     console.log(employeeId)
-    // this.service.setData(rowdata);
     this.router.navigate(['/EMPLIST']);
   }
 
@@ -62,47 +68,41 @@ export class EmployeeComponent {
       { field: 'modifiedDttm', header: 'ModifiedDttm' },
       
   ];
-
+  
     let username =localStorage.getItem("username");
     if(username == "employee" ){
       this.addbtndisable=false;
      this.deleteviewmode=false;
  }
+ 
   
    }
 
-
+// Delete the data based on Employee Id
   deletebasedonempid(id){
     this.confirmationService.confirm({
       message: 'Do you want to delete this record?',
         header: 'Delete Confirmation',
-      accept: () =>{this.delete(id)} 
+      accept: () =>{
+        this.delete(id)
+      } 
   });
    
   }
-
-
   delete(id){
+
+  this.service.gettingattendedatabasedonempid(id).subscribe(
+    (data)=> {
+              console.log(data);
+    }
+  )
+
         this.service.deleteempid(id).subscribe( 
           response=>{ console.log(response);
           console.log("response block");
           } ,
-
           (err:HttpErrorResponse) =>{
-
-            this.sucessmessagedata=
-            [
-              {
-                severity: 'success', 
-                summary: 'Employee list', 
-                detail:err.error.text
-              }
-            ]
-            
-               this.successmessagedataEle=true;
-              this.errormessagedataEle=false;
-            console.log(err.error)
-            console.log("error block");
+            this.messageService.add({ severity: 'success', summary: 'Success', detail: err.error.text});
             this.gettingData();
           },
           ()=>{
@@ -112,6 +112,7 @@ export class EmployeeComponent {
         );
   }
 
+// Feching the Employee data
   gettingData(){
     this.service.gettingempdetails().subscribe(
     data=> this.gettingempdata=data
@@ -120,39 +121,20 @@ export class EmployeeComponent {
   );
    }
 
-
-  cancelempidbtn(){
-    this.empId='';
-    this.dialogFormHidden=false;
-   
-  }
-
-  isboolean;
+  // To check Emplyoee Id 
       empidcheck(){
         this.isboolean=false;
-      
-
        this.gettingempdata.find((empdata)=> { 
           if(empdata.employeeId == this.empId){
             this.isboolean=true;
           } 
         })
-
         if(this.isboolean == true){
-          this.errormessagedata=[
-                                              {
-                                                   severity: 'error', 
-                                                    summary: 'Employee list', 
-                                                  detail:"the id is alredy exist"
-                                                  }
-            
-                                 ] 
-                                 this.successmessagedataEle=false;
-                                 this.errormessagedataEle=true;
-                                this.dialogFormHidden=false;
+          this.messageService.add({ severity: 'error', summary: 'Employee List', detail: 'Employee Id is already exit' });  
+                        
         }
         else{
-          this.service.empidsucessmessagedata=
+          this.empidsucessmessagedata=
           [
             {
               severity: 'success', 
@@ -160,23 +142,22 @@ export class EmployeeComponent {
               detail:"enter the table fields"
             }
           ]
-          
-             this.successmessagedataEle=true;
-            this.errormessagedataEle=false;
-            this.dialogFormHidden=false;
+        
             this.router.navigate(['/EMPFORM']);
             this.service.emplyeeid=this.empId;
          
-         
         }
         this.empId='';
+       this.form.reset();
+       this.visible = false;
       }
 
-      
-      empiddialogbox(){
-        this.dialogFormHidden=true;
+//  when we click Cancel button , Employee id data will be cleared
+      cancelempidbtn(){
+        this.empId='';
+        this.visible = false;
       }
-
+    
      
 
 }

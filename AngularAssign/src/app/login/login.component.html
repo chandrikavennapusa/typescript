@@ -1,12 +1,5 @@
 
 <div class=" bg-blue-100 sm:h-full backgroundcolor">
-
-    <div>
-        <p-messages [(value)]="passwordmessage"></p-messages>
-        <p-messages [(value)]="errormessage"></p-messages>
-    </div>
-
-
     <div  class="card border-1 h-30rem w-23rem formgrid grid  col-6 col-offset-4 logincontainer surface-50 border-round-sm">
 <div class="field">
    
@@ -37,7 +30,8 @@
   <div class="grid field col loginEle">
     
   <div class="col-12">
-  <button  pButton type="submit" label="Login"  class="inputtextfield"></button>
+    <p-toast></p-toast>
+  <button  pButton type="submit" label="Login" pRipple  class="inputtextfield"></button>
    </div>
   </div> 
     </form>

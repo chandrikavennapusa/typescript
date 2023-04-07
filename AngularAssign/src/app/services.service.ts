@@ -20,11 +20,9 @@ export class ServicesService {
   DepartmentId='';
   deptid;
   attendenceemployeeid='';
-  userloginsucessmessage: Message[];
-  empidsucessmessagedata:Message[];
+
  usercheck(UserName,password){
   const params = new HttpParams().set('Username',UserName).set('password',password)
-
   return this.httpclient.get('http://localhost:9091/userAccount/checkuserexists',{params:params});
   
  }
@@ -95,11 +93,11 @@ export class ServicesService {
     //   return this.attendencedata;
     // }
 
-    //getting  Attendence data based on employeeId
-      gettingattendencedatabasedonempid(empid){
-        const params = new HttpParams().set('employeeid',empid)
-        return this.httpclient.get('http://localhost:9091/attendanceDetail/findAttendanceByEmpId',{params:params})
-      }
+    //fecting  Attendence data based on employeeId
+      // gettingattendencedatabasedonempid(empid){
+      //   const params = new HttpParams().set('employeeid',empid)
+      //   return this.httpclient.get('http://localhost:9091/attendanceDetail/findAttendanceByEmpId',{params:params})
+      // }
     updateattence(attendenceform){
       return this.httpclient.put('http://localhost:9091/attendanceDetail/updateAttendance',attendenceform);
     }

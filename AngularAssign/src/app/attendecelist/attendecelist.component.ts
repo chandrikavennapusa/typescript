@@ -2,6 +2,7 @@ import { Component, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { ServicesService } from '../services.service';
 import { AttenService } from '../atten.service';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-attendecelist',
@@ -9,25 +10,27 @@ import { AttenService } from '../atten.service';
   styleUrls: ['./attendecelist.component.css']
 })
 export class AttendecelistComponent {
-  
+  maxDate=new Date(); 
 shift;
-constructor(private service:ServicesService,private router:Router){
+shift11;
+constructor(private service:ServicesService,private router:Router,private datepipe: DatePipe){
   this.shift=[
-    {name:'day'},
-    {name:'night'}
+    {name:'Day',code:'day'},
+    {name:'Night',code:'night'}
    ]
   }
   ngOnInit(){
+  
     this.attendetailsintialization();
-     this.attendetailObj.employeeId=this.service.EmployeeId;
+      this.attendetailObj.employeeId=this.service.EmployeeId;
       this.attendetailObj.departmentId=this.service.DepartmentId;
   }
   attendetailObj: AttenService= new AttenService();
-
+ // Intialization the Attendence Values
   attendetailsintialization(){
     this.attendetailObj={
  employeeId:'',
-  month:'',
+
   date:'',
   departmentId:'',
   available:'',
@@ -45,14 +48,18 @@ constructor(private service:ServicesService,private router:Router){
     }
 
   }
- 
 
+month11;
+date11;
+
+// Attendence Form submission
   onsubmit(){
-    
+
+    this.attendetailObj.date=this.datepipe.transform(this.date11,'shortDate')
     this.attendetailObj.createdSource=localStorage.getItem("username");
     this.attendetailObj.createdSourceType=localStorage.getItem("username");
-    this.attendetailObj.createdDttm= new Date;
-
+    this.attendetailObj.createdDttm=this.datepipe.transform(new Date(),'medium') 
+    this.attendetailObj.shift=this.shift11.name;
     this.service.addattendencedata(this.attendetailObj).subscribe();
     this.router.navigate(['/ATDE']);
     console.log(this.attendetailObj)
@@ -60,8 +67,9 @@ constructor(private service:ServicesService,private router:Router){
   }
 
 
- 
+ // Navigate to the Attendece list Screen
   gobackatten(){
     this.router.navigate(['/ATDE'])
   }
+
 }

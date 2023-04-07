@@ -1,41 +1,49 @@
 import { HttpErrorResponse } from '@angular/common/http';
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
-import { ConfirmationService } from 'primeng/api';
+import { ConfirmationService, MessageService } from 'primeng/api';
 import { map } from 'rxjs';
 
 
 import { ServicesService } from '../services.service';
 import { response } from 'express';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-attendance',
   templateUrl: './attendance.component.html',
-  styleUrls: ['./attendance.component.css']
+  styleUrls: ['./attendance.component.css'],
+  providers: [MessageService]
 })
 export class AttendanceComponent {
-  error:any;
+  
   employeeId='';
   departmentid='';
   serchempidvalue='';
-  attendenceempidhidden=false;
+  
   addbtndisable=true;
   deleteviewmode=true;
   serachempview=false;
-  errormessagedata;
-  sucessmessagedata;
-  successmessagedataEle=false;
-  errormessagedataEle=false;
+
   gettingattendencedata:any=[];
-  constructor(private service:ServicesService,private router:Router,private confirmationService: ConfirmationService){}
-  cols;
+@ViewChild('deptidEmpidForm')form:NgForm;
+  constructor(private service:ServicesService,private router:Router,private confirmationService: ConfirmationService,
+    private messageService: MessageService ){}
+
+  cols:any;
   empdata;
   deptdata;
-    ngOnInit(){
+  empid:boolean;
+  deptid:boolean;
+  isboolean;
+  visible: boolean;
 
+showDialog() {
+    this.visible = true;
+}
+    ngOnInit(){
       this.cols = [
         { field: 'employeeId', header: 'Employee Id' },
-        { field: 'month', header: 'Month' },
         { field: 'date', header: 'Date' },
         { field: 'departmentId', header: 'Department Id' },
         { field: 'available', header: 'Available' },
@@ -51,20 +59,17 @@ export class AttendanceComponent {
         { field: 'modifiedDttm', header: 'ModifiedDttm' },
     ];
   
-
+      // fecthing the Employee Data
      this.service.gettingempdetails().subscribe(
       response=>
       this.empdata=(response)
      );
-     
+     // fecting the department Data
      this.service.gettingDeptdata().subscribe(
       data=>this.deptdata=data
      );
-
-
+        
       this.gettingData();
-
-
       let username =localStorage.getItem("username");
       if(username == "employee" ){
         this.addbtndisable=false;
@@ -74,30 +79,15 @@ export class AttendanceComponent {
       
     }
 
-
-
-
-
-
-    
-    addAttendece(){
-        this.attendenceempidhidden=true;
-    }
-
-   
-    empid;
-    deptid;
-    isboolean;
+   //  To check Emplyoee Id and Department Id
+  
     empiddeptidcheck(){
-     this. isboolean=false;
+     this.isboolean=false;
   for(let d of this.empdata){
-
     if(d.employeeId ==this.employeeId){
       this.empid = true;
     }
-    
   }
-
    for(let de of this.deptdata){
     console.log(de.departmentId)
     if(de.departmentId ==this.departmentid){ 
@@ -112,59 +102,39 @@ export class AttendanceComponent {
    }
 
    if(this.isboolean == true){
-    this.errormessagedata=[
-      {
-           severity: 'error', 
-            summary: 'Employee list', 
-          detail:"the id is not alredy exist"
-          }
-
-] 
-  this.successmessagedataEle=false;
-    this.errormessagedataEle=true;
-    this.attendenceempidhidden=false;
+    this.messageService.add({ severity: 'error', summary: 'Error', detail: 'the Employee id is already exit' });
     this.employeeId='';
     this.departmentid='';
    
    }
-   
-
    else if(this.empid && this.deptid){
-      this.attendenceempidhidden=false;
+
       this.router.navigate(['/ATDELIST']);
       this.service.EmployeeId=this.employeeId;
       this.service.DepartmentId=this.departmentid;
-     
+      
      }
      else{
-      this.errormessagedata=[
-        {
-             severity: 'error', 
-              summary: 'Employee list', 
-            detail:"the id is not alredy exist"
-            }
-
-] 
-    this.successmessagedataEle=false;
-      this.errormessagedataEle=true;
-      this.attendenceempidhidden=false;
+      this.messageService.add({ severity: 'error', summary: 'Error', detail: ' Id is not match' });   
       this.employeeId='';
       this.departmentid='';
      
+
      }
-     
+     this.visible = false;
+     this.form.reset();
     }
-
-
-
+ 
+      //  Clears the data in employee and department id
     cancelempiddeptid(){
       this.employeeId='';
-      this.departmentid='';
-  this.attendenceempidhidden=false;
+      this.departmentid=''
+      this.visible = false;
+      this.form.reset();
     }
+      // Delete the data based on Employee Id and Department Id
 
     deletebasedonempiddeptid(empid,deptid){
-
       this.confirmationService.confirm({
         message: 'Do you want to delete this record?',
         header: 'Delete Confirmation',
@@ -172,8 +142,6 @@ export class AttendanceComponent {
     });
     this.gettingData();
     }
-
-
     deleteempiddepid(empid,deptid){
       this.service.deletebasedonempiddeptid(empid,deptid).subscribe(
         response=>{ console.log(response);
@@ -181,18 +149,8 @@ export class AttendanceComponent {
           } ,
 
           (err:HttpErrorResponse) =>{
-          
-            this.sucessmessagedata=
-            [
-              {
-                severity: 'success', 
-                summary: 'Employee list', 
-                detail:err.error.text
-              }
-            ]
-            
-               this.successmessagedataEle=true;
-              this.errormessagedataEle=false;
+
+            this.messageService.add({ severity: 'success', summary: 'Success', detail: err.error.text });
             this.gettingData();
           },
           ()=>{
@@ -203,27 +161,29 @@ export class AttendanceComponent {
       )
     }
 
-  
+   // Fecthing the Attendence Data
     gettingData(){
       this.service.gettingAttendencedetails().subscribe(
-        data => this.gettingattendencedata =data
+        data => this.gettingattendencedata =data,
+        err => { 
+          this.messageService.add({ severity: 'success', summary: 'Success', detail: err.error.text });
+        },
+        ()=>{
+            console.log("completed")
+        }
        
       )
     }
 
 
-   
+   // when we double click on this, we will get row 
     doubleClick(employeeId){
-
       this.service.attendenceemployeeid = employeeId;
       this.router.navigate(['/ATTDEFORM']);
-      // this.service.setAttendencedata(rowData);
-    
       }
 
-
+   //  Searching based on Emplyoee Id
       searching(){
-        console.log(this.serchempidvalue);
         if(this.serchempidvalue==''){
           this.service.gettingAttendencedetails().subscribe(
         data => this.gettingattendencedata =data

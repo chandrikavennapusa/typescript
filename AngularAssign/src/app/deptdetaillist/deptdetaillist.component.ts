@@ -22,6 +22,7 @@ export class DeptdetaillistComponent {
   fecthingdeptdata;
 constructor(private service:ServicesService, private router:Router){}
   ngOnInit(){
+    // Fecthing the Department data
      this.service.fectingdata(this.service.deptid).subscribe(
       data =>{
         this.fecthingdeptdata=data;
@@ -36,8 +37,16 @@ constructor(private service:ServicesService, private router:Router){}
     this.modifiedSourceType=this.fecthingdeptdata.modifiedSourceType;
     this.modifiedDttm=this.fecthingdeptdata.modifiedDttm;
       }
-     );
+     ),
+     err =>{
+      console.log(err.error);
+     },
+     ()=>{
+      console.log("complete");
+     }
   }
+
+  // Navigate to the Department list screen
   backtodept(){
     this.router.navigate(['/DEPT'])
   }

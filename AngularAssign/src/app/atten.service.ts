@@ -8,13 +8,12 @@ export class AttenService {
   constructor() { }
 
   employeeId='';
-  month;
   date;
   departmentId='';
   available='';
   available1='';
-  checkIn='';
-  checkout='';
+  checkIn;
+  checkout;
   attendanceCount='';
   shift='';
   createdSource='';

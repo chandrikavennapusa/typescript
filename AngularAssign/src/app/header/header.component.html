@@ -1,27 +1,31 @@
 
-<div class="headerimage">
-    <img src="./assets/itorizonlogo.png" alt="Image"class="imageEle"> </div>
-<div class="bg-blue-300 h-4rem headeriner grid">
-    
-    <div class="flex justify-content-start flex-wrap card-container   ">
-    
-        <div class="flex align-items-center  justify-content-center m-4 text-white">
-            <a  routerLink="/HOME"  class="anchorEle">HOME</a>
-        </div>
-        <div class=" flex align-items-center justify-content-center m-2 text-white">
-            <a routerLink="/EMP"class="anchorEle"  >EMPLOYEE</a>
-            </div>
-            <div class="flex align-items-center justify-content-center m-2 text-white" *ngIf="employeeuserhide">
-                <a routerLink="/DEPT" class="anchorEle"  >DEPARTMENT</a>
-            </div>
 
-            <div class=" flex align-items-center justify-content-center  text-white m-2 ">
-                <a routerLink="/ATDE"     class="anchorEle"  >ATTENDENCE</a>
-            </div>
+    <div class="headerimage">
+        <img src="./assets/itorizonlogo.png" alt="Image"class="imageEle">
+       <div class="notificationicon" > <i style='font-size:24px' class='far'>&#xf0f3;</i></div>
+     </div>
 
-            <div class=" flex justify-content-center align-items-center relative right-10  text-white m-2">
-                <a class="anchorEle" routerLink="/Login" (click)="islogout()" > LOGOUT</a>
+    <div class="bg-cyan-800 headeriner grid">
+        
+        <div class="flex justify-content-start flex-wrap card-container">
+        
+            <div class="flex align-items-center  justify-content-center ml-3  p-3 " routerLinkActive="active">
+                <a  routerLink="/HOME"   class="anchorEle">HOME</a>
+            </div>
+        
+            <div class=" flex align-items-center justify-content-center p-3  " routerLinkActive="active">
+                <a routerLink="/EMP"class="anchorEle" >EMPLOYEE</a>
                 </div>
+                <div class="flex align-items-center justify-content-center p-4 " *ngIf="employeeuserhide" routerLinkActive="active">
+                    <a routerLink="/DEPT" class="anchorEle"  >DEPARTMENT</a>
+                </div>
+    
+                <div class=" flex align-items-center justify-content-center  p-3  " routerLinkActive="active">
+                    <a routerLink="/ATDE"   class="anchorEle"  >ATTENDENCE</a>
+                </div>
+    
+                <div class=" flex justify-content-center align-items-center relative  logoutEle">
+                    <a class="anchorEle" routerLink="/Login" (click)="islogout()" routerLinkActive="active" > LOGOUT</a>
+                    </div>
+        </div>
     </div>
-</div>
-

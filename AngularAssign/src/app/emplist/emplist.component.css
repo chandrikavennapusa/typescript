@@ -1,18 +1,18 @@
 
 .formcontainer{
-    left:30px;
-    margin-top: 30px;
-    margin-bottom: 45px;
-    top:119px;
+    margin-left: 70px;
+    top:130px
 }
 :host ::ng-deep .p-dropdown {
     width: 198px;
-    position: relative;
+  
   }
-
+.updateemplistEle{
+    margin-left: 67px;
+}
 .navEle{
     position: relative;
-    top: 130px;
+    top: 126px;
 }
 .savebtnEle{
     position: relative;
@@ -34,7 +34,13 @@
  .navEle{
     width: 368px;
     position: relative;
-    top: 8px;
+    top:155px;
 
  }
+ /* .formcontainer{
+    top: 154px;
+ }
+ .formtablecontainer{
+    padding-bottom: 40px;
+ } */
 }

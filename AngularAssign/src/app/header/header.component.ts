@@ -14,13 +14,19 @@ constructor(private service:ServicesService ,private router:Router){}
 employeeuserhide=true;
 
   ngOnInit(){
+   
     let username =localStorage.getItem("username");
      if(username == "employee" ){
       this.employeeuserhide=false; 
   }
+ 
  }
+ 
  islogout(){
   localStorage.setItem('empbooleanvalue',"false");
-        this.router.navigate(['/Login']);
+       this.router.navigate(['/Login']);
  }
+
+
+
 }

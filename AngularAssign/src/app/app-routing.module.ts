@@ -16,7 +16,7 @@ import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
 import { CanactivateService } from './canactivate.service';
 
 const routes: Routes = [
-  {path:'', redirectTo: '/Login', pathMatch: 'full' },
+  {path:'',redirectTo:'/Login',pathMatch:"full"},
   {path:'Login',component:LoginComponent},
   {path:'HOME',canActivate: [CanactivateService],component:HomeComponent},
   {path:'EMP',canActivate: [CanactivateService],component:EmployeeComponent},
@@ -33,7 +33,7 @@ const routes: Routes = [
 @NgModule({
   imports: [RouterModule.forRoot(routes, {
     initialNavigation: 'enabledBlocking',
-    // onSameUrlNavigation: 'reload'
+
 })],
   exports: [RouterModule]
 })
