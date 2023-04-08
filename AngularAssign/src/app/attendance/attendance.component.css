@@ -3,7 +3,9 @@
     left:-80px;
 }
 .navEle{
-    top: 92px;
+    top: 111px;
+    position: fixed;
+    width: 1550px;
 }
 .errmessageEle{
     color: red;
@@ -35,22 +37,22 @@ left: 600px;
     top: 18px;
 }
 .attendencetableContainer{
-    top:65px;
-    position: relative;
+    top:187px;
+    position: fixed;
     background-color: white;
     margin-left: 60px;
 }
 .attendlistEle{
     position: relative;
-    margin-left: 60px;
-    top:26px;
+    margin-left:84px;
+    top:4px;
 }
 @media (max-width:666px) and (min-width:320px){
 .attendenceidformcontainer{
     left:20px;
 }
 .navEle{
-    width: 330px;
+    width: 370px;
     top:155px;
 }
 .addattendeneEle{

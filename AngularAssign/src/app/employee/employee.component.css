@@ -1,37 +1,50 @@
    
-    .navEle{
-        top:90px; 
-    }
-    .empidformcontainer{
-        position: absolute;
-        top: 200px;
-        left:550px;
-    }
+    .navbarEle{
+        top:110px; 
+        position: fixed;
    
-    .emptabledetailContiner{
-       position: relative;
-         top: 60px;
-       margin-left:60px;
-         background-color: white;
-    } 
-    
-.emplistEle{
-    position: relative;
-    margin-left: 66px;
-    top: 21px;
-}
- :host ::ng-deep .p-button.addbtnEle
+    }
+    .addbtncontainer{
+        top: 180px;
+           margin-left:60px;
+          background-color: white;
+    }
+    .emptabledetailsContiner{
+                 position: fixed;
+               top: 260px;
+           margin-left:60px;
+          background-color: white;
+    }
+    :host ::ng-deep .p-button{
+        border:0px !important;
+    }
+    :host ::ng-deep .p-button.addbtnEle
 {
     float: right;
     top: 19px;
     margin-right: 29px;
 }
+.emplistEle{
+    position: relative;
+    margin-left: 66px;
+    top: 5px;
+}
 
+    /* .empidformcontainer{
+        position: absolute;
+        top: 200px;
+        left:550px;
+    }
+   
+    
+    
+
+ 
     @media (max-width:666px) and (min-width:320px){
        .addbtnEle{
         left: 202px;
        }
-       .navEle{
+       .navbarEle{
         top: 154px;
 
        }
@@ -51,11 +64,11 @@
        .addbtnEle{
         left: 608px;
        }
-       .navEle{
+       .navbarEle{
         width:772px;
        }
        .emptabledetailContiner{
         margin-left: 39px;
        }
-     } 
+     }  */
     

@@ -1,13 +1,14 @@
 
 
 .tableContainer{
-  top: 70px;
-margin-left: 50px;
+  top: 195px;
+margin-left: 55px;
 
 }
 .navEle{
-  position: relative;
+  position:fixed;
   top:98px;
+  width: 100%;
 }
 .deptlistEle{
   position: relative;
@@ -20,8 +21,8 @@ margin-left: 50px;
   top: 155px;
 }
 .tableContainer{
-  top: 115px;
-    margin-left: 15px;
+
+  margin-left: 17px;
 }
 .deptlistEle{
   margin-left: 0px;

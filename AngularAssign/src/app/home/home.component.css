@@ -4,43 +4,51 @@
 .fa {
     font: normal normal normal 31px/1 FontAwesome !important;
   }
- .homeEleContainer{
-  position: relative;
-  top:72px;
- }
-
- .homeContainer {
-  border: 2px solid;
- height: 500px;
- position: relative;
- top:-40px;
- left:100px
- }
- .dashboardEle{
-  margin-left: 95px;
+  .navbarEle{
+    position: fixed;
+    top:115px;
+    width: 100%;
+    z-index: 9;
+  }
+  .dashboardEle{
+    margin-left: 95px;
     position: relative;
-    top: 11px;
- }
+    top: -20px;
+  }
+  .homeContainer {
+    border: 2px solid;
+   height: 500px;
+   position: relative;
+   top:-50px;
+   left:70px;
+   width: 1400px;
+   }
+ 
+ 
 
   @media (max-width:666px) and (min-width:320px){
-.navEle{
-    margin: 0px;
-    width: 1280px;
+.navbarEle{
+   top: 166px;
+  
 }
-.homeEleContainer{
-  top: 130px;
-    width: 320px;
+
+.dashboardEle{
+  margin-left: 7px;
 }
 .homeContainer{
-  left: 31px;
-    height: 376px;
-}
-.dashboardEle{
-  margin-left: 0px;
+  left: 35px;
+  height: 379px;
+  width: 262px;
+
 }
   }
   @media (max-width:768px) and (min-width:666px){
+  /* .navbarEle{
+    width: 768px;
+  } */
   .homeContainer{
-    height: 436px;
+    height: 427px;
+    width: 643px;
   }
-}
+} 
+

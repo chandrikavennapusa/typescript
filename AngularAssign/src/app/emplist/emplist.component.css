@@ -1,46 +1,46 @@
-
-.formcontainer{
-    margin-left: 70px;
-    top:130px
+.navEle{
+    position:fixed;
+    top: 126px;
+    width:100%;
+    margin-left: 0px;
+    margin-right: 0px;
 }
 :host ::ng-deep .p-dropdown {
     width: 198px;
-  
+
   }
 .updateemplistEle{
     margin-left: 67px;
 }
-.navEle{
-    position: relative;
-    top: 126px;
-}
+
 .savebtnEle{
     position: relative;
     margin-left: 20px;
     margin-right: 20px;
- } 
+ }
+ .emptabledetailscontainer{
+    position: relative;
+    top: 176px;
+    margin-left: 37px;
+   
+ }
+ .emptableEle{
+    margin-left: 85px;
+    top:10px;
+    position: relative;
+ }
+.buttonEle{
+    float: right;
+    top: -55px;
+    margin-right: 100px;
+    position: relative;
+}
+ 
  @media (max-width:768px) and (min-width:666px){
-.formtablecontainer{
-    margin-right: -120px;
-    margin-left: 4px;
-}
-
-.navEle{
-    width:926px;
-}
  }
  @media (max-width:666px) and (min-width:320px){
+    .emptabledetailscontainer{
+        height: 500px;
+    }
 
- .navEle{
-    width: 368px;
-    position: relative;
-    top:155px;
-
- }
- /* .formcontainer{
-    top: 154px;
- }
- .formtablecontainer{
-    padding-bottom: 40px;
- } */
 }

@@ -6,30 +6,30 @@
 </div>
 
 
-<div class="relative formcontainer"> 
+<div class="emptabledetailscontainer bg-white w-11 border-noround  border-100 border-solid"> 
   <form  #EmployeeForm="ngForm" (ngSubmit)="onSubmit()" ngNativeValidate>
-  <div class="grid formtablecontainer">
-                           <div  class="col md:col-3  ">
-                            <div><label> Employee Id *</label></div>
+  <div class="grid emptableEle pb-8">
+                           <div  class="col md:col-4  ">
+                            <div class="mb-3"><label> Employee Id *</label></div>
                             <input type="text" pInputText name="employeeId"
                              [(ngModel)]="empdetailObj.employeeId"  [disabled]="true" />
                             </div>
 
-                            <div  class=" col md:col-3  ">
-                              <div><label>First Name * </label></div>
+                            <div  class=" col md:col-4 ">
+                              <div class="mb-3"><label>First Name * </label></div>
                                 <input type="text" pInputText name="firstName" 
                                 [(ngModel)]="empdetailObj.firstName" required pattern="^[a-zA-Z]+$" 
                                 [disabled]="!editmode" />
                             </div>
 
-                            <div class=" col  md:col-6"> 
-                              <div><label> Last Name * </label></div>
+                            <div class=" col  md:col-4"> 
+                              <div class="mb-3"><label> Last Name * </label></div>
                              <input type="text" pInputText name="lastName" [(ngModel)]="empdetailObj.lastName"  required  pattern="^[a-zA-Z]+$" [disabled]="!editmode"/>
                             </div>
 
                           
-                            <div  class="col md:col-3"> 
-                             <div><label >Gender</label></div>
+                            <div  class="col md:col-4"> 
+                             <div class="mb-3"><label >Gender *</label></div>
                             <div class="formgroup-inline">
                               <div class="field-radiobutton">
                                 <p-radioButton name="gender" value="male"  [(ngModel)]="empdetailObj.gender" [disabled]="!editmode" ></p-radioButton>
@@ -48,8 +48,8 @@
                             
                          </div>
                             </div>
-                            <div class="col md:col-3 ">
-                              <div> <label> Date of Birth * </label></div>
+                            <div class="col md:col-4 ">
+                              <div class="mb-3"> <label> Date of Birth * </label></div>
                               <p-calendar [(ngModel)]="dob11" name="dob" 
                                [required]="true" 
                                 [showTime]="true" 
@@ -59,24 +59,24 @@
                                  [disabled]="!editmode"> </p-calendar>
                             </div>
 
-                              <div class="col md:col-6 ">
-                                <div> <label> Mobile No</label></div>
+                              <div class="col md:col-4 ">
+                                <div class="mb-3"> <label> Mobile No</label></div>
                                 <input type="text" pInputText pKeyFilter="num" [(ngModel)]="empdetailObj.phoneNumber" maxlength="10"
                                  name="phoneNumber" pattern="^((\\+91-?)|0)?[0-9]{10}$" mode="decimal" [disabled]="!editmode" >
                               </div>
-                              <div class="col md:col-3">
-                                <div> <label> Date Of Joining *</label></div>
+                              <div class="col md:col-4">
+                                <div class="mb-3"> <label> Date Of Joining *</label></div>
                                 <p-calendar [(ngModel)]="dateOfJoining11"
                                  name="dateOfJoining" [maxDate]="maxDate" 
                                  [showTime]="true" hourFormat="12" [showSeconds]="true"
                                   [required]="true" [disabled]="!editmode"> </p-calendar>
                               </div>
-                              <div class="col md:col-3">
-                                <div> <label> Salary *</label></div>
+                              <div class="col md:col-4">
+                                <div class="mb-3"> <label> Salary *</label></div>
                                 <input type="text" pInputText [(ngModel)]="empdetailObj.salary" name="salary" required pattern="^[+]?[0-9]+([0-9])*$" [disabled]="!editmode"/>
                               </div>
-                              <div  class="col md:col-6">
-                                <div> <label> Shift *</label></div>
+                              <div  class="col md:col-4">
+                                <div class="mb-3"> <label> Shift *</label></div>
                                 <p-dropdown [options]="shift"  
                                 [(ngModel)]="shift19" 
                                 name="shift" 
@@ -85,50 +85,47 @@
                            
                   
                               </div>
-                              <div  class="col md:col-3">
-                                <div>  <label> CreatedSource:</label></div>
+                              <div  class="col md:col-4">
+                                <div class="mb-3">  <label> CreatedSource:</label></div>
                                 <input type="text" pInputText  [(ngModel)]="empdetailObj.createdSource"  name="createdSource" disabled/>
                               </div>
-                              <div  class="col md:col-3">
-                                <div> <label> CreatedSourceType:</label></div>
+                              <div  class="col md:col-4">
+                                <div class="mb-3"> <label> CreatedSourceType:</label></div>
                                 <input type="text" pInputText [(ngModel)]="empdetailObj.createdSourceType"  readonly name="createdSourceType" disabled/>
                               </div>
-                              <div class="col md:col-6"> 
-                                <div><label>  CreatedDttm:</label></div>
+                              <div class="col md:col-4"> 
+                                <div class="mb-3"><label>  CreatedDttm:</label></div>
                                 <p-calendar  [(ngModel)]="createdDttm11" 
                                 name="createdDttm" readonly  dateFormat="dd/mm/yy" [showSeconds]="true"
                                  [showTime]="true" hourFormat="12" [disabled]="true"  > </p-calendar>
                               </div>
-                              <div class="col md:col-3"> 
-                                <div><label>  ModifiedSource:</label></div>
+                              <div class="col md:col-4"> 
+                                <div class="mb-3"><label>  ModifiedSource:</label></div>
                                 <input type="text" pInputText [(ngModel)]="empdetailObj.modifiedSource"  readonly name="modifiedSource" disabled />
                               
                               </div>
-                              <div class=" col md:col-3"> 
-                                <div> <label> ModifiedSourceType:</label></div>
+                              <div class=" col md:col-4"> 
+                                <div class="mb-3"> <label> ModifiedSourceType:</label></div>
                     <input type="text" pInputText [(ngModel)]="empdetailObj.modifiedSourceType"  readonly name="modifiedSourceType" disabled/>
                               </div>
-                              <div  class="col md:col-6">
-                                <div> <label>  ModifiedDttm:</label></div>
+                              <div  class="col md:col-4">
+                                <div class="mb-3"> <label>  ModifiedDttm:</label></div>
                                 <p-calendar [(ngModel)]="empdetailObj.modifiedDttm"
                                  name="modifiedDttm"    [showTime]="true"  [showSeconds]="true"
                                   hourFormat="12"  dateFormat="dd/mm/yy" [disabled]="true"> </p-calendar>
-                              </div>
-
-                                <div class="col md:col-6 ">
-                                  <div *ngIf="disabledsubmitcancelbtn" >
-                                    <button pButton type="submit" label="Save"></button>
-                                    <button pButton type="button" label="Cancel"  class="savebtnEle" (click)="cancelbtn()"></button>
-                                   </div>
-                                    <div *ngIf="disablededitbackbtn">
-                                      <button pButton type="button" label="Edit"  class="savebtnEle" (click)="editbtnviewmode()" *ngIf="editbtndisable"></button>
-                                    <button pButton type="button" label="Back"  class="p-button-secondary "  (click)="backtoemplistbtn()"  ></button>
-                                    </div>  
-                               
-                                </div>
+                              </div>                         
+                            </div>
+                            <div class="buttonEle ">
+                              <div *ngIf="disabledsubmitcancelbtn" >
+                                <button pButton type="submit" label="Save"></button>
+                                <button pButton type="button" label="Cancel"  class="savebtnEle" (click)="cancelbtn()"></button>
+                               </div>
+                                <div *ngIf="disablededitbackbtn">
+                                  <button pButton type="button" label="Edit"  class="savebtnEle" (click)="editbtnviewmode()" *ngIf="editbtndisable"></button>
+                                <button pButton type="button" label="Back"  class="p-button-secondary "  (click)="backtoemplistbtn()"  ></button>
+                                </div>  
                              
                             </div>
-                         
                           </form>  
 
 </div>

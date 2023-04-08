@@ -1,10 +1,10 @@
-<div class=" bg-cyan-300  h-6rem relative navEle">
+<div class=" bg-cyan-300  h-6rem navEle">
     <h2 class="attendlistEle"> <span> <i class="material-icons">people</i> </span> Attendence List </h2>
     <p-toast></p-toast>
 </div>
 
-<div class="attendencetableContainer w-11">
-    <div class="relative  h-5rem">
+<div class="attendencetableContainer w-11 border-noround border-400 border-solid">
+    <div class="relative border-bottom-2 border-400 h-5rem">
         <p-button (click)="showDialog()" icon="pi pi-plus" label="ADD" styleClass="addbtnEle"
             *ngIf="addbtndisable"></p-button>
 
@@ -44,7 +44,10 @@
         <p-table [columns]="cols" [value]="gettingattendencedata" [paginator]="true" [rows]="5"
             [showCurrentPageReport]="true"
             currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
-            [rowsPerPageOptions]="[5,10,15,20]" paginatorPosition="bottom" responsiveLayout="scroll">
+            [rowsPerPageOptions]="[5,10,15,20]" 
+            paginatorPosition="bottom" [scrollable]="true"
+            scrollHeight="350px"
+            responsiveLayout="scroll">
             <ng-template pTemplate="header" let-columns>
                 <tr>
                     <th *ngFor="let col of columns" [pSortableColumn]="col.field">

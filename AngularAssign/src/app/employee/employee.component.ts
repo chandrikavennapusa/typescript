@@ -49,6 +49,7 @@ export class EmployeeComponent {
 
   ngOnInit(){
     this.gettingData();
+    
 
     this.cols = [
       { field: 'employeeId', header: 'Employee Id' },
@@ -89,27 +90,37 @@ export class EmployeeComponent {
   });
    
   }
+  attendeceemployeeid;
+  error;
+
   delete(id){
+    console.log(id);
 
-  this.service.gettingattendedatabasedonempid(id).subscribe(
-    (data)=> {
-              console.log(data);
-    }
-  )
-
+    this.service.gettingattendedatabasedonempid(id).subscribe(
+      (data)=> {
+        this.attendeceemployeeid =data;
+       if(this.attendeceemployeeid.employeeId == id){
+        this.messageService.add({ severity: 'error', summary: 'Error', detail:'this employee id is already exit in Attendence table' });
+       } 
+      },
+      (err)=>{
         this.service.deleteempid(id).subscribe( 
-          response=>{ console.log(response);
-          console.log("response block");
-          } ,
-          (err:HttpErrorResponse) =>{
-            this.messageService.add({ severity: 'success', summary: 'Success', detail: err.error.text});
-            this.gettingData();
-          },
-          ()=>{
-            console.log("complete");
-            console.log("sucess block");
-          }
-        );
+            response=>{ console.log(response);
+            console.log("response block");
+            } ,
+            (err:HttpErrorResponse) =>{
+              this.messageService.add({ severity: 'success', summary: 'Success', detail: err.error.text});
+              this.gettingData();
+            },
+            ()=>{
+              console.log("complete");
+              console.log("sucess block");
+            }
+          );
+      }
+    )
+
+        
   }
 
 // Feching the Employee data
