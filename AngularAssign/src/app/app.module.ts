@@ -41,7 +41,8 @@ import { EmpService } from './emp.service';
 import { AttenService } from './atten.service';
 import {DropdownModule} from 'primeng/dropdown';
 import { DialogModule } from 'primeng/dialog';
-import {DatePipe} from '@angular/common';    
+import {DatePipe} from '@angular/common';   
+ 
 @NgModule({
   declarations: [
     AppComponent,

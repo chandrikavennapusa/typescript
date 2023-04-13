@@ -2,7 +2,7 @@
     position: relative;
     left:-80px;
 }
-.navEle{
+.navgationBarEle{
     top: 111px;
     position: fixed;
     width: 1550px;
@@ -10,23 +10,39 @@
 .errmessageEle{
     color: red;
 }
+.serachEle{
+    float: right;
+    top: 20px;
+    margin-right: 20px;
+}
 :host ::ng-deep .p-button.addbtnEle{
     float: right;
-    top: 14px;
+    top: 20px;
     margin-right: 44px;
 
+}:host ::ng-deep .p-paginator {
+    
+    max-width:max-content;
+    float: right;
+    border: 1px solid gray;
+   margin: 10px;
+  transition: background-color .3s;
+
 }
+:host ::ng-deep .p-dropdown {
+    float: right;
+    margin-right: 60px;
+   top: 19px;
+  
+  }
+
+
 .attendenceidformcontainer{
 position: absolute;
 top: 200px;
 left: 600px;
 }
-.backgroundcolor{
-    z-index: -1;
-    position: relative;
-    background-color:white;
-    opacity: 0.2;
-}
+
 .cancelEle{
     margin-left: 23px;
     top: 17px;
@@ -42,27 +58,50 @@ left: 600px;
     background-color: white;
     margin-left: 60px;
 }
-.attendlistEle{
+.attendListHeadingEle{
     position: relative;
     margin-left:84px;
     top:4px;
+}
+
+:host ::ng-deep .p-datatable-scrollable>.p-datatable-wrapper {
+    max-height: 350px;
 }
 @media (max-width:666px) and (min-width:320px){
 .attendenceidformcontainer{
     left:20px;
 }
-.navEle{
+.navgationBarEle{
     width: 370px;
-    top:155px;
+    top:178px;
 }
 .addattendeneEle{
     margin-left: 196px;
 }
 .attendencetableContainer{
     margin-left: 15px;
-    top: 125px;
-}
+    top: 257px;
 
+}
+.serachEle{
+    
+    left: 35px;
+    top: 4px;
+
+}
+:host ::ng-deep .p-datatable-scrollable>.p-datatable-wrapper {
+    max-height: 195px;
+}
+:host ::ng-deep .p-dropdown {
+    margin-right: 10px;
+    top:2px;
+  }
+
+}
+:host ::ng-deep
+.p-datatable .p-sortable-column .p-sortable-column-badge,
+.p-datatable .p-sortable-column.p-highlight .p-sortable-column-badge {
+  display: none;
 }
 @media (max-width:768px) and (min-width:666px){
     .attendenceidformcontainer{
@@ -74,4 +113,11 @@ left: 600px;
     .attendencetableContainer{
         margin-left: 30px;
     }
+    :host ::ng-deep .p-datatable-scrollable>.p-datatable-wrapper {
+        max-height: 250px;
+  }
+  .serachEle{
+    top: 19px;
+    margin-right: -48px;
+  }
 }

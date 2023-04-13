@@ -5,18 +5,37 @@ import { ServicesService } from '../services.service';
 @Component({
   selector: 'app-department',
   templateUrl: './department.component.html',
-  styleUrls: ['./department.component.css']
+  styleUrls: ['./department.component.css'],
 })
 export class DepartmentComponent {
-  getDeptDetails;
+  fetchingDeptDetails: any;
   errorMessage: any;
-  cols:any;
-   constructor(private service:ServicesService , private router:Router){}
+  cols: any;
+  first2: number = 0;
+  rows2: number = 10;
+  totalrecords = 0;
+  constructor(private service: ServicesService, private router: Router) {}
 
-   ngOnInit(){
-    localStorage.setItem('path','DEPT');
-    // Fecthing the Department data
-    this.service.gettingDeptdata().subscribe(data => {this.getDeptDetails=data},error => this.errorMessage = error);
+  rowsPerPageOptions = [
+    { label: 'Show 5', value: 5 },
+    { label: 'Show 10', value: 10 },
+    { label: 'Show 15', value: 15 },
+    { label: 'Show 20', value: 20 },
+  ];
+  onPageChange(event: any) {
+    this.first2 = event.first;
+    this.rows2 = event.rows;
+    this.totalrecords = event.totalrecords;
+  }
+  ngOnInit() {
+    this.service.fetchingDepartmentData().subscribe(
+      (data) => {
+        this.fetchingDeptDetails = data;
+      },
+      (error) => {
+        this.errorMessage = error;
+      }
+    );
 
     this.cols = [
       { field: 'departmentId', header: 'Department Id' },
@@ -29,15 +48,11 @@ export class DepartmentComponent {
       { field: 'modifiedSource', header: 'ModifiedSource' },
       { field: 'modifiedSourceType', header: 'ModifiedSourceType' },
       { field: 'modifiedDttm', header: 'ModifiedDttm' },
-     
-  ];
-   }
+    ];
+  }
 
-   // when we double click on this, we will get row 
-   doubleClick(deptid){
-   this.router.navigate(['/DEPTLIST']);
-   this.service.deptid=deptid;
-  
-   }
-   
+  doubleClick(deptid: any) {
+    this.router.navigate(['/DEPTLIST/:' + deptid + '']);
+    this.service.deptid = deptid;
+  }
 }

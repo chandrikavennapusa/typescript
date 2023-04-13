@@ -6,47 +6,43 @@
     
   </div>
   
-<div class="grid m-0">
-  <div class="col">
-    <h3 class="headingEle">Add New Employee</h3>
-  </div>
-  </div>
 
-<div class="relative emplistcontainer">
+
+<div class="bg-white w-11 border-noround  border-100 border-solid emplistcontainer">
   
-  <form  #EmployeeForm="ngForm" (ngSubmit)=" EmployeeForm.form.valid && onSubmit() " ngNativeValidate>
+  <form  #EmployeeForm="ngForm" (ngSubmit)="EmployeeForm.form.valid &&  submitEmployeeData()" ngNativeValidate>
   <div class="formgrid grid formtablecontainer">
   
-                           <div class=" field col-9 md:col-4">
-                                            <div><label>EmployeeId *</label></div>
-                                            <input type="text" pInputText name="employeeId" [(ngModel)]=" empdetailObj.employeeId" class="inputlenEle" [disabled]="true"  />
+                           <div class=" col-12 md:col-4">
+                                            <div class="mb-2 mt-2"><label>EmployeeId *</label></div>
+                                            <input type="text" pInputText name="employeeId" [(ngModel)]="employeeDetailObj.employeeId" class="inputlenEle" [disabled]="true"  />
                              </div>
-                             <div class=" field col-9 md:col-4">
-                              <div><label>FirstName *</label></div>
-                              <input type="text" pInputText name="firstName" [(ngModel)]=" empdetailObj.firstName" #fName="ngModel" required pattern="^[a-zA-Z]+$" class="inputlenEle" />
+                             <div class="  col-12 md:col-4">
+                              <div class="mb-2 mt-2"><label>FirstName *</label></div>
+                              <input type="text" pInputText name="firstName" [(ngModel)]="employeeDetailObj.firstName" #fName="ngModel" required pattern="^[a-zA-Z]+$" class="inputlenEle" />
                               <div class="errmessageEle" *ngIf="fName.touched && fName.invalid" > enter the valid name</div>
                              </div>
 
-                             <div class=" field col-9 md:col-4 ">
-                              <div><label>LastName *</label></div>
-                              <input type="text" pInputText name="lastName" [(ngModel)]=" empdetailObj.lastName"  #lName="ngModel" required  pattern="^[a-zA-Z]+$" class="inputlenEle" />
+                             <div class="  col-12 md:col-4 ">
+                              <div class="mb-2 mt-2"><label>LastName *</label></div>
+                              <input type="text" pInputText name="lastName" [(ngModel)]="employeeDetailObj.lastName"  #lName="ngModel" required  pattern="^[a-zA-Z]+$" class="inputlenEle" />
                               <div class="errmessageEle" *ngIf="lName.touched && lName.invalid" > enter the valid name</div>
 
                              </div>
                             
-                             <div   class="field col-9 md:col-4"> 
-                                   <div><label >Gender *</label></div>
+                             <div   class=" col-12 md:col-4"> 
+                                   <div class="mb-2 mt-2"><label >Gender *</label></div>
                                 <div class="formgroup-inline">
                                        <div class="field-radiobutton m-0">
-                                <p-radioButton type="radio"  name="gender" value="male"  [(ngModel)]=" empdetailObj.gender" #g="ngModel"   styleClass="radio-style" required></p-radioButton>
+                                <p-radioButton type="radio"  name="gender" value="male"  [(ngModel)]="employeeDetailObj.gender" #g="ngModel"   styleClass="radio-style" required></p-radioButton>
                                 <label >Male</label>
                                        </div>
                                        <div class="field-radiobutton m-0 ">
-                                  <p-radioButton  type="radio"   name="gender" value="Female" [(ngModel)]=" empdetailObj.gender"  styleClass="radio-style" required></p-radioButton>
+                                  <p-radioButton  type="radio"   name="gender" value="Female" [(ngModel)]="employeeDetailObj.gender"  styleClass="radio-style" required></p-radioButton>
                                    <label>Female</label>
                                         </div>
                                         <div class="field-radiobutton m-0">
-                                  <p-radioButton  type="radio"   name="gender" value="customgender" [(ngModel)]=" empdetailObj.gender"  styleClass="radio-style" required></p-radioButton>
+                                  <p-radioButton  type="radio"   name="gender" value="customgender" [(ngModel)]="employeeDetailObj.gender"  styleClass="radio-style" required></p-radioButton>
                                    <label>Custmgender</label>
                                           </div>
                                  <div *ngIf="EmployeeForm.form.invalid && EmployeeForm.form.touched && g.invalid" class="errmessageEle">
@@ -54,103 +50,117 @@
                                 </div>
                               </div>
                              </div>
-                             <div class="field col-9 md:col-4">
-                              <div> <label>* DateOfBirth</label></div>
-             <p-calendar [(ngModel)]=" empdetailObj.dob" name="dob" 
+                             <div class=" col-12 md:col-4">
+                              <div class="mb-2 mt-2"> <label>* DateOfBirth</label></div>
+             <p-calendar [(ngModel)]="dob11" name="dob"  appendTo="body" 
               [showTime]="true" 
               hourFormat="12"
               [maxDate]="maxDate" 
+
               [showSeconds]="true"
                #dateob="ngModel" [required]="true" class="inputlenEle" >
                </p-calendar>
              <div class="errmessageEle" *ngIf="dateob.touched && dateob.invalid" > enter the valid date</div>
            </div>
-           <div class="field col-9 md:col-4">
-            <div><label>EmailId *</label></div>
-              <input type="text" [(ngModel)]=" empdetailObj.emailId"  name="mailId" pInputText  #email1="ngModel" required class="inputlenEle"  pattern="^[a-zA-Z0-9]+(?:\.[a-zA-Z0-9]+)*@[a-zA-Z0-9]+(?:\.[a-zA-Z0-9]+)*$"/>
+           <div class=" col-12 md:col-4">
+            <div class="mb-2 mt-2"><label>EmailId *</label></div>
+              <input type="text" [(ngModel)]="employeeDetailObj.mailId"  name="mailId" pInputText 
+               #email1="ngModel" required class="inputlenEle" 
+                pattern="^[a-zA-Z0-9]+(?:\.[a-zA-Z0-9]+)*@[a-zA-Z0-9]+(?:\.[a-zA-Z0-9]+)*.[com]$"/>
              <div class="errmessageEle" *ngIf="email1.touched && email1.invalid" > enter the valid email id</div>
            </div>
 
 
-           <div class="field col-9 md:col-4">
-            <div> <label> MobileNo</label></div>
-            <input type="text" pInputText pKeyFilter="num"  [(ngModel)]=" empdetailObj.phoneNumber" maxlength="10"
+           <div class=" col-12 md:col-4">
+            <div class="mb-2 mt-2"> <label> MobileNo</label></div>
+            <input type="text" pInputText pKeyFilter="num"  [(ngModel)]="employeeDetailObj.phoneNumber" maxlength="10"
             name="phoneNumber" #ph="ngModel" pattern="^((\\+91-?)|0)?[0-9]{10}$"  class="inputlenEle"  >
             <div class="errmessageEle" *ngIf="ph.touched && ph.invalid" > Please, Enter 10 digit Mobile Number</div>
           </div>
 
-           <div class="field col-9 md:col-4">
-            <div><label> BloodGroup</label></div>
+           <div class="col-12 md:col-4">
+            <div class="mb-2 mt-2"><label> BloodGroup</label></div>
             <p-dropdown [options]="bloodGroup" 
                                  [(ngModel)]="bloddgroup1"  
                                    name="bloodGroup"  
-                                   optionLabel="name"></p-dropdown>
+                                   optionLabel="name"
+                                   
+                                   ></p-dropdown>
            </div>
 
-           <div class="field col-9 md:col-4">
-            <div> <label> Address:</label></div>
-            <input type="text" pInputText [(ngModel)]=" empdetailObj.address" name="address" pattern="^[-_a-zA-Z0-9.]+$" class="inputlenEle" />
+           <div class=" col-12 md:col-4">
+            <div class="mb-2 mt-2"> <label> Address:</label></div>
+            <input type="text" pInputText [(ngModel)]="employeeDetailObj.address" name="address" pattern="^[-_a-zA-Z0-9.]+$" class="inputlenEle" />
               </div>
-              <div class="field col-9 md:col-4">
-                <div> <label>Department * </label></div>
-         <input type="text" pInputText  [(ngModel)]=" empdetailObj.Department" name="department" pattern="^[a-zA-Z]+$" #dept="ngModel" class="inputlenEle"  required/>
+              <div class=" col-12 md:col-4">
+                <div class="mb-2 mt-2"> <label>Department * </label></div>
+         <input type="text" pInputText  [(ngModel)]="employeeDetailObj.department" name="department" pattern="^[a-zA-Z]+$" #dept="ngModel" class="inputlenEle"  required/>
          <div class="errmessageEle" *ngIf="dept.touched && dept.invalid" > enter the valid deptname</div>
               </div>
-              <div class="field col-9 md:col-4">
-                <div> <label> DateOfJoining *</label></div>
-                <p-calendar [(ngModel)]=" empdetailObj.dateOfJoining" name="dateOfJoining"
+              <div class=" col-12 md:col-4">
+                <div class="mb-2 mt-2"> <label> DateOfJoining *</label></div>
+                <p-calendar [(ngModel)]="doj11" name="dateOfJoining" appendTo="body"
                  [maxDate]="maxDate" 
                    [showTime]="true" hourFormat="12"  
                    [showSeconds]="true"
                   #doj="ngModel"[required]="true" class="inputlenEle" > </p-calendar>
                 <div class="errmessageEle" *ngIf="doj.touched && doj.invalid" > enter the valid date of DateOfJoining</div>
                </div>
-               <div class="field col-9 md:col-4">
-                <div> <label> Salary * </label></div>
-                <input type="text" pInputText [(ngModel)]=" empdetailObj.salary" name="salary" #sal="ngModel" required pattern="^[0-9]*$" class="inputlenEle" />
+               <div class=" col-12 md:col-4">
+                <div class="mb-2 mt-2"> <label> Salary * </label></div>
+                <input type="text" pInputText [(ngModel)]="employeeDetailObj.salary" name="salary" #sal="ngModel" required pattern="^[0-9]*$" class="inputlenEle" />
                 <div class="errmessageEle" *ngIf="sal.touched && sal.invalid" > enter the valid salary number</div>
                   </div>
-                  <div class="field col-9 md:col-4">
-                    <div> <label> Shift *</label></div>
-                  <p-dropdown [options]="shift"  [(ngModel)]="shift19" 
-                     name="shift" #shift1="ngModel"  optionLabel="name"></p-dropdown>
+
+
+                  <div class=" col-12 md:col-4">
+                    <div class="mb-2 mt-2"> <label> Shift *</label></div>
+                  <p-dropdown [options]="shift" 
+                   [(ngModel)]="shift19" 
+                     name="shift" 
+                     #shift1="ngModel"  
+                     optionLabel="name"></p-dropdown>
                 
                     <div class="errmessageEle" *ngIf="shift1.touched && shift1.invalid" > enter the valid name</div>
                       </div>
-                      <div class="field col-9 md:col-4">
-                        <div>  <label> CreatedSource:</label></div>
-         <input type="text" pInputText  [(ngModel)]=" empdetailObj.createdSource" name="createdSource" disabled class="inputlenEle" />
+
+
+
+                      <div class=" col-12 md:col-4">
+                        <div class="mb-2 mt-2">  <label> CreatedSource:</label></div>
+         <input type="text" pInputText  [(ngModel)]="employeeDetailObj.createdSource" name="createdSource" disabled class="inputlenEle" />
            </div>
-           <div class="field col-9 md:col-4">
-            <div> <label> CreatedSourceType:</label></div>
-            <input type="text" pInputText [(ngModel)]=" empdetailObj.createdSourceType" name="createdSourceType" class="inputlenEle"  disabled/>
+           <div class=" col-12 md:col-4">
+            <div class="mb-2 mt-2"> <label> CreatedSourceType:</label></div>
+            <input type="text" pInputText [(ngModel)]="employeeDetailObj.createdSourceType" name="createdSourceType" class="inputlenEle"  disabled/>
               </div>
-              <div class="field col-9 md:col-4">
-                <div><label>CreatedDttm:</label></div>
-                <p-calendar  [(ngModel)]="empdetailObj.createdDttm" 
+              <div class=" col-12 md:col-4">
+                <div class="mb-2 mt-2"><label>CreatedDttm:</label></div>
+                <p-calendar  [(ngModel)]="employeeDetailObj.createdDttm" 
                                 name="createdDttm"  [showSeconds]="true" dateFormat="dd/mm/yy" 
                                  [showTime]="true" hourFormat="12" [disabled]="true"  > </p-calendar>
            
            </div>
-           <div class="field col-9 md:col-4">
-            <div><label>  ModifiedSource:</label></div>
-         <input type="text" pInputText [(ngModel)]=" empdetailObj.modifiedSource" name="modifiedSource" class="inputlenEle"   disabled/>
+           <div class=" col-12 md:col-4">
+            <div class="mb-2 mt-2"><label>  ModifiedSource:</label></div>
+         <input type="text" pInputText [(ngModel)]="employeeDetailObj.modifiedSource" name="modifiedSource" class="inputlenEle"   disabled/>
            </div>
-           <div class="field col-9 md:col-4">
-            <div> <label> ModifiedSourceType:</label></div>
-            <input type="text" pInputText [(ngModel)]=" empdetailObj.modifiedSourceType" name="modifiedSourceType" class="inputlenEle"  disabled/>
+           <div class="col-12 md:col-4">
+            <div class="mb-2 mt-2"> <label> ModifiedSourceType:</label></div>
+            <input type="text" pInputText [(ngModel)]="employeeDetailObj.modifiedSourceType" name="modifiedSourceType" class="inputlenEle"  disabled/>
               </div>
-              <div class="field col-9 md:col-4">
-                <div> <label>  ModifiedDttm:</label></div>
-                <p-calendar [(ngModel)]="empdetailObj.modifiedDttm"
+              <div class="col-12 md:col-8">
+                <div class="mb-2 mt-2"> <label>  ModifiedDttm:</label></div>
+                <p-calendar [(ngModel)]="employeeDetailObj.modifiedDttm"
                                  name="modifiedDttm"  [showSeconds]="true"   [showTime]="true"
                                   hourFormat="12"  dateFormat="dd/mm/yy" [disabled]="true"> </p-calendar>
        
            </div> 
-           <div class="field col-9 ">
-                <button pButton type="submit" label="Save" class="saveEle" ></button>
-                <button pButton type="button" label="Cancel"  class="p-button-secondary canecelEle" (click)="formcancelbtn()"></button>                    
-             </div>
+           
+</div>
+<div class="col buttonEle">
+  <button pButton type="submit" label="Save" class="saveEle" ></button>
+  <button pButton type="button" label="Cancel"  class="p-button-secondary canecelEle" (click)="navigateEmpListScreen()"></button>                    
 </div>
 </form>
 </div>

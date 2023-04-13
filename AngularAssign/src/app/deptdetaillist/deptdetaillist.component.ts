@@ -1,53 +1,60 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ServicesService } from '../services.service';
 
 @Component({
   selector: 'app-deptdetaillist',
   templateUrl: './deptdetaillist.component.html',
-  styleUrls: ['./deptdetaillist.component.css']
+  styleUrls: ['./deptdetaillist.component.css'],
 })
 export class DeptdetaillistComponent {
-  departmentId='';
-  departmentName='';
-  noOfEmployee='';
-  managerId='';
-  createdSource='';
-  createdSourceType='';
-  createdDttm='';
-  modifiedSource='';
-  modifiedSourceType='';
-  modifiedDttm='';
-  editmode=false;
-  fecthingdeptdata;
-constructor(private service:ServicesService, private router:Router){}
-  ngOnInit(){
-    // Fecthing the Department data
-     this.service.fectingdata(this.service.deptid).subscribe(
-      data =>{
-        this.fecthingdeptdata=data;
-        this.departmentId=this.fecthingdeptdata.departmentId
-    this.departmentName=this.fecthingdeptdata.departmentName;
-    this.noOfEmployee=this.fecthingdeptdata.noOfEmployee;
-    this.managerId=this.fecthingdeptdata.managerId;
-    this.createdSource=this.fecthingdeptdata.createdSource;
-    this.createdSourceType=this.fecthingdeptdata.createdSourceType
-    this.createdDttm= this.fecthingdeptdata.createdDttm;
-   this.modifiedSource=this.fecthingdeptdata.modifiedSource
-    this.modifiedSourceType=this.fecthingdeptdata.modifiedSourceType;
-    this.modifiedDttm=this.fecthingdeptdata.modifiedDttm;
-      }
-     ),
-     err =>{
-      console.log(err.error);
-     },
-     ()=>{
-      console.log("complete");
-     }
+  departmentId = '';
+  departmentName = '';
+  noOfEmployee = '';
+  managerId = '';
+  createdSource = '';
+  createdSourceType = '';
+  createdDttm = '';
+  modifiedSource = '';
+  modifiedSourceType = '';
+  modifiedDttm = '';
+  editmode = false;
+  fetchingDeptData: any;
+  constructor(
+    private service: ServicesService,
+    private router: Router,
+    private activatedRoute: ActivatedRoute
+  ) {}
+
+  ngOnInit() {
+    this.activatedRoute.paramMap.subscribe((parm) => {
+      this.service.deptid = parm.get('id')?.substring(1);
+
+      this.service
+        .fetchingDepartmentIdDetails(this.service.deptid)
+        .subscribe((data) => {
+          this.fetchingDeptData = data;
+          this.departmentId = this.fetchingDeptData.departmentId;
+          this.departmentName = this.fetchingDeptData.departmentName;
+          this.noOfEmployee = this.fetchingDeptData.noOfEmployee;
+          this.managerId = this.fetchingDeptData.managerId;
+          this.createdSource = this.fetchingDeptData.createdSource;
+          this.createdSourceType = this.fetchingDeptData.createdSourceType;
+          this.createdDttm = this.fetchingDeptData.createdDttm;
+          this.modifiedSource = this.fetchingDeptData.modifiedSource;
+          this.modifiedSourceType = this.fetchingDeptData.modifiedSourceType;
+          this.modifiedDttm = this.fetchingDeptData.modifiedDttm;
+        }),
+        (err: any) => {
+          console.log(err.error);
+        },
+        () => {
+          console.log('complete');
+        };
+    });
   }
 
-  // Navigate to the Department list screen
-  backtodept(){
-    this.router.navigate(['/DEPT'])
+  navigateDeptListScreen() {
+    this.router.navigate(['/DEPT']);
   }
 }

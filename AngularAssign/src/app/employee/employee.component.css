@@ -11,7 +11,7 @@
     }
     .emptabledetailsContiner{
                  position: fixed;
-               top: 260px;
+               top: 170px;
            margin-left:60px;
           background-color: white;
     }
@@ -30,45 +30,65 @@
     top: 5px;
 }
 
-    /* .empidformcontainer{
-        position: absolute;
-        top: 200px;
-        left:550px;
-    }
-   
+:host ::ng-deep .p-datatable-scrollable>.p-datatable-wrapper {
+    max-height: 350px;
+}
     
     
+:host ::ng-deep .p-paginator {
+    
+    max-width:max-content;
+    float: right;
+    border: 1px solid gray;
+   margin: 10px;
+  transition: background-color .3s;
 
+}
+
+:host ::ng-deep .p-dialog{
+    text-align: center;
+}
+
+:host ::ng-deep .p-dropdown {
+    float: right;
+    margin-right: 60px;
+   top: 19px;
+  
+}
+:host ::ng-deep
+.p-datatable .p-sortable-column .p-sortable-column-badge,
+.p-datatable .p-sortable-column.p-highlight .p-sortable-column-badge {
+  display: none;
+}
  
     @media (max-width:666px) and (min-width:320px){
-       .addbtnEle{
-        left: 202px;
-       }
        .navbarEle{
-        top: 154px;
-
+        top:175px;
        }
-        .emptabledetailContiner{
-            margin-left: 13px;
-            top: 125px;
-       }
-       .emplistEle{
-        margin-left: 0px;
-       }
-      
+      .addbtncontainer{
+        top: 253px;
+        margin-left: 15px;
+      }
+      .emptabledetailsContiner{
+        margin-left: 15px;
+        top: 250px
+      }
+      :host ::ng-deep .p-dropdown {
+        margin-right: 10px;
+      }
+      :host ::ng-deep .p-datatable-scrollable>.p-datatable-wrapper {
+            max-height: 195px;
+      }
      }
      @media (max-width:768px) and (min-width:666px){
-        .empidformcontainer{
-            left: 242px;
-        }
-       .addbtnEle{
-        left: 608px;
+       .addbtncontainer{
+        margin-left: 32px;
        }
-       .navbarEle{
-        width:772px;
+       .emptabledetailsContiner{
+        margin-left: 33px;
        }
-       .emptabledetailContiner{
-        margin-left: 39px;
-       }
-     }  */
+       :host ::ng-deep .p-datatable-scrollable>.p-datatable-wrapper {
+        max-height: 250px;
+  }
+     }  
     

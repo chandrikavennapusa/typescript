@@ -7,69 +7,70 @@ import { DatePipe } from '@angular/common';
 @Component({
   selector: 'app-attendecelist',
   templateUrl: './attendecelist.component.html',
-  styleUrls: ['./attendecelist.component.css']
+  styleUrls: ['./attendecelist.component.css'],
 })
 export class AttendecelistComponent {
-  maxDate=new Date(); 
-shift;
-shift11;
-constructor(private service:ServicesService,private router:Router,private datepipe: DatePipe){
-  this.shift=[
-    {name:'Day',code:'day'},
-    {name:'Night',code:'night'}
-   ]
+  shift:any;
+  shift11:any;
+  month11:any;
+  date11:any;
+  maxDate = new Date();
+  maxTime = new Date();
+  constructor(
+    private service: ServicesService,
+    private router: Router,
+    private datepipe: DatePipe
+  ) {
+    this.shift = [
+      { name: 'Day', code: 'day' },
+      { name: 'Night', code: 'night' },
+    ];
   }
-  ngOnInit(){
-  
-    this.attendetailsintialization();
-      this.attendetailObj.employeeId=this.service.EmployeeId;
-      this.attendetailObj.departmentId=this.service.DepartmentId;
+  ngOnInit() {
+    this.attendenceDetailsIntialization();
+    this.attendenceDetailObj.employeeId = this.service.EmployeeId;
+    this.attendenceDetailObj.departmentId = this.service.DepartmentId;
   }
-  attendetailObj: AttenService= new AttenService();
- // Intialization the Attendence Values
-  attendetailsintialization(){
-    this.attendetailObj={
- employeeId:'',
+  attendenceDetailObj: AttenService = new AttenService();
 
-  date:'',
-  departmentId:'',
-  available:'',
-  available1:'',
-  checkIn:'',
-  checkout:'',
-  attendanceCount:'',
-  shift:'',
-  createdSource:'',
-  createdSourceType:'',
-  createdDttm:'',
-  modifiedSource:'',
-  modifiedSourceType:'',
-  modifiedDttm:''
-    }
-
+  attendenceDetailsIntialization() {
+    this.attendenceDetailObj = {
+      employeeId: '',
+      date: '',
+      departmentId: '',
+      available: '',
+      available1: '',
+      checkIn: '',
+      checkout: '',
+      attendanceCount: '',
+      shift: '',
+      createdSource: '',
+      createdSourceType: '',
+      createdDttm: '',
+      modifiedSource: '',
+      modifiedSourceType: '',
+      modifiedDttm: '',
+    };
   }
 
-month11;
-date11;
-
-// Attendence Form submission
-  onsubmit(){
-
-    this.attendetailObj.date=this.datepipe.transform(this.date11,'shortDate')
-    this.attendetailObj.createdSource=localStorage.getItem("username");
-    this.attendetailObj.createdSourceType=localStorage.getItem("username");
-    this.attendetailObj.createdDttm=this.datepipe.transform(new Date(),'medium') 
-    this.attendetailObj.shift=this.shift11.name;
-    this.service.addattendencedata(this.attendetailObj).subscribe();
+  submitAttendenceData() {
+    this.attendenceDetailObj.date = this.datepipe.transform(
+      this.date11,
+      'shortDate'
+    );
+    this.attendenceDetailObj.createdSource = localStorage.getItem('username');
+    this.attendenceDetailObj.createdSourceType = localStorage.getItem('username');
+    this.attendenceDetailObj.createdDttm = this.datepipe.transform(
+      new Date(),
+      'M/d/yy,  h:mm:ss a'
+    );
+    this.attendenceDetailObj.shift = this.shift11.code;
+    this.service.addAttendanceInformation(this.attendenceDetailObj).subscribe();
     this.router.navigate(['/ATDE']);
-    console.log(this.attendetailObj)
-
+    console.log(this.attendenceDetailObj);
   }
 
-
- // Navigate to the Attendece list Screen
-  gobackatten(){
-    this.router.navigate(['/ATDE'])
+  navigateAttendeceListScreen() {
+    this.router.navigate(['/ATDE']);
   }
-
 }

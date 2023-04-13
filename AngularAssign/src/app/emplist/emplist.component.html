@@ -12,19 +12,22 @@
                            <div  class="col md:col-4  ">
                             <div class="mb-3"><label> Employee Id *</label></div>
                             <input type="text" pInputText name="employeeId"
-                             [(ngModel)]="empdetailObj.employeeId"  [disabled]="true" />
+                             [(ngModel)]="employeeDetailObj.employeeId"  [disabled]="true" />
                             </div>
 
                             <div  class=" col md:col-4 ">
                               <div class="mb-3"><label>First Name * </label></div>
                                 <input type="text" pInputText name="firstName" 
-                                [(ngModel)]="empdetailObj.firstName" required pattern="^[a-zA-Z]+$" 
-                                [disabled]="!editmode" />
+                                [(ngModel)]="employeeDetailObj.firstName" required pattern="^[a-zA-Z]+$" 
+                                [disabled]="!editmode" 
+                                #fName="ngModel"/>
+                                <div class="errmessageEle" *ngIf="fName.touched && fName.invalid" > enter the valid name</div>      
                             </div>
 
                             <div class=" col  md:col-4"> 
                               <div class="mb-3"><label> Last Name * </label></div>
-                             <input type="text" pInputText name="lastName" [(ngModel)]="empdetailObj.lastName"  required  pattern="^[a-zA-Z]+$" [disabled]="!editmode"/>
+                             <input type="text"  #lName="ngModel" pInputText name="lastName" [(ngModel)]="employeeDetailObj.lastName"  required  pattern="^[a-zA-Z]+$" [disabled]="!editmode"/>
+                             <div class="errmessageEle" *ngIf="lName.touched && lName.invalid" > enter the valid name</div>
                             </div>
 
                           
@@ -32,17 +35,17 @@
                              <div class="mb-3"><label >Gender *</label></div>
                             <div class="formgroup-inline">
                               <div class="field-radiobutton">
-                                <p-radioButton name="gender" value="male"  [(ngModel)]="empdetailObj.gender" [disabled]="!editmode" ></p-radioButton>
+                                <p-radioButton name="gender" value="male"  [(ngModel)]="employeeDetailObj.gender" [disabled]="!editmode" ></p-radioButton>
                                 <label>Male</label>
                                 </div>
 
                                 <div class="field-radiobutton">
-                                  <p-radioButton name="gender" value="Female" [(ngModel)]="empdetailObj.gender" [disabled]="!editmode" ></p-radioButton>
+                                  <p-radioButton name="gender" value="Female" [(ngModel)]="employeeDetailObj.gender" [disabled]="!editmode" ></p-radioButton>
                                   <label>Female</label>
                                 </div>
 
                                 <div class="field-radiobutton">
-                                  <p-radioButton name="gender" value="customgender" [(ngModel)]="empdetailObj.gender" [disabled]="!editmode"></p-radioButton>
+                                  <p-radioButton name="gender" value="customgender" [(ngModel)]="employeeDetailObj.gender" [disabled]="!editmode"></p-radioButton>
                                   <label>Custmgender</label>
                                 </div>
                             
@@ -50,79 +53,110 @@
                             </div>
                             <div class="col md:col-4 ">
                               <div class="mb-3"> <label> Date of Birth * </label></div>
-                              <p-calendar [(ngModel)]="dob11" name="dob" 
+                              <p-calendar [(ngModel)]="dob11" name="dob" appendTo="body" 
                                [required]="true" 
                                 [showTime]="true" 
                                hourFormat="12"
                                [maxDate]="maxDate"
+                              
                                [showSeconds]="true"
                                  [disabled]="!editmode"> </p-calendar>
                             </div>
-
+                            <div class=" col-12 md:col-4">
+                              <div class="mb-2 mt-2"><label>EmailId *</label></div>
+                                <input type="text" [(ngModel)]="employeeDetailObj.mailId"  name="mailId" pInputText 
+                                 #email1="ngModel" required class="inputlenEle" [disabled]="!editmode"
+                                  pattern="^[a-zA-Z0-9]+(?:\.[a-zA-Z0-9]+)*@[a-zA-Z0-9]+(?:\.[a-zA-Z0-9]+)*.[com]$"/>
+                               <div class="errmessageEle" *ngIf="email1.touched && email1.invalid" > enter the valid email id</div>
+                             </div>
                               <div class="col md:col-4 ">
                                 <div class="mb-3"> <label> Mobile No</label></div>
-                                <input type="text" pInputText pKeyFilter="num" [(ngModel)]="empdetailObj.phoneNumber" maxlength="10"
+                                <input type="text" 
+                                #ph="ngModel" pInputText
+                                 pKeyFilter="num" [(ngModel)]="employeeDetailObj.phoneNumber" maxlength="10"
                                  name="phoneNumber" pattern="^((\\+91-?)|0)?[0-9]{10}$" mode="decimal" [disabled]="!editmode" >
-                              </div>
+                                 <div class="errmessageEle" *ngIf="ph.touched && ph.invalid" > Please, Enter 10 digit Mobile Number</div>
+                                </div>
+
+                                <div class="col-12 md:col-4">
+                                  <div class="mb-2 mt-2"><label> BloodGroup</label></div>
+                                  <p-dropdown [options]="bloodGroup" 
+                                                       [(ngModel)]="bloodgroup1"  
+                                                         name="bloodGroup"  
+                                                         optionLabel="name"
+                                                         [disabled]="!editmode"
+                                                         ></p-dropdown>
+                                 </div>
+                                 <div class=" col-12 md:col-4">
+                                  <div class="mb-2 mt-2"> <label> Address</label></div>
+                                  <input type="text" pInputText [(ngModel)]="employeeDetailObj.address" [disabled]="!editmode"
+                                  name="address" pattern="^[-_a-zA-Z0-9.]+$" class="inputlenEle" />
+                                    </div>
+                                    <div class=" col-12 md:col-4">
+                                      <div class="mb-2 mt-2"> <label>Department * </label></div>
+                               <input type="text" pInputText  [(ngModel)]="employeeDetailObj.department" [disabled]="!editmode" name="department" pattern="^[a-zA-Z]+$" #dept="ngModel" class="inputlenEle"  required/>
+                               <div class="errmessageEle" *ngIf="dept.touched && dept.invalid" > enter the valid deptname</div>
+                                    </div>
                               <div class="col md:col-4">
                                 <div class="mb-3"> <label> Date Of Joining *</label></div>
-                                <p-calendar [(ngModel)]="dateOfJoining11"
+                                <p-calendar [(ngModel)]="dateOfJoining11" appendTo="body" 
                                  name="dateOfJoining" [maxDate]="maxDate" 
                                  [showTime]="true" hourFormat="12" [showSeconds]="true"
                                   [required]="true" [disabled]="!editmode"> </p-calendar>
                               </div>
                               <div class="col md:col-4">
                                 <div class="mb-3"> <label> Salary *</label></div>
-                                <input type="text" pInputText [(ngModel)]="empdetailObj.salary" name="salary" required pattern="^[+]?[0-9]+([0-9])*$" [disabled]="!editmode"/>
+                                <input type="text" #sal="ngModel" pInputText [(ngModel)]="employeeDetailObj.salary" name="salary" required pattern="^[+]?[0-9]+([0-9])*$" [disabled]="!editmode"/>
+                                <div class="errmessageEle" *ngIf="sal.touched && sal.invalid" > enter the valid salary number</div>
                               </div>
+
                               <div  class="col md:col-4">
                                 <div class="mb-3"> <label> Shift *</label></div>
                                 <p-dropdown [options]="shift"  
+                               
                                 [(ngModel)]="shift19" 
                                 name="shift" 
                                 [disabled]="!editmode" 
                                 optionLabel="name"></p-dropdown>
-                           
-                  
                               </div>
                               <div  class="col md:col-4">
-                                <div class="mb-3">  <label> CreatedSource:</label></div>
-                                <input type="text" pInputText  [(ngModel)]="empdetailObj.createdSource"  name="createdSource" disabled/>
+                                <div class="mb-3">  <label> CreatedSource</label></div>
+                                <input type="text" pInputText  [(ngModel)]="employeeDetailObj.createdSource"  name="createdSource" disabled/>
                               </div>
                               <div  class="col md:col-4">
-                                <div class="mb-3"> <label> CreatedSourceType:</label></div>
-                                <input type="text" pInputText [(ngModel)]="empdetailObj.createdSourceType"  readonly name="createdSourceType" disabled/>
+                                <div class="mb-3"> <label> CreatedSourceType</label></div>
+                                <input type="text" pInputText [(ngModel)]="employeeDetailObj.createdSourceType"  readonly name="createdSourceType" disabled/>
                               </div>
                               <div class="col md:col-4"> 
-                                <div class="mb-3"><label>  CreatedDttm:</label></div>
+                                <div class="mb-3"><label>  CreatedDttm</label></div>
                                 <p-calendar  [(ngModel)]="createdDttm11" 
-                                name="createdDttm" readonly  dateFormat="dd/mm/yy" [showSeconds]="true"
+                                name="createdDttm" [showSeconds]="true"
                                  [showTime]="true" hourFormat="12" [disabled]="true"  > </p-calendar>
                               </div>
                               <div class="col md:col-4"> 
-                                <div class="mb-3"><label>  ModifiedSource:</label></div>
-                                <input type="text" pInputText [(ngModel)]="empdetailObj.modifiedSource"  readonly name="modifiedSource" disabled />
+                                <div class="mb-3"><label>  ModifiedSource</label></div>
+                                <input type="text" pInputText [(ngModel)]="employeeDetailObj.modifiedSource"  readonly name="modifiedSource" disabled />
                               
                               </div>
                               <div class=" col md:col-4"> 
                                 <div class="mb-3"> <label> ModifiedSourceType:</label></div>
-                    <input type="text" pInputText [(ngModel)]="empdetailObj.modifiedSourceType"  readonly name="modifiedSourceType" disabled/>
+                    <input type="text" pInputText [(ngModel)]="employeeDetailObj.modifiedSourceType"  readonly name="modifiedSourceType" disabled/>
                               </div>
                               <div  class="col md:col-4">
-                                <div class="mb-3"> <label>  ModifiedDttm:</label></div>
-                                <p-calendar [(ngModel)]="empdetailObj.modifiedDttm"
+                                <div class="mb-3"> <label>  ModifiedDttm</label></div>
+                                <p-calendar [(ngModel)]="employeeDetailObj.modifiedDttm"
                                  name="modifiedDttm"    [showTime]="true"  [showSeconds]="true"
-                                  hourFormat="12"  dateFormat="dd/mm/yy" [disabled]="true"> </p-calendar>
+                                  hourFormat="12"  [disabled]="true"> </p-calendar>
                               </div>                         
                             </div>
                             <div class="buttonEle ">
-                              <div *ngIf="disabledsubmitcancelbtn" >
+                              <div *ngIf="disabledSubmitCancelButton" >
                                 <button pButton type="submit" label="Save"></button>
-                                <button pButton type="button" label="Cancel"  class="savebtnEle" (click)="cancelbtn()"></button>
+                                <button pButton type="button" label="Cancel"  class="savebtnEle" (click)="disabledInputFields()"></button>
                                </div>
-                                <div *ngIf="disablededitbackbtn">
-                                  <button pButton type="button" label="Edit"  class="savebtnEle" (click)="editbtnviewmode()" *ngIf="editbtndisable"></button>
-                                <button pButton type="button" label="Back"  class="p-button-secondary "  (click)="backtoemplistbtn()"  ></button>
+                                <div *ngIf="disabledEditBackButton">
+                                  <button pButton type="button" label="Edit"  class="editbtnEle" (click)="editButtonViewmode()" *ngIf="editButtonDisable"></button>
+                                <button pButton type="button" label="Back"  class="p-button-secondary "  (click)=" navigateEmployeeListScreen()"  ></button>
                                 </div>  
                              
                             </div>

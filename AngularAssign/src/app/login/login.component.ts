@@ -1,5 +1,5 @@
 import { HttpErrorResponse } from '@angular/common/http';
-import { Component, ViewChild, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { response } from 'express';
@@ -16,33 +16,33 @@ import { ServicesService } from '../services.service';
   styleUrls: ['./login.component.css'],
   providers: [MessageService]
 })
-export class LoginComponent {
+export class LoginComponent implements OnInit {
   UserName:string;
   password:string;
-
   succmessage: Message[];
- 
-
   visable:boolean=true;
   changetype:boolean=true;
-  userloginsucessmessage:Message [];
-
-  viewpress(){
-    this.visable = ! this.visable;
-    this.changetype=! this.changetype;
-  }
   ishidden=false;
+  userloginsucessmessage:Message [];
   @ViewChild('mylogin') form :NgForm;
-
- 
 
   constructor(private router:Router,private services:ServicesService , private activatedroute:ActivatedRoute,
     private messageService: MessageService
     ){}
 
+    ngOnInit(){
+      if(localStorage.getItem('empbooleanvalue')=='true'){
+          this.router.navigate(['/HOME']);       
+      }
+    }
+
+    viewpress(){
+      this.visable = ! this.visable;
+      this.changetype=! this.changetype;
+    }
+
   loginUserAccount(){
-    
-                 this.services.usercheck(this.UserName,this.password)
+                 this.services.checkingUserExistance(this.UserName,this.password)
                  .subscribe(
                   response =>{
                     if(response == true){
@@ -51,16 +51,11 @@ export class LoginComponent {
                       this.router.navigate(['/HOME']);
                     }
                     else{
-
-                      this.messageService.add({ severity: 'error', summary: 'user password', detail: 'write the correct password' });
-                    
-                      
+                      this.messageService.add({ severity: 'error', summary: 'user password', detail: 'write the correct password' })   
                     }
                   },
                   (err:HttpErrorResponse)=>{
                     this.messageService.add({ severity: 'error', summary: ' user account', detail: err.error });
-
-                   
                   },
                   () => {
                   this.userloginsucessmessage=  [
@@ -72,18 +67,14 @@ export class LoginComponent {
                     ]
                   });
                   
-                 
+    
   }
 
+  
+
+ 
   reset(){
-   this.form.reset();
-  }
-  ngOnInit(){
-   localStorage.setItem('loginpage',"true");
-    if(localStorage.getItem('empbooleanvalue')=='true'){
-        this.router.navigate(['/HOME']);       
-    }
-  }
+    this.form.reset();
+   }
   
 }
-

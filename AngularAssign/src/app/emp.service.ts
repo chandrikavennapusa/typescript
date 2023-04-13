@@ -11,19 +11,19 @@ export class EmpService {
   firstName='';
   lastName='';
   gender='';
-  dob;
-  emailId='';
+  dob:any;
+  mailId='';
   phoneNumber='';
-  BloodGroup='';
+  bloodGroup='';
   address='';
-  Department='';
+  department='';
   dateOfJoining;
   salary='';
   shift='';
   createdSource='';
   createdSourceType='';
-  createdDttm;
+  createdDttm:any;
   modifiedSource='';
   modifiedSourceType='';
-  modifiedDttm;
+  modifiedDttm:any;
 }

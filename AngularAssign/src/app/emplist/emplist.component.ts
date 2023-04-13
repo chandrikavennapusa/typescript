@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ServicesService } from '../services.service';
 import { EmpService } from '../emp.service';
 import { DatePipe } from '@angular/common';
@@ -13,34 +13,48 @@ import { DatePipe } from '@angular/common';
 export class EmplistComponent {
   
   maxDate=new Date();
-  disabledsubmitcancelbtn=false;
-  disablededitbackbtn=true;
+  disabledSubmitCancelButton=false;
+  disabledEditBackButton=true;
   editmode =false; 
-  editbtndisable=true;
-  fetchingdata;
-  shift;
-  shift19;
-constructor(private service:ServicesService , private router:Router,private datepipe: DatePipe){
+  editButtonDisable=true;
+  fetchingEmployeeData:any;
+  shift:any;
+  shift19:any;
+  myDate:Date ;
+  dateOfJoining11:any;
+  dob11:any;
+  createdDttm11:any;
+  bloodGroup:any;
+  bloodgroup1:any;
+constructor(private service:ServicesService , private router:Router,private datepipe: DatePipe ,
+  private activatedRoute: ActivatedRoute){
   this.shift=[
     {name:'Day',code:'day'},
     {name:'Night',code:'night'}
    ]
+   this.bloodGroup =[
+    {name:'A',code:'a'},
+    {name:'A+', code:'a+'},
+    {name:'B',code:'b'},
+    {name:'B+',code:'b+'},
+    { name:'AB',code:'ab'}
+      ]
 }
 
-empdetailObj: EmpService = new EmpService();
+employeeDetailObj: EmpService = new EmpService();
 // Intialization on the employee values
-empdetailsintialization(){
- this.empdetailObj={
+employeeDetailsIntialization(){
+ this.employeeDetailObj={
   employeeId:'',
   firstName:'',
   lastName:'',
   gender:'',
   dob:'',
-  emailId:'',
+  mailId:'',
   phoneNumber:'',
-  BloodGroup:'',
+  bloodGroup:'',
   address:'',
-  Department:'',
+  department:'',
   dateOfJoining:'',
   salary:'',
   shift:'',
@@ -52,102 +66,121 @@ empdetailsintialization(){
   modifiedDttm:''
  }
 }
-myDate ;
-dateOfJoining11;
-dob11;
-createdDttm11
+
 // Submission on the updated values
   onSubmit(){
     this.myDate = new Date(); 
-    this.empdetailObj.dateOfJoining = this.datepipe.transform(this.dateOfJoining11,'medium');
-    this.empdetailObj.dob= this.datepipe.transform(this.dob11,'medium');
-    this.empdetailObj.createdDttm=this.datepipe.transform( this.createdDttm11,'medium')
-      this.empdetailObj.shift=this.shift19.name;
-    this.empdetailObj.modifiedSource=localStorage.getItem("username");
-    this.empdetailObj.modifiedSourceType=localStorage.getItem("username");
-
-
-   this.empdetailObj.modifiedDttm=this.datepipe.transform(this.myDate,'medium');
-    this.service.updateempid(this.empdetailObj).subscribe();
+    this.employeeDetailObj.dateOfJoining = this.datepipe.transform(this.dateOfJoining11,'M/d/yy,  h:mm:ss a');
+    this.employeeDetailObj.dob= this.datepipe.transform(this.dob11,'M/d/yy,  h:mm:ss a');
+    this.employeeDetailObj.createdDttm=this.datepipe.transform( this.createdDttm11,'M/d/yy,  h:mm:ss a');
+    this.employeeDetailObj.bloodGroup=this.bloodgroup1.code;
+    this.employeeDetailObj.shift=this.shift19.code;
+    this.employeeDetailObj.modifiedSource=localStorage.getItem("username");
+    this.employeeDetailObj.modifiedSourceType=localStorage.getItem("username");
+    this.employeeDetailObj.modifiedDttm=this.datepipe.transform(this.myDate,'M/d/yy,  h:mm:ss a');
+    this.service.updateEmployeeDeatils(this.employeeDetailObj).subscribe();
     this.editmode=false;
-    this.disabledsubmitcancelbtn=false;
-    this.disablededitbackbtn=true;
-    this.router.navigate(['/EMP']);
-    console.log(this.empdetailObj)
-  }
-// Navigate to the Emplyoee list screen
-  backtoemplistbtn(){
+    this.disabledSubmitCancelButton=false;
+    this.disabledEditBackButton=true;
     this.router.navigate(['/EMP']);
   }
  
  ngOnInit(){
- console.log(this.service.employeeid)
- this.service.getempid(this.service.employeeid).subscribe(
-        data =>{this.fetchingdata=data;
-          console.log(this.fetchingdata)
-  this.empdetailObj.employeeId=this.fetchingdata.employeeId;
-  this.empdetailObj.firstName=this.fetchingdata.firstName;
-  this.empdetailObj.lastName=this.fetchingdata.lastName;
-  this.empdetailObj.gender=this.fetchingdata.gender;
-  this.empdetailObj.gender=this.fetchingdata.gender;
-  this.empdetailObj.gender=this.fetchingdata.gender;
-  this.dob11=new Date(this.fetchingdata.dob);
-  this.empdetailObj.phoneNumber=this.fetchingdata.phoneNumber;
-  this.dateOfJoining11 = new Date(this.fetchingdata.dateOfJoining);
-  this.empdetailObj.salary=this.fetchingdata.salary;
-  this.shift19=this.fetchingdata.shift;
-          this.dropdownshift();
-  this.empdetailObj.createdSource=this.fetchingdata.createdSource;
-  this.empdetailObj.createdSourceType=this.fetchingdata.createdSourceType;
-   
-  this.createdDttm11=new Date(this.fetchingdata.createdDttm)
-  
-  this.empdetailObj.modifiedSource=this.fetchingdata.modifiedSource
-  this.empdetailObj.modifiedSourceType=this.fetchingdata.modifiedSourceType;
-  if( this.fetchingdata.modifiedDttm == ''){
-    this.empdetailObj.modifiedDttm='';
-  }else{
-    this.empdetailObj.modifiedDttm=new Date (this.fetchingdata.modifiedDttm);
-  }
-   
+        this.activatedRoute.paramMap.subscribe((parm) => {
+        this.service.employeeid = parm.get('id')?.substring(1); 
+        this.service.fetchingEmployeeIdDetails(this.service.employeeid).subscribe((results: any) => {
+        this.fetchingEmployeeData=results;
+        this.employeeDetailObj.employeeId=this.fetchingEmployeeData.employeeId;
+        this.employeeDetailObj.firstName=this.fetchingEmployeeData.firstName;
+        this.employeeDetailObj.lastName=this.fetchingEmployeeData.lastName;
+        this.employeeDetailObj.gender=this.fetchingEmployeeData.gender;
+        this.employeeDetailObj.gender=this.fetchingEmployeeData.gender;
+        this.employeeDetailObj.gender=this.fetchingEmployeeData.gender;
+        this.dob11=new Date(this.fetchingEmployeeData.dob);
+        this.employeeDetailObj.mailId=this.fetchingEmployeeData.mailId;
+        this.employeeDetailObj.phoneNumber=this.fetchingEmployeeData.phoneNumber;
+        this.dateOfJoining11 = new Date(this.fetchingEmployeeData.dateOfJoining);
+        this.bloodgroup1=this.fetchingEmployeeData.bloodGroup;
+        this.bloodGroupValue();
+        this.employeeDetailObj.salary=this.fetchingEmployeeData.salary;
+        this.shift19=this.fetchingEmployeeData.shift;
+        this.dropdownShiftValues();
+        this.employeeDetailObj.address=this.fetchingEmployeeData.address;
+        this.employeeDetailObj.department=this.fetchingEmployeeData.department;
+        this.employeeDetailObj.createdSource=this.fetchingEmployeeData.createdSource;
+        this.employeeDetailObj.createdSourceType=this.fetchingEmployeeData.createdSourceType;
+        this.createdDttm11=new Date(this.fetchingEmployeeData.createdDttm)
+        this.employeeDetailObj.modifiedSource=this.fetchingEmployeeData.modifiedSource
+        this.employeeDetailObj.modifiedSourceType=this.fetchingEmployeeData.modifiedSourceType;
+        if( this.fetchingEmployeeData.modifiedDttm == ''){
+           this.employeeDetailObj.modifiedDttm='';
+        }else{
+          this.employeeDetailObj.modifiedDttm=new Date (this.fetchingEmployeeData.modifiedDttm);
         }
-  );
+   
+    })
+    
+   })
+
   let username =localStorage.getItem("username");
-  if(username == "employee" ){
-
-    this.editbtndisable=false;
-}
-
+  if(username == "employee" ){   
+    this.editButtonDisable=false;
+    }
  }
 
-  // Comparing the drop down values
-dropdownshift(){
-  if(this.shift19 == "Night"){
-    this.shift=[{name:'Night'}]
+dropdownShiftValues(){
+  if(this.fetchingEmployeeData.shift == "night"){
+    this.shift=[{name:'Night',code:'night'}]
   }else{
-    this.shift=[{name:'Day'}]
+    this.shift=[{name:'Day',code:'day'}]
+  }
+ 
+}
+bloodGroupValue(){
+  if(this.fetchingEmployeeData.bloodGroup == 'a'){
+    this.bloodgroup1=[{name:'A',code:'a'}]
+  }else if(this.fetchingEmployeeData.bloodGroup == 'a+'){
+    this.bloodgroup1=[{name:'A+',code:'a+'}]
+  }
+  else if(this.fetchingEmployeeData.bloodGroup == 'b'){
+    this.bloodgroup1=[{name:'B',code:'b'}]
+  }
+  else if(this.fetchingEmployeeData.bloodGroup == 'b+'){
+    this.bloodgroup1=[{name:'B+',code:'b+'}]
+  }
+  else if(this.fetchingEmployeeData.bloodGroup == 'ab'){
+    this.bloodgroup1=[{name:'AB',code:'ab'}]
   }
 }
 
- // when we click Edit button, all the  input fields are enabled  
- editbtnviewmode(){
+ editButtonViewmode(){  
   this.shift=[
     {name:'Day',code:'day'},
     {name:'Night',code:'night'}
-   ]
+   ];
+   this.bloodGroup =[
+    {name:'A',code:'a'},
+    {name:'A+', code:'a+'},
+    {name:'B',code:'b'},
+    {name:'B+',code:'b+'},
+    { name:'AB',code:'ab'}
+      ]
   this.editmode=true;
- 
-  this.disabledsubmitcancelbtn=true;
-  this.disablededitbackbtn=false;
+  this.disabledSubmitCancelButton=true;
+  this.disabledEditBackButton=false;
  }
-  // when we click Cancel button, all the  input fields are disabled  
- cancelbtn(){
+ 
+ disabledInputFields(){
   this.editmode=false;
-  this.disabledsubmitcancelbtn=false;
-  this.disablededitbackbtn=true;
+  this.disabledSubmitCancelButton=false;
+  this.disabledEditBackButton=true;
   this.ngOnInit();
  }
-  
+
+ navigateEmployeeListScreen(){
+  this.router.navigate(['/EMP']);
+}
+
 }
 
 

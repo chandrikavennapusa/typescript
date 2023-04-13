@@ -1,40 +1,49 @@
 
-.formContainer{
-    position: relative;
-    top:140px;
+.deptFormContainer{
+    position:fixed;
+    top:180px;
     margin-left: 40px;
+    background-color: white;
 }
-.backEle{
-    top:20px;
-}
-.navEle{
+.navBarEle{
 top: 97px;
+position: fixed;
+width: 100%;
 }
 .headerEle{
 width: 1600px;
 }
 .departmentlist{
     position: relative;
-    top: 35px;
+    top: 25px;
     margin-left: 57px;
 }
-@media (max-width:666px) and (min-width:320px){
-.formContainer{
-    top: 157px;
-    padding-bottom: 74px;
+.deptFormEle{
+    margin-left: 150px;
+    margin-top: 10px;
 }
-.navEle{
+@media (max-width:666px) and (min-width:320px){
+.deptFormContainer{
+    position: fixed;
+    overflow-y: scroll; 
+    height: 370px;
+    top: 240px;
+    margin-left: 16px;
+}
+.navBarEle{
     top: 156px;
     width: 328px;
+   }
+   .deptFormEle{
+    margin-left: 24px;
    }
 }
     @media (max-width:768px) and (min-width:666px){
     
-    .formContainer{
-    position: relative;
-    margin-right: -227px;
-}
-.navEle{
+   .deptFormEle{
+    margin-left: 0px;
+   }
+.navBarEle{
     width:1000px;
    }
 

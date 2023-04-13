@@ -1,131 +1,117 @@
+<div class=" bg-cyan-300 h-6rem navBarEle">
+  <h2 class="attendencelistEle"> <span> <i class="material-icons">people</i> </span> Attendence List </h2>
+</div>
 
-    
-   <div class="attendenceFormContainer">
-    
-    <div class="grid bg-cyan-300 h-6rem navEle">
-      <h2 class="attendencelistEle"> <span> <i class="material-icons">people</i> </span> Attendence List </h2>
-    </div>
 
-    <h4 class="basicheadingEle">Basic Attendence Details:</h4>
-    <form  #AttendenceForm="ngForm" (ngSubmit)="onSubmit()" ngNativeValidate>
+<div class="attendenceFormContainer bg-white w-11 border-noround  border-100 border-solid ">
+  <form #AttendenceForm="ngForm" (ngSubmit)="submitUpdateAttendeceData()" ngNativeValidate>
     <div class="grid attendenceform">
-        <div class="col md:col-3">
-          <div><label>Employee Id *</label></div>
-          <input type="text" pInputText name="employeeId" [(ngModel)]="attendetailObj.employeeId" [disabled]="true" required />
-         </div>
-        
-         <div class="col md:col-3">
-          <div> <label>Date *</label></div>
+      <div class="col md:col-4">
+        <div class="mb-3"><label>Employee Id *</label></div>
+        <input type="text" pInputText name="employeeId" [(ngModel)]="attendenceDetailObj.employeeId" [disabled]="true"
+          required />
+      </div>
 
-          <p-calendar [(ngModel)]="date11" #date1="ngModel"
-          name="date" view="date" dateFormat="dd/mm/yy"  [maxDate]="maxDate" 
+      <div class="col md:col-4">
+        <div class="mb-3"> <label>Date *</label></div>
+        <p-calendar [(ngModel)]="date11" #date1="ngModel" name="date" view="date" [maxDate]="maxDate" appendTo="body"
           [required]="true" [disabled]="editmode">
-         </p-calendar>
-         <div class="errmessageEle" *ngIf="date1.touched && date1.invalid" > enter the valid name</div>
-         </div>
-         <div class="col md:col-6">
-          <div><label>DepartmentId *</label></div>
-                             <input type="text" pInputText name="departmentId"
-                              [(ngModel)]="attendetailObj.departmentId" [disabled]="true"required/>
-         </div>
+        </p-calendar>
+        <div class="errmessageEle" *ngIf="date1.touched && date1.invalid"> enter the valid name</div>
+      </div>
+      <div class="col md:col-4">
+        <div class="mb-3"><label>DepartmentId *</label></div>
+        <input type="text" pInputText name="departmentId" [(ngModel)]="attendenceDetailObj.departmentId"
+          [disabled]="true" required />
+      </div>
 
-                            <div class="col md:col-3">
-                              <div><label> Avaliable</label></div>
-                              <div class="formgroup-inline">
-                                <div class="field-radiobutton">
-                                  <p-radioButton name="available"  [value]="true"  [(ngModel)]="attendetailObj.available" [disabled]="editmode"></p-radioButton>
-                      <label>True</label>
-                                </div>
-                                <div class="field-radiobutton">
-                                  <p-radioButton name="available" [value]="false" [(ngModel)]="attendetailObj.available" [disabled]="editmode"></p-radioButton>
-                                  <label>False</label>
-                                </div>
-                                </div>
-                            </div>  
-                            
-                            <div class="col md:col-3">
-                              <div><label>Check In</label></div>
-                              <p-calendar [(ngModel)]="attendetailObj.checkIn" [showSeconds]="true"
-                              name="checkIn"  [showTime]="true"
-                              [timeOnly]="true"
-                              hourFormat="12"  [disabled]="editmode"
-                              > </p-calendar>
-                                 <!-- <input type="text" pInputText  [(ngModel)]="attendetailObj.checkIn" name="checkIn" [disabled]="editmode"/> -->
-                            </div>
-                            <div class="col md:col-6">
-                              <div> <label> Checkout:</label></div>
-                              <p-calendar [(ngModel)]="attendetailObj.checkout" [showSeconds]="true"
-                              [showTime]="true"
-                              [timeOnly]="true"
-                              hourFormat="12"
+      <div class="col md:col-4">
+        <div class="mb-3"><label> Avaliable</label></div>
+        <div class="formgroup-inline">
+          <div class="field-radiobutton">
+            <p-radioButton name="available" [value]="true" [(ngModel)]="attendenceDetailObj.available"
+              [disabled]="editmode"></p-radioButton>
+            <label>True</label>
+          </div>
+          <div class="field-radiobutton">
+            <p-radioButton name="available" [value]="false" [(ngModel)]="attendenceDetailObj.available"
+              [disabled]="editmode"></p-radioButton>
+            <label>False</label>
+          </div>
+        </div>
+      </div>
 
-                              name="checkout"    [disabled]="editmode"
-                          > </p-calendar>
-                 <!-- <input type="text" pInputText [(ngModel)]="attendetailObj.checkout" name="checkout" [disabled]="editmode" /> -->
-                   </div>
-                   <div class="col md:col-3">
-                    <div> <label>* AttendanceCount</label></div>
-                    <input type="text" pInputText [(ngModel)]="attendetailObj.attendanceCount" pattern="^[+]?[0-9]+([0-9])*$" #count="ngModel"
-                     name="attendanceCount" [disabled]="editmode"/>
-                     <div class="errmessageEle" *ngIf="count.touched && count.invalid" > enter the valid name</div>
-                      </div>
-                      <div class="col md:col-3">
-                        <div> <label> Shift:</label></div>
+      <div class="col md:col-4">
+        <div class="mb-3"><label>Check In</label></div>
+        <p-calendar [(ngModel)]="attendenceDetailObj.checkIn" [showSeconds]="true" name="checkIn" [showTime]="true"
+          [timeOnly]="true" hourFormat="12" [disabled]="editmode" [maxDate]="maxTime"> </p-calendar>
 
-                        <p-dropdown [options]="shift"
-                         name="shift" class="inputlenEle" 
-                        [(ngModel)]="shift11" 
-                       
-                         #shift1="ngModel"  [disabled]="editmode"  optionLabel="name"></p-dropdown>
+      </div>
+      <div class="col md:col-4">
+        <div class="mb-3"> <label> Checkout:</label></div>
+        <p-calendar [(ngModel)]="attendenceDetailObj.checkout" [showSeconds]="true" [showTime]="true" [timeOnly]="true"
+          hourFormat="12" [maxDate]="maxTime" name="checkout" [disabled]="editmode"> </p-calendar>
 
-    
-                       
-                          </div>
-                          <div class="col md:col-6">
-                            <div>  <label> CreatedSource:</label></div>
-                            <input type="text" pInputText  [(ngModel)]="attendetailObj.createdSource"  name="createdSource" disabled />
-                              </div>
-                              <div class="col md:col-3">
-                                <div> <label> CreatedSourceType:</label></div>
-                 <input type="text" pInputText [(ngModel)]="attendetailObj.createdSourceType"  name="createdSourceType" disabled />
-                   </div>
-                   <div class="col md:col-3">
-                    <div><label>  CreatedDttm:</label></div>
-                    <p-calendar [(ngModel)]="createdDttm11"
-                    name="createdDttm"    [showTime]="true" [showSeconds]="true"
-                     hourFormat="12"  dateFormat="dd/mm/yy" [disabled]="true"> </p-calendar>
+      </div>
+      <div class="col md:col-4">
+        <div class="mb-3"> <label>* AttendanceCount</label></div>
+        <input type="text" pInputText [(ngModel)]="attendenceDetailObj.attendanceCount" pattern="^[+]?[0-9]+([0-9])*$"
+          #count="ngModel" name="attendanceCount" [disabled]="editmode" />
+        <div class="errmessageEle" *ngIf="count.touched && count.invalid"> enter the valid name</div>
+      </div>
+      <div class="col md:col-4">
+        <div class="mb-3"> <label> Shift:</label></div>
 
-                    <!-- <p-calendar  [(ngModel)]="attendetailObj.createdDttm"
-                     name="createdDttm" dateFormat="dd/mm/yy" 
-                      disabled > </p-calendar> -->
-                   </div>
-                   <div class="col md:col-6">
-                    <div><label>  ModifiedSource:</label></div>
-                 <input type="text" pInputText [(ngModel)]="attendetailObj.modifiedSource"  name="modifiedSource" disabled />
-                   </div>
-                   <div class="col md:col-3">
-                    <div> <label> ModifiedSourceType:</label></div>
-                 <input type="text" pInputText [(ngModel)]="attendetailObj.modifiedSourceType" name="modifiedSourceType" disabled  />
-                   </div>
-                   <div class="col md:col-9">
-                    <div> <label>ModifiedDttm:</label></div>
-                    <p-calendar [(ngModel)]="attendetailObj.modifiedDttm"
-                    name="modifiedDttm"    [showTime]="true" [showSeconds]="true"
-                     hourFormat="12"  dateFormat="dd/mm/yy" [disabled]="true"> </p-calendar>
-              
-           <!-- <p-calendar  [(ngModel)]="attendetailObj.modifiedDttm" name="modifiedDttm" dateFormat="dd/mm/yy"  disabled > </p-calendar> -->
-                   </div>
-                   <div class="col  buttonEle">
-                    <div *ngIf="disablesavecancelbtn">
-                      <button pButton type="submit" label="Save" ></button>
-                    <button pButton type="button" label="Cancel" class="savebtnEle"  (click)="cancelbtn()" ></button>
-                    </div>
-                    <div *ngIf="disableeditbackbtn">
-                      <button pButton type="button" label="Edit" class="savebtnEle" (click)="editattende()" *ngIf="editbtndisable" ></button>
-                    <button pButton type="button" label="Back"  class="p-button-secondary"(click)="backtoatend()" ></button>    
-                    </div>                
-                 </div>               
+        <p-dropdown [options]="shift" name="shift" class="inputlenEle" [(ngModel)]="shift11" #shift1="ngModel"
+          [disabled]="editmode" optionLabel="name"></p-dropdown>
+
+
+
+      </div>
+      <div class="col md:col-4">
+        <div class="mb-3"> <label> CreatedSource:</label></div>
+        <input type="text" pInputText [(ngModel)]="attendenceDetailObj.createdSource" name="createdSource" disabled />
+      </div>
+      <div class="col md:col-4">
+        <div class="mb-3"> <label> CreatedSourceType:</label></div>
+        <input type="text" pInputText [(ngModel)]="attendenceDetailObj.createdSourceType" name="createdSourceType"
+          disabled />
+      </div>
+      <div class="col md:col-4">
+        <div class="mb-3"><label> CreatedDttm:</label></div>
+        <p-calendar [(ngModel)]="createdDttm11" name="createdDttm" [showTime]="true" [showSeconds]="true"
+          hourFormat="12" [disabled]="true"> </p-calendar>
+
+
+      </div>
+      <div class="col md:col-4">
+        <div class="mb-3"><label> ModifiedSource:</label></div>
+        <input type="text" pInputText [(ngModel)]="attendenceDetailObj.modifiedSource" name="modifiedSource" disabled />
+      </div>
+      <div class="col md:col-4">
+        <div class="mb-3"> <label> ModifiedSourceType:</label></div>
+        <input type="text" pInputText [(ngModel)]="attendenceDetailObj.modifiedSourceType" name="modifiedSourceType"
+          disabled />
+      </div>
+      <div class="col md:col-8">
+        <div class="mb-3"> <label>ModifiedDttm:</label></div>
+        <p-calendar [(ngModel)]="attendenceDetailObj.modifiedDttm" name="modifiedDttm" [showTime]="true"
+          [showSeconds]="true" hourFormat="12" [disabled]="true"> </p-calendar>
+
+      </div>
     </div>
-    </form>
+    <div class="col  buttonEle">
+      <div *ngIf="disablesavecancelbtn">
+        <button pButton type="submit" label="Save"></button>
+        <button pButton type="button" label="Cancel" class="savebtnEle" (click)="editModeViewData()"></button>
+      </div>
+      <div *ngIf="disableeditbackbtn">
+        <button pButton type="button" label="Edit" class="savebtnEle" (click)="editAttendenceData()"
+          *ngIf="editbtndisable"></button>
+        <button pButton type="button" label="Back" class="p-button-secondary"
+          (click)="navigateAttendeceListScreen()"></button>
+      </div>
 
-   </div>
+    </div>
+  </form>
+</div>

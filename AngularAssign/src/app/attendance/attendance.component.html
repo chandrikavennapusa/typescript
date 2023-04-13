@@ -1,25 +1,25 @@
-<div class=" bg-cyan-300  h-6rem navEle">
-    <h2 class="attendlistEle"> <span> <i class="material-icons">people</i> </span> Attendence List </h2>
-    <p-toast></p-toast>
+<div class=" bg-cyan-300  h-6rem navgationBarEle">
+    <h2 class="attendListHeadingEle"> <span> <i class="material-icons">people</i> </span> Attendence List </h2>
+  
 </div>
-
+<p-toast></p-toast>
 <div class="attendencetableContainer w-11 border-noround border-400 border-solid">
     <div class="relative border-bottom-2 border-400 h-5rem">
         <p-button (click)="showDialog()" icon="pi pi-plus" label="ADD" styleClass="addbtnEle"
-            *ngIf="addbtndisable"></p-button>
+            *ngIf="addButtonDisabled"></p-button>
 
-        <p-dialog header="Attendence Form" [(visible)]="visible" [breakpoints]="{ '960px': '75vw' }"
-            [style]="{ width: '300px',height:'300px' }" [modal]="true" [draggable]="false" [resizable]="false">
-            <form #deptidEmpidForm="ngForm" (ngSubmit)="empiddeptidcheck()" ngNativeValidate>
+        <p-dialog header="Add Attendence" [(visible)]="visible" (onHide)="clearEmployeeIdDepartmentId()"
+            [style]="{ width: '300px',height:'300px' }" [modal]="true"  appendTo="body" [draggable]="false" [resizable]="false">
+            <form #deptidEmpidForm="ngForm" (ngSubmit)="checkEmployeeIdDeparmentIdExist()" ngNativeValidate>
                 <div>
-                    <div><label>Employee Id:</label></div>
+                    <div class="mb-2"><label>Employee Id *</label></div>
                     <input type="text" pInputText [(ngModel)]="employeeId" name="employeeid"
                         pattern="^[+]?[0-9]+([0-9])*$" #empid="ngModel" required />
                     <div class="errmessageEle" *ngIf="empid.touched && empid.invalid"> enter the valid name</div>
                 </div>
 
-                <div class="deptidEle">
-                    <div><label>Department Id:</label></div>
+                <div>
+                    <div  class="mb-2"><label>Department Id *</label></div>
                     <input type="text" pInputText [(ngModel)]="departmentid" name="departmentid" #depid="ngModel"
                         pattern="^[+]?[0-9]+([0-9])*$" required />
                     <div class="errmessageEle" *ngIf="depid.touched && depid.invalid"> enter the valid name</div>
@@ -28,25 +28,28 @@
                 <div>
                     <button pButton type="submit" label="Save" class="saveEle"></button>
                     <p-button label="Cancel" styleClass="p-button-secondary " class="cancelEle"
-                        (click)="cancelempiddeptid()"></p-button>
+                        (click)="clearEmployeeIdDepartmentId()"></p-button>
                 </div>
             </form>
 
         </p-dialog>
+
+        <p-dropdown [options]="rowsPerPageOptions" optionLabel="label" 
+        optionValue="value" [(ngModel)]="rows2" (ngModelChange)="first2 = 0"
+       ></p-dropdown>
+
         <span class="p-input-icon-right serachEle" *ngIf="serachempview">
-            <input type="text" pInputText [(ngModel)]="serchempidvalue" (keyup)="searching()" />
+            <input type="text" pInputText [(ngModel)]="serchempidvalue" (keyup)="searchingByEmployeeId()" />
             <i class="pi pi-search"></i>
         </span>
     </div>
 
 
     <div class="card ">
-        <p-table [columns]="cols" [value]="gettingattendencedata" [paginator]="true" [rows]="5"
-            [showCurrentPageReport]="true"
-            currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
-            [rowsPerPageOptions]="[5,10,15,20]" 
+        <p-table [columns]="cols" [value]="fectingAttendenceData" [paginator]="true" [rows]="rows2"
+            sortMode="multiple" 
             paginatorPosition="bottom" [scrollable]="true"
-            scrollHeight="350px"
+            (onPageChange)="onPageChange($event)"
             responsiveLayout="scroll">
             <ng-template pTemplate="header" let-columns>
                 <tr>
@@ -67,15 +70,16 @@
                          <td  *ngIf="col.field == 'checkout'">
                             {{ rowData[col.field] |date: "mediumTime"}}
                          </td>
-                         <td *ngIf="col.field != 'checkIn' && col.field != 'checkout'">  {{ rowData[col.field]}}</td>
+                         <td  *ngIf="col.field == 'shift'">
+                            {{ rowData[col.field] | titlecase}}
+                         </td>
+                         <td *ngIf="col.field != 'checkIn' && col.field != 'checkout' && col.field !='shift'"> 
+                             {{ rowData[col.field]}}</td>
 
                     </ng-container>
-               
-
-                    
 
                     <td *ngIf="deleteviewmode"><p-button icon="pi pi-times" label="Delete" class="p-button-danger"
-                            (click)="deletebasedonempiddeptid(rowData.employeeId ,rowData.departmentId)"></p-button>
+                            (click)=" deleteByEmployeeIdDepartmetId(rowData.employeeId ,rowData.departmentId)"></p-button>
                     </td>
                 </tr>
             </ng-template>
@@ -87,6 +91,6 @@
             </ng-template>
         </p-table>
     </div>
-    <p-confirmDialog [style]="{width: '80vw', height:'70px'}"></p-confirmDialog>
+    <p-confirmDialog [style]="{width: '279px'}"></p-confirmDialog>
 
 </div>

@@ -20,13 +20,13 @@ const routes: Routes = [
   {path:'Login',component:LoginComponent},
   {path:'HOME',canActivate: [CanactivateService],component:HomeComponent},
   {path:'EMP',canActivate: [CanactivateService],component:EmployeeComponent},
-  {path:'EMPLIST',canActivate: [CanactivateService], component:EmplistComponent},
+  {path:'EMPLIST/:id',canActivate: [CanactivateService], component:EmplistComponent},
   {path:'EMPFORM',canActivate: [CanactivateService],component:EmpformComponent},
   {path:'DEPT',canActivate: [CanactivateService],component:DepartmentComponent},
-  {path:'DEPTLIST',canActivate: [CanactivateService], component:DeptdetaillistComponent},
+  {path:'DEPTLIST/:id',canActivate: [CanactivateService], component:DeptdetaillistComponent},
   {path:'ATDE',canActivate: [CanactivateService],component:AttendanceComponent},
   {path:'ATDELIST',canActivate: [CanactivateService],component:AttendecelistComponent},
-  {path:'ATTDEFORM',canActivate: [CanactivateService],component:AttendenceformComponent},
+  {path:'ATTDEFORM/:id',canActivate: [CanactivateService],component:AttendenceformComponent},
   {path:'**',canActivate: [CanactivateService], component:PagenotfoundComponent}
 ];
 

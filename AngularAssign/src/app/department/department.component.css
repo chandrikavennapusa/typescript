@@ -1,11 +1,11 @@
 
 
-.tableContainer{
+.depttableContainer{
   top: 195px;
 margin-left: 55px;
 
 }
-.navEle{
+.navBarEle{
   position:fixed;
   top:98px;
   width: 100%;
@@ -15,16 +15,42 @@ margin-left: 55px;
   margin-left: 55px;
   top:20px;
 }
+:host ::ng-deep .p-paginator {
+    margin-top: 30px;
+float: right;
+ max-width: max-content;
+  border: 1px solid gray;
+}
+:host ::ng-deep .p-dropdown {
+  float: right;
+  margin-right: 60px;
+ top: 19px;
+
+}
+:host ::ng-deep
+.p-datatable .p-sortable-column .p-sortable-column-badge,
+.p-datatable .p-sortable-column.p-highlight .p-sortable-column-badge {
+  display: none;
+}
 
 @media (max-width:666px) and (min-width:320px){
-.navEle{
+.navBarEle{
   top: 155px;
 }
-.tableContainer{
-
+.depttableContainerr{
+top:233px;
   margin-left: 17px;
 }
 .deptlistEle{
-  margin-left: 0px;
+  margin-left: 30px;
 }
+:host ::ng-deep .p-paginator {
+margin-top: 6px;
+}
+}
+@media (max-width:777px) and (min-width:666px){
+  :host ::ng-deep .p-paginator {
+    margin-right: 31px;
+
+    }
 }

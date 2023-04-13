@@ -4,18 +4,23 @@
     margin-right: 23px;
 }
 .emplistcontainer{
-    height: 100%;
-position:relative;
-left: 70px;
-top:52px;
+    position: fixed;
+    margin-left: 60px;
+    top: 168px;
+    height: 527px;
+    overflow-y: scroll;
 }
 :host ::ng-deep .p-dropdown {
     width: 198px;
   }
+ 
   
 .emplistheader{
- position: relative;
- top:120px
+ position:fixed;
+ top:125px;
+ width: 100%;
+ margin-right: 0px;
+ margin-left: 0px;
 }
 .navEle{
     position: relative;
@@ -30,31 +35,44 @@ top:52px;
 .emplistEle{
     position: relative;
     margin-left: 75px;
-    top: 13px;
+    
 }
-@media (max-width:666px) and (min-width:320px){
-
-  .headingEle{
-    font-size: 29px;
-  }  
-.emplistheader{
-    top: 181px;
-width: 380px;
-}
-.emplistcontainer{
-    left: 39px;
-    top: 80px;
+.headingEle{
+    top:152px;
+    position: fixed;
 }
 .formtablecontainer{
-    padding-bottom: 40px;
+    margin-top: 29px;
+    margin-left: 30px;
+    
 }
+.buttonEle{
+    float: right;
+      top: -2px;
+      margin-right: 76px;
+    position: relative;
+  }
+@media (max-width:666px) and (min-width:320px){
+.emplistheader{
+    top: 186px
+}
+.emplistcontainer{
+    top: 230px;
+    margin-left: 14px;
+    padding-bottom: 187px;
+}
+ 
 }
  
 
 @media (max-width:768px) and (min-width:666px){
 
-
-.emplistheader{
-    width: 860px;
+    .emplistcontainer{
+        top: 170px;
+        margin-left: 35px;
+        padding-bottom: 187px;
+    }
+.headingEle{
+    top: 166px;
 }
 }
