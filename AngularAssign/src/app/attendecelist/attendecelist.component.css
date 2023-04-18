@@ -1,92 +1,80 @@
-
-.cancelbtn{
-    margin-left: 20px;
-} 
-.errmessageEle{
-    color: red;
+.cancelbtn {
+  margin-left: 20px;
 }
-.navBarEle{
+.errmessageText {
+  color: red;
+}
+.navBarText {
   width: 100%;
   position: fixed;
   top: 117px;
-
 }
-.attendelistEle{
-    margin-left: 90px;
-    position: relative;
-  
-}
-.formtableconatiner{
-    position: fixed;
-    top: 190px;
-    margin-left: 80px;
-   
-}
-.empdetailsEle{
+.attendelistText {
+  margin-left: 90px;
   position: relative;
-    top: 13px;
+}
+.formtableconatiner {
+  position: fixed;
+  top: 190px;
+  margin-left: 80px;
+}
+.attendecedetailsContainer {
+  position: relative;
+  top: 13px;
+  margin-left: 30px;
 }
 :host ::ng-deep .p-dropdown {
-    width: 198px;
-  }
-  .empdetailsEle{
-    margin-left: 30px;
-  }
-  .buttonEle{
-    float: right;
-    
-    margin-right: 100px;
-    position: relative;
+  width: 198px;
 }
-@media (max-width:666px) and (min-width:320px){
- .formtableconatiner{
+.buttonEle {
+  float: right;
+
+  margin-right: 100px;
+  position: relative;
+}
+@media (max-width: 666px) and (min-width: 320px) {
+  .formtableconatiner {
     position: fixed;
-    overflow-y: scroll; 
+    overflow-y: scroll;
     height: 370px;
     padding-bottom: 46px;
     top: 240px;
     margin-left: 24px;
-
-}
-.navBarEle{
+  }
+  .navBarText {
     top: 156px;
     width: 328px;
-}
-.attendelistEle{
+  }
+  .attendelistText {
     top: 28px;
     margin-left: 0px;
-}
-:host ::ng-deep .p-calendar {
+  }
+  :host ::ng-deep .p-calendar {
     width: 194px;
   }
-  .buttonEle{
+  .buttonEle {
     margin-right: 41px;
   }
 }
 
-@media (max-width:768px) and (min-width:666px){
-    .formtableconatiner{
-        position: fixed;
-        overflow-y: scroll; 
-        height: 400px;
-        padding-bottom: 46px;
-       
-    
-    }
-  .empdetailsEle{
+@media (max-width: 768px) and (min-width: 666px) {
+  .formtableconatiner {
+    position: fixed;
+    overflow-y: scroll;
+    height: 400px;
+    padding-bottom: 46px;
+  }
+  .attendecedetailsContainer {
     margin-left: 0px;
   }
-  .buttonEle{
+  .buttonEle {
     margin-right: 8px;
   }
-
 }
-@media (max-width:1024px) and (min-width:666px) {
-    .formtableconatiner{
-        position: fixed;
-        overflow-y: scroll; 
-        height: 400px;
-        
-    
-    }
+@media (max-width: 1024px) and (min-width: 666px) {
+  .formtableconatiner {
+    position: fixed;
+    overflow-y: scroll;
+    height: 400px;
+  }
 }

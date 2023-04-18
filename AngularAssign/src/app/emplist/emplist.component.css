@@ -1,95 +1,96 @@
-.navEle{
-    position:fixed;
-    top: 126px;
-    width:100%;
-    margin-left: 0px;
-    margin-right: 0px;
+.navgationBarText {
+  position: fixed;
+  top: 126px;
+  width: 100%;
+  margin-left: 0px;
+  margin-right: 0px;
 }
 :host ::ng-deep .p-dropdown {
-    width: 198px;
-
-  }
-.updateemplistEle{
-    margin-left: 67px;
+  width: 198px;
 }
-.errmessageEle{
-  color:red;
+.updateemplistText {
+  margin-left: 67px;
+  top: -14px;
+  position: relative;
 }
-.savebtnEle{
-    position: relative;
-    margin-left: 20px;
-    margin-right: 20px;
- }
- .emptabledetailscontainer{
+.errmessageText {
+  color: red;
+}
+.savebtnEle {
+  position: relative;
+  margin-left: 20px;
+  margin-right: 20px;
+}
+.emptabledetailscontainer {
+  position: fixed;
+  top: 176px;
+  margin-left: 37px;
+  overflow-y: scroll;
+  height: 500px;
+}
+.emptableFormContainer {
+  margin-left: 85px;
+  top: 10px;
+  position: relative;
+}
+.buttonEle {
+  float: right;
+  top: -55px;
+  margin-right: 100px;
+  position: relative;
+}
+.editbtnEle {
+  margin-right: 45px;
+}
+@media (max-width: 768px) and (min-width: 666px) {
+  .emptabledetailscontainer {
     position: fixed;
-    top: 176px;
-    margin-left: 37px;
-          overflow-y: scroll; 
-        height: 500px;
- }
- .emptableEle{
-    margin-left: 85px;
-    top:10px;
-    position: relative;
- }
-.buttonEle{
-    float: right;
-    top: -55px;
-    margin-right: 100px;
-    position: relative;
+    overflow-y: scroll;
+    height: 400px;
+  }
+  .emptableFormContainer {
+    margin-left: 7px;
+  }
+  .editbtnEle {
+    margin-right: 26px;
+  }
+  .buttonEle {
+    margin-right: 20px;
+  }
 }
-.editbtnEle{
-    margin-right: 45px;
-   }
- @media (max-width:768px) and (min-width:666px){
-    .emptabledetailscontainer{
-        position: fixed;
-        overflow-y: scroll; 
-        height: 400px;
-       }
-       .emptableEle{
-        margin-left: 7px;
-       }
-       .editbtnEle{
-        margin-right: 26px;
-       }
-       .buttonEle{
-        margin-right: 20px;
-       }
- }
- @media (max-width:666px) and (min-width:320px){
-   .emptabledetailscontainer{
+@media (max-width: 666px) and (min-width: 320px) {
+  .emptabledetailscontainer {
     top: 240px;
     margin-left: 14px;
     position: fixed;
-    overflow-y: scroll; 
+    overflow-y: scroll;
     height: 370px;
-   }
-    .navEle{
-        top:186px;
-    }
-.emptableEle{
+  }
+  .navgationBarText {
+    top: 186px;
+  }
+  .emptableFormContainer {
     width: 110px;
     margin-left: 47px;
-}
-:host ::ng-deep .p-calendar {
+  }
+  :host ::ng-deep .p-calendar {
     width: 194px;
   }
-  .savebtnEle{
+  .savebtnEle {
     margin-left: 18px;
     margin-right: -36px;
   }
-  .editbtnEle{
+  .editbtnEle {
     margin-right: 19px;
     margin-left: 42px;
   }
 }
-@media (max-width:1024px) and (min-width:666px) {
-    .emptabledetailscontainer{
-        position: fixed;
-        top: 176px;
-        margin-left: 37px;
-       overflow-y: scroll;
-       height: 445px;
-     }
+@media (max-width: 1024px) and (min-width: 666px) {
+  .emptabledetailscontainer {
+    position: fixed;
+    top: 176px;
+    margin-left: 37px;
+    overflow-y: scroll;
+    height: 445px;
+  }
 }

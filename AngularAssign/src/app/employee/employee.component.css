@@ -1,94 +1,88 @@
-   
-    .navbarEle{
-        top:110px; 
-        position: fixed;
-   
-    }
-    .addbtncontainer{
-        top: 180px;
-           margin-left:60px;
-          background-color: white;
-    }
-    .emptabledetailsContiner{
-                 position: fixed;
-               top: 170px;
-           margin-left:60px;
-          background-color: white;
-    }
-    :host ::ng-deep .p-button{
-        border:0px !important;
-    }
-    :host ::ng-deep .p-button.addbtnEle
-{
-    float: right;
-    top: 19px;
-    margin-right: 29px;
+.navBarText{
+  top: 110px;
+  position: fixed;
 }
-.emplistEle{
-    position: relative;
-    margin-left: 66px;
-    top: 5px;
+.addbtncontainer {
+  top: 180px;
+  margin-left: 60px;
+  background-color: white;
+}
+.emptabledetailsContiner {
+  position: fixed;
+  top: 170px;
+  margin-left: 60px;
+  background-color: white;
+}
+:host ::ng-deep .p-button {
+  border: 0px !important;
+}
+:host ::ng-deep .p-button.addbtnEle {
+  float: right;
+  top: 19px;
+  margin-right: 29px;
+  font-size: 19px;
+}
+.emplistText {
+  position: relative;
+  margin-left: 66px;
+  top: 5px;
 }
 
-:host ::ng-deep .p-datatable-scrollable>.p-datatable-wrapper {
-    max-height: 350px;
+:host ::ng-deep .p-datatable-scrollable > .p-datatable-wrapper {
+  max-height: 350px;
 }
-    
-    
+
 :host ::ng-deep .p-paginator {
-    
-    max-width:max-content;
-    float: right;
-    border: 1px solid gray;
-   margin: 10px;
-  transition: background-color .3s;
-
+  max-width: max-content;
+  float: right;
+  border: 1px solid gray;
+  margin: 10px;
+  transition: background-color 0.3s;
 }
 
-:host ::ng-deep .p-dialog{
-    text-align: center;
+:host ::ng-deep .p-dialog {
+  text-align: center;
 }
 
 :host ::ng-deep .p-dropdown {
-    float: right;
-    margin-right: 60px;
-   top: 19px;
-  
+  float: right;
+  margin-right: 60px;
+  top: 19px;
 }
-:host ::ng-deep
-.p-datatable .p-sortable-column .p-sortable-column-badge,
+:host ::ng-deep .p-datatable .p-sortable-column .p-sortable-column-badge,
 .p-datatable .p-sortable-column.p-highlight .p-sortable-column-badge {
   display: none;
 }
- 
-    @media (max-width:666px) and (min-width:320px){
-       .navbarEle{
-        top:175px;
-       }
-      .addbtncontainer{
-        top: 253px;
-        margin-left: 15px;
-      }
-      .emptabledetailsContiner{
-        margin-left: 15px;
-        top: 250px
-      }
-      :host ::ng-deep .p-dropdown {
-        margin-right: 10px;
-      }
-      :host ::ng-deep .p-datatable-scrollable>.p-datatable-wrapper {
-            max-height: 195px;
-      }
-     }
-     @media (max-width:768px) and (min-width:666px){
-       .addbtncontainer{
-        margin-left: 32px;
-       }
-       .emptabledetailsContiner{
-        margin-left: 33px;
-       }
-       :host ::ng-deep .p-datatable-scrollable>.p-datatable-wrapper {
-        max-height: 250px;
+:host ::ng-deep .p-datatable .p-datatable-tbody > tr > td, tr > th{
+  border-width:0px; 
+}
+@media (max-width: 666px) and (min-width: 320px) {
+  .navBarText {
+    top: 175px;
   }
-     }  
-    
+  .addbtncontainer {
+    top: 253px;
+    margin-left: 15px;
+  }
+  .emptabledetailsContiner {
+    margin-left: 15px;
+    top: 250px;
+  }
+  :host ::ng-deep .p-dropdown {
+    margin-right: 10px;
+  }
+  :host ::ng-deep .p-datatable-scrollable > .p-datatable-wrapper {
+    max-height: 195px;
+  }
+}
+@media (max-width: 768px) and (min-width: 666px) {
+  .addbtncontainer {
+    margin-left: 32px;
+  }
+  .emptabledetailsContiner {
+    margin-left: 33px;
+  }
+  :host ::ng-deep .p-datatable-scrollable > .p-datatable-wrapper {
+    max-height: 250px;
+  }
+}

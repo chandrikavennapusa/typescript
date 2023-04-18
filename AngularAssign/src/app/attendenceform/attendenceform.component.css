@@ -1,89 +1,85 @@
-
-.savebtnEle{
+.savebtnEle {
   margin-left: 20px;
   margin-right: 20px;
 }
-.attendenceform{
+.attendenceform {
   margin-left: 60px;
   margin-right: 0px;
   margin-top: 10px;
 }
-.errmessageEle{
+.errmessageText{
   color: red;
 }
 :host ::ng-deep .p-dropdown {
   width: 198px;
 }
-.attendenceFormContainer{
+.attendenceFormContainer {
   position: fixed;
-  top:180px;
+  top: 180px;
   margin-left: 70px;
-
 }
 
-.navbarEle{
+.navBarText {
   position: fixed;
-
   margin-right: 0px;
   margin-left: 0px;
   width: 100%;
   top: 117px;
-
 }
-.attendencelistEle{
+.attendencelistText {
   margin-left: 87px;
 }
 
-.buttonEle{
+.buttonEle {
   float: right;
-    top: -2px;
-    margin-right: 76px;
+  top: -2px;
+  margin-right: 76px;
   position: relative;
 }
-@media (max-width:768px) and (min-width:666px){
-.attendenceFormContainer{
-  margin-left: 37px;
-  position: fixed;
-  overflow-y: scroll; 
-  height: 420px;
+@media (max-width: 768px) and (min-width: 666px) {
+  .attendenceFormContainer {
+    margin-left: 37px;
+    position: fixed;
+    overflow-y: scroll;
+    height: 420px;
+  }
+  .attendenceform {
+    margin-left: 5px;
+  }
 }
-.attendenceform{
-  
-  margin-left: 5px;
-
-}
-}
-@media (max-width:666px) and (min-width:320px){
-  ::ng-deep .p-calendar input{
+@media (max-width: 666px) and (min-width: 320px) {
+  ::ng-deep .p-calendar input {
     height: 30px !important;
     width: 200px !important;
   }
-  .navBarEle{
+  .navBarText {
     top: 177px;
   }
-  .attendenceFormContainer{
+  .attendenceFormContainer {
     top: 246px;
     margin-left: 14px;
     position: fixed;
-    overflow-y: scroll; 
+    overflow-y: scroll;
     height: 370px;
   }
-  .attendenceform{
+  .attendenceform {
     margin-left: 37px;
   }
-  
-}
-@media (max-width:1024px) and (min-width:66px) {
-  .attendenceFormContainer{
-    position: fixed;
-    overflow-y: scroll; 
-    height:400px;
+  .buttonEle{
+    padding-bottom: 31px;
   }
 }
-@media (max-width:1440px) and (min-width:66px) {
-  .attendenceFormContainer{
+@media (max-width: 1024px) and (min-width: 66px) {
+  .attendenceFormContainer {
     position: fixed;
-    overflow-y: scroll; 
-    height:400px;
+    overflow-y: scroll;
+    height: 400px;
+  }
+}
+@media (max-width: 1440px) and (min-width: 66px) {
+  .attendenceFormContainer {
+    position: fixed;
+    overflow-y: scroll;
+    height: 400px;
   }
 }

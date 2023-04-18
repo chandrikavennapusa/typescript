@@ -1,15 +1,14 @@
-<div class=" bg-cyan-300  h-6rem navgationBarEle">
-    <h2 class="attendListHeadingEle"> <span> <i class="material-icons">people</i> </span> Attendence List </h2>
-  
+<div class=" bg-cyan-300  h-6rem navgationBarText">
+    <h2 class="attendListHeadingText"> <span> <i class="material-icons">people</i> </span> Attendence List </h2>
 </div>
 <p-toast></p-toast>
-<div class="attendencetableContainer w-11 border-noround border-400 border-solid">
+<div class="attendencetableContainer w-11">
     <div class="relative border-bottom-2 border-400 h-5rem">
-        <p-button (click)="showDialog()" icon="pi pi-plus" label="ADD" styleClass="addbtnEle"
+        <p-button (click)="showDialog()" icon="pi pi-plus" label="Add" styleClass="addbtnText"
             *ngIf="addButtonDisabled"></p-button>
-
         <p-dialog header="Add Attendence" [(visible)]="visible" (onHide)="clearEmployeeIdDepartmentId()"
-            [style]="{ width: '300px',height:'300px' }" [modal]="true"  appendTo="body" [draggable]="false" [resizable]="false">
+            [style]="{ width: '300px',height:'300px' }" [modal]="true" appendTo="body" [draggable]="false"
+            [resizable]="false">
             <form #deptidEmpidForm="ngForm" (ngSubmit)="checkEmployeeIdDeparmentIdExist()" ngNativeValidate>
                 <div>
                     <div class="mb-2"><label>Employee Id *</label></div>
@@ -17,73 +16,64 @@
                         pattern="^[+]?[0-9]+([0-9])*$" #empid="ngModel" required />
                     <div class="errmessageEle" *ngIf="empid.touched && empid.invalid"> enter the valid name</div>
                 </div>
-
                 <div>
-                    <div  class="mb-2"><label>Department Id *</label></div>
+                    <div class="mb-2"><label>Department Id *</label></div>
                     <input type="text" pInputText [(ngModel)]="departmentid" name="departmentid" #depid="ngModel"
                         pattern="^[+]?[0-9]+([0-9])*$" required />
                     <div class="errmessageEle" *ngIf="depid.touched && depid.invalid"> enter the valid name</div>
                 </div>
-
                 <div>
                     <button pButton type="submit" label="Save" class="saveEle"></button>
                     <p-button label="Cancel" styleClass="p-button-secondary " class="cancelEle"
                         (click)="clearEmployeeIdDepartmentId()"></p-button>
                 </div>
             </form>
-
         </p-dialog>
-
-        <p-dropdown [options]="rowsPerPageOptions" optionLabel="label" 
-        optionValue="value" [(ngModel)]="rows2" (ngModelChange)="first2 = 0"
-       ></p-dropdown>
-
-        <span class="p-input-icon-right serachEle" *ngIf="serachempview">
-            <input type="text" pInputText [(ngModel)]="serchempidvalue" (keyup)="searchingByEmployeeId()" />
+        <p-dropdown [options]="rowsPerPageOptions" optionLabel="label" optionValue="value" [(ngModel)]="rows"
+            (ngModelChange)="first"></p-dropdown>
+        <span class="p-input-icon-right serachEle" *ngIf="serachInputFiledViewmode">
+            <input type="text" pInputText [(ngModel)]="serchEmployeeIdValue" (keyup)="searchingByEmployeeId()" />
             <i class="pi pi-search"></i>
         </span>
     </div>
-
-
     <div class="card ">
-        <p-table [columns]="cols" [value]="fectingAttendenceData" [paginator]="true" [rows]="rows2"
-            sortMode="multiple" 
-            paginatorPosition="bottom" [scrollable]="true"
-            (onPageChange)="onPageChange($event)"
-            responsiveLayout="scroll">
+        <p-table [columns]="cols" [value]="fectingAttendenceData" [paginator]="true" [rows]="rows" sortMode="multiple"
+            paginatorPosition="bottom" [scrollable]="true" (onPageChange)="onPageChange($event)"
+            styleClass="p-datatable-striped" responsiveLayout="scroll">
             <ng-template pTemplate="header" let-columns>
                 <tr>
                     <th *ngFor="let col of columns" [pSortableColumn]="col.field">
                         {{col.header}}
                         <p-sortIcon [field]="col.field"></p-sortIcon>
                     </th>
-                    <th *ngIf="deleteviewmode">Actions</th>
+                    <th *ngIf="deleteButtonViewmode ">Actions</th>
                 </tr>
             </ng-template>
             <ng-template pTemplate="body" let-rowData let-columns="columns">
-                <tr (dblclick)="doubleClick(rowData.employeeId)" >
+                <tr (dblclick)="doubleClick(rowData.employeeId)">
                     <ng-container *ngFor="let col of columns ">
 
-                        <td  *ngIf="col.field == 'checkIn'  " >
+                        <td *ngIf="col.field == 'checkIn'  ">
                             {{ rowData[col.field] |date: "mediumTime"}}
-                         </td>
-                         <td  *ngIf="col.field == 'checkout'">
+                        </td>
+                        <td *ngIf="col.field == 'checkout'">
                             {{ rowData[col.field] |date: "mediumTime"}}
-                         </td>
-                         <td  *ngIf="col.field == 'shift'">
+                        </td>
+                        <td *ngIf="col.field == 'shift'">
                             {{ rowData[col.field] | titlecase}}
-                         </td>
-                         <td *ngIf="col.field != 'checkIn' && col.field != 'checkout' && col.field !='shift'"> 
-                             {{ rowData[col.field]}}</td>
-
+                        </td>
+                        <td *ngIf="col.field == 'available'">
+                            {{ rowData[col.field].toString() | titlecase}}
+                        </td>
+                        <td
+                            *ngIf="col.field != 'checkIn' && col.field != 'checkout' && col.field !='shift' && col.field != 'available' ">
+                            {{ rowData[col.field]}}</td>
                     </ng-container>
-
-                    <td *ngIf="deleteviewmode"><p-button icon="pi pi-times" label="Delete" class="p-button-danger"
+                    <td *ngIf="deleteButtonViewmode"><p-button icon="pi pi-times" label="Delete" class="p-button-danger"
                             (click)=" deleteByEmployeeIdDepartmetId(rowData.employeeId ,rowData.departmentId)"></p-button>
                     </td>
                 </tr>
             </ng-template>
-
             <ng-template pTemplate="emptymessage">
                 <tr>
                     <td colspan="16" style="text-align: center;">No data found</td>
@@ -92,5 +82,4 @@
         </p-table>
     </div>
     <p-confirmDialog [style]="{width: '279px'}"></p-confirmDialog>
-
 </div>

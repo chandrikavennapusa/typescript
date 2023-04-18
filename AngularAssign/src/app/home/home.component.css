@@ -1,54 +1,46 @@
-
-
-
 .fa {
-    font: normal normal normal 31px/1 FontAwesome !important;
+  font: normal normal normal 31px/1 FontAwesome !important;
+}
+.navbarEle {
+  position: fixed;
+  top: 115px;
+  width: 100%;
+  z-index: 9;
+}
+.dashboardEle {
+  margin-left: 95px;
+  position: relative;
+  top: -20px;
+}
+.homeContainer {
+  border: 2px solid;
+  height: 500px;
+  position: relative;
+  top: -30px;
+  left: 70px;
+  width: 1400px;
+}
+.bgcolorhomecontainer{
+  position: relative;
+  top:-25px;
+}
+@media (max-width: 666px) and (min-width: 320px) {
+  .navbarEle {
+    top: 166px;
   }
-  .navbarEle{
-    position: fixed;
-    top:115px;
-    width: 100%;
-    z-index: 9;
-  }
-  .dashboardEle{
-    margin-left: 95px;
-    position: relative;
-    top: -20px;
+
+  .dashboardEle {
+    margin-left: 7px;
   }
   .homeContainer {
-    border: 2px solid;
-   height: 500px;
-   position: relative;
-   top:-50px;
-   left:70px;
-   width: 1400px;
-   }
- 
- 
-
-  @media (max-width:666px) and (min-width:320px){
-.navbarEle{
-   top: 166px;
-  
-}
-
-.dashboardEle{
-  margin-left: 7px;
-}
-.homeContainer{
-  left: 35px;
-  height: 379px;
-  width: 262px;
-
-}
+    left: 35px;
+    height: 379px;
+    width: 262px;
   }
-  @media (max-width:768px) and (min-width:666px){
-  /* .navbarEle{
-    width: 768px;
-  } */
-  .homeContainer{
+}
+@media (max-width: 768px) and (min-width: 666px) {
+  .homeContainer {
     height: 427px;
     width: 643px;
   }
-} 
-
+}

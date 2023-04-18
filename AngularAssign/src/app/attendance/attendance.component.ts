@@ -1,11 +1,9 @@
 import { HttpErrorResponse } from '@angular/common/http';
-import { Component, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { map } from 'rxjs';
-
 import { ServicesService } from '../services.service';
-import { response } from 'express';
 import { NgForm } from '@angular/forms';
 
 @Component({
@@ -14,26 +12,43 @@ import { NgForm } from '@angular/forms';
   styleUrls: ['./attendance.component.css'],
   providers: [MessageService],
 })
-export class AttendanceComponent {
+export class AttendanceComponent implements OnInit {
+  //Employeeid is using two way binding
   employeeId = '';
+  // Departmentid is using two way binding
   departmentid = '';
-  serchempidvalue = '';
+  // searching by employeeid using two way binding
+  serchEmployeeIdValue = '';
+  // columns data for heading and data
   cols: any;
-  empdata: any;
-  deptdata: any;
-  empid: boolean;
-  deptid: boolean;
-  isboolean:any;;
+  // Employee details
+  empData: any;
+  //Department details
+  deptData: any;
+  // bollean value is true or false
+  isEmployeeid: boolean;
+  // bollean value is true or false
+  isdepartmentid: boolean;
+  // bollean value is true or false
+  isEmployeeId: any;
+  // Dialog box is opened
   visible: boolean;
-  first2: number = 0;
-  rows2: number = 10;
-  totalrecords = 0;
+  // paginator first value
+  first = 0;
+  // paginator rows
+  rows = 10;
+  // paginator total records
+  totalRecords = 0;
+  // Add button is disabled
   addButtonDisabled = true;
-  deleteviewmode = true;
-  serachempview = false;
-
+  // Delete buton is disabled
+  deleteButtonViewmode = true;
+  // serach input filed is disabled
+  serachInputFiledViewmode = false;
+  // fetching attendece data
   fectingAttendenceData: any = [];
   @ViewChild('deptidEmpidForm') form: NgForm;
+
   constructor(
     private service: ServicesService,
     private router: Router,
@@ -41,22 +56,34 @@ export class AttendanceComponent {
     private messageService: MessageService
   ) {}
 
+  ngOnInit() {
+    // table heading and data fileds
+    this.columnFileds();
+    // fetching employee details
+    this.employeeDetails();
+    //fetching department details
+    this.departmentDetails();
+    //fetching attendence details
+    this.fetchingAttendeceData();
+    // login employee view
+    let username = localStorage.getItem('username');
+    if (username == 'employee') {
+      this.addButtonDisabled = false;
+      this.deleteButtonViewmode = false;
+      this.serachInputFiledViewmode = true;
+    }
+  }
+
+  // paginator for rows fileds
   rowsPerPageOptions = [
     { label: 'Show 5', value: 5 },
     { label: 'Show 10', value: 10 },
     { label: 'Show 15', value: 15 },
     { label: 'Show 20', value: 20 },
   ];
-
-  onPageChange(event: any) {
-    this.first2 = event.first;
-    this.rows2 = event.rows;
-    this.totalrecords = event.totalrecords;
-  }
-  showDialog() {
-    this.visible = true;
-  }
-  ngOnInit() {
+  
+  // table heading and data fileds
+  columnFileds() {
     this.cols = [
       { field: 'employeeId', header: 'Employee Id' },
       { field: 'date', header: 'Date' },
@@ -73,9 +100,14 @@ export class AttendanceComponent {
       { field: 'modifiedSourceType', header: 'ModifiedSourceType' },
       { field: 'modifiedDttm', header: 'ModifiedDttm' },
     ];
+  }
 
+  // fetching employee details
+  employeeDetails() {
     this.service.fetchingEmployeeDetails().subscribe(
-      (response) => (this.empdata = response),
+      (response) => {
+        this.empData = response;
+      },
       (err) => {
         console.log(err.error);
       },
@@ -83,9 +115,12 @@ export class AttendanceComponent {
         console.log('completed');
       }
     );
+  }
 
+  // fetching department details
+  departmentDetails() {
     this.service.fetchingDepartmentData().subscribe(
-      (data) => (this.deptdata = data),
+      (data) => (this.deptData = data),
       (err) => {
         console.log(err.error);
       },
@@ -93,70 +128,69 @@ export class AttendanceComponent {
         console.log('completed sucessfully');
       }
     );
-
-    this.fetchingAttendeceData();
-    let username = localStorage.getItem('username');
-    if (username == 'employee') {
-      this.addButtonDisabled = false;
-      this.deleteviewmode = false;
-      this.serachempview = true;
-    }
   }
 
-  t;
+  // paginator page changes
+  onPageChange(event: any) {
+    this.first = event.first;
+    this.rows = event.rows;
+    this.totalRecords = event.totalrecords;
+  }
 
+  //Dialog box show the EmployeeId and DepartmentId
+  showDialog() {
+    this.visible = true;
+  }
+
+  // check the EmployeeId and DepartmentId is exist or not
   checkEmployeeIdDeparmentIdExist() {
-    this.isboolean = false;
-    for (let d of this.empdata) {
-      if (d.employeeId == this.employeeId) {
-        this.empid = true;
+    this.isEmployeeId = false;
+    for (let emp of this.empData) {
+      if (emp.employeeId == this.employeeId) {
+        this.isEmployeeid = true;
       }
     }
-    for (let de of this.deptdata) {
-      console.log(de.departmentId);
-      if (de.departmentId == this.departmentid) {
-        this.deptid = true;
+    for (let dept of this.deptData) {
+      if (dept.departmentId == this.departmentid) {
+        this.isdepartmentid = true;
       }
-      this.fectingAttendenceData.find((empdeptdata) => {
+      this.fectingAttendenceData.find((empdeptdata: any) => {
         if (empdeptdata.employeeId == this.employeeId) {
-          this.isboolean = true;
+          this.isEmployeeId = true;
         }
       });
     }
 
-    if (this.isboolean == true) {
+    if (this.isEmployeeId == true) {
       this.messageService.add({
         severity: 'error',
         summary: 'Error',
         detail: 'the Employee id is already exit',
       });
-      this.employeeId = '';
-      this.departmentid = '';
-    } else if (this.empid && this.deptid) {
-      this.router.navigate(['/ATDELIST']);
-      this.service.EmployeeId = this.employeeId;
-      this.service.DepartmentId = this.departmentid;
+    } else if (this.isEmployeeid && this.isdepartmentid) {
+      this.router.navigate([
+        '/AttendenceDetailTableScreen/:' + this.employeeId + '/:' + this.departmentid + '',
+      ]);
+      this.service.employeeId = this.employeeId;
+      this.service.departmentId = this.departmentid;
     } else {
       this.messageService.add({
         severity: 'error',
         summary: 'Error',
         detail: ' Id is not match',
       });
-      this.employeeId = '';
-      this.departmentid = '';
+      this.form.reset();
     }
-
-    this.form.reset();
   }
 
+  // Clears the EmployeId and DepartmentId data
   clearEmployeeIdDepartmentId() {
-    this.employeeId = '';
-    this.departmentid = '';
     this.visible = false;
     this.form.reset();
   }
 
-  deleteByEmployeeIdDepartmetId(empid:any, deptid:any) {
+  // Deleting the sepecific row
+  deleteByEmployeeIdDepartmetId(empid: any, deptid: any) {
     this.confirmationService.confirm({
       message: 'Do you want to delete this record?',
       header: 'Delete Confirmation',
@@ -166,10 +200,9 @@ export class AttendanceComponent {
     });
     this.fetchingAttendeceData();
   }
-  deleteempiddepid(empid:any, deptid:any) {
+  deleteempiddepid(empid: any, deptid: any) {
     this.service.deleteBasedOnEmployeeIdDepartmentId(empid, deptid).subscribe(
       (response) => {
-        console.log(response);
         console.log('response block');
       },
 
@@ -183,11 +216,11 @@ export class AttendanceComponent {
       },
       () => {
         console.log('complete');
-        console.log('sucess block');
       }
     );
   }
 
+  // Fetching the Attemdencedetails
   fetchingAttendeceData() {
     this.service.fetchingAttendenceDetails().subscribe(
       (data) => (this.fectingAttendenceData = data),
@@ -204,19 +237,21 @@ export class AttendanceComponent {
     );
   }
 
-  doubleClick(employeeId:any) {
-    this.service.attendenceemployeeid = employeeId;
-    this.router.navigate(['/ATTDEFORM/:' + employeeId + '']);
+  // when we  double click, will open the record
+  doubleClick(employeeId: any) {
+    this.service.employeeId = employeeId;
+    this.router.navigate(['/AttendenceDetailScreen/:' + employeeId + '']);
   }
 
+  // Searching the based on EmployeeId
   searchingByEmployeeId() {
-    if (this.serchempidvalue == '') {
+    if (this.serchEmployeeIdValue == '') {
       this.service
         .fetchingAttendenceDetails()
         .subscribe((data) => (this.fectingAttendenceData = data));
     } else {
       this.service
-        .fetchingAttendeDataBasedOnEmployeeId(this.serchempidvalue)
+        .fetchingAttendeDataBasedOnEmployeeId(this.serchEmployeeIdValue)
         .subscribe(
           (response) => {
             this.fectingAttendenceData = [];

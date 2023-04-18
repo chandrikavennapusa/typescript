@@ -1,46 +1,85 @@
-.itorizonimg{
-   margin-top: 10px;
-   width:250px;
+.itorizonimg {
+  margin-top: 10px;
+  width: 250px;
 }
-.loginpageContainer{
-   margin: auto;
-   position: relative;
-   top: 80px;
-   width: 392px;
-   height: 493px;
+.loginpageContainer {
+  margin: auto;
+  position: relative;
+  top: 80px;
+  width: 392px;
+  height: 493px;
+  box-shadow: 1px 2px 3px 3px grey;
 }
-.welcomeEle{
-position: relative;
-top:-20px;
+.welcomeText {
+  position: relative;
+  top: -20px;
 }
-.paragraphEle{
-   position: relative;
-   top:-45px;
+.paragraphText {
+  position: relative;
+  top: -45px;
 }
-.usernameEle{
-   position: relative;
-   top: -60px;
+.usernameContainer{
+  position: relative;
+  top: -60px;
 }
-.passwordEle{
-   position: relative;
-   top: -60px;
+.passwordContainer {
+  position: relative;
+  top: -60px;
 }
-.eyeicon{
-   margin-left: -30px
+.eyeicon {
+  margin-left: -30px;
 }
-.submitButtonEle{
-   position: relative;
-   top: -60px; 
+.submitButtonText {
+  position: relative;
+  top: -60px;
 }
-.resetButtonEle{
-   position: relative;
-   top: -60px;  
+.resetButtonText{
+  position: relative;
+  top: -60px;
+  margin-left: 25px;
 }
-.widthOfInputfield{
-   width: 293px;
+.widthOfInputfield {
+  width: 321px;
 }
 
-.loginbgColor{
-   width: 720px;
-   height: 1500px;
+.loginbgColor {
+  background-image: linear-gradient(to bottom, rgba(255, 0, 0, 0), #15a9e1);
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+}
+@media (max-width: 666px) and (min-width: 320px) {
+  .loginpageContainer {
+    width: 249px;
+    height: 418px;
+  }
+  .itorizonimg {
+    width: 139px;
+  }
+  .welcomeText {
+    margin-left: -28px;
+    top: -29px;
+  }
+  .paragraphText {
+    top: -70px;
+    width: 227px;
+  }
+  .widthOfInputfield {
+    width: 180px;
+  }
+  .usernameContainer {
+    top: -94px;
+  }
+  .passwordContainer{
+    top: -94px;
+  }
+  .submitButtonText {
+    top: -94px;
+  }
+  .resetButtonText {
+    top: -94px;
+    margin-left: 14px;
+  }
 }

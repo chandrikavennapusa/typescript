@@ -1,56 +1,53 @@
-
-
-.depttableContainer{
+.depttableContainer {
   top: 195px;
-margin-left: 55px;
-
+  margin-left: 55px;
 }
-.navBarEle{
-  position:fixed;
-  top:98px;
+.navBarText {
+  position: fixed;
+  top: 98px;
   width: 100%;
 }
-.deptlistEle{
+.deptlistText {
   position: relative;
   margin-left: 55px;
-  top:20px;
+  top: 20px;
 }
 :host ::ng-deep .p-paginator {
-    margin-top: 30px;
-float: right;
- max-width: max-content;
+  margin-top: 30px;
+  float: right;
+  max-width: max-content;
   border: 1px solid gray;
 }
 :host ::ng-deep .p-dropdown {
   float: right;
   margin-right: 60px;
- top: 19px;
-
+  top: 19px;
 }
-:host ::ng-deep
-.p-datatable .p-sortable-column .p-sortable-column-badge,
+:host ::ng-deep .p-datatable .p-sortable-column .p-sortable-column-badge,
 .p-datatable .p-sortable-column.p-highlight .p-sortable-column-badge {
   display: none;
 }
+:host ::ng-deep .p-datatable .p-datatable-tbody > tr > td, tr > th{
+  border-width:0px; 
+}
 
-@media (max-width:666px) and (min-width:320px){
-.navBarEle{
-  top: 155px;
+@media (max-width: 666px) and (min-width: 320px) {
+  .navBarText {
+    top: 155px;
+  }
+  .depttableContainer {
+    top: 236px;
+    margin-left: 12px;
+  }
+  .deptlistText{
+    margin-left: 30px;
+  }
+  :host ::ng-deep .p-paginator {
+    margin-top: 6px;
+  }
 }
-.depttableContainerr{
-top:233px;
-  margin-left: 17px;
-}
-.deptlistEle{
-  margin-left: 30px;
-}
-:host ::ng-deep .p-paginator {
-margin-top: 6px;
-}
-}
-@media (max-width:777px) and (min-width:666px){
+@media (max-width: 777px) and (min-width: 666px) {
   :host ::ng-deep .p-paginator {
     margin-right: 31px;
-
-    }
+  }
 }

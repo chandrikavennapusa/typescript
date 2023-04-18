@@ -1,22 +1,31 @@
-<div class=" bg-cyan-100  loginbgColor">
-  <div class="bg-white border-400 border-solid  grid loginpageContainer">
-    <form #mylogin="ngForm" (ngSubmit)="loginUserAccount()" >
-  
+<div class="loginbgColor">
+  <div class="bg-white   grid loginpageContainer">
+    <form #mylogin="ngForm" (ngSubmit)="loginUserAccount()">
+      <div class="grid">
         <div class="col  col-offset-2"> <img src="./assets/itorizonlogo.png" alt="Image" class="itorizonimg"> </div>
-        <div class="col col-offset-4 "><h3 class="welcomeEle">Welcome</h3></div>
-        <div class="col col-offset-1"><p class="paragraphEle">Please use Registerd Username and Password to Login your account </p></div>
-       <div  class="col col-offset-1 usernameEle">
-        <div class="mb-2">  <label>UserName *</label></div>
-        <input type="text"  pInputText   name="UserName" [(ngModel)]="UserName" class="widthOfInputfield" />
-       </div>
-       <div  class="col col-offset-1 passwordEle">
-       <div class="mb-2 "> <label>Password *</label> </div>
-       <input [type]="changetype?'password':'text'"   pInputText  [(ngModel)]="password"  name="password" ngModel class="widthOfInputfield" >
-       <span class="eyeicon" (click)="viewpress()"> <i [ngClass]=" visable ? ' fa fa-eye':'fa fa-eye-slash'"></i> </span>  
-    </div>
-     <div class=" col col-offset-1 submitButtonEle ">  <button  pButton type="submit" label="Login" class="widthOfInputfield" ></button> </div>
-     <div class="col col-offset-1 resetButtonEle"> <button pButton  type=" button" label="Reset" (click)="reset()" class="widthOfInputfield" ></button></div>
-       </form>
-</div>
-
+        <div class="col col-offset-5 ">
+          <h3 class="welcomeText">Welcome</h3>
+        </div>
+        <div class="col-10  col-offset-1">
+          <p class="paragraphText">Please use Registerd Username and Password to Login your account </p>
+        </div>
+        <div class="col col-offset-1 usernameContainer">
+          <div class="mb-2"> <label>UserName *</label></div>
+          <input type="text" pInputText name="UserName" [(ngModel)]="UserName" class="widthOfInputfield" />
+        </div>
+        <div class="col col-offset-1 passwordContainer">
+          <div class="mb-2 "> <label>Password *</label> </div>
+          <input [type]="changetype?'password':'text'" pInputText [(ngModel)]="password" name="password" ngModel
+            class="widthOfInputfield">
+          <span class="eyeicon" (click)="viewpress()"> <i [ngClass]=" visable ? ' fa fa-eye':'fa fa-eye-slash'"></i>
+          </span>
+        </div>
+        <div class=" col col-offset-1 submitButtonText "> <button pButton type="submit" label="Login"
+            class="widthOfInputfield"></button> </div>
+      </div>
+    </form>
+    <div class="col resetButtonText"> <button pButton type=" button" label="Reset" (click)=" resetInputFields()"
+      class="widthOfInputfield"></button></div>
+    <p-toast></p-toast>
+  </div>
 </div>

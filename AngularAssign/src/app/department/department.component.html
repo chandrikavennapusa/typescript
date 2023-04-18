@@ -1,18 +1,16 @@
-<div class="p-grid navBarEle">
+<div class="p-grid navBarText">
     <div class="p-col bg-cyan-300 w-full h-6rem relative ">
-        <h2 class="deptlistEle"> <span> <i class="material-icons">people</i> </span> Department List </h2>
+        <h2 class="deptlistText"> <span> <i class="material-icons">people</i> </span> Department List </h2>
     </div>
 </div>
-
-<div class="w-11 surface-section relative depttableContainer border-noround border-400 border-solid">
-
-    <div class="w-12 surface-section relative  h-5rem border-noround border-400 border-solid">
-        <p-dropdown [options]="rowsPerPageOptions" optionLabel="label" optionValue="value" [(ngModel)]="rows2"
-            (ngModelChange)="first2 = 0"></p-dropdown>
+<div class="w-11 surface-section relative depttableContainer">
+    <div class="w-12 surface-section relative border-bottom-2 border-400  h-5rem">
+        <p-dropdown [options]="rowsPerPageOptions" optionLabel="label" optionValue="value" [(ngModel)]="rows"
+            (ngModelChange)="first"></p-dropdown>
     </div>
     <div class="card">
-        <p-table [columns]="cols" [value]="fetchingDeptDetails" sortMode="multiple" [paginator]="true" [rows]="rows2"
-            (onPageChange)="onPageChange($event)" responsiveLayout="scroll">
+        <p-table [columns]="cols" [value]="fetchingDeptDetails" sortMode="multiple" [paginator]="true" [rows]="rows"
+            (onPageChange)="onPageChange($event)" responsiveLayout="scroll" styleClass="p-datatable-striped">
             <ng-template pTemplate="header" let-columns>
                 <tr>
                     <th *ngFor="let col of columns" [pSortableColumn]="col.field">
@@ -28,14 +26,11 @@
                     </td>
                 </tr>
             </ng-template>
-
             <ng-template pTemplate="emptymessage">
                 <tr>
                     <td colspan="16" style="text-align: center;">No data found</td>
                 </tr>
             </ng-template>
         </p-table>
-
-
     </div>
 </div>

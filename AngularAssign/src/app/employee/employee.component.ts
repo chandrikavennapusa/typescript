@@ -5,6 +5,7 @@ import {
   EventEmitter,
   HostListener,
   Input,
+  OnInit,
   Output,
   ViewChild,
 } from '@angular/core';
@@ -17,9 +18,10 @@ import {
 import { table } from 'console';
 import { ConfirmationService, Message, MessageService } from 'primeng/api';
 import { Observable } from 'rxjs';
-
 import { ServicesService } from '../services.service';
 import { Paginator } from 'primeng/paginator';
+import { SortIcon } from 'primeng/table';
+
 
 @Component({
   selector: 'app-employee',
@@ -27,27 +29,34 @@ import { Paginator } from 'primeng/paginator';
   styleUrls: ['./employee.component.css'],
   providers: [MessageService],
 })
-export class EmployeeComponent {
-  fetchingEmployeeData:any;
+export class EmployeeComponent implements OnInit {
+  // fetching employee data
+  fetchingEmployeeData: any;
+  // showing error mesage
   errorMessage: any;
+  // ngmodel employeeid
   empId: string;
-  cols:any;
-  isboolean:any;
-  first2: number = 0;
-  rows2: number = 10;
-  totalrecords = 0;
-  attendeceEmployeeId:any;
-  error:any;
+  // column fileds
+  cols: any;
+  // boolean value
+  isEmployeeId: any;
+  // paginator first row value
+  first = 0;
+  // paginator rows
+  rows = 10;
+  //paginator totalrecords
+  totalRecords = 0;
+  // Attendence employeeid
+  attendeceEmployeeId: any;
+  // Add button disabled
   addButtonDisabled = true;
+  // delete button disabled
   deleteButtonViewmode = true;
+  // boolean value in dialog box
   visible: boolean;
+  // sucess message
   empidsucessmessagedata: Message[];
-
-  constructor( private service: ServicesService,private router: Router,
-    private confirmationService: ConfirmationService,
-    private messageService: MessageService
-  ) {}
-
+  // rowsperpageoptions in paginator
   rowsPerPageOptions = [
     { label: 'show 2', value: 2 },
     { label: 'Show 5', value: 5 },
@@ -55,26 +64,26 @@ export class EmployeeComponent {
     { label: 'Show 15', value: 15 },
     { label: 'Show 20', value: 20 },
   ];
-
-  onPageChange(event:any) {
-    this.first2 = event.first;
-    this.rows2 = event.rows;
-    this.totalrecords = event.totalrecords;
-  }
   @ViewChild('EmpidForm') form: NgForm;
-
-  showDialog() {
-    this.visible = true;
-  }
- 
-  doubleClick(employeeId:any) {
-    this.service.employeeid = employeeId;
-    this.router.navigate(['/EMPLIST/:'+employeeId+'']);
-  }
-
+  constructor(
+    private service: ServicesService,
+    private router: Router,
+    private confirmationService: ConfirmationService,
+    private messageService: MessageService
+  ) {}
+  
   ngOnInit() {
     this.fetchingEmployeeDetails();
+    this.columnsDetails();
+    let username = localStorage.getItem('username');
+    if (username == 'employee') {
+      this.addButtonDisabled = false;
+      this.deleteButtonViewmode = false;
+    }
+  }
 
+  // column details
+  columnsDetails() {
     this.cols = [
       { field: 'employeeId', header: 'Employee Id' },
       { field: 'firstName', header: 'First Name' },
@@ -92,15 +101,28 @@ export class EmployeeComponent {
       { field: 'modifiedSourceType', header: 'ModifiedSourceType' },
       { field: 'modifiedDttm', header: 'ModifiedDttm' },
     ];
-
-    let username = localStorage.getItem('username');
-    if (username == 'employee') {
-      this.addButtonDisabled = false;
-      this.deleteButtonViewmode  = false;
-    }
   }
 
-  deleteBasedOnEmployeeId(id:any) {
+  // paginator onpagechanges
+  onPageChange(event: any) {
+    this.first = event.first;
+    this.rows = event.rows;
+    this.totalRecords = event.totalrecords;
+  }
+
+  // show dialog box
+  showDialog() {
+    this.visible = true;
+  }
+
+  // when we double click,rows will be open
+  doubleClick(employeeId: any) {
+    this.service.employeeId = employeeId;
+    this.router.navigate(['/EmployeeDetailFormScreen/:' + employeeId + '']);
+  }
+
+  //Deleting the sepecific row
+  deleteBasedOnEmployeeId(id: any) {
     this.confirmationService.confirm({
       message: 'Do you want to delete this record?',
       header: 'Delete Confirmation',
@@ -110,8 +132,8 @@ export class EmployeeComponent {
     });
   }
 
-  deletebyEmployeeId(id:any) {
-       this.service.fetchingAttendeDataBasedOnEmployeeId(id).subscribe(
+  deletebyEmployeeId(id: any) {
+    this.service.fetchingAttendeDataBasedOnEmployeeId(id).subscribe(
       (data) => {
         this.attendeceEmployeeId = data;
         if (this.attendeceEmployeeId.employeeId == id) {
@@ -144,7 +166,7 @@ export class EmployeeComponent {
     );
   }
 
-  
+  // Fetching the employeedetails
   fetchingEmployeeDetails() {
     this.service.fetchingEmployeeDetails().subscribe(
       (data) => {
@@ -152,21 +174,22 @@ export class EmployeeComponent {
       },
       (error) => {
         this.errorMessage = error;
+      },
+      () => {
+        console.log('sucessfull');
       }
     );
-    () => {
-      console.log('sucessfull');
-    };
   }
 
+  //  check employeeid is exists or not
   checkEmployeeIdExist() {
-    this.isboolean = false;
-    this.fetchingEmployeeData.find((empdata) => {
+    this.isEmployeeId = false;
+    this.fetchingEmployeeData.find((empdata: any) => {
       if (empdata.employeeId == this.empId) {
-        this.isboolean = true;
+        this.isEmployeeId = true;
       }
     });
-    if (this.isboolean == true) {
+    if (this.isEmployeeId == true) {
       this.messageService.add({
         severity: 'error',
         summary: 'Employee List',
@@ -180,15 +203,14 @@ export class EmployeeComponent {
           detail: 'enter the table fields',
         },
       ];
-
-      this.router.navigate(['/EMPFORM']);
-      this.service.emplyeeid = this.empId;
+      this.router.navigate(['/EmployeeDetailScreen/:' + this.empId + '']);
+      this.service.employeeId = this.empId;
     }
   }
 
-
+  // Reset the Emplyoeeid
   resetEmployeeId() {
     this.visible = false;
     this.form.reset();
   }
-}
+  }

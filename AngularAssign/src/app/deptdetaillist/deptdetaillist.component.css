@@ -1,11 +1,10 @@
-
 .deptFormContainer{
     position:fixed;
     top:180px;
     margin-left: 40px;
     background-color: white;
 }
-.navBarEle{
+.navBarText{
 top: 97px;
 position: fixed;
 width: 100%;
@@ -13,12 +12,12 @@ width: 100%;
 .headerEle{
 width: 1600px;
 }
-.departmentlist{
+.departmentlistText{
     position: relative;
-    top: 25px;
+    top: 13px;
     margin-left: 57px;
 }
-.deptFormEle{
+.deptFormtableContainer{
     margin-left: 150px;
     margin-top: 10px;
 }
@@ -30,20 +29,19 @@ width: 1600px;
     top: 240px;
     margin-left: 16px;
 }
-.navBarEle{
+.navBarText{
     top: 156px;
-    width: 328px;
    }
-   .deptFormEle{
+   .deptFormtableContainer{
     margin-left: 24px;
    }
 }
     @media (max-width:768px) and (min-width:666px){
     
-   .deptFormEle{
+   .deptFormtableContainer{
     margin-left: 0px;
    }
-.navBarEle{
+.navBarText{
     width:1000px;
    }
 

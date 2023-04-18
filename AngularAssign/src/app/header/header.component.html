@@ -1,32 +1,24 @@
-
-
-    <div class="headerimage bg-white ">
-        <img src="./assets/itorizonlogo.png" alt="Image"class="imageEle">
-       <div class="notificationicon" > <i style='font-size:24px' class='far'>&#xf0f3;</i></div>
-     </div>
-
-    <div class="bg-cyan-800 headeriner grid">
-        
-        <div class="flex justify-content-start flex-wrap card-container">
-        
-            <div class="flex align-items-center  justify-content-center ml-3  p-3 " routerLinkActive="active">
-                <a  routerLink="/HOME"   class="anchorEle">HOME</a>
-            </div>
-        
-            <div class=" flex align-items-center justify-content-center p-3  " routerLinkActive="active">
-                <a routerLink="/EMP"class="anchorEle" >EMPLOYEE</a>
-                </div>
-                <div class="flex align-items-center justify-content-center p-4 " *ngIf="employeeuserhide" routerLinkActive="active">
-                    <a routerLink="/DEPT" class="anchorEle"  >DEPARTMENT</a>
-                </div>
-    
-                <div class=" flex align-items-center justify-content-center  p-3  " routerLinkActive="active">
-                    <a routerLink="/ATDE"   class="anchorEle"  >ATTENDENCE</a>
-                </div>
-    
-                <div class="  flex justify-content-center align-items-center  logoutEle">
-                    <a class="anchorEle" routerLink="/Login" (click)="islogout()" routerLinkActive="active" > LOGOUT</a>
-                    </div>
+<div class="headerimage bg-white ">
+    <img src="./assets/itorizonlogo.png" alt="Image" class="imageEle">
+    <div class="notificationicon"> <i style='font-size:24px' class='far'>&#xf0f3;</i></div>
+</div>
+<div class="bg-cyan-800 headeriner grid">
+    <div class="flex justify-content-start flex-wrap card-container">
+        <div class="flex align-items-center  justify-content-center ml-1  p-3 " routerLinkActive="active">
+            <a routerLink="/HOME" class="anchorEle">HOME</a>
         </div>
-       
+        <div class=" flex align-items-center justify-content-center p-3  " routerLinkActive="active">
+            <a routerLink="/EmployeeListScreenTable" class="anchorEle">EMPLOYEE</a>
+        </div>
+        <div class="flex align-items-center justify-content-center p-4 " *ngIf="hideDeprtment"
+            routerLinkActive="active">
+            <a routerLink="/DepartmentListScreenTable" class="anchorEle">DEPARTMENT</a>
+        </div>
+        <div class=" flex align-items-center justify-content-center  p-3  " routerLinkActive="active">
+            <a routerLink="/AttendenceListScreenTable" class="anchorEle">ATTENDENCE</a>
+        </div>
+        <div class="  flex justify-content-center align-items-center  logoutEle">
+            <a class="anchorEle" routerLink="/Login" (click)=" logOut()" routerLinkActive="active"> LOGOUT</a>
+        </div>
     </div>
+</div>

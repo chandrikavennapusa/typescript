@@ -1,25 +1,22 @@
 import { Injectable } from '@angular/core';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AttenService {
-
-  constructor() { }
-
-  employeeId='';
-  date;
-  departmentId='';
-  available='';
-  available1='';
-  checkIn;
-  checkout;
-  attendanceCount='';
-  shift='';
-  createdSource='';
-  createdSourceType='';
-  createdDttm;
-  modifiedSource='';
-  modifiedSourceType='';
-  modifiedDttm;
+  constructor() {}
+  employeeId = '';
+  date: any;
+  departmentId = '';
+  available = '';
+  checkIn: any;
+  checkout: any;
+  attendanceCount = '';
+  shift = '';
+  createdSource = '';
+  createdSourceType = '';
+  createdDttm: any;
+  modifiedSource = '';
+  modifiedSourceType = '';
+  modifiedDttm: any;
 }

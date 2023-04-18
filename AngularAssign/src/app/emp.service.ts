@@ -1,29 +1,28 @@
 import { Injectable } from '@angular/core';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class EmpService {
+  constructor() {}
 
-  constructor() { }
-
-  employeeId='';
-  firstName='';
-  lastName='';
-  gender='';
-  dob:any;
-  mailId='';
-  phoneNumber='';
-  bloodGroup='';
-  address='';
-  department='';
-  dateOfJoining;
-  salary='';
-  shift='';
-  createdSource='';
-  createdSourceType='';
-  createdDttm:any;
-  modifiedSource='';
-  modifiedSourceType='';
-  modifiedDttm:any;
+  employeeId = '';
+  firstName = '';
+  lastName = '';
+  gender = '';
+  dob: any;
+  mailId = '';
+  phoneNumber = '';
+  bloodGroup = '';
+  address = '';
+  department = '';
+  dateOfJoining: any;
+  salary = '';
+  shift = '';
+  createdSource = '';
+  createdSourceType = '';
+  createdDttm: any;
+  modifiedSource = '';
+  modifiedSourceType = '';
+  modifiedDttm: any;
 }

@@ -1,8 +1,7 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Message } from 'primeng/api/message';
-
 import { ServicesService } from '../services.service';
 import { EmpService } from '../emp.service';
 import { DatePipe } from '@angular/common';
@@ -12,20 +11,29 @@ import { DatePipe } from '@angular/common';
   templateUrl: './empform.component.html',
   styleUrls: ['./empform.component.css'],
 })
-export class EmpformComponent {
-  sucessmessagedata: Message[];
+export class EmpformComponent implements OnInit{
+  // calender fileds set max date
   maxDate = new Date();
+  // bloodgroup values
   bloodGroup: any;
+  // shift values
   shift: any;
-  shift19: any;
-  bloddgroup1: any;
-  myDate: Date;
-  dob11: any;
-  doj11: any;
+  // ngmodel shiftvalue
+  shiftValue: any;
+  // ngmodel bloodgroupvalue
+  bloodgroupValue: any;
+  // ngmodel dateofbirth value
+  dobValue: any;
+  //ngmodel dateofjoining value
+  dateOfJoiningValue: any;
+  // acces the employee details in service
+  employeeDetailObj: EmpService = new EmpService();
+
   constructor(
     private service: ServicesService,
     private router: Router,
-    private datepipe: DatePipe
+    private datepipe: DatePipe,
+    private activatedRoute: ActivatedRoute
   ) {
     this.bloodGroup = [
       { name: 'A', code: 'a' },
@@ -41,8 +49,15 @@ export class EmpformComponent {
     ];
   }
 
-  employeeDetailObj: EmpService = new EmpService();
+  ngOnInit() {
+    this.employeeDetailsIntialization();
+    this.activatedRoute.paramMap.subscribe((parm) => {
+      (this.service.employeeId = parm.get('id')?.substring(1)),
+        (this.employeeDetailObj.employeeId = this.service.employeeId);
+    });
+  }
 
+  // Intialization of employeedetails
   employeeDetailsIntialization() {
     this.employeeDetailObj = {
       employeeId: '',
@@ -67,27 +82,22 @@ export class EmpformComponent {
     };
   }
 
-  ngOnInit() {
-    this.employeeDetailsIntialization();
-    this.employeeDetailObj.employeeId = this.service.emplyeeid;
-  }
-
+  // Submission of the employeedetails
   submitEmployeeData() {
-    this.myDate = new Date();
     this.employeeDetailObj.dob = this.datepipe.transform(
-      this.dob11,
+      this.dobValue,
       'M/d/yy,  h:mm:ss a'
     );
     this.employeeDetailObj.dateOfJoining = this.datepipe.transform(
-      this.doj11,
+      this.dateOfJoiningValue,
       'M/d/yy,  h:mm:ss a'
     );
-    this.employeeDetailObj.bloodGroup= this.bloddgroup1.code;
-    this.employeeDetailObj.shift = this.shift19.code;
+    this.employeeDetailObj.bloodGroup = this.bloodgroupValue.code;
+    this.employeeDetailObj.shift = this.shiftValue.code;
     this.employeeDetailObj.createdSource = localStorage.getItem('username');
     this.employeeDetailObj.createdSourceType = localStorage.getItem('username');
     this.employeeDetailObj.createdDttm = this.datepipe.transform(
-      this.myDate,
+      new Date(),
       'M/d/yy,  h:mm:ss a'
     );
     this.service.addingEmployeeInformation(this.employeeDetailObj).subscribe();
@@ -98,10 +108,11 @@ export class EmpformComponent {
         detail: 'form successfully added',
       },
     ];
-    this.router.navigate(['/EMP']);
+    this.router.navigate(['/EmployeeListScreenTable']);
   }
 
+  // Navigate to the Employeelistscreen
   navigateEmpListScreen() {
-    this.router.navigate(['/EMP']);
+    this.router.navigate(['/EmployeeListScreenTable']);
   }
 }

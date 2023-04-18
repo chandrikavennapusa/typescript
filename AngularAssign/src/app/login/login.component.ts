@@ -9,72 +9,81 @@ import { throwError } from 'rxjs/internal/observable/throwError';
 import { catchError, tap } from 'rxjs/operators';
 import { ServicesService } from '../services.service';
 
-
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css'],
-  providers: [MessageService]
+  providers: [MessageService],
 })
 export class LoginComponent implements OnInit {
-  UserName:string;
-  password:string;
-  succmessage: Message[];
-  visable:boolean=true;
-  changetype:boolean=true;
-  ishidden=false;
-  userloginsucessmessage:Message [];
-  @ViewChild('mylogin') form :NgForm;
+  // ngmodel username
+  UserName: string;
+  //ngmodel password
+  password: string;
+  // eyeicon disabled
+  visable: boolean = true;
+  //eyeicon changes
+  changetype: boolean = true;
+  // sucessmessage
+  userloginsucessmessage: Message[];
+  @ViewChild('mylogin') form: NgForm;
 
-  constructor(private router:Router,private services:ServicesService , private activatedroute:ActivatedRoute,
+  constructor(
+    private router: Router,
+    private services: ServicesService,
+    private activatedroute: ActivatedRoute,
     private messageService: MessageService
-    ){}
+  ) {}
 
-    ngOnInit(){
-      if(localStorage.getItem('empbooleanvalue')=='true'){
-          this.router.navigate(['/HOME']);       
-      }
+  ngOnInit() {
+    if (localStorage.getItem('empbooleanvalue') == 'true') {
+      this.router.navigate(['/HOME']);
     }
-
-    viewpress(){
-      this.visable = ! this.visable;
-      this.changetype=! this.changetype;
-    }
-
-  loginUserAccount(){
-                 this.services.checkingUserExistance(this.UserName,this.password)
-                 .subscribe(
-                  response =>{
-                    if(response == true){
-                      localStorage.setItem('empbooleanvalue',"true");
-                      localStorage.setItem('username',this.UserName);
-                      this.router.navigate(['/HOME']);
-                    }
-                    else{
-                      this.messageService.add({ severity: 'error', summary: 'user password', detail: 'write the correct password' })   
-                    }
-                  },
-                  (err:HttpErrorResponse)=>{
-                    this.messageService.add({ severity: 'error', summary: ' user account', detail: err.error });
-                  },
-                  () => {
-                  this.userloginsucessmessage=  [
-                      {
-                        severity: 'success', 
-                        summary: 'user login completelly successfull', 
-                        detail:""
-                      }
-                    ]
-                  });
-                  
-    
   }
 
-  
+  // eyeicon changes
+  viewpress() {
+    this.visable = !this.visable;
+    this.changetype = !this.changetype;
+  }
 
- 
-  reset(){
+  // submission login useraccount
+  loginUserAccount() {
+    this.services.checkingUserExistance(this.UserName, this.password).subscribe(
+      (response) => {
+        if (response == true) {
+          localStorage.setItem('empbooleanvalue', 'true');
+          localStorage.setItem('username', this.UserName);
+          this.router.navigate(['/HOME']);
+        } else {
+          this.messageService.add({
+            severity: 'error',
+            summary: 'user password',
+            detail: 'write the correct password',
+          });
+        }
+      },
+      (err: HttpErrorResponse) => {
+        this.messageService.add({
+          severity: 'error',
+          summary: ' user account',
+          detail: err.error,
+        });
+      },
+      () => {
+        this.userloginsucessmessage = [
+          {
+            severity: 'success',
+            summary: 'user login completelly successfull',
+            detail: '',
+          },
+        ];
+      }
+    );
+  }
+
+  // Reset all input fields
+  resetInputFields() {
     this.form.reset();
-   }
-  
+  }
 }

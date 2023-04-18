@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ServicesService } from '../services.service';
 
@@ -7,36 +7,43 @@ import { ServicesService } from '../services.service';
   templateUrl: './department.component.html',
   styleUrls: ['./department.component.css'],
 })
-export class DepartmentComponent {
+export class DepartmentComponent implements OnInit{
+  // Fecthing deaprtment data
   fetchingDeptDetails: any;
+  // error message
   errorMessage: any;
+  // containg columns
   cols: any;
-  first2: number = 0;
-  rows2: number = 10;
-  totalrecords = 0;
-  constructor(private service: ServicesService, private router: Router) {}
-
+  // paginator details
+  first = 0;
+  // paginator rows
+  rows = 10;
+  // paginator total records
+  totalRecords = 0;
+  // paginator rowsperpageoptions
   rowsPerPageOptions = [
     { label: 'Show 5', value: 5 },
     { label: 'Show 10', value: 10 },
     { label: 'Show 15', value: 15 },
     { label: 'Show 20', value: 20 },
   ];
-  onPageChange(event: any) {
-    this.first2 = event.first;
-    this.rows2 = event.rows;
-    this.totalrecords = event.totalrecords;
-  }
-  ngOnInit() {
-    this.service.fetchingDepartmentData().subscribe(
-      (data) => {
-        this.fetchingDeptDetails = data;
-      },
-      (error) => {
-        this.errorMessage = error;
-      }
-    );
 
+  constructor(private service: ServicesService, private router: Router) {}
+
+  ngOnInit() {
+    this.fetchingDepartmentDetails();
+    this.columnDetails();
+  }
+
+  // paginator details
+  onPageChange(event: any) {
+    this.first = event.first;
+    this.rows = event.rows;
+    this.totalRecords = event.totalrecords;
+  }
+
+  // columns details
+  columnDetails() {
     this.cols = [
       { field: 'departmentId', header: 'Department Id' },
       { field: 'departmentName', header: 'Department Name' },
@@ -51,8 +58,24 @@ export class DepartmentComponent {
     ];
   }
 
+  // Fetching Department details
+  fetchingDepartmentDetails() {
+    this.service.fetchingDepartmentData().subscribe(
+      (data) => {
+        this.fetchingDeptDetails = data;
+      },
+      (error) => {
+        this.errorMessage = error;
+      },
+      () => {
+        console.log('completed');
+      }
+    );
+  }
+
+  // when we double click ,record will be open
   doubleClick(deptid: any) {
-    this.router.navigate(['/DEPTLIST/:' + deptid + '']);
-    this.service.deptid = deptid;
+    this.router.navigate(['/DepartmentDetailScreen/:' + deptid + '']);
+    this.service.departmentId = deptid;
   }
 }

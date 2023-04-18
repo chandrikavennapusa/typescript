@@ -1,12 +1,9 @@
-<div class=" bg-cyan-300 h-6rem navBarEle">
-
-  <h2 class="departmentlist"> <span> <i class="material-icons">people</i> </span> Department List </h2>
-
+<div class=" bg-cyan-300 h-6rem navBarText">
+  <h2 class="departmentlistText"> <span> <i class="material-icons">people</i> </span> Department List </h2>
 </div>
 <div class="grid deptFormContainer w-11 border-noround  border-100 border-solid">
   <form>
-
-    <div class="grid deptFormEle">
+    <div class="grid deptFormtableContainer">
       <div class="col-12 md:col-4">
         <div class="mb-3"><label> Department Id </label></div>
         <input type="text" pInputText name="departmentId" [(ngModel)]="departmentId" [disabled]="!editmode" />
@@ -49,10 +46,9 @@
         <input type="text" pInputText [(ngModel)]="modifiedDttm" name="modifiedDttm" [disabled]="!editmode" />
       </div>
       <div class="col">
-        <button pButton type="button" label="Back" class="p-button-secondary backEle"
+        <button pButton type="button" label="Back" class="p-button-secondary"
           (click)="navigateDeptListScreen()"></button>
       </div>
-
     </div>
   </form>
 </div>
