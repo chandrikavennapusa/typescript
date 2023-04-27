@@ -1,54 +1,54 @@
 <div class=" bg-cyan-300 h-6rem navBarText">
-  <h2 class="departmentlistText"> <span> <i class="material-icons">people</i> </span> Department List </h2>
+  <h2 class="departmentListText"> <span> <i class="material-icons peopleTextIcon">people</i> </span> Department List </h2>
 </div>
 <div class="grid deptFormContainer w-11 border-noround  border-100 border-solid">
   <form>
-    <div class="grid deptFormtableContainer">
+    <div class="grid deptFormTableContainer">
       <div class="col-12 md:col-4">
         <div class="mb-3"><label> Department Id </label></div>
-        <input type="text" pInputText name="departmentId" [(ngModel)]="departmentId" [disabled]="!editmode" />
+        <input type="text" pInputText name="departmentId" [(ngModel)]="departmentId" [disabled]="!editMode" />
       </div>
       <div class="col-12 md:col-4">
         <div class="mb-3"><label>Department Name</label></div>
-        <input type="text" pInputText name="departmentName" [(ngModel)]="departmentName" [disabled]="!editmode" />
+        <input type="text" pInputText name="departmentName" [(ngModel)]="departmentName" [disabled]="!editMode" />
       </div>
       <div class="col-12 md:col-4">
         <div class="mb-3"><label>No Of Employees</label></div>
-        <input type="text" pInputText name="noOfEmployee" [(ngModel)]="noOfEmployee" [disabled]="!editmode" />
+        <input type="text" pInputText name="noOfEmployee" [(ngModel)]="noOfEmployee" [disabled]="!editMode" />
       </div>
       <div class="col-12 md:col-4">
         <div class="mb-3"> <label> Manager Id</label></div>
-        <input type="text" pInputText [(ngModel)]="managerId" name="managerId" [disabled]="!editmode" />
+        <input type="text" pInputText [(ngModel)]="managerId" name="managerId" [disabled]="!editMode" />
       </div>
       <div class="col-12 md:col-4">
         <div class="mb-3"> <label> CreatedSource:</label></div>
-        <input type="text" pInputText [(ngModel)]="createdSource" name="createdSource" [disabled]="!editmode" />
+        <input type="text" pInputText [(ngModel)]="createdSource" name="createdSource" [disabled]="!editMode" />
       </div>
       <div class="col-12 md:col-4">
         <div class="mb-3"> <label> CreatedSourceType:</label></div>
-        <input type="text" pInputText [(ngModel)]="createdSourceType" name="createdSourceType" [disabled]="!editmode" />
+        <input type="text" pInputText [(ngModel)]="createdSourceType" name="createdSourceType" [disabled]="!editMode" />
       </div>
       <div class="col-12 md:col-4">
         <div class="mb-3"><label> CreatedDttm:</label></div>
-        <input type="text" pInputText [(ngModel)]="createdDttm" name="createdDttm" [disabled]="!editmode" />
+        <input type="text" pInputText [(ngModel)]="createdDttm" name="createdDttm" [disabled]="!editMode" />
       </div>
       <div class="col-12 md:col-4">
         <div class="mb-3"><label> ModifiedSource:</label></div>
-        <input type="text" pInputText [(ngModel)]="modifiedSource" name="modifiedSource" [disabled]="!editmode" />
+        <input type="text" pInputText [(ngModel)]="modifiedSource" name="modifiedSource" [disabled]="!editMode" />
       </div>
       <div class="col-12 md:col-4">
         <div class="mb-3"> <label> ModifiedSourceType:</label></div>
         <input type="text" pInputText [(ngModel)]="modifiedSourceType" name="modifiedSourceType"
-          [disabled]="!editmode" />
+          [disabled]="!editMode" />
       </div>
       <div class="col-12">
         <div class="mb-3"> <label> modifiedDttm:</label></div>
-        <input type="text" pInputText [(ngModel)]="modifiedDttm" name="modifiedDttm" [disabled]="!editmode" />
+        <input type="text" pInputText [(ngModel)]="modifiedDttm" name="modifiedDttm" [disabled]="!editMode" />
       </div>
-      <div class="col">
-        <button pButton type="button" label="Back" class="p-button-secondary"
-          (click)="navigateDeptListScreen()"></button>
-      </div>
+    </div>
+    <div class="backButtonText">
+      <button pButton type="button" label="Back" class="p-button-secondary"
+        (click)="navigateDeptListScreen()"></button>
     </div>
   </form>
 </div>

@@ -1,4 +1,4 @@
-.depttableContainer {
+.departmentTableContainer {
   top: 195px;
   margin-left: 55px;
 }
@@ -7,10 +7,14 @@
   top: 98px;
   width: 100%;
 }
-.deptlistText {
+.departmentListText {
   position: relative;
   margin-left: 55px;
   top: 20px;
+}
+.peopleTextIcon {
+  position: relative;
+  top: 4px;
 }
 :host ::ng-deep .p-paginator {
   margin-top: 30px;
@@ -27,19 +31,20 @@
 .p-datatable .p-sortable-column.p-highlight .p-sortable-column-badge {
   display: none;
 }
-:host ::ng-deep .p-datatable .p-datatable-tbody > tr > td, tr > th{
-  border-width:0px; 
+:host ::ng-deep .p-datatable .p-datatable-tbody > tr > td,
+tr > th {
+  border-width: 0px;
 }
 
 @media (max-width: 666px) and (min-width: 320px) {
   .navBarText {
     top: 155px;
   }
-  .depttableContainer {
+  .departmentTableContainer {
     top: 236px;
     margin-left: 12px;
   }
-  .deptlistText{
+  .departmentListText {
     margin-left: 30px;
   }
   :host ::ng-deep .p-paginator {

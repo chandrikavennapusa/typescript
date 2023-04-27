@@ -22,7 +22,6 @@ import { ServicesService } from '../services.service';
 import { Paginator } from 'primeng/paginator';
 import { SortIcon } from 'primeng/table';
 
-
 @Component({
   selector: 'app-employee',
   templateUrl: './employee.component.html',
@@ -35,7 +34,7 @@ export class EmployeeComponent implements OnInit {
   // showing error mesage
   errorMessage: any;
   // ngmodel employeeid
-  empId: string;
+  employeeId: string;
   // column fileds
   cols: any;
   // boolean value
@@ -56,6 +55,7 @@ export class EmployeeComponent implements OnInit {
   visible: boolean;
   // sucess message
   empidsucessmessagedata: Message[];
+  paginatorDisable:number;
   // rowsperpageoptions in paginator
   rowsPerPageOptions = [
     { label: 'show 2', value: 2 },
@@ -65,13 +65,14 @@ export class EmployeeComponent implements OnInit {
     { label: 'Show 20', value: 20 },
   ];
   @ViewChild('EmpidForm') form: NgForm;
+
   constructor(
     private service: ServicesService,
     private router: Router,
     private confirmationService: ConfirmationService,
     private messageService: MessageService
   ) {}
-  
+
   ngOnInit() {
     this.fetchingEmployeeDetails();
     this.columnsDetails();
@@ -81,6 +82,7 @@ export class EmployeeComponent implements OnInit {
       this.deleteButtonViewmode = false;
     }
   }
+
 
   // column details
   columnsDetails() {
@@ -159,7 +161,6 @@ export class EmployeeComponent implements OnInit {
           },
           () => {
             console.log('complete');
-            console.log('sucess block');
           }
         );
       }
@@ -171,6 +172,8 @@ export class EmployeeComponent implements OnInit {
     this.service.fetchingEmployeeDetails().subscribe(
       (data) => {
         this.fetchingEmployeeData = data;
+        this.paginatorDisable=this.fetchingEmployeeData.length
+
       },
       (error) => {
         this.errorMessage = error;
@@ -185,7 +188,7 @@ export class EmployeeComponent implements OnInit {
   checkEmployeeIdExist() {
     this.isEmployeeId = false;
     this.fetchingEmployeeData.find((empdata: any) => {
-      if (empdata.employeeId == this.empId) {
+      if (empdata.employeeId == this.employeeId) {
         this.isEmployeeId = true;
       }
     });
@@ -203,8 +206,8 @@ export class EmployeeComponent implements OnInit {
           detail: 'enter the table fields',
         },
       ];
-      this.router.navigate(['/EmployeeDetailScreen/:' + this.empId + '']);
-      this.service.employeeId = this.empId;
+      this.router.navigate(['/EmployeeDetailScreen/:' + this.employeeId + '']);
+      this.service.employeeId = this.employeeId;
     }
   }
 
@@ -213,4 +216,4 @@ export class EmployeeComponent implements OnInit {
     this.visible = false;
     this.form.reset();
   }
-  }
+}

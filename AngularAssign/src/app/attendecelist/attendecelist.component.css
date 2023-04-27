@@ -1,7 +1,7 @@
-.cancelbtn {
+.cancelButtonText {
   margin-left: 20px;
 }
-.errmessageText {
+.errorMessageText {
   color: red;
 }
 .navBarText {
@@ -9,16 +9,17 @@
   position: fixed;
   top: 117px;
 }
-.attendelistText {
+.attendenceListText {
   margin-left: 90px;
   position: relative;
 }
-.formtableconatiner {
+.formTableConatiner {
   position: fixed;
   top: 190px;
   margin-left: 80px;
+  background-color: white;
 }
-.attendecedetailsContainer {
+.attendeceDetailsContainer {
   position: relative;
   top: 13px;
   margin-left: 30px;
@@ -26,14 +27,17 @@
 :host ::ng-deep .p-dropdown {
   width: 198px;
 }
-.buttonEle {
+.buttonTextFields {
   float: right;
-
   margin-right: 100px;
   position: relative;
 }
+.peopleTextIcon {
+  position: relative;
+  top: 4px;
+}
 @media (max-width: 666px) and (min-width: 320px) {
-  .formtableconatiner {
+  .formTableConatiner {
     position: fixed;
     overflow-y: scroll;
     height: 370px;
@@ -45,34 +49,34 @@
     top: 156px;
     width: 328px;
   }
-  .attendelistText {
+  .attendenceListText {
     top: 28px;
     margin-left: 0px;
   }
   :host ::ng-deep .p-calendar {
     width: 194px;
   }
-  .buttonEle {
+  .buttonTextFields {
     margin-right: 41px;
   }
 }
 
 @media (max-width: 768px) and (min-width: 666px) {
-  .formtableconatiner {
+  .formTableConatiner {
     position: fixed;
     overflow-y: scroll;
     height: 400px;
     padding-bottom: 46px;
   }
-  .attendecedetailsContainer {
+  .attendeceDetailsContainer {
     margin-left: 0px;
   }
-  .buttonEle {
+  .buttonTextFields {
     margin-right: 8px;
   }
 }
 @media (max-width: 1024px) and (min-width: 666px) {
-  .formtableconatiner {
+  .formTableConatiner {
     position: fixed;
     overflow-y: scroll;
     height: 400px;

@@ -27,7 +27,8 @@ export class DepartmentComponent implements OnInit{
     { label: 'Show 15', value: 15 },
     { label: 'Show 20', value: 20 },
   ];
-
+  //paginator disbaled
+  paginatrDisable:number;
   constructor(private service: ServicesService, private router: Router) {}
 
   ngOnInit() {
@@ -63,6 +64,7 @@ export class DepartmentComponent implements OnInit{
     this.service.fetchingDepartmentData().subscribe(
       (data) => {
         this.fetchingDeptDetails = data;
+       this.paginatrDisable=this.fetchingDeptDetails.length
       },
       (error) => {
         this.errorMessage = error;
@@ -74,8 +76,8 @@ export class DepartmentComponent implements OnInit{
   }
 
   // when we double click ,record will be open
-  doubleClick(deptid: any) {
-    this.router.navigate(['/DepartmentDetailScreen/:' + deptid + '']);
-    this.service.departmentId = deptid;
+  doubleClick(departmentId: any) {
+    this.router.navigate(['/DepartmentDetailScreen/:' +departmentId + '']);
+    this.service.departmentId = departmentId;
   }
 }

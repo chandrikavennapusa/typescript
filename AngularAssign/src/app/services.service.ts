@@ -4,8 +4,6 @@ import {
   HttpParams,
 } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { NgForm } from '@angular/forms';
-import { Message } from 'primeng/api/message';
 
 @Injectable({
   providedIn: 'root',
@@ -16,7 +14,6 @@ export class ServicesService {
   employeeId = '';
   //sharing departmentId
   departmentId = '';
-
   //  Check user is exist or not
   checkingUserExistance(UserName: any, password: any) {
     const params = new HttpParams()

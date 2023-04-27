@@ -1,0 +1,23 @@
+
+{{title}}   
+<img [src]="image" alt="itorizon">
+
+<button (click)="Submit()">Submit</button>
+<input type="text" [(ngModel)]="name">
+{{name}}
+<ng-container *ngFor="let pro of products">
+{{pro.name}}
+{{pro.id}}
+</ng-container>
+<i class="fa fa-sort"></i>
+<i class="fa fa-sort" style="font-size:48px;color:red"></i>
+<h2 [ngClass]="no?'color':'color1'">hello world</h2>
+<div 
+  [ngStyle]="item ? {
+    background: '#f4f4f4',
+    border: '1px solid red',
+  }: null"> hello</div>
+
+{{value}}
+
+

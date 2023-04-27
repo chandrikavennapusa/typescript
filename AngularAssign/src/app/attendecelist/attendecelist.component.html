@@ -1,13 +1,15 @@
 <div class="bg-cyan-300 gird  h-6rem navBarText">
-    <h2 class="attendelistText"> <span> <i class="material-icons">people</i> </span> Attendence List </h2>
+    <h2 class="attendenceListText"> <span> <i class="material-icons peopleTextIcon">people</i> </span> Attendence List </h2>
 </div>
-<div class="formtableconatiner w-10 border-noround  border-100 border-solid">
-    <form #attendencedsetail="ngForm" (ngSubmit)="attendencedsetail.form.valid && submitAttendenceData()" ngNativeValidate>
-        <div class="grid attendecedetailsContainer">
+<p-toast></p-toast>
+<div class="formTableConatiner w-10 border-noround  border-100 border-solid">
+    <form #attendencedsetail="ngForm" (ngSubmit)=" avalibaleValidation=false; attendencedsetail.form.valid && submitAttendenceData()"
+        ngNativeValidate>
+        <div class="grid attendeceDetailsContainer">
             <div class="col md:col-4">
                 <div class="mb-2 mt-2"><label>Employee Id *</label></div>
                 <input type="text" pInputText name="employeeId" [(ngModel)]="attendenceDetailObj.employeeId" required
-                     disabled />
+                    disabled />
             </div>
             <div class="col md:col-4">
                 <div class="mb-2 mt-2"><label>Date *</label></div>
@@ -17,13 +19,13 @@
             <div class="col md:col-4">
                 <div class="mb-2 mt-2"> <label>Department Id *</label></div>
                 <input type="text" pInputText name="departmentId" [(ngModel)]="attendenceDetailObj.departmentId"
-                    required  disabled />
+                    required disabled />
             </div>
             <div class="col md:col-4">
                 <div class="mb-2 mt-2"><label>Available *</label></div>
                 <div class="formgroup-inline">
                     <div class="field-radiobutton">
-                        <p-radioButton name="available" value="True" #a="ngModel" required
+                        <p-radioButton name="available" value="True" #available1="ngModel" required
                             [(ngModel)]="attendenceDetailObj.available"></p-radioButton>
                         <label>True</label>
                     </div>
@@ -32,11 +34,11 @@
                             [(ngModel)]="attendenceDetailObj.available"></p-radioButton>
                         <label>False</label>
                     </div>
-                    <div *ngIf="attendencedsetail.form.invalid && attendencedsetail.form.touched && a.invalid" class="errmessageText">
-                        select required filed
-                      </div>
+                    <div *ngIf="!avalibaleValidation && available1.invalid"
+                        class="errorMessageText">
+                        select required field
+                    </div>
                 </div>
-               
             </div>
             <div class="col md:col-4">
                 <div class="mb-2 mt-2"><label>Check In</label></div>
@@ -50,15 +52,15 @@
             </div>
             <div class="col md:col-4">
                 <div class="mb-2 mt-2"><label>AttendanceCount *</label></div>
-                <input type="text" pInputText name="attendanceCount"  pattern="^[+]?[0-9]+([0-9])*$"
+                <input type="text" pInputText name="attendanceCount" pattern="^[+]?[0-9]+([0-9])*$"
                     [(ngModel)]="attendenceDetailObj.attendanceCount" #count="ngModel" required />
-                <div class="errmessageText" *ngIf="count.touched && count.invalid"> enter the valid name</div>
+                <div class="errorMessageText" *ngIf="count.touched && count.invalid"> enter the valid number</div>
             </div>
             <div class="col md:col-4">
                 <div class="mb-2 mt-2"><label>Shift</label></div>
-                <p-dropdown [options]="shift" name="shift"  [(ngModel)]="shiftValue"
-                    #shift1="ngModel" optionLabel="name"></p-dropdown>
-                <div class="errmessageText" *ngIf="shift1.touched && shift1.invalid"> enter the valid name</div>
+                <p-dropdown [options]="shift" name="shift" [(ngModel)]="shiftValue" #shift1="ngModel"
+                    optionLabel="name"></p-dropdown>
+                <div class="errorMessageText" *ngIf="shift1.touched && shift1.invalid">select the shift</div>
             </div>
             <div class="col md:col-4">
                 <div class="mb-2 mt-2"><label>CreatedSource</label></div>
@@ -67,7 +69,7 @@
             </div>
             <div class="col md:col-4">
                 <div class="mb-2 mt-2"><label>CreatedSourceType</label></div>
-                <input type="text" pInputText name="createdSourceType"  disabled
+                <input type="text" pInputText name="createdSourceType" disabled
                     [(ngModel)]="attendenceDetailObj.createdSourceType" />
             </div>
             <div class="col md:col-4">
@@ -77,12 +79,12 @@
             </div>
             <div class="col md:col-4">
                 <div class="mb-2 mt-2"><label>ModifiedSource</label></div>
-                <input type="text" pInputText name="modifiedSource"  disabled
+                <input type="text" pInputText name="modifiedSource" disabled
                     [(ngModel)]="attendenceDetailObj.modifiedSource" />
             </div>
             <div class="col md:col-4">
                 <div class="mb-2 mt-2"><label>ModifiedSourceType</label></div>
-                <input type="text" pInputText name="modifiedSourceType"  disabled
+                <input type="text" pInputText name="modifiedSourceType" disabled
                     [(ngModel)]="attendenceDetailObj.modifiedSourceType" />
             </div>
             <div class="col md:col-4">
@@ -91,9 +93,9 @@
                     [showTime]="true" hourFormat="12" dateFormat="dd/mm/yy" [disabled]="true"> </p-calendar>
             </div>
         </div>
-        <div class="col buttonEle">
-            <button pButton type="submit" label="Save" class="saveEle"></button>
-            <button pButton type="button" label="Cancel" class="p-button-secondary cancelbtn"
+        <div class="col buttonTextFields">
+            <button pButton type="submit" label="Save"></button>
+            <button pButton type="button" label="Cancel" class="p-button-secondary cancelButtonText"
                 (click)=" navigateAttendeceListScreen()"></button>
         </div>
     </form>

@@ -8,8 +8,6 @@ import { DeptdetaillistComponent } from './deptdetaillist/deptdetaillist.compone
 import { EmpformComponent } from './empform/empform.component';
 import { EmplistComponent } from './emplist/emplist.component';
 import { EmployeeComponent } from './employee/employee.component';
-import { FooterComponent } from './footer/footer.component';
-import { HeaderComponent } from './header/header.component';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { CanactivateService } from './canactivate.service';
@@ -25,12 +23,12 @@ const routes: Routes = [
     component: EmployeeComponent,
   },
   {
-    path: 'EmployeeDetailFormScreen/:id',
+    path: 'EmployeeDetailFormScreen/:employeeId',
     canActivate: [CanactivateService],
     component: EmplistComponent,
   },
   {
-    path: 'EmployeeDetailScreen/:id',
+    path: 'EmployeeDetailScreen/:employeeId',
     canActivate: [CanactivateService],
     component: EmpformComponent,
   },
@@ -40,8 +38,8 @@ const routes: Routes = [
     component: DepartmentComponent,
   },
   {
-    path: 'DepartmentDetailScreen/:id',
-    canActivate:[CanActivateServiceService],
+    path: 'DepartmentDetailScreen/:departmentId',
+    canActivate: [CanActivateServiceService],
     component: DeptdetaillistComponent,
   },
   {
@@ -50,12 +48,12 @@ const routes: Routes = [
     component: AttendanceComponent,
   },
   {
-    path: 'AttendenceDetailTableScreen/:id/:Id',
+    path: 'AttendenceDetailTableScreen/:employeeId/:departmentId',
     canActivate: [CanactivateService],
     component: AttendecelistComponent,
   },
   {
-    path: 'AttendenceDetailScreen/:id',
+    path: 'AttendenceDetailScreen/:employeeId',
     canActivate: [CanactivateService],
     component: AttendenceformComponent,
   },
@@ -64,9 +62,7 @@ const routes: Routes = [
 
 @NgModule({
   imports: [
-    RouterModule.forRoot(routes, {
-      initialNavigation: 'enabledBlocking',
-    }),
+    RouterModule.forRoot(routes),
   ],
   exports: [RouterModule],
 })

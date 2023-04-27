@@ -1,9 +1,10 @@
 <div class=" bg-cyan-300 h-6rem navBarText">
-  <h2 class="attendencelistText"> <span> <i class="material-icons">people</i> </span> Attendence List </h2>
+  <h2 class="attendenceListText"> <span> <i class="material-icons peopleTextIcon">people</i> </span> Attendence List </h2>
 </div>
+<p-toast></p-toast>
 <div class="attendenceFormContainer bg-white w-11 border-noround  border-100 border-solid ">
   <form #AttendenceForm="ngForm" (ngSubmit)="submitUpdateAttendeceData()" ngNativeValidate>
-    <div class="grid attendenceform">
+    <div class="grid attendenceFormTableContainer">
       <div class="col md:col-4">
         <div class="mb-3"><label>Employee Id *</label></div>
         <input type="text" pInputText name="employeeId" [(ngModel)]="attendenceDetailObj.employeeId" [disabled]="true"
@@ -12,9 +13,9 @@
       <div class="col md:col-4">
         <div class="mb-3"> <label>Date *</label></div>
         <p-calendar [(ngModel)]="dateValue" #date1="ngModel" name="date" view="date" [maxDate]="maxDate" appendTo="body"
-          [required]="true" [disabled]="editmode">
+          [required]="true" [disabled]="editMode">
         </p-calendar>
-        <div class="errmessageText" *ngIf="date1.touched && date1.invalid"> enter the valid name</div>
+        <div class="errmessageText" *ngIf="date1.touched && date1.invalid"> enter the valid date</div>
       </div>
       <div class="col md:col-4">
         <div class="mb-3"><label>DepartmentId *</label></div>
@@ -26,12 +27,12 @@
         <div class="formgroup-inline">
           <div class="field-radiobutton">
             <p-radioButton name="available" [value]="true" [(ngModel)]="attendenceDetailObj.available"
-              [disabled]="editmode"></p-radioButton>
+              [disabled]="editMode"></p-radioButton>
             <label>True</label>
           </div>
           <div class="field-radiobutton">
             <p-radioButton name="available" [value]="false" [(ngModel)]="attendenceDetailObj.available"
-              [disabled]="editmode"></p-radioButton>
+              [disabled]="editMode"></p-radioButton>
             <label>False</label>
           </div>
         </div>
@@ -39,23 +40,23 @@
       <div class="col md:col-4">
         <div class="mb-3"><label>Check In</label></div>
         <p-calendar [(ngModel)]="attendenceDetailObj.checkIn" [showSeconds]="true" name="checkIn" [showTime]="true"
-          [timeOnly]="true" hourFormat="12" [disabled]="editmode" [maxDate]="maxTime"> </p-calendar>
+          [timeOnly]="true" hourFormat="12" [disabled]="editMode" [maxDate]="maxTime"> </p-calendar>
       </div>
       <div class="col md:col-4">
         <div class="mb-3"> <label> Checkout</label></div>
         <p-calendar [(ngModel)]="attendenceDetailObj.checkout" [showSeconds]="true" [showTime]="true" [timeOnly]="true"
-          hourFormat="12" [maxDate]="maxTime" name="checkout" [disabled]="editmode"> </p-calendar>
+          hourFormat="12" [maxDate]="maxTime" name="checkout" [disabled]="editMode"> </p-calendar>
       </div>
       <div class="col md:col-4">
         <div class="mb-3"> <label>AttendanceCount *</label></div>
         <input type="text" pInputText [(ngModel)]="attendenceDetailObj.attendanceCount" pattern="^[+]?[0-9]+([0-9])*$"
-          #count="ngModel" name="attendanceCount" [disabled]="editmode" />
-        <div class="errmessageText" *ngIf="count.touched && count.invalid"> enter the valid name</div>
+          #count="ngModel" name="attendanceCount" [disabled]="editMode" />
+        <div class="errmessageText" *ngIf="count.touched && count.invalid"> enter the valid number</div>
       </div>
       <div class="col md:col-4">
         <div class="mb-3"> <label> Shift</label></div>
         <p-dropdown [options]="shift" name="shift" class="inputlenEle" [(ngModel)]=" shiftValue" #shift1="ngModel"
-          [disabled]="editmode" optionLabel="name"></p-dropdown>
+          [disabled]="editMode" optionLabel="name"></p-dropdown>
       </div>
       <div class="col md:col-4">
         <div class="mb-3"> <label> CreatedSource</label></div>
@@ -86,13 +87,13 @@
           [showSeconds]="true" hourFormat="12" [disabled]="true"> </p-calendar>
       </div>
     </div>
-    <div class="col  buttonEle">
+    <div class="col buttonText">
       <div *ngIf="disableSaveCancelButton">
         <button pButton type="submit" label="Save"></button>
-        <button pButton type="button" label="Cancel" class="savebtnEle" (click)="editModeViewData()"></button>
+        <button pButton type="button" label="Cancel" class="saveEditButtonText" (click)="editModeViewData()"></button>
       </div>
       <div *ngIf="disableEditBackButton">
-        <button pButton type="button" label="Edit" class="savebtnEle" (click)="editAttendenceData()"
+        <button pButton type="button" label="Edit" class="saveEditButtonText" (click)="editAttendenceData()"
           *ngIf="editButtonDisable"></button>
         <button pButton type="button" label="Back" class="p-button-secondary"
           (click)="navigateAttendeceListScreen()"></button>

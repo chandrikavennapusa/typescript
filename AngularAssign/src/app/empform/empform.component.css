@@ -1,8 +1,8 @@
-.saveEle {
+.saveButtonText {
   margin-left: 6px;
   margin-right: 23px;
 }
-.emplistcontainer {
+.employeeListContainer {
   position: fixed;
   margin-left: 60px;
   top: 168px;
@@ -12,60 +12,67 @@
 :host ::ng-deep .p-dropdown {
   width: 198px;
 }
-.emplistheader {
+.employeeListNavigationBar {
   position: fixed;
   top: 125px;
   width: 100%;
   margin-right: 0px;
   margin-left: 0px;
 }
-.navEle {
-  position: relative;
-  top: 126px;
-}
-.updateemplistEle {
-  margin-left: 67px;
-}
-.errmessageText {
+.errorMessageText {
   color: red;
 }
-.emplistText {
+.employeeListText {
   position: relative;
   margin-left: 75px;
   top:-11px;
 }
-.headingEle {
-  top: 152px;
-  position: fixed;
-}
-.formtablecontainer {
+.formTableContainer {
   margin-top: 29px;
   margin-left: 30px;
 }
-.buttonEle {
+.buttonTextFields{
   float: right;
   top: -2px;
   margin-right: 76px;
   position: relative;
 }
+.peopleTextIcon{
+  position: relative;
+  top: 4px;
+  }
+  .mobileCodeText{ 
+    position: absolute; 
+    display: block; 
+    left: 10px; 
+    z-index: 9; 
+    font-family: sans-serif;
+    font-size: 15px;
+    top: 15px;
+  }
+  .mobileNumberText{
+    position: relative; 
+  }
+  .mobileNumberFieldText{
+    display: block; 
+    padding: 10px 10px 10px 34px; 
+    width: 195px; 
+  }
 @media (max-width: 666px) and (min-width: 320px) {
-  .emplistheader {
+  .employeeListNavigationBar {
     top: 186px;
   }
-  .emplistcontainer {
+  .employeeListContainer {
     top: 230px;
     margin-left: 14px;
-    padding-bottom: 187px;
+    padding-bottom: 65px;
   }
 }
 
 @media (max-width: 768px) and (min-width: 666px) {
-  .emplistcontainer {
+  .employeeListContainer {
     top: 170px;
     margin-left: 35px;
     padding-bottom: 187px;
-  }
-  .headingEle {
-    top: 166px;
   }
 }

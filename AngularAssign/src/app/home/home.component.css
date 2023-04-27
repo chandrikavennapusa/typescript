@@ -16,24 +16,19 @@
   border: 2px solid;
   height: 500px;
   position: relative;
-  top: -30px;
-  left: 70px;
-  width: 1400px;
-}
-.bgcolorhomecontainer{
-  position: relative;
-  top:-25px;
+  top: -50px;
+  left: 65px;
+  
 }
 @media (max-width: 666px) and (min-width: 320px) {
   .navbarEle {
     top: 166px;
   }
-
   .dashboardEle {
     margin-left: 7px;
   }
   .homeContainer {
-    left: 35px;
+    left: 15px;
     height: 379px;
     width: 262px;
   }
@@ -41,6 +36,16 @@
 @media (max-width: 768px) and (min-width: 666px) {
   .homeContainer {
     height: 427px;
-    width: 643px;
+    left:38px;
+  }
+}
+@media (max-width: 1024px) and (min-width: 768px) {
+  .homeContainer {
+    height: 427px;
+  }
+}
+@media (max-width:1440px ) and (min-width: 1024px) {
+  .homeContainer {
+    height: 427px;
   }
 }

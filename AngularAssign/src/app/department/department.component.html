@@ -1,15 +1,17 @@
 <div class="p-grid navBarText">
     <div class="p-col bg-cyan-300 w-full h-6rem relative ">
-        <h2 class="deptlistText"> <span> <i class="material-icons">people</i> </span> Department List </h2>
+        <h2 class="departmentListText"> <span> <i class="material-icons peopleTextIcon">people</i> </span> Department
+            List
+        </h2>
     </div>
 </div>
-<div class="w-11 surface-section relative depttableContainer">
+<div class="w-11 surface-section relative departmentTableContainer">
     <div class="w-12 surface-section relative border-bottom-2 border-400  h-5rem">
         <p-dropdown [options]="rowsPerPageOptions" optionLabel="label" optionValue="value" [(ngModel)]="rows"
             (ngModelChange)="first"></p-dropdown>
     </div>
     <div class="card">
-        <p-table [columns]="cols" [value]="fetchingDeptDetails" sortMode="multiple" [paginator]="true" [rows]="rows"
+        <p-table [columns]="cols" [value]="fetchingDeptDetails" sortMode="multiple" [paginator]="rows<paginatrDisable" [rows]="rows"
             (onPageChange)="onPageChange($event)" responsiveLayout="scroll" styleClass="p-datatable-striped">
             <ng-template pTemplate="header" let-columns>
                 <tr>

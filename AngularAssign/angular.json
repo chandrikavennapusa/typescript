@@ -16,21 +16,16 @@
             "outputPath": "dist/AngularAssign/browser",
             "index": "src/index.html",
             "main": "src/main.ts",
-            "polyfills": [
-              "zone.js"
-            ],
+            "polyfills": ["zone.js"],
             "tsConfig": "tsconfig.app.json",
-            "assets": [
-              "src/favicon.ico",
-              "src/assets"
-            ],
+            "assets": ["src/favicon.ico", "src/assets"],
             "styles": [
               "node_modules/primeflex/primeflex.css",
-          "node_modules/primeicons/primeicons.css",
-          "node_modules/primeng/resources/themes/saga-blue/theme.css",
-          "node_modules/primeng/resources/primeng.min.css",
-          "node_modules/intl-tel-input/build/css/intlTelInput.css",
-          "src/styles.css"
+              "node_modules/primeicons/primeicons.css",
+              "node_modules/primeng/resources/themes/saga-blue/theme.css",
+              "node_modules/primeng/resources/primeng.min.css",
+              "node_modules/intl-tel-input/build/css/intlTelInput.css",
+              "src/styles.css"
             ],
             "scripts": []
           },
@@ -63,7 +58,7 @@
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
-    
+
           "configurations": {
             "production": {
               "browserTarget": "AngularAssign:build:production"
@@ -83,15 +78,9 @@
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "polyfills": [
-              "zone.js",
-              "zone.js/testing"
-            ],
+            "polyfills": ["zone.js", "zone.js/testing"],
             "tsConfig": "tsconfig.spec.json",
-            "assets": [
-              "src/favicon.ico",
-              "src/assets"
-            ],
+            "assets": ["src/favicon.ico", "src/assets"],
             "styles": [
               "node_modules/intl-tel-input/build/css/intlTelInput.css",
               "node_modules/bootstrap/dist/css/bootstrap.min.css",
@@ -99,11 +88,10 @@
               "src/styles.css"
             ],
             "scripts": [
-              
-            "node_modules/intl-tel-input/build/js/intlTelInput.min.js",
-            
-            "node_modules/bootstrap/dist/js/bootstrap.min.js"
-          ]
+              "node_modules/intl-tel-input/build/js/intlTelInput.min.js",
+
+              "node_modules/bootstrap/dist/js/bootstrap.min.js"
+            ]
           }
         },
         "server": {
@@ -143,9 +131,7 @@
         "prerender": {
           "builder": "@nguniversal/builders:prerender",
           "options": {
-            "routes": [
-              "/"
-            ]
+            "routes": ["/"]
           },
           "configurations": {
             "production": {

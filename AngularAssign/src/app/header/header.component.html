@@ -1,24 +1,23 @@
-<div class="headerimage bg-white ">
-    <img src="./assets/itorizonlogo.png" alt="Image" class="imageEle">
-    <div class="notificationicon"> <i style='font-size:24px' class='far'>&#xf0f3;</i></div>
+<div class="headerImage bg-white ">
+    <img src="./assets/itorizonlogo.png" alt="Image" class="imageField">
+    <div class="notificationIconTextField"> <i style='font-size:24px' class='far'>&#xf0f3;</i></div>
+    <div class="logoutText"> <p-button label="Logout" styleClass="p-button-warning" routerLink="/Login"
+            (click)="logOut()" routerLinkActive="active"></p-button>
+    </div>
 </div>
-<div class="bg-cyan-800 headeriner grid">
+<div class="bg-cyan-800 headerContainer grid">
     <div class="flex justify-content-start flex-wrap card-container">
-        <div class="flex align-items-center  justify-content-center ml-1  p-3 " routerLinkActive="active">
-            <a routerLink="/HOME" class="anchorEle">HOME</a>
+        <div class="flex align-items-center  justify-content-center ml-1  p-3" routerLinkActive="active">
+            <a routerLink="/HOME" class="anchorTextField">HOME</a>
         </div>
-        <div class=" flex align-items-center justify-content-center p-3  " routerLinkActive="active">
-            <a routerLink="/EmployeeListScreenTable" class="anchorEle">EMPLOYEE</a>
+        <div class=" flex align-items-center justify-content-center p-3" routerLinkActive="active">
+            <a routerLink="/EmployeeListScreenTable" class="anchorTextField">EMPLOYEE</a>
         </div>
-        <div class="flex align-items-center justify-content-center p-4 " *ngIf="hideDeprtment"
-            routerLinkActive="active">
-            <a routerLink="/DepartmentListScreenTable" class="anchorEle">DEPARTMENT</a>
+        <div class="flex align-items-center justify-content-center p-4" *ngIf="hideDeprtment" routerLinkActive="active">
+            <a routerLink="/DepartmentListScreenTable" class="anchorTextField">DEPARTMENT</a>
         </div>
-        <div class=" flex align-items-center justify-content-center  p-3  " routerLinkActive="active">
-            <a routerLink="/AttendenceListScreenTable" class="anchorEle">ATTENDENCE</a>
-        </div>
-        <div class="  flex justify-content-center align-items-center  logoutEle">
-            <a class="anchorEle" routerLink="/Login" (click)=" logOut()" routerLinkActive="active"> LOGOUT</a>
+        <div class=" flex align-items-center justify-content-center  p-3" routerLinkActive="active">
+            <a routerLink="/AttendenceListScreenTable" class="anchorTextField">ATTENDENCE</a>
         </div>
     </div>
 </div>

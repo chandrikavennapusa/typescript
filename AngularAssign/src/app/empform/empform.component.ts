@@ -5,13 +5,16 @@ import { Message } from 'primeng/api/message';
 import { ServicesService } from '../services.service';
 import { EmpService } from '../emp.service';
 import { DatePipe } from '@angular/common';
-
+import { MessageService } from 'primeng/api';
 @Component({
   selector: 'app-empform',
   templateUrl: './empform.component.html',
   styleUrls: ['./empform.component.css'],
+  providers: [MessageService],
 })
-export class EmpformComponent implements OnInit{
+export class EmpformComponent implements OnInit {
+  // gender Field validation
+  genderValidation=true;
   // calender fileds set max date
   maxDate = new Date();
   // bloodgroup values
@@ -21,7 +24,7 @@ export class EmpformComponent implements OnInit{
   // ngmodel shiftvalue
   shiftValue: any;
   // ngmodel bloodgroupvalue
-  bloodgroupValue: any;
+  bloodGroupValues: any;
   // ngmodel dateofbirth value
   dobValue: any;
   //ngmodel dateofjoining value
@@ -33,7 +36,8 @@ export class EmpformComponent implements OnInit{
     private service: ServicesService,
     private router: Router,
     private datepipe: DatePipe,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private messageService: MessageService
   ) {
     this.bloodGroup = [
       { name: 'A', code: 'a' },
@@ -52,7 +56,7 @@ export class EmpformComponent implements OnInit{
   ngOnInit() {
     this.employeeDetailsIntialization();
     this.activatedRoute.paramMap.subscribe((parm) => {
-      (this.service.employeeId = parm.get('id')?.substring(1)),
+      (this.service.employeeId = parm.get('employeeId').substring(1)),
         (this.employeeDetailObj.employeeId = this.service.employeeId);
     });
   }
@@ -92,7 +96,7 @@ export class EmpformComponent implements OnInit{
       this.dateOfJoiningValue,
       'M/d/yy,  h:mm:ss a'
     );
-    this.employeeDetailObj.bloodGroup = this.bloodgroupValue.code;
+    this.employeeDetailObj.bloodGroup = this.bloodGroupValues.code;
     this.employeeDetailObj.shift = this.shiftValue.code;
     this.employeeDetailObj.createdSource = localStorage.getItem('username');
     this.employeeDetailObj.createdSourceType = localStorage.getItem('username');
@@ -100,14 +104,25 @@ export class EmpformComponent implements OnInit{
       new Date(),
       'M/d/yy,  h:mm:ss a'
     );
-    this.service.addingEmployeeInformation(this.employeeDetailObj).subscribe();
-    [
-      {
-        severity: 'success',
-        summary: 'Employee list',
-        detail: 'form successfully added',
+    this.service.addingEmployeeInformation(this.employeeDetailObj).subscribe(
+      (data) => {
+        this.messageService.add({
+          severity: 'sucess',
+          summary: 'Sucess',
+          detail: 'data is added successfully',
+        });
       },
-    ];
+      (err) => {
+        this.messageService.add({
+          severity: 'error',
+          summary: 'Error',
+          detail: err.error,
+        });
+      },
+      () => {
+        console.log('successfully completed');
+      }
+    );
     this.router.navigate(['/EmployeeListScreenTable']);
   }
 

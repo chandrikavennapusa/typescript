@@ -12,6 +12,8 @@ import { ConfirmationService, MessageService } from 'primeng/api';
   providers: [MessageService],
 })
 export class AttendecelistComponent implements OnInit{
+  // avalible Validation
+  avalibaleValidation=true;
   // shift dropdown details
   shift: any;
   // shift value two way databinding
@@ -22,7 +24,7 @@ export class AttendecelistComponent implements OnInit{
   maxDate = new Date();
   // maxdate represents calender fileds
   maxTime = new Date();
-  // access to the attendece service
+  // access to the attendece details in service
   attendenceDetailObj: AttenService = new AttenService();
 
   constructor(
@@ -46,8 +48,8 @@ export class AttendecelistComponent implements OnInit{
   // passing the parameter in the url
   passingParameterUrl() {
     this.activatedRoute.paramMap.subscribe((parm) => {
-      (this.service.employeeId = parm.get('id')?.substring(1)),
-        (this.service.departmentId = parm.get('id')?.substring(1));
+      (this.service.employeeId = parm.get('employeeId').substring(1)),
+        (this.service.departmentId = parm.get('departmentId')?.substring(1));
       this.attendenceDetailObj.employeeId = this.service.employeeId;
       this.attendenceDetailObj.departmentId = this.service.departmentId;
     });

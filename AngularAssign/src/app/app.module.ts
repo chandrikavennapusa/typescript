@@ -42,7 +42,7 @@ import { DropdownModule } from 'primeng/dropdown';
 import { DialogModule } from 'primeng/dialog';
 import { DatePipe } from '@angular/common';
 import { CanActivateServiceService } from './can-activate-service.service';
-
+import { MultiSelectModule } from 'primeng/multiselect';
 @NgModule({
   declarations: [
     AppComponent,
@@ -82,6 +82,7 @@ import { CanActivateServiceService } from './can-activate-service.service';
     PaginatorModule,
     DropdownModule,
     DialogModule,
+    MultiSelectModule
   ],
   providers: [
     ServicesService,

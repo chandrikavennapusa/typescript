@@ -1,19 +1,21 @@
-.serachEle {
+.searchFieldText {
   position: relative;
   left: -80px;
+  float: right;
+  top: 20px;
+  margin-right: 20px;
 }
 .navgationBarText {
   top: 111px;
   position: fixed;
-  width:100%;
+  width: 100%;
 }
-.errmessageEle {
+.errorMessageText {
   color: red;
 }
-.serachEle {
-  float: right;
-  top: 20px;
-  margin-right: 20px;
+.peopleTextIcon {
+  position: relative;
+  top: 4px;
 }
 :host ::ng-deep .p-button.addbtnText {
   float: right;
@@ -33,21 +35,16 @@
   margin-right: 60px;
   top: 19px;
 }
-.attendenceidformcontainer {
-  position: absolute;
-  top: 200px;
-  left: 600px;
-}
-.cancelEle {
+.cancelButtonText {
   margin-left: 23px;
   top: 17px;
   position: relative;
 }
-.saveEle {
+.saveButtonText{
   position: relative;
   top: 18px;
 }
-.attendencetableContainer {
+.attendenceTableContainer {
   top: 187px;
   position: fixed;
   background-color: white;
@@ -58,27 +55,30 @@
   margin-left: 84px;
   top: 4px;
 }
-:host ::ng-deep .p-datatable .p-datatable-tbody > tr > td, tr > th{
-  border-width:0px; 
+:host ::ng-deep .p-datatable .p-datatable-tbody > tr > td,
+tr > th {
+  border-width: 0px;
 }
 :host ::ng-deep .p-datatable-scrollable > .p-datatable-wrapper {
   max-height: 350px;
 }
+:host ::ng-deep .p-datatable .p-sortable-column .p-sortable-column-badge,
+.p-datatable .p-sortable-column.p-highlight .p-sortable-column-badge {
+  display: none;
+}
+
 @media (max-width: 666px) and (min-width: 320px) {
-  .attendenceidformcontainer {
-    left: 20px;
+  .attendListHeadingText {
+    margin-left: 35px;
   }
   .navgationBarText {
     top: 178px;
   }
-  .addattendeneEle {
-    margin-left: 196px;
-  }
-  .attendencetableContainer {
+  .attendenceTableContainer {
     margin-left: 15px;
     top: 257px;
   }
-  .serachEle {
+  .searchFieldText {
     left: 35px;
     top: 4px;
   }
@@ -87,27 +87,21 @@
   }
   :host ::ng-deep .p-dropdown {
     margin-right: 10px;
-    top: 2px;
+    top: 20px;
+  }
+  :host ::ng-deep .p-toast.toastField {
+    width: 200px;
   }
 }
-:host ::ng-deep .p-datatable .p-sortable-column .p-sortable-column-badge,
-.p-datatable .p-sortable-column.p-highlight .p-sortable-column-badge {
-  display: none;
-}
+
 @media (max-width: 768px) and (min-width: 666px) {
-  .attendenceidformcontainer {
-    left: 270px;
-  }
-  .addattendeneEle {
-    margin-left: 589px;
-  }
-  .attendencetableContainer {
+  .attendenceTableContainer {
     margin-left: 30px;
   }
   :host ::ng-deep .p-datatable-scrollable > .p-datatable-wrapper {
     max-height: 250px;
   }
-  .serachEle {
+  .searchFieldText {
     top: 19px;
     margin-right: -48px;
   }

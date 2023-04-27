@@ -12,7 +12,7 @@ import { ConfirmationService, MessageService } from 'primeng/api';
   styleUrls: ['./emplist.component.css'],
   providers: [MessageService],
 })
-export class EmplistComponent implements OnInit{
+export class EmplistComponent implements OnInit {
   // calender filed fix max date
   maxDate = new Date();
   // disabled submit and cancel buttons
@@ -20,7 +20,7 @@ export class EmplistComponent implements OnInit{
   // disabled edit and back button
   disabledEditBackButton = true;
   // disabled all input fileds
-  editmode = false;
+  editMode = false;
   // disabled in edit button
   editButtonDisable = true;
   // fetching employee data
@@ -38,7 +38,7 @@ export class EmplistComponent implements OnInit{
   // drop down bloodroup values
   bloodGroup: any;
   // ngmodel bloodgroup value
-  bloodgroupValue: any;
+  bloodgroupValues: any;
   employeeDetailObj: EmpService = new EmpService();
 
   constructor(
@@ -73,7 +73,7 @@ export class EmplistComponent implements OnInit{
   // passing parameter in url and fetching employee data
   fecthingEmployeeData() {
     this.activatedRoute.paramMap.subscribe((parm) => {
-      this.service.employeeId = parm.get('id')?.substring(1);
+      this.service.employeeId = parm.get('employeeId').substring(1);
       this.service
         .fetchingEmployeeIdDetails(this.service.employeeId)
         .subscribe((results: any) => {
@@ -84,8 +84,6 @@ export class EmplistComponent implements OnInit{
             this.fetchingEmployeeData.firstName;
           this.employeeDetailObj.lastName = this.fetchingEmployeeData.lastName;
           this.employeeDetailObj.gender = this.fetchingEmployeeData.gender;
-          this.employeeDetailObj.gender = this.fetchingEmployeeData.gender;
-          this.employeeDetailObj.gender = this.fetchingEmployeeData.gender;
           this.dobValue = new Date(this.fetchingEmployeeData.dob);
           this.employeeDetailObj.mailId = this.fetchingEmployeeData.mailId;
           this.employeeDetailObj.phoneNumber =
@@ -93,7 +91,7 @@ export class EmplistComponent implements OnInit{
           this.dateOfJoiningValue = new Date(
             this.fetchingEmployeeData.dateOfJoining
           );
-          this.bloodgroupValue = this.fetchingEmployeeData.bloodGroup;
+          this.bloodgroupValues = this.fetchingEmployeeData.bloodGroup;
           this.bloodGroupValue();
           this.employeeDetailObj.salary = this.fetchingEmployeeData.salary;
           this.shiftValue = this.fetchingEmployeeData.shift;
@@ -162,7 +160,7 @@ export class EmplistComponent implements OnInit{
       this.createdDttmValue,
       'M/d/yy,  h:mm:ss a'
     );
-    this.employeeDetailObj.bloodGroup = this.bloodgroupValue.code;
+    this.employeeDetailObj.bloodGroup = this.bloodgroupValues.code;
     this.employeeDetailObj.shift = this.shiftValue.code;
     this.employeeDetailObj.modifiedSource = localStorage.getItem('username');
     this.employeeDetailObj.modifiedSourceType =
@@ -173,42 +171,43 @@ export class EmplistComponent implements OnInit{
     );
     this.service.updateEmployeeDeatils(this.employeeDetailObj).subscribe(
       (data) => {
-        console.log('data add sucessfully');
+       this.messageService.add({
+          severity: 'success',
+          summary: 'Success',
+          detail: 'data is update suceesfully',
+        });
       },
       (err) => {
         this.messageService.add({
-          severity: 'success',
-          summary: 'Success',
+          severity: 'error',
+          summary: 'Error',
           detail: err.error.text,
         });
+      },
+      () => {
+        console.log('completed');
       }
     );
-    this.editmode = false;
+    this.editMode = false;
     this.disabledSubmitCancelButton = false;
     this.disabledEditBackButton = true;
     this.router.navigate(['/EmployeeListScreenTable']);
   }
+  
   // Shift dropdown value matchs
   dropdownShiftValues() {
-    if (this.fetchingEmployeeData.shift == 'night') {
-      this.shift = [{ name: 'Night', code: 'night' }];
-    } else {
-      this.shift = [{ name: 'Day', code: 'day' }];
-    }
+    for(let shift1 of this.shift){
+    if (this.fetchingEmployeeData.shift == shift1.code ) {
+      this.shift = [{ name: shift1.name, code:shift1.code}];
+    } 
+  }
   }
 
   // Bloodgroup dropdown value matchs
   bloodGroupValue() {
-    if (this.fetchingEmployeeData.bloodGroup == 'a') {
-      this.bloodGroup = [{ name: 'A', code: 'a' }];
-    } else if (this.fetchingEmployeeData.bloodGroup == 'a+') {
-      this.bloodGroup = [{ name: 'A+', code: 'a+' }];
-    } else if (this.fetchingEmployeeData.bloodGroup == 'b') {
-      this.bloodGroup = [{ name: 'B', code: 'b' }];
-    } else if (this.fetchingEmployeeData.bloodGroup == 'b+') {
-      this.bloodGroup = [{ name: 'B+', code: 'b+' }];
-    } else if (this.fetchingEmployeeData.bloodGroup == 'ab') {
-      this.bloodGroup = [{ name: 'AB', code: 'ab' }];
+    for(let bloodGroup1 of this.bloodGroup)
+    if(this.fetchingEmployeeData.bloodGroup == bloodGroup1.code){
+      this.bloodGroup = [{ name: bloodGroup1.name, code: bloodGroup1.code}];
     }
   }
 
@@ -218,21 +217,21 @@ export class EmplistComponent implements OnInit{
       { name: 'Day', code: 'day' },
       { name: 'Night', code: 'night' },
     ];
-    this.bloodGroup = [
+    this.bloodGroup= [
       { name: 'A', code: 'a' },
       { name: 'A+', code: 'a+' },
       { name: 'B', code: 'b' },
       { name: 'B+', code: 'b+' },
       { name: 'AB', code: 'ab' },
     ];
-    this.editmode = true;
+    this.editMode = true;
     this.disabledSubmitCancelButton = true;
     this.disabledEditBackButton = false;
   }
 
   //All inputfileds are coming disable
   disabledInputFields() {
-    this.editmode = false;
+    this.editMode = false;
     this.disabledSubmitCancelButton = false;
     this.disabledEditBackButton = true;
     this.ngOnInit();

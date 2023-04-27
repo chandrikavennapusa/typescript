@@ -17,7 +17,7 @@ import { ServicesService } from '../services.service';
 })
 export class LoginComponent implements OnInit {
   // ngmodel username
-  UserName: string;
+  userName: string;
   //ngmodel password
   password: string;
   // eyeicon disabled
@@ -34,7 +34,7 @@ export class LoginComponent implements OnInit {
     private activatedroute: ActivatedRoute,
     private messageService: MessageService
   ) {}
-
+      
   ngOnInit() {
     if (localStorage.getItem('empbooleanvalue') == 'true') {
       this.router.navigate(['/HOME']);
@@ -42,18 +42,18 @@ export class LoginComponent implements OnInit {
   }
 
   // eyeicon changes
-  viewpress() {
+  viewPress() {
     this.visable = !this.visable;
     this.changetype = !this.changetype;
   }
 
   // submission login useraccount
   loginUserAccount() {
-    this.services.checkingUserExistance(this.UserName, this.password).subscribe(
+    this.services.checkingUserExistance(this.userName, this.password).subscribe(
       (response) => {
         if (response == true) {
           localStorage.setItem('empbooleanvalue', 'true');
-          localStorage.setItem('username', this.UserName);
+          localStorage.setItem('username', this.userName);
           this.router.navigate(['/HOME']);
         } else {
           this.messageService.add({
@@ -85,5 +85,5 @@ export class LoginComponent implements OnInit {
   // Reset all input fields
   resetInputFields() {
     this.form.reset();
-  }
+  } 
 }

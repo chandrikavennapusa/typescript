@@ -29,7 +29,7 @@ export class DeptdetaillistComponent implements OnInit {
   // ngmodel modifiedDttm
   modifiedDttm = '';
   // All inputfileds are disabled
-  editmode = false;
+  editMode = false;
   // fetching department data
   fetchingDeptData: any;
 
@@ -46,7 +46,7 @@ export class DeptdetaillistComponent implements OnInit {
   // Fetching department details
   fethingDepartmentData() {
     this.activatedRoute.paramMap.subscribe((parm) => {
-      this.service.departmentId = parm.get('id')?.substring(1);
+      this.service.departmentId = parm.get('departmentId').substring(1);
       this.service
         .fetchingDepartmentIdDetails(this.service.departmentId)
         .subscribe((data) => {

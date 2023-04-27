@@ -5,19 +5,21 @@ import { AttenService } from '../atten.service';
 import { DatePipe } from '@angular/common';
 import { ConfirmationService, MessageService } from 'primeng/api';
 
+
 @Component({
   selector: 'app-attendenceform',
   templateUrl: './attendenceform.component.html',
   styleUrls: ['./attendenceform.component.css'],
   providers: [MessageService],
 })
-export class AttendenceformComponent implements OnInit{
+
+export class AttendenceformComponent implements OnInit {
   // shift drop values
   shift: any;
   // edit button disabled
   editButtonDisable = true;
   // disabled in all input fileds
-  editmode = true;
+  editMode = true;
   //disabled save and canecel button
   disableSaveCancelButton = false;
   // disabled edit and back button
@@ -33,6 +35,7 @@ export class AttendenceformComponent implements OnInit{
   // maximum date
   maxDate = new Date();
   maxTime = new Date();
+  // access to the attendece details in service
   attendenceDetailObj: AttenService = new AttenService();
 
   constructor(
@@ -56,57 +59,67 @@ export class AttendenceformComponent implements OnInit{
   // passing parameter url and fetching attendence data beased on attendenceid
   passingParametersUrl() {
     this.activatedRoute.paramMap.subscribe((parm) => {
-      this.service.employeeId = parm.get('id')?.substring(1);
+      this.service.employeeId = parm.get('employeeId').substring(1);
       this.service
         .fetchingAttendeDataBasedOnEmployeeId(this.service.employeeId)
-        .subscribe((data) => {
-          this.fetchingEmployeeIdBasedOnData = data;
-          this.attendenceDetailObj.employeeId =
-            this.fetchingEmployeeIdBasedOnData.employeeId;
-          this.dateValue = new Date(this.fetchingEmployeeIdBasedOnData.date);
-          this.attendenceDetailObj.departmentId =
-            this.fetchingEmployeeIdBasedOnData.departmentId;
-          this.attendenceDetailObj.available =
-            this.fetchingEmployeeIdBasedOnData.available;
-          this.attendenceDetailObj.available =
-            this.fetchingEmployeeIdBasedOnData.available;
-          if (this.fetchingEmployeeIdBasedOnData.checkIn == '') {
-            this.attendenceDetailObj.checkIn = '';
-          } else {
-            this.attendenceDetailObj.checkIn = new Date(
-              this.fetchingEmployeeIdBasedOnData.checkIn
+        .subscribe(
+          (data) => {
+            this.fetchingEmployeeIdBasedOnData = data;
+            this.attendenceDetailObj.employeeId =
+              this.fetchingEmployeeIdBasedOnData.employeeId;
+            this.dateValue = new Date(this.fetchingEmployeeIdBasedOnData.date);
+            this.attendenceDetailObj.departmentId =
+              this.fetchingEmployeeIdBasedOnData.departmentId;
+            this.attendenceDetailObj.available =
+              this.fetchingEmployeeIdBasedOnData.available;
+            if (this.fetchingEmployeeIdBasedOnData.checkIn == '') {
+              this.attendenceDetailObj.checkIn = '';
+            } else {
+              this.attendenceDetailObj.checkIn = new Date(
+                this.fetchingEmployeeIdBasedOnData.checkIn
+              );
+            }
+            if (this.fetchingEmployeeIdBasedOnData.checkout == '') {
+              this.attendenceDetailObj.checkout = '';
+            } else {
+              this.attendenceDetailObj.checkout = new Date(
+                this.fetchingEmployeeIdBasedOnData.checkout
+              );
+            }
+            this.attendenceDetailObj.attendanceCount =
+              this.fetchingEmployeeIdBasedOnData.attendanceCount;
+            this.shiftValue = this.fetchingEmployeeIdBasedOnData.shift;
+            this.dropdownshift();
+            this.attendenceDetailObj.createdSource =
+              this.fetchingEmployeeIdBasedOnData.createdSource;
+            this.attendenceDetailObj.createdSourceType =
+              this.fetchingEmployeeIdBasedOnData.createdSourceType;
+            this.createdDttmValue = new Date(
+              this.fetchingEmployeeIdBasedOnData.createdDttm
             );
+            this.attendenceDetailObj.modifiedSource =
+              this.fetchingEmployeeIdBasedOnData.modifiedSource;
+            this.attendenceDetailObj.modifiedSourceType =
+              this.fetchingEmployeeIdBasedOnData.modifiedSourceType;
+            if (this.fetchingEmployeeIdBasedOnData.modifiedDttm == '') {
+              this.attendenceDetailObj.modifiedDttm = '';
+            } else {
+              this.attendenceDetailObj.modifiedDttm = new Date(
+                this.fetchingEmployeeIdBasedOnData.modifiedDttm
+              );
+            }
+          },
+          (err) => {
+            this.messageService.add({
+              severity: 'error',
+              summary: 'Error',
+              detail: err.error,
+            });
+          },
+          () => {
+            console.log('suceesfully completed');
           }
-          if (this.fetchingEmployeeIdBasedOnData.checkout == '') {
-            this.attendenceDetailObj.checkout = '';
-          } else {
-            this.attendenceDetailObj.checkout = new Date(
-              this.fetchingEmployeeIdBasedOnData.checkout
-            );
-          }
-          this.attendenceDetailObj.attendanceCount =
-            this.fetchingEmployeeIdBasedOnData.attendanceCount;
-          this.shiftValue = this.fetchingEmployeeIdBasedOnData.shift;
-          this.dropdownshift();
-          this.attendenceDetailObj.createdSource =
-            this.fetchingEmployeeIdBasedOnData.createdSource;
-          this.attendenceDetailObj.createdSourceType =
-            this.fetchingEmployeeIdBasedOnData.createdSourceType;
-          this.createdDttmValue = new Date(
-            this.fetchingEmployeeIdBasedOnData.createdDttm
-          );
-          this.attendenceDetailObj.modifiedSource =
-            this.fetchingEmployeeIdBasedOnData.modifiedSource;
-          this.attendenceDetailObj.modifiedSourceType =
-            this.fetchingEmployeeIdBasedOnData.modifiedSourceType;
-          if (this.fetchingEmployeeIdBasedOnData.modifiedDttm == '') {
-            this.attendenceDetailObj.modifiedDttm = '';
-          } else {
-            this.attendenceDetailObj.modifiedDttm = new Date(
-              this.fetchingEmployeeIdBasedOnData.modifiedDttm
-            );
-          }
-        });
+        );
       let username = localStorage.getItem('username');
       if (username == 'employee') {
         this.editButtonDisable = false;
@@ -169,7 +182,7 @@ export class AttendenceformComponent implements OnInit{
         console.log('successfully completed');
       }
     );
-    this.editmode = true;
+    this.editMode = true;
     this.disableSaveCancelButton = false;
     this.disableEditBackButton = true;
     this.router.navigate(['/AttendenceListScreenTable']);
@@ -177,10 +190,10 @@ export class AttendenceformComponent implements OnInit{
 
   // Shift dropdown value matchs
   dropdownshift() {
-    if (this.fetchingEmployeeIdBasedOnData.shift == 'night') {
-      this.shift = [{ name: 'Night', code: 'night' }];
-    } else {
-      this.shift = [{ name: 'Day', code: 'day' }];
+    for(let shift1 of this.shift){
+      if (this.fetchingEmployeeIdBasedOnData.shift == shift1.code ) {
+        this.shift = [{ name: shift1.name, code:shift1.code}];
+      }
     }
   }
 
@@ -190,14 +203,14 @@ export class AttendenceformComponent implements OnInit{
       { name: 'Day', code: 'day' },
       { name: 'Night', code: 'night' },
     ];
-    this.editmode = false;
+    this.editMode = false;
     this.disableSaveCancelButton = true;
     this.disableEditBackButton = false;
   }
 
   // All inputfileds are coming disable
   editModeViewData() {
-    this.editmode = true;
+    this.editMode = true;
     this.disableSaveCancelButton = false;
     this.disableEditBackButton = true;
     this.ngOnInit();

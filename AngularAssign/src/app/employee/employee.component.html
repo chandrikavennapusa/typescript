@@ -1,35 +1,36 @@
 <div class=" bg-cyan-300  h-6rem w-full navBarText">
-  <h2 class="emplistText"> <span> <i class="material-icons">people</i> </span> Employee List</h2>
+  <h2 class="employeeListText"> <span> <i class="material-icons peopleTextIcon">people</i> </span> Employee List</h2>
 </div>
-<p-toast></p-toast>
-  <div class=" card surface-section  emptabledetailsContiner w-11 ">
+<p-toast styleClass="toastField"></p-toast>
+<div class=" card surface-section  employeeTableDetailsContiner w-11 ">
   <div class=" h-5rem border-bottom-2 border-400">
-    <p-button (click)="showDialog()" icon="pi pi-plus" label="Add" styleClass="addbtnEle"
+    <p-button (click)="showDialog()" icon="pi pi-plus" label="Add" styleClass="addButtonText"
       *ngIf="addButtonDisabled"></p-button>
     <p-dialog header="Add Employee" [(visible)]="visible" [style]="{ width: '280px',height:'250px'}" [modal]="true"
       (onHide)="resetEmployeeId()" appendTo="body" [draggable]="false" [resizable]="false">
       <form #EmpidForm="ngForm" (ngSubmit)="checkEmployeeIdExist()" ngNativeValidate>
         <div class="col">
           <div class="mb-2"><label> Employee Id *</label></div>
-          <input type="text" pInputText name="employee Id" [(ngModel)]="empId" pattern="^[+]?[0-9]+([0-9])*$"
+          <input type="text" pInputText name="employee Id" [(ngModel)]="employeeId" pattern="^[+]?[0-9]+([0-9])*$"
             required />
         </div>
         <div class="col">
           <button pButton type="submit" label="Save" class="mr-4"></button>
-          <button pButton type="button" label="Cancel" class="p-button-secondary ml-4" (click)="resetEmployeeId()"
-            class="cancelbtn"></button>
+          <button pButton type="button" label="Cancel" class="p-button-secondary ml-4"
+            (click)="resetEmployeeId()"></button>
         </div>
       </form>
     </p-dialog>
     <p-dropdown [options]="rowsPerPageOptions" optionLabel="label" optionValue="value" [(ngModel)]="rows"
       (ngModelChange)="first"></p-dropdown>
   </div>
-  <p-table [columns]="cols" [value]="fetchingEmployeeData" styleClass="p-datatable-striped tableEle" sortMode="multiple" [paginator]="true"
-    [rows]="rows" responsiveLayout="scroll" [scrollable]="true" (onPageChange)="onPageChange($event)">
+  <p-table [columns]="cols" [value]="fetchingEmployeeData" styleClass="p-datatable-striped" sortMode="multiple"
+    [paginator]="rows<paginatorDisable" [rows]="rows" responsiveLayout="scroll" [scrollable]="true"  
+    (onPageChange)="onPageChange($event)">
     <ng-template pTemplate="header" let-columns class="tableHeadingEle">
-      <tr>
+      <tr> 
         <th *ngFor="let col of columns" [pSortableColumn]="col.field">
-          {{col.header}}
+          {{col.header}} 
           <p-sortIcon [field]="col.field"></p-sortIcon>
         </th>
         <th pSortableColumn="Actions" *ngIf="deleteButtonViewmode">Actions<p-sortIcon field="Actions"></p-sortIcon></th>
@@ -41,7 +42,10 @@
           <td *ngIf="col.field == 'shift'  ">
             {{ rowData[col.field] | titlecase}}
           </td>
-          <td *ngIf="col.field != 'shift'">
+          <td *ngIf="col.field == 'gender' ">
+            {{ rowData[col.field] | titlecase}}
+          </td>
+          <td *ngIf="col.field != 'shift' && col.field != 'gender' ">
             {{ rowData[col.field]}}
           </td>
         </ng-container>

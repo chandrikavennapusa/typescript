@@ -1,49 +1,61 @@
-.deptFormContainer{
-    position:fixed;
-    top:180px;
-    margin-left: 40px;
-    background-color: white;
+.deptFormContainer {
+  position: fixed;
+  top: 180px;
+  margin-left: 40px;
+  background-color: white;
 }
-.navBarText{
-top: 97px;
-position: fixed;
-width: 100%;
+.navBarText {
+  top: 97px;
+  position: fixed;
+  width: 100%;
 }
-.headerEle{
-width: 1600px;
+.departmentListText {
+  position: relative;
+  top: 13px;
+  margin-left: 57px;
 }
-.departmentlistText{
-    position: relative;
-    top: 13px;
-    margin-left: 57px;
+.deptFormTableContainer {
+  margin-left: 150px;
+  margin-top: 10px;
 }
-.deptFormtableContainer{
-    margin-left: 150px;
-    margin-top: 10px;
+.peopleTextIcon {
+  position: relative;
+  top: 4px;
 }
-@media (max-width:666px) and (min-width:320px){
-.deptFormContainer{
+.backButtonText {
+  float: right;
+  margin-right: 200px;
+  position: relative;
+  top: -10px;
+}
+@media (max-width: 666px) and (min-width: 320px) {
+  .deptFormContainer {
     position: fixed;
-    overflow-y: scroll; 
-    height: 370px;
+    overflow-y: scroll;
+    height: 455px;
     top: 240px;
     margin-left: 16px;
-}
-.navBarText{
+  }
+  .navBarText {
     top: 156px;
-   }
-   .deptFormtableContainer{
+  }
+  .deptFormTableContainer {
     margin-left: 24px;
-   }
+  }
+  .backButtonText {
+   padding-bottom: 10px;
+   top:5px;
+   left:70px;
+  }
 }
-    @media (max-width:768px) and (min-width:666px){
-    
-   .deptFormtableContainer{
+@media (max-width: 768px) and (min-width: 666px) {
+  .deptFormTableContainer {
     margin-left: 0px;
+  }
+  .navBarText {
+    width: 1000px;
+  }
+  .backButtonText {
+   margin-right: 70px;
    }
-.navBarText{
-    width:1000px;
-   }
-
-
 }

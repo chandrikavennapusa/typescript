@@ -1,85 +1,61 @@
-.itorizonimg {
-  margin-top: 10px;
-  width: 250px;
+.loginPageBackgroundColor {
+  background-image: linear-gradient(to bottom, rgba(255, 0, 0, 0), #15a9e1);
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 100%;
 }
-.loginpageContainer {
-  margin: auto;
-  position: relative;
-  top: 80px;
-  width: 392px;
-  height: 493px;
-  box-shadow: 1px 2px 3px 3px grey;
-}
-.welcomeText {
-  position: relative;
-  top: -20px;
-}
-.paragraphText {
-  position: relative;
-  top: -45px;
-}
-.usernameContainer{
-  position: relative;
-  top: -60px;
-}
-.passwordContainer {
-  position: relative;
-  top: -60px;
-}
-.eyeicon {
+.eyeIcon {
   margin-left: -30px;
 }
-.submitButtonText {
+.loginPageContainer {
+  margin: auto;
   position: relative;
-  top: -60px;
+  top: 90px;
+  width: 392px;
+  height: 465px;
+  box-shadow: 1px 2px 3px 3px grey;
+  padding: 0px;
 }
-.resetButtonText{
-  position: relative;
-  top: -60px;
-  margin-left: 25px;
+.itorizonImage {
+  margin-top: 10px;
+  width: 250px;
 }
 .widthOfInputfield {
   width: 321px;
 }
-
-.loginbgColor {
-  background-image: linear-gradient(to bottom, rgba(255, 0, 0, 0), #15a9e1);
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
+.resetButtonText {
+  position: relative;
+  margin-left: 25px;
+}
+.welcomeText {
+  margin-top: 0px;
+  margin-left: 120px;
+}
+.paragraphText {
+  margin-bottom: 0px;
+  margin-right: 7px;
 }
 @media (max-width: 666px) and (min-width: 320px) {
-  .loginpageContainer {
+  .loginPageContainer {
     width: 249px;
-    height: 418px;
+    height: 442px;
   }
-  .itorizonimg {
-    width: 139px;
+  .itorizonImage {
+    width: 182px;
   }
   .welcomeText {
-    margin-left: -28px;
-    top: -29px;
-  }
-  .paragraphText {
-    top: -70px;
-    width: 227px;
+    margin-top: -10px;
+    margin-left: 67px;
   }
   .widthOfInputfield {
-    width: 180px;
-  }
-  .usernameContainer {
-    top: -94px;
-  }
-  .passwordContainer{
-    top: -94px;
-  }
-  .submitButtonText {
-    top: -94px;
+    width: 210px;
   }
   .resetButtonText {
-    top: -94px;
     margin-left: 14px;
+  }
+  :host ::ng-deep .p-toast.toastField {
+    width: 200px;
   }
 }

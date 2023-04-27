@@ -25,11 +25,11 @@ export class AttendanceComponent implements OnInit {
   empData: any;
   //Department details
   deptData: any;
-  // bollean value is true or false
+  // boolean value is true or false
   isEmployeeid: boolean;
-  // bollean value is true or false
+  // boolean value is true or false
   isdepartmentid: boolean;
-  // bollean value is true or false
+  // boolean value is true or false
   isEmployeeId: any;
   // Dialog box is opened
   visible: boolean;
@@ -47,6 +47,7 @@ export class AttendanceComponent implements OnInit {
   serachInputFiledViewmode = false;
   // fetching attendece data
   fectingAttendenceData: any = [];
+  //  inject into a form elements
   @ViewChild('deptidEmpidForm') form: NgForm;
 
   constructor(
@@ -81,7 +82,7 @@ export class AttendanceComponent implements OnInit {
     { label: 'Show 15', value: 15 },
     { label: 'Show 20', value: 20 },
   ];
-  
+
   // table heading and data fileds
   columnFileds() {
     this.cols = [
@@ -109,7 +110,11 @@ export class AttendanceComponent implements OnInit {
         this.empData = response;
       },
       (err) => {
-        console.log(err.error);
+        this.messageService.add({
+          severity: 'error',
+          summary: 'Error',
+          detail: err.error,
+        });
       },
       () => {
         console.log('completed');
@@ -122,7 +127,11 @@ export class AttendanceComponent implements OnInit {
     this.service.fetchingDepartmentData().subscribe(
       (data) => (this.deptData = data),
       (err) => {
-        console.log(err.error);
+        this.messageService.add({
+          severity: 'error',
+          summary: 'Error',
+          detail: err.error,
+        });
       },
       () => {
         console.log('completed sucessfully');
@@ -169,7 +178,11 @@ export class AttendanceComponent implements OnInit {
       });
     } else if (this.isEmployeeid && this.isdepartmentid) {
       this.router.navigate([
-        '/AttendenceDetailTableScreen/:' + this.employeeId + '/:' + this.departmentid + '',
+        '/AttendenceDetailTableScreen/:' +
+          this.employeeId +
+          '/:' +
+          this.departmentid +
+          '',
       ]);
       this.service.employeeId = this.employeeId;
       this.service.departmentId = this.departmentid;
@@ -246,9 +259,21 @@ export class AttendanceComponent implements OnInit {
   // Searching the based on EmployeeId
   searchingByEmployeeId() {
     if (this.serchEmployeeIdValue == '') {
-      this.service
-        .fetchingAttendenceDetails()
-        .subscribe((data) => (this.fectingAttendenceData = data));
+      this.service.fetchingAttendenceDetails().subscribe(
+        (data) => {
+          this.fectingAttendenceData = data;
+        },
+        (err) => {
+          this.messageService.add({
+            severity: 'success',
+            summary: 'Success',
+            detail: err.error.text,
+          });
+        },
+        () => {
+          console.log('sucessfully completed');
+        }
+      );
     } else {
       this.service
         .fetchingAttendeDataBasedOnEmployeeId(this.serchEmployeeIdValue)
