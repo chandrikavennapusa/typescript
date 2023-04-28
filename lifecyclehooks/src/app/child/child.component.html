@@ -1,8 +1,7 @@
-<div>
-<p-multiSelect [options]="cities" [(ngModel)]="selectedCities" optionLabel="name"></p-multiSelect>
-</div>
- 
-  <p-password [(ngModel)]="value" [feedback]="false"></p-password>
+<div>hey it's me!</div>
+{{text}}
 
-  <input type="text"  />
-  <button>Submit</button>
+<label for="item-input">Add an item:</label>
+
+<input type="text" autofocus #newItem>
+<button type="button" (click)="addNewItem(newItem.value)">Add to parent's list</button>

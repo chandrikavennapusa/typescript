@@ -19,5 +19,9 @@
   }: null"> hello</div>
 
 {{value}}
+<ul>
+  <li *ngFor="let item of items">{{item}}</li>
+</ul>
 
-
+<app-child [text]="common"  (newItemEvent)="addItem($event)"></app-child>
+<a href=""></a>
