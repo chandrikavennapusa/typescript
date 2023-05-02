@@ -1,17 +1,15 @@
-
 <div class="loginPageBackGroundColor">
   <div class="border-1 relative mx-auto loginPageContainer border-round-xl">
       <h2 class="loginPageHeadingName">Login Page</h2>
     <form #loginPageDetails="ngForm" (ngSubmit)="loginPageSubmitFormDetails()" ngNativeValidate>
       <div class="col col-offset-2">
-        <label class="mb-5"> Mobile No</label>
-        <div><input type="text" pInputText [(ngModel)]="mobileNumberValue" name="mobileNumber" class="w-10"  placeholder="Enter your mobile number" required/></div>
+       <div class="mb-2"> <label> Mobile Number</label></div>
+        <div><input type="text" pInputText [(ngModel)]="mobileNumberValue"  name="mobileNumber"  class="w-10"  placeholder="Enter your mobile number" required/></div>
       </div>
-    <div class="col text-center ">
-      <button pButton pRipple type="submit" label="Submit"></button>
+    <div class="col col-offset-2">
+      <button pButton pRipple type="submit" label="Submit" class="p-button-success w-10"></button>
     </div>
     </form>
     
-  
   </div>
 </div>

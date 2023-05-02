@@ -1,1 +1,11 @@
-<p>captcha-details works!</p>
+<div class="captchaPageBackGroundColor">
+    <div class="captchaPageContainer border-1 relative mx-auto border-round-xl">
+        <h2 class="captchaPageHeadingName">Captcha Page</h2>
+    <form #captchaDetailForm="ngForm" (ngSubmit)="captchaDetailSubmitForm()" ngNativeValidate>
+        <div class="col col-offset-2">
+        <input type="text" pInputText [(ngModel)]="captchaCodeValue"  name="mobileNumber" class="w-10"  placeholder="Enter your captcha code" required/>
+       </div>
+           <div class="col col-offset-2 "> <button pButton pRipple label="Submit" class="p-button-success  w-10"></button></div>
+    </form>
+</div>
+</div>
