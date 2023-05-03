@@ -9,13 +9,17 @@
     height: 100%;
   }
   .captchaPageContainer{
-    top:30%;
-  box-shadow: 2px 2px 33px 2px rgb(5, 142, 60);
-  background-color: rgba(0,0,0, 0.7);
+    top:25%;
+  box-shadow: 2px 2px 33px 2px rgb(5, 142, 5);
+  background-color: rgba(0, 0, 0, 0.7);
   color: white;
-  width: 25%;
-  height: 30%;
+  width: 30%;
+  height: 40%;
   }
   .captchaPageHeadingName{
     text-align: center;
+  }
+  .capthaFormDetails{
+    position: relative;
+    margin-left: -12px;
   }

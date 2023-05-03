@@ -19,3 +19,7 @@
 .loginPageHeadingName{
   text-align: center;
 }
+.loginPageFormData{
+  position: relative;
+  margin-left: -10px;
+}

@@ -1,11 +1,18 @@
 <div class="captchaPageBackGroundColor">
+    <p-toast></p-toast>
     <div class="captchaPageContainer border-1 relative mx-auto border-round-xl">
         <h2 class="captchaPageHeadingName">Captcha Page</h2>
     <form #captchaDetailForm="ngForm" (ngSubmit)="captchaDetailSubmitForm()" ngNativeValidate>
-        <div class="col col-offset-2">
-        <input type="text" pInputText [(ngModel)]="captchaCodeValue"  name="mobileNumber" class="w-10"  placeholder="Enter your captcha code" required/>
-       </div>
-           <div class="col col-offset-2 "> <button pButton pRipple label="Submit" class="p-button-success  w-10"></button></div>
+        <div class="capthaFormDetails">
+            <div class="col col-offset-2 ">
+                <input type="text" pInputText [(ngModel)]="capthaCode"  name="capthaCode" class="w-10" required/>
+               </div>
+            <div class="col col-offset-2">
+            <input type="text" pInputText [(ngModel)]="captchaCodeValue"  name="capthaName" class="w-10"  placeholder="Enter your captcha code" required/>
+           </div>
+               <div class="col col-offset-2 "> <button pButton pRipple label="Submit" class="p-button-success  w-10"></button></div>
+               <div class="col col-offset-2 "> <p-button label="Refresh" styleClass="p-button-success w-10" (click)="capthaRefreshValue()"></p-button></div>
+        </div>
     </form>
 </div>
 </div>

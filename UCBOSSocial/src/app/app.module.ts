@@ -12,10 +12,15 @@ import { RadioButtonModule } from 'primeng/radiobutton';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import { ScrollerModule } from 'primeng/scroller';
 import { DialogModule } from 'primeng/dialog';
+import { PickerModule } from '@ctrl/ngx-emoji-mart';
+import { FileUploadModule } from 'primeng/fileupload';
+import { ToastModule } from 'primeng/toast';
 import { LoginScreenComponent } from './login-screen/login-screen.component';
 import { CaptchaDetailsComponent } from './captcha-details/captcha-details.component';
 import { RegisterFormComponent } from './register-form/register-form.component';
 import { HomeScreenComponent } from './home-screen/home-screen.component';
+import { HttpClientModule } from '@angular/common/http';
+import { AvatarModule } from 'primeng/avatar';
 @NgModule({
   declarations: [
     AppComponent,
@@ -35,7 +40,12 @@ import { HomeScreenComponent } from './home-screen/home-screen.component';
     BrowserAnimationsModule,
     InputTextareaModule,
     ScrollerModule,
-    DialogModule 
+    DialogModule,
+    PickerModule,
+    FileUploadModule,
+    HttpClientModule,
+    AvatarModule,
+    ToastModule 
   ],
   providers: [],
   bootstrap: [AppComponent]

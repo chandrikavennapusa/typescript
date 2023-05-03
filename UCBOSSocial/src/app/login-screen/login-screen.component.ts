@@ -12,7 +12,7 @@ export class LoginScreenComponent {
   mobileNumberValue:any='';
   // Submitting the loginpage details.
   loginPageSubmitFormDetails(){
-    console.log(this.mobileNumberValue);
     this.router.navigate(['/captchaPage']);
   }
+ 
 }
