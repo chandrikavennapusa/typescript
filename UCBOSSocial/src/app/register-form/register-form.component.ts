@@ -25,7 +25,11 @@ export class RegisterFormComponent {
   constructor(private router:Router){}
   // Submitting The register form
   registerFormSubmitDetails(){
-this.router.navigate(['/homeScreen'])
+this.router.navigate(['/loginPage'])
+  }
+  // it is going to the login page
+  backToLoginPage(){
+    this.router.navigate(['/loginPage'])
   }
   
 }

@@ -1,4 +1,7 @@
 <div class="loginPageBackGroundColor">
+  <div class="signInButtonText">
+    <p-button label="Sign in" styleClass="p-button-rounded p-button-warning" (click)="openRegisterForm()"></p-button>
+  </div>
   <div class="border-1 relative mx-auto loginPageContainer border-round-xl">
       <h2 class="loginPageHeadingName">Login Page</h2>
     <form #loginPageDetails="ngForm" (ngSubmit)="loginPageSubmitFormDetails()" ngNativeValidate>

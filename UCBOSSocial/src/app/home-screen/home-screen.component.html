@@ -1,56 +1,28 @@
 <div class="homescreenContainer">
-    <div class="homeScreenHeadingContainer">
-        <img src="./assets/itorizonlogo.png" alt="Image" class="itorizonImage">
-       <i (click)="showDialog('top-right')"id="profileImage">CV</i>
-        <p-dialog  [(visible)]="visible" [position]="position">
-            <p>username</p>
-            <div (click)="logoutForm()" class="logoutText"> Logout</div>
-        </p-dialog>
-        <i (click)="showDialogPostStory()" class="pi pi-plus postStoryText"></i>
-    </div>
-        <p-dialog  [(visible)]="visiblePostStory">
-            <h4>Add to story</h4>
-       <p-fileUpload name="demo[]" url="https://www.primefaces.org/cdn/api/upload.php" (onUpload)="onUpload($event)" [multiple]="true" accept="image/*" [maxFileSize]="1000000">
-        <ng-template pTemplate="content">
-            <ul *ngIf="uploadedFiles.length">
-                <li *ngFor="let file of uploadedFiles">{{ file.name }} - {{ file.size }} bytes</li>
-            </ul>
-        </ng-template>
-      </p-fileUpload>
-       <div class="mt-3">
-        <textarea rows="1" cols="30" pInputTextarea class="textAreaInputText" placeholder="write a story text"></textarea>
-       </div>
-        </p-dialog>
-        <div class="homeScreenMainContentText">
-            <div class="mx-auto homeScreenMainContent grid ">
-                <div class="col-12">
-                    <div class="postContainerHeadingText grid m-0 p-0">
-                        <!-- <div class="profileImageText col-4 ml-2">CV </div> -->
-                        <p-avatar class="col-2 ml-2" label="CV" styleClass="mr-2" size="large"shape="circle"></p-avatar>
-                         <p class="col-7">Chandrika Vennapusa</p>
-                    </div>
-                    <img src="./assets/book11.jpg" alt="Images" class="homescreenImages">
-                    <div class="align-items-center grid">
-                        <div (click)="likePost()"><i class="pi pi-heart col-2 ml-2" *ngIf="heartIcon"></i></div>
-                        <div (click)="unLikePost()"><i class="pi pi-heart-fill heartSymbolIcon ml-2 col-2" *ngIf="heartFillIcon"></i></div>
-                        <span class="ml-2">{{countLikes}}likes..</span>
-                        <div (click)="displayMessageTextArea()" class="col-6"><i class="material-icons" *ngIf="messageIcon">message</i></div>
-                    </div>
-                </div>
-                <div class="col">
-                    <form #commnetForm="ngForm" (ngSubmit)="submittingCommentData()">
-                    <div *ngIf="textAreaField" class="grid">
-                       <div class="col-2"> <p-avatar label="CV" styleClass="mr-2" size="large"shape="circle"></p-avatar></div> 
-                        <div class="col-6"><textarea rows="1" cols="30" pInputTextarea [(ngModel)]="CommentTextValue" placeholder="Add a comment.." class="textAreaInputText" name="textAreaValue"></textarea></div>
-                        <div class="col-2"><i class="pi pi-star-fill  heartSymbolIcon" (click)="emojiStarFill()"></i></div>
-                        <div class="col-2"> <button pButton pRipple type="submit" icon="pi pi-sign-in"></button></div>
-                        <emoji-mart (emojiClick)="addEmoji($event)"  title="Pick your emoji…"  *ngIf="emojiMartIcon"></emoji-mart>
-                        <!-- <emoji-mart class="input"></emoji-mart>                      -->
-                    </div> 
-                </form> 
-                </div>
-            </div>
+<div class="homeScreenHeading">
+    <img src="./assets/itorizonlogo.png" alt="Image" class="itorizonImage">
+    <i (click)="showDialog('top-right')"id="profileImage">CV</i>
+   <p-dialog header="Username"  [(visible)]="visible" [position]="position" [draggable]="false" [resizable]="false" [style]="{'right': '40px','top': '48px'}" >
+    <div (click)="logoutForm()" class="logoutText"> Logout</div>
+   </p-dialog>
+</div>
+<div class="homeScreenMainContainer">
+<div class=" border-solid border-2 mx-auto">
+    <div class="grid">
+        <div class="col-3">
+   
         </div>
-        <div class="homeScreenFooter">
+        <div class="col-6">
+            <div class="card">
+                    <div><i class="pi pi-user postStoryUserText" ></i></div>
+                    
+             </div>   
         </div>
-</div> 
+        <div class="col-3">
+      
+        </div>
+</div>
+
+</div>
+</div>
+</div>

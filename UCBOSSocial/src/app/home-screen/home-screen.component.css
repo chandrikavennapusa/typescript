@@ -1,20 +1,20 @@
 .homescreenContainer{
-  width: 100%;
-  position: fixed;
-  overflow: scroll;
-  overflow-x: hidden;
-  height: 100%;
-  top: 0px;
+  position: relative;
+  z-index: 1;
 }
-.homeScreenHeadingContainer{
+.homeScreenHeading{
+  background-color: #ffffff;
   position: fixed;
-    top: 0;
-    width: 100%;
-    z-index: 2020;
-    background-color: white;
+  width: 100%;
+  z-index: 100;
 }
 .itorizonImage{
-  width: 200px;
+  position: relative;
+  width: 191px;
+  height: 68px;
+  padding: 12px;
+  float: left;
+  left: 32px;
 }
 #profileImage {
   width: 40px;
@@ -27,57 +27,16 @@
   position: relative;
   right: 30px;
 }
-.homeScreenFooter{
-  position: fixed;
-  bottom: 0;
-  width: 100%;
-  height: 60px;
-  background-color: black;
+.homeScreenMainContainer{
+  padding-top: 87px;
+  padding-bottom: 50px;
 }
-.logoutButtonText{
-  float: right;
-  position: relative;
-}
-:host ::ng-deep .p-dialog .p-dialog-header{
-  display: none;
-}
-.logoutText{
-  cursor: pointer;
-}
-:host ::ng-deep .p-dialog{
-  right: 40px;
-    top: 48px;
-}
-.postStoryText{
-  background: #16b0cb;
-  padding: 2px;    
+.postStoryUserText{
+  background: #2ddb0e;
+  padding: 8px;
+  font-size: 14px;
+  height: 30px;
+  width: 30px;
   color: white;
   border-radius: 50%;
-  float: right;
-  position: relative;
-  top: 40px;
-  right:-14px;
-  cursor: pointer;
 }
-.textAreaInputText{
-  width: 100%;
-  resize: none;
- }
- .homeScreenMainContent{
-  position: relative;
-  width: 50%;
-  top:73px;
-  padding-bottom: 40px;
- }
- 
- .homescreenImages{
-  width:100%
- }
- :host ::ng-deep .p-avatar.p-avatar-circle{
-  background-color:  #2196F3;
-  color:black;
-}
-.heartSymbolIcon{
-  color:red;
-  border: 1px sold ridge;
- }

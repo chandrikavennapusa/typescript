@@ -8,11 +8,14 @@ import { Router } from '@angular/router';
 })
 export class LoginScreenComponent {
   // It is used for the mobile number two way data binding.
-  constructor(private router:Router){}
   mobileNumberValue:any='';
+  constructor(private router:Router){}
   // Submitting the loginpage details.
   loginPageSubmitFormDetails(){
     this.router.navigate(['/captchaPage']);
   }
- 
+ // open to the Registration form
+ openRegisterForm(){
+  this.router.navigate(['/registerForm']);
+ }
 }

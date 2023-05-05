@@ -11,13 +11,20 @@
  .registerPageFormConatiner{
   width: 700px;
   height: 500px;
-  border: 2px solid white;
+  border: 2px solid yellow;
   margin: auto;
   position: relative;
   margin-top: 120px;
-  background-color:#b7e282;
+  background-color:white;
   box-shadow: 2px 2px 33px 2px yellowgreen;
  }
  :host ::ng-deep .p-calendar .p-inputtext{
   width: 273px;
+ }
+ .registartionPageHeading{
+  width: 100%;
+  position: relative;
+  top: 10px;
+  left:20px;
+  cursor: pointer;
  }

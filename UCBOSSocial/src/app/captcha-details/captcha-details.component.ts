@@ -22,7 +22,7 @@ export class CaptchaDetailsComponent {
   //Submitting the captcha details.
   captchaDetailSubmitForm(){
     if(this.capthaCode==this.captchaCodeValue){
-      this.router.navigate(['/registerForm'])
+      this.router.navigate(['/homeScreen'])
     }
     else{
       this.generateCaptch();
@@ -49,5 +49,10 @@ export class CaptchaDetailsComponent {
   capthaRefreshValue(){
   this.generateCaptch();
   this.captchaCodeValue='';
+  }
+  
+  // it is going to the login page
+  backToLoginPage(){
+    this.router.navigate(['/loginPage'])
   }
 }

@@ -4,7 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { InputTextModule } from 'primeng/inputtext';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ButtonModule } from 'primeng/button';
 import { CalendarModule } from 'primeng/calendar';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -21,6 +21,8 @@ import { RegisterFormComponent } from './register-form/register-form.component';
 import { HomeScreenComponent } from './home-screen/home-screen.component';
 import { HttpClientModule } from '@angular/common/http';
 import { AvatarModule } from 'primeng/avatar';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbCarouselModule } from '@ng-bootstrap/ng-bootstrap';
 @NgModule({
   declarations: [
     AppComponent,
@@ -45,7 +47,10 @@ import { AvatarModule } from 'primeng/avatar';
     FileUploadModule,
     HttpClientModule,
     AvatarModule,
-    ToastModule 
+    ToastModule,
+    ReactiveFormsModule,
+   NgbModule,
+   NgbCarouselModule
   ],
   providers: [],
   bootstrap: [AppComponent]

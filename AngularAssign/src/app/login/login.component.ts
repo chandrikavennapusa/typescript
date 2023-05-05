@@ -27,6 +27,7 @@ export class LoginComponent implements OnInit {
   // sucessmessage
   userloginsucessmessage: Message[];
   @ViewChild('mylogin') form: NgForm;
+ 
 
   constructor(
     private router: Router,

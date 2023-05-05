@@ -11,8 +11,7 @@
 .loginPageContainer{
   top:30%;
   box-shadow: 2px 2px 33px 2px rgb(5, 142, 60);
-  background-color: rgba(0,0,0, 0.7);
-  color: white;
+  background-color:white;
   width: 28%;
   height: 30%;
 }
@@ -22,4 +21,10 @@
 .loginPageFormData{
   position: relative;
   margin-left: -10px;
+}
+.signInButtonText{
+  float: right;
+  position: relative;
+  right: 20px;
+  top:10px;
 }
