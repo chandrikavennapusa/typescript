@@ -22,6 +22,9 @@ export class RegisterFormComponent {
   userNameValue:any='';
  // Setting the maximum date.
   maxDate=new Date();
+  // gender Field validation
+    genderValidation=true;
+
   constructor(private router:Router){}
   // Submitting The register form
   registerFormSubmitDetails(){
@@ -30,6 +33,10 @@ this.router.navigate(['/loginPage'])
   // it is going to the login page
   backToLoginPage(){
     this.router.navigate(['/loginPage'])
+  }
+  //
+  navigateLoginPage(){
+    
   }
   
 }

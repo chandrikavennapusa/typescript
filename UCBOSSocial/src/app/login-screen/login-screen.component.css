@@ -1,5 +1,5 @@
 .loginPageBackGroundColor{
-  background-image:url('https://www.flutterbeads.com/wp-content/uploads/2021/11/set-background-image-flutter-hero.jpeg');
+  background-image:url('https://img.freepik.com/free-vector/geometric-desktop-background-white-abstract-design-vector_53876-144666.jpg?size=626&ext=jpg&ga=GA1.1.1012624306.1682862743&semt=ais');
   position: fixed;
   background-size: cover;
   background-repeat: no-repeat;
@@ -9,8 +9,7 @@
   height: 100%;
 }
 .loginPageContainer{
-  top:30%;
-  box-shadow: 2px 2px 33px 2px rgb(5, 142, 60);
+  top:20%;
   background-color:white;
   width: 28%;
   height: 30%;
@@ -24,7 +23,21 @@
 }
 .signInButtonText{
   float: right;
-  position: relative;
+  position: absolute;
   right: 20px;
   top:10px;
+}
+.ucbosText{
+  position: relative;
+  top: 140px;
+}
+@media (max-width: 666px) and (min-width: 320px) {
+ .loginPageContainer{
+  width: 92%;
+ }
+}
+@media (max-width: 768px) and (min-width:666px) {
+  .loginPageContainer{
+    width: 52%;
+   }
 }

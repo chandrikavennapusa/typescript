@@ -12,10 +12,19 @@ export class LoginScreenComponent {
   constructor(private router:Router){}
   // Submitting the loginpage details.
   loginPageSubmitFormDetails(){
+    localStorage.setItem('loginBooleanValue','true');
     this.router.navigate(['/captchaPage']);
   }
+
  // open to the Registration form
  openRegisterForm(){
   this.router.navigate(['/registerForm']);
  }
+
 }
+
+
+
+
+
+

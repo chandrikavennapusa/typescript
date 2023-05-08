@@ -8,13 +8,11 @@
   width: 100%;
   z-index: 100;
 }
-.itorizonImage{
+.ucbosImageText{
   position: relative;
-  width: 191px;
   height: 68px;
-  padding: 12px;
   float: left;
-  left: 32px;
+  left: 12px;
 }
 #profileImage {
   width: 40px;
@@ -22,7 +20,7 @@
   border-radius: 50%;
   background: #15a9e2;
   text-align: center;
-  margin: 20px 0;
+  margin-top: 10px;
   float: right;
   position: relative;
   right: 30px;
@@ -33,10 +31,89 @@
 }
 .postStoryUserText{
   background: #2ddb0e;
-  padding: 8px;
-  font-size: 14px;
-  height: 30px;
-  width: 30px;
+  padding: 10px;
+  font-size: 20px;
+  height: 40px;
+  width: 40px;
   color: white;
   border-radius: 50%;
 }
+:host ::ng-deep .addPostInputText{
+    max-width: none;
+    justify-content: left;
+    flex-grow: 1;
+    border-radius: 35px!important;
+    padding-left: 1.6rem!important;
+}
+.textAreaInputText{
+  width: 100%;
+  resize: none;
+ }
+ :host ::ng-deep .p-button.p-fileupload-choose{
+  width: 258px;
+}
+:host ::ng-deep .p-button .p-button-icon-left {
+padding-left: 70px;
+}
+:host ::ng-deep .p-button.p-fileupload-choose .p-button-label {
+  padding-right: 82px;
+}
+.homescreenImages{
+  width:100%;
+  height:300px;
+ }
+ :host ::ng-deep .carousel-indicators .active {
+  background-color:black;
+  
+  }
+  :host ::ng-deep .carousel-control-next-icon{
+    background-color: black;
+  }
+  :host ::ng-deep .carousel-control-prev-icon {
+    background-color:black;
+  } 
+  .advertisementContainer{
+    width: 100%;
+    height: 250px;
+  }
+  .homeScreenFooterContainer{
+    background-color: #ffffff;
+    position: fixed;
+    width: 100%;
+    z-index: 100;
+    bottom: 0px;
+  }
+  .listStyleText{
+    list-style-type: none;
+    padding-inline-start: 0px;
+  }
+  @media (max-width: 666px) and (min-width: 320px) {
+    .homeScreenMainDataContainer{
+      width: 100%;
+    }
+    .textMessageContainer{
+      width: 100%;
+    }
+    :host ::ng-deep .avatarText.p-avatar.p-avatar-circle{
+      margin-left: -22px;
+    }
+    .openReplayMessageText{
+      margin-left: -14px;
+    }
+   .advertisementMainContainer{
+    width: 90%;
+   }
+   }
+   @media (max-width:777px) and (min-width:  666px) {
+    .textMessageContainer{
+      width: 100%;
+    }
+    :host ::ng-deep .avatarText.p-avatar.p-avatar-circle{
+      margin-left: -22px;
+    }
+    .openReplayMessageText{
+      margin-left: -14px;
+    }
+  
+   }
+  

@@ -22,7 +22,8 @@ export class CaptchaDetailsComponent {
   //Submitting the captcha details.
   captchaDetailSubmitForm(){
     if(this.capthaCode==this.captchaCodeValue){
-      this.router.navigate(['/homeScreen'])
+      this.router.navigate(['/homeScreen']);
+      localStorage.setItem('captchaBooleanValue','true')
     }
     else{
       this.generateCaptch();

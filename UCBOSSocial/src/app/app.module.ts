@@ -23,6 +23,9 @@ import { HttpClientModule } from '@angular/common/http';
 import { AvatarModule } from 'primeng/avatar';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgbCarouselModule } from '@ng-bootstrap/ng-bootstrap';
+import { DividerModule } from 'primeng/divider';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { PanelModule } from 'primeng/panel';
 @NgModule({
   declarations: [
     AppComponent,
@@ -50,7 +53,10 @@ import { NgbCarouselModule } from '@ng-bootstrap/ng-bootstrap';
     ToastModule,
     ReactiveFormsModule,
    NgbModule,
-   NgbCarouselModule
+   NgbCarouselModule,
+   DividerModule,
+   ConfirmDialogModule,
+   PanelModule 
   ],
   providers: [],
   bootstrap: [AppComponent]
