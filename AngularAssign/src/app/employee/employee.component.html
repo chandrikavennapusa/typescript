@@ -21,10 +21,10 @@
         </div>
       </form>
     </p-dialog>
-    <p-dropdown [options]="rowsPerPageOptions" optionLabel="label" optionValue="value" [(ngModel)]="rows"
+    <p-dropdown [options]="rowsPerPageOptions" optionLabel="label" optionValue="value" [(ngModel)]="rows" pTooltip="Enter your username"
       (ngModelChange)="first"></p-dropdown>
   </div>
-  <p-table [columns]="cols" [value]="fetchingEmployeeData" styleClass="p-datatable-striped" sortMode="multiple"
+  <p-table [columns]="cols" [value]="fetchingEmployeeData" styleClass="p-datatable-striped" sortMode="multiple" 
     [paginator]="rows<paginatorDisable" [rows]="rows" responsiveLayout="scroll" [scrollable]="true"  
     (onPageChange)="onPageChange($event)">
     <ng-template pTemplate="header" let-columns class="tableHeadingEle">

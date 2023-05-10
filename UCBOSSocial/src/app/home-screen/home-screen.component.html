@@ -2,7 +2,7 @@
 <div class="homeScreenHeading">
     <img src="./assets/ucbos.png" alt="Image" class="ucbosImageText">
     <i (click)="showDialog('top-right')"id="profileImage">CV</i>
-   <p-dialog header="Username"  [(visible)]="visible" [position]="position" [draggable]="false" [resizable]="false" [style]="{'right': '40px','top': '48px'}" >
+   <p-dialog header="Username"  [(visible)]="visible" [position]="position" [draggable]="false" [resizable]="false" [style]="{'right': '40px', 'position':'relative','top': '48px'}" >
     <div (click)="logoutForm()" class="logoutText"> Logout</div>
    </p-dialog>
 </div>
@@ -10,34 +10,35 @@
 <div class="mx-auto">
     <div class="grid m-0 p-0" >
         <div class="col-3">
-
         </div>
         <div class="col-5 homeScreenMainDataContainer">
             <div class="card">
-                    <div class="flex flex flex-row m-2 gap-2 ">
-                      <i class="pi pi-user postStoryUserText" ></i>
-                    <input  pInputText type="text" class="addPostInputText" placeholder=" Add a post" />
-                    </div>
-                        <p-dialog header="Add to story"  [(visible)]="visiblePostStory" [modal]="true" appendTo="body">
-                        <form [formGroup]="registrationForm" (ngSubmit)="addUpdatedStory()">
-                         <p-fileUpload mode="basic" #fileInput  url="https://www.primefaces.org/cdn/api/upload.php"  (onUpload)="onUpload($event)" [multiple]="true" accept="image/*" [maxFileSize]="1000000"  chooseLabel="Choose"></p-fileUpload>
-                            <div class="mt-3">
-                             <textarea rows="1" cols="30" pInputTextarea  class="textAreaInputText form-control" formControlName="textArea"  placeholder="write a story text"></textarea>
-                            </div>
-                            <div><button pButton pRipple type="submit" label="Submit" class="w-12 mt-2" ></button></div>
-                        </form>
-                         </p-dialog>
-                     <div class="flex flex flex-row m-2 gap-4 ml-5 ">
-                        <div class="flex align-items-center justify-content-center " (click)="showDialogPostStory()"> <i class="pi pi-images text-blue-500 mr-2"> </i><span>Image</span> </div>
-                        <div class="flex  align-items-center justify-content-center" (click)="showDialogPostStory()"> <i class="pi pi-video text-purple-500 mr-2"> </i><span>Vedio</span> </div>
-                    </div>
+                <div class="flex flex flex-row m-2 gap-4 ">
+                  <div class="flex align-items-center"><i class="pi pi-user postStoryUserText" ></i></div>
+                  <div class="flex align-items-center mt-2 "><h5>Add a post</h5></div>
+                 </div>
+                    <p-dialog header="Add to story"  [(visible)]="visiblePostStory" [modal]="true" [draggable]="false" [resizable]="false" (onHide)="cancelUpdatedStory()" >  
+                    <form #addUpdateStoryForm="ngForm" (ngSubmit)="addUpdatedStory()" ngNativeValidate> 
+                        <div> <input type="text" pInputText  name="postRelatedData" ngModel required class="w-12"/></div>
+                        <div class="m-2"> <input type="file" placeholder="Image" id="imagePath" name="imagePath" accept="image/*"  [multiple]="true" ngModel (onUpload)="onUpload($event)" required></div>
+                    <div><button pButton pRipple type="submit" label="Submit" class="w-12" ></button></div>
+                    <div><p-button label="Cancel" styleClass="p-button-warning w-12 mt-2" (click)="cancelUpdatedStory()"></p-button></div>
+                    </form>
+                     </p-dialog>
+                 <div class="flex flex flex-row m-2 gap-4 ml-5 ">
+                    <div class="flex align-items-center justify-content-center cursor-pointer " (click)="showDialogPostStory()"> <i class="pi pi-images text-blue-500 mr-2"> </i><span>Image</span> </div>
+                    <div class="flex  align-items-center justify-content-center cursor-pointer" (click)="showDialogPostStory()"> <i class="pi pi-video text-purple-500 mr-2"> </i><span>Vedio</span> </div>
+                </div>
+            </div> 
                     <p-divider></p-divider>   
-                    <div class="card">
+                    <div class="card border-0">
                         <div class="col-12">
                             <div class=" grid m-0 p-0">
-                                <p-avatar class="col-2" label="CV" styleClass="mr-2" size="large"shape="circle"></p-avatar>
-                                 <p class="col- p-3">Chandrika Vennapusa</p>
-                            
+                                <p-avatar class="col-2 mr-2" label="CV" styleClass="mr-2" size="large"shape="circle"></p-avatar>
+                                 <div class="col felx flex-row">
+                                    <div class="flex">Chandrika Vennapusa</div>  
+                                    <div class="flex">{{gettingDate}}</div>       
+                                 </div> 
                             </div>
                             <!-- <ngb-carousel [interval]="50000" >
                                <ng-template *ngFor="let image of images; index as i" ngbSlide>
@@ -48,129 +49,142 @@
                                    </div>
                                    </ng-template>
                             </ngb-carousel> -->
-                            <img src="./assets/book11.jpg" alt="Images" class="homescreenImages">
+                            <img src="./assets/book11.jpg" alt="Images" class="homescreenImages" (click)="openImageFullScreen()">
+                            <p-dialog header="Image full screen" [(visible)]="imageFullScreen" class="FullScreenImageDialogBoxText" [modal]="true" [draggable]="false" [resizable]="false">
+                                <img src="./assets/book11.jpg" alt="Images" class="Image" class="imageFullScreenText">
+                            </p-dialog>
                             <div class="align-items-center grid">
                                 <div class="col-1 ml-2"> 
-                                <i class="pi pi-thumbs-up" (click)="likePost()" *ngIf="likeCountIcon"></i>
-                               <i class="pi pi-thumbs-up-fill fillSymbolIcons " (click)="unLikePost()" *ngIf="unLikeCountIcon"></i>      
+                                <i class="pi pi-thumbs-up cursor-pointer" (click)="likePost()" *ngIf="likeCountIcon"></i>
+                               <i class="pi pi-thumbs-up-fill fillSymbolIcons cursor-pointer" (click)="unLikePost()" *ngIf="unLikeCountIcon"></i>      
                                 <!-- <span class="ml-2">{{countLikes}}likes..</span>    -->
                             </div>
-                              <div class="col-1">
-                                    <i class="pi pi-thumbs-down mt-1" (click)="disLikePost()" *ngIf="disLikeCountIcon"></i>
-                                    <i class="pi pi-thumbs-down-fill  mt-1" (click)="unDisLikePost()"  *ngIf="unDisLikeCountIcon"></i>
-                                </div>
                                 <div class="col-6 mt-1"><i class="material-icons" (click)="displayMessageTextArea()">message</i></div>
                             </div>
                                 <div class="col textMessageContainer">
                                     <p-panel  *ngIf="textAreaField" >
                                         <div class="col">
-                                            <form #commnetForm="ngForm" (ngSubmit)="submittingCommentData()">
+                                            <form #commnetForm="ngForm" (ngSubmit)="submittingCommentData()" ngNativeValidate >
                                              <div class="grid">
-                                               <div class="card relative col">
+                                               <div class="card relative col border-0">
                                                <div class="flex flex-column" >
                                                    <div class="flex">
                                                       <p-avatar label="CV" styleClass="mr-2" size="large"shape="circle"></p-avatar>
-                                                       <textarea rows="1" cols="30" pInputTextarea [(ngModel)]="CommentTextValue" placeholder="Add a comment.." class="textAreaInputText" name="textAreaValue"></textarea>
+                                                       <textarea rows="1" cols="30" pInputTextarea [(ngModel)]="CommentTextValue" placeholder="Add a comment.." class="textAreaInputText addPostInputText" name="textAreaValue" required></textarea>
                                                        </div>
                                                        <div class="flex align-items-center gap-2">
-                                                         <p class="ml-6 mt-3"> <span (click)="emojiStarFill()">😀</span></p>
+                                                         <p class="ml-2 mt-3"> <span (click)="emojiStarFill()">😀</span></p>
                                                            <p-button label="Cancel" styleClass="p-button-secondary p-button-text h-2rem "></p-button>
                                                            <p-button label="Reply" type="submit" styleClass="p-button-secondary p-button-text h-2rem " ></p-button>
                                                        </div>
                                                </div>
                                                </div>
-                                                <p-dialog header="Emojis" [(visible)]="emojiMartIcon"  [style]="{width: '50vw','position':'relative','top':'110px', 'height': '252px' }">
+                                               <div *ngIf="emojiMartIcon">
+                                                <emoji-mart (emojiClick)="addEmoji($event)" [style]="{ width: '84%' }"  title="Pick your emoji…"></emoji-mart>
+                                               </div>
+                                                <!-- <p-dialog header="Emojis" [(visible)]="emojiMartIcon"  [style]="{width: '40%','position':'absolute', 'height': '252px' }">
                                                  <emoji-mart (emojiClick)="addEmoji($event)" [style]="{ width: 'unset' }"  title="Pick your emoji…"></emoji-mart>
-                                               </p-dialog>
+                                               </p-dialog> -->
                                             </div> 
                                           </form> 
                                            </div> 
                                            <div class="col">
                                             <div class="grid">
-                                                <div class="col-1"> 
-                                                 <p-avatar label="CV" styleClass="mr-2 avatarText"  [style]="{ 'background-color': '#9c27b0', color: '#ffffff' }" shape="circle"></p-avatar>
+                                                <div class="col-2"> 
+                                                 <p-avatar label="CV" styleClass="avatarText"  [style]="{ 'background-color': '#9c27b0', color: '#ffffff' }" shape="circle"></p-avatar>
                                                 </div>
-                                                <div class="card relative col-11">
-                                                    <div class="flex flex-column card-container gap-2">
+                                                <div class="card relative col-10 border-0">
+                                                    <div class="flex flex-column card-container gap-2 ">
                                                         <div class="flex">username</div>
                                                         <div class="flex">{{textvalues}}</div>
                                                         <div class="flex align-items-center">
-                                                            <i class="pi pi-thumbs-up"  (click)="replayLikePost()" *ngIf="replayLikeCountIcon"></i>
-                                                             <i class="pi pi-thumbs-up-fill fillSymbolIcons " (click)="replayUnLikePost()" *ngIf="replayUnLikeCountIcon"></i> 
-                                                              <i class="pi pi-thumbs-down mt-1 ml-3" (click)="replayDisLikePost()" *ngIf="replayDisLikeCountIcon"></i>
-                                                              <i class="pi pi-thumbs-down-fill  mt-1 ml-3" (click)="replayDisUnLikePost()" *ngIf="replayDisUnLikeCountIcon"></i>
+                                                            <i class="pi pi-thumbs-up cursor-pointer"  (click)="replayLikePost()" *ngIf="replayLikeCountIcon"></i>
+                                                             <i class="pi pi-thumbs-up-fill fillSymbolIcons cursor-pointer" (click)="replayUnLikePost()" *ngIf="replayUnLikeCountIcon"></i>
                                                               <p-button label="Reply" styleClass="p-button-secondary p-button-text h-2rem ml-2" (click)="openToReplayCommentDetails()"></p-button> 
                                                             </div>
                                                             <div class="flex flex-row" *ngIf="openToReplayCommentText">
-                                                                <div class="col">  
+                                                                <div class="col openToReplayText">  
                                                                     <div class="flex flex-column">
-                                                                        <div class="flex">
-                                                                            <p-avatar label="CV" styleClass="mr-2 mt-1" [style]="{ 'background-color': '#9c27b0', color: '#ffffff' }" shape="circle"></p-avatar> 
-                                                                          <textarea rows="1" cols="30" pInputTextarea [(ngModel)]="commentReplayValue" placeholder="Add a comment.." class="textAreaInputText" name="textAreaValue"></textarea> 
-                                                                        </div>
-                                                     <div class="flex align-items-center gap-2">
-                                                        <p class="ml-2 mt-3"><span (click)="emojiSmileIcon()"> 😀 </span> </p>
-                                                 <p-button label="Cancel" styleClass="p-button-secondary p-button-text h-2rem" (click)="closedReplayCommentDetails()"></p-button>
-                                                 <p-button label="Reply" styleClass="p-button-secondary p-button-text h-2rem " (click)="SubmitReplayToRepalyMessage()"></p-button>
-                                                 <p-dialog header="Emojis" [(visible)]="replayEmojiMartIcon" [style]="{width: '50vw','position':'relative','top':'-71px', 'height': '252px' }">
-                                                 <emoji-mart (emojiClick)="addReplayEmoji($event)" [style]="{ width: 'unset' }"  title="Pick your emoji…"></emoji-mart>
-                                                 </p-dialog>   
+                                                            <form #submitReplyComment="ngForm" (ngSubmit)="SubmitReplayToRepalyMessage()" ngNativeValidate >
+                                                                <div class="flex">
+                                                                    <p-avatar label="CV" styleClass="mr-2 mt-1" [style]="{ 'background-color': '#9c27b0', color: '#ffffff' }" shape="circle"></p-avatar> 
+                                                                  <textarea rows="1" cols="30" pInputTextarea [(ngModel)]="commentReplayValue" placeholder="Add a comment.." class="textAreaInputText addPostInputText" name="textAreaValue" required></textarea> 
+                                                                </div>
+                                             <div class="flex align-items-center gap-2">
+                                                <p class="ml-2 mt-3"><span (click)="emojiSmileIcon()"> 😀 </span> </p>
+                                         <p-button label="Cancel" styleClass="p-button-secondary p-button-text h-2rem" (click)="closedReplayCommentDetails()"></p-button>
+                                         <p-button label="Reply" type="submit" styleClass="p-button-secondary p-button-text h-2rem "></p-button>
+
+                                         <!-- <p-dialog header="Emojis" [(visible)]="replayEmojiMartIcon" [style]="{width: '50vw','position':'relative','top':'-71px', 'height': '252px' }">
+                                         <emoji-mart (emojiClick)="addReplayEmoji($event)" [style]="{ width: 'unset' }"  title="Pick your emoji…"></emoji-mart>
+                                         </p-dialog>    -->
+
+                                         </div>
+                                                            </form>
+                                                            
                                                  </div>
-                                                 </div>
+                                                
                                                  </div>    
                                                 </div>
                                                     </div>
-
-                                                        <div class="flex">
-                                                            <div class="card relative col">
+                                                    <div *ngIf="replayEmojiMartIcon" >
+                                                        <emoji-mart (emojiClick)="addReplayEmoji($event)" [style]="{ width: '94%' }"  title="Pick your emoji…"></emoji-mart>
+                                                       </div>
+                                                        <div class="grid ">
+                                                                <div class="col-2 mt-3"> 
+                                                                    <p-avatar label="CV"   [style]="{ 'background-color': '#9c27b0', color: '#ffffff' }" shape="circle"></p-avatar>
+                                                                   </div>
+                                                                   <div class="col-10 flex">
+                                                                    <div class="card relative col border-0">
                                                                 <div class="flex flex-column card-container gap-2">
                                                                     <div class="flex">username</div>
                                                                    <div class="flex">{{replayTextvalues}}</div> 
                                                                     <div class="flex align-items-center">
-                                                                        <i class="pi pi-thumbs-up"  (click)="replayLikePost()" *ngIf="replayLikeCountIcon"></i>
-                                                                         <i class="pi pi-thumbs-up-fill fillSymbolIcons " (click)="replayUnLikePost()" *ngIf="replayUnLikeCountIcon"></i> 
-                                                                          <i class="pi pi-thumbs-down mt-1 ml-3" (click)="replayDisLikePost()" *ngIf="replayDisLikeCountIcon"></i>
-                                                                          <i class="pi pi-thumbs-down-fill  mt-1 ml-3" (click)="replayDisUnLikePost()" *ngIf="replayDisUnLikeCountIcon"></i>
+                                                                        <i class="pi pi-thumbs-up cursor-pointer"  (click)="replayLikePost()" *ngIf="replayLikeCountIcon"></i>
+                                                                         <i class="pi pi-thumbs-up-fill fillSymbolIcons cursor-pointer" (click)="replayUnLikePost()" *ngIf="replayUnLikeCountIcon"></i> 
                                                                           <p-button label="Reply" styleClass="p-button-secondary p-button-text h-2rem ml-2" (click)="openReplayCommentDetails()"></p-button> 
                                                                         </div>
-        
+                                                                    </div>
                                                                         <div class="flex flex-row" *ngIf="openReplayCommentText">
                                                                             <div class="col openReplayMessageText">  
                                                                                 <div class="flex flex-column">
-                                                                                    <div class="flex">
-                                                                                        <p-avatar label="CV" styleClass="mr-2 mt-1" [style]="{ 'background-color': '#9c27b0', color: '#ffffff' }" shape="circle"></p-avatar> 
-                                                                                      <textarea rows="1" cols="30" pInputTextarea [(ngModel)]="commentReplayValue" placeholder="Add a comment.." class="textAreaInputText" name="textAreaValue"></textarea> 
-                                                                                    </div>
-                                                                 <div class="flex align-items-center gap-2">
-                                                                    <p class="ml-2 mt-3"><span (click)="emojiSmileIcon()"> 😀 </span> </p>
-                                                             <p-button label="Cancel" styleClass="p-button-secondary p-button-text h-2rem" (click)="closedReplayCommentDetails()"></p-button>
-                                                             <p-button label="Reply" styleClass="p-button-secondary p-button-text h-2rem" (click)="SubmitReplayToRepalyMessage()"></p-button>
-                                                             <p-dialog header="Emojis" [(visible)]="replayEmojiMartIcon" [style]="{width: '50vw','position':'relative','top':'-71px', 'height': '252px' }">
-                                                             <emoji-mart (emojiClick)="addReplayEmoji($event)" [style]="{ width: 'unset' }"  title="Pick your emoji…"></emoji-mart>
-                                                             </p-dialog>   
-                                                             </div>
+                                                                         <form #replayToRepalyMessage="ngForm" (ngsubmit)="SubmitToReplayToRepalyMessage()" ngNativeValidate>
+                                                                            <div class="flex">
+                                                                                <p-avatar label="CV" styleClass="mr-2 mt-1" [style]="{ 'background-color': '#9c27b0', color: '#ffffff' }" shape="circle"></p-avatar> 
+                                                                              <textarea rows="1" cols="30" pInputTextarea [(ngModel)]="commentToReplayValue" placeholder="Add a comment.." class="textAreaInputText addPostInputText" name="commentTotextArea" required></textarea> 
+                                                                            </div>
+                                                         <div class="flex align-items-center gap-2">
+                                                            <p class="ml-2 mt-3"><span (click)="replayToEmojiSmileIcon()"> 😀 </span> </p>
+                                                     <p-button label="Cancel" styleClass="p-button-secondary p-button-text h-2rem" (click)="closedToReplayCommentDetails()"></p-button>
+                                                     <p-button label="Reply" type="submit" styleClass="p-button-secondary p-button-text h-2rem" ></p-button>
+                                                     <!-- <p-dialog header="Emojis" [(visible)]="replayEmojiMartIcon" [style]="{width: '50vw','position':'relative','top':'-71px', 'height': '252px' }">
+                                                     <emoji-mart (emojiClick)="addReplayEmoji($event)" [style]="{ width: 'unset' }"  title="Pick your emoji…"></emoji-mart>
+                                                     </p-dialog>    -->
+                                                     </div>
+                                                                         </form>
                                                              </div>
                                                              </div>    
                                                             </div>  
+                                                            
                                                         </div>
+                                                        <div *ngIf="replayToEmojiMartIcon">
+                                                            <emoji-mart (emojiClick)="addReplayToEmoji($event)" [style]="{ width: '100%' ,position:'relative',top:'-340px',right:'120px' }"  title="Pick your emoji…"></emoji-mart>
+                                                           </div>
                                                           </div>  
                                                             </div>
                                                 </div>
                                             </div>
                                         </div>
-                                 
-
                                     </p-panel>
                                 </div>
                             </div>
-                     
                     </div>    
-             </div>        
+                   
         </div>
-        <div class="col-3 ml-4 advertisementMainContainer">
-            <p-panel header="ADVERTISEMENT" [toggleable]="true">
-                    <div >
-                        <ngb-carousel [interval]="3000" >
+        <div class="col-3 ml-4  advertisementMainContainer">
+            <p-panel header="ADVERTISEMENT" [toggleable]="true" >
+                    <div>
+                        <ngb-carousel [interval]="3000"  [showNavigationArrows]="false" [showNavigationIndicators]="false" >
                             <ng-template *ngFor="let image of images; index as i" ngbSlide >
                                 <div  class="carousal-wrapper">
                                 <img  src="/assets/{{image.name}}" class="advertisementContainer">
@@ -179,10 +193,10 @@
                          </ngb-carousel>
                     </div>
                     </p-panel>
-
+                    <p-divider></p-divider>  
                     <p-panel header="ADVERTISEMENT" [toggleable]="true">
-                        <div >
-                            <ngb-carousel [interval]="3000" >
+                        <div>
+                            <ngb-carousel [interval]="3000" [showNavigationArrows]="false" [showNavigationIndicators]="false">
                                 <ng-template *ngFor="let vedio of vedios; index as i" ngbSlide >
                                     <div>
                                     <iframe  src="/assets/ad4.mp4" class="advertisementContainer"> </iframe>
@@ -190,14 +204,12 @@
                                     </ng-template>
                              </ngb-carousel>
                         </div>
-                        </p-panel>
-            
+                        </p-panel>         
         </div>
 </div>
 </div>
 </div>
 <div class="homeScreenFooterContainer flex flex-column">
- 
     <ul class="flex gap-2 m-auto listStyleText">
         <li><i class="pi pi-twitter text-white bg-blue-300 p-1  m-2"></i></li>
         <li><i class="pi pi-facebook bg-blue-600 text-white p-1  m-2"></i></li>

@@ -4,13 +4,13 @@
       <p-button label="Sign in" styleClass="p-button-rounded p-button-warning" (click)="openRegisterForm()"></p-button>
     </div>
   </div>
+  <p-toast></p-toast>
  <div class="grid">
-    <!-- <img src="./assets/ucbos.png" alt="Image" class="itorizonImage m-auto"> -->
     <h2 class="ucbosText m-auto text-pink-600">UCBOS</h2>
   </div>
   <div class="border-1 relative mx-auto loginPageContainer border-round-xl">
       <h2 class="loginPageHeadingName">Login Page</h2>
-    <form #loginPageDetails="ngForm" (ngSubmit)="loginPageSubmitFormDetails()" ngNativeValidate>
+    <form #loginPageDetails="ngForm" (ngSubmit)="loginPageSubmitFormDetails(loginPageDetails)" ngNativeValidate>
       <div class="loginPageFormData">
         <div class="col col-offset-2">
           <div class="mb-2"> <label> Mobile Number</label></div>

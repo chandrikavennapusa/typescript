@@ -11,18 +11,24 @@
         <div class="mb-3"><label> Employee Id *</label></div>
         <input type="text" pInputText name="employeeId" [(ngModel)]="employeeDetailObj.employeeId" [disabled]="true" />
       </div>
-      <div class=" col md:col-4 ">
-        <div class="mb-3"><label>First Name * </label></div>
-        <input type="text" pInputText name="firstName" [(ngModel)]="employeeDetailObj.firstName" required
-          pattern="^[a-zA-Z]+$" [disabled]="!editMode" #fName="ngModel" />
-        <div class="errorMessageText" *ngIf="fName.touched && fName.invalid"> enter the valid name</div>
-      </div>
       <div class=" col  md:col-4">
         <div class="mb-3"><label> Last Name * </label></div>
         <input type="text" #lName="ngModel" pInputText name="lastName" [(ngModel)]="employeeDetailObj.lastName" required
           pattern="^[a-zA-Z]+$" [disabled]="!editMode" />
         <div class="errorMessageText" *ngIf="lName.touched && lName.invalid"> enter the valid name</div>
       </div>
+      <div class=" col md:col-4 ">
+        <div class="mb-3"><label>First Name * </label></div>
+        <input type="text" pInputText name="firstName" [(ngModel)]="employeeDetailObj.firstName" required
+          pattern="^[a-zA-Z]+$" [disabled]="!editMode" #fName="ngModel" />
+        <div class="errorMessageText" *ngIf="fName.touched && fName.invalid"> enter the valid name</div>
+      </div>
+      <!-- <div class=" col  md:col-4">
+        <div class="mb-3"><label> Last Name * </label></div>
+        <input type="text" #lName="ngModel" pInputText name="lastName" [(ngModel)]="employeeDetailObj.lastName" required
+          pattern="^[a-zA-Z]+$" [disabled]="!editMode" />
+        <div class="errorMessageText" *ngIf="lName.touched && lName.invalid"> enter the valid name</div>
+      </div> -->
       <div class="col md:col-4">
         <div class="mb-3"><label>Gender *</label></div>
         <div class="formgroup-inline">

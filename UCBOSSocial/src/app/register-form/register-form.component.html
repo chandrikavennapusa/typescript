@@ -13,34 +13,34 @@
       <h2 class="m-auto">Registration form</h2>
       <div class="col-12 col-offset-1"> 
         <div  class="mb-2"><label>First Name *</label></div>
-        <input type="text" name="firstName" pInputText [(ngModel)]="firstNameValue" placeholder=" first name" class="w-10"  pattern="^[a-zA-Z ]+$"  required/>
+        <input type="text" name="firstName" pInputText [(ngModel)]="registrationDetailObjects.firstName" placeholder=" first name" class="w-10"  pattern="^[a-zA-Z ]+$"  required/>
       </div>
       <div class="col-5 col-offset-1 lastNameText">
         <div  class="mb-2"><label>LastName *</label></div>
-        <input type="text" name="lastName" pInputText [(ngModel)]="lastNameValue" placeholder="last name" pattern="^^[a-zA-Z ]+$" class="w-12" required/>
+        <input type="text" name="lastName" pInputText [(ngModel)]="registrationDetailObjects.lastName" placeholder="last name" pattern="^^[a-zA-Z ]+$" class="w-12" required/>
       </div>
       <div class="col-6 mobileNameText">
         <div  class="mb-2"><label>Mobile Number *</label></div>
-        <input type="text" name="mobileNumber" pInputText [(ngModel)]="MobileNumberValue"  placeholder="+91 1234567890" class="w-10" maxlength="14"   pattern="^[+]{1}[0-9]{0,2} .?[0-9]+$" required/>
+        <input type="text" name="mobileNumber" pInputText [(ngModel)]="registrationDetailObjects.mobileNumber"  placeholder="+91 1234567890" class="w-10" maxlength="14" pattern="^[+]{1}[0-9]{0,2} .?[0-9]+$" required/>
       </div>
       <div class="col-5 col-offset-1">
       <div  class="mb-2"><label>Date Of Birth *</label></div>
-      <p-calendar name="DateOfBirth" [(ngModel)]="dateOfBirthValue"placeholder="date of birth" [maxDate]="maxDate" class="w-14" [required]="true"></p-calendar>
+      <p-calendar name="dateOfBirth" [(ngModel)]="dateOfBirthValue" dateFormat="dd/MM/yy" placeholder="date of birth" [maxDate]="maxDate" class="w-14" [required]="true"></p-calendar>
     </div>
 
     <div class="col genderText">
       <div  class="mb-2"><label>Gender *</label></div>
       <div class="formgroup-inline">
         <div class="field-radiobutton m-0 mt-2">
-          <p-radioButton type="radio" name="gender" value="male" [(ngModel)]="genderValue" styleClass="radio-style" #gender="ngModel" required></p-radioButton>
+          <p-radioButton type="radio" name="gender" value="Male" [(ngModel)]="registrationDetailObjects.gender" styleClass="radio-style" #gender="ngModel" required></p-radioButton>
           <label>Male</label>
         </div>
         <div class="field-radiobutton m-0 mt-2">
-          <p-radioButton type="radio" name="gender" value="Female" [(ngModel)]="genderValue" styleClass="radio-style" required></p-radioButton>
+          <p-radioButton type="radio" name="gender" value="Female" [(ngModel)]="registrationDetailObjects.gender" styleClass="radio-style" required></p-radioButton>
           <label>Female</label>
         </div>
         <div class="field-radiobutton m-0 mt-2">
-          <p-radioButton type="radio" name="gender" value="customgender" [(ngModel)]="genderValue"  styleClass="radio-style" required></p-radioButton>
+          <p-radioButton type="radio" name="gender" value="Customgender" [(ngModel)]="registrationDetailObjects.gender"  styleClass="radio-style" required></p-radioButton>
           <label>Customgender</label>
         </div>
         <div *ngIf="gender.invalid && !genderValidation" class="errorMessageText"> select required field</div>
@@ -48,7 +48,7 @@
       </div>
       <div class="col-12 col-offset-1">
         <div  class="mb-2"><label>UserName *</label></div>
-        <input type="text" name="userName" pInputText [(ngModel)]="userNameValue" placeholder="username" pattern="^[a-zA-Z ]+$" class="w-10 p-button-success" required/>
+        <input type="text" name="username" pInputText [(ngModel)]="registrationDetailObjects.username" placeholder="username" pattern="^[a-zA-Z ]+$" class="w-10 p-button-success" required/>
       </div>
       <div  class="col-12 col-offset-1">
         <button pButton pRipple label="Submit" class="p-button-success w-10"></button>

@@ -14,6 +14,9 @@
   float: left;
   left: 12px;
 }
+.errorMessageText {
+  color: red;
+}
 #profileImage {
   width: 40px;
   padding: 10px;
@@ -49,9 +52,7 @@
   width: 100%;
   resize: none;
  }
- :host ::ng-deep .p-button.p-fileupload-choose{
-  width: 258px;
-}
+
 :host ::ng-deep .p-button .p-button-icon-left {
 padding-left: 70px;
 }
@@ -62,19 +63,10 @@ padding-left: 70px;
   width:100%;
   height:300px;
  }
- :host ::ng-deep .carousel-indicators .active {
-  background-color:black;
-  
-  }
-  :host ::ng-deep .carousel-control-next-icon{
-    background-color: black;
-  }
-  :host ::ng-deep .carousel-control-prev-icon {
-    background-color:black;
-  } 
+
   .advertisementContainer{
     width: 100%;
-    height: 250px;
+    height: 200px;
   }
   .homeScreenFooterContainer{
     background-color: #ffffff;
@@ -87,9 +79,17 @@ padding-left: 70px;
     list-style-type: none;
     padding-inline-start: 0px;
   }
+  :host ::ng-deep .FullScreenImageDialogBoxText .p-dialog {
+    width: 80%;
+    height: 80%;
+  }
+  .imageFullScreenText{
+    width: 100%;
+    height: 100%;
+  }
   @media (max-width: 666px) and (min-width: 320px) {
     .homeScreenMainDataContainer{
-      width: 100%;
+      width: 109%;
     }
     .textMessageContainer{
       width: 100%;
@@ -98,10 +98,13 @@ padding-left: 70px;
       margin-left: -22px;
     }
     .openReplayMessageText{
-      margin-left: -14px;
+      margin-left: -55px;
     }
    .advertisementMainContainer{
     width: 90%;
+   }
+   .openToReplayText{
+    margin-left: -18px;
    }
    }
    @media (max-width:777px) and (min-width:  666px) {
@@ -112,8 +115,7 @@ padding-left: 70px;
       margin-left: -22px;
     }
     .openReplayMessageText{
-      margin-left: -14px;
+      margin-left: -58px;
     }
-  
    }
-  
+ 

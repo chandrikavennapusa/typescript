@@ -26,6 +26,9 @@ import { NgbCarouselModule } from '@ng-bootstrap/ng-bootstrap';
 import { DividerModule } from 'primeng/divider';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { PanelModule } from 'primeng/panel';
+import { APIServicesService } from './apiservices.service';
+import { DatePipe } from '@angular/common';
+import { ImageModule } from 'primeng/image';
 @NgModule({
   declarations: [
     AppComponent,
@@ -56,9 +59,10 @@ import { PanelModule } from 'primeng/panel';
    NgbCarouselModule,
    DividerModule,
    ConfirmDialogModule,
-   PanelModule 
+   PanelModule , 
+   ImageModule 
   ],
-  providers: [],
+  providers: [APIServicesService,DatePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

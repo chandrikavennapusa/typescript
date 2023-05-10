@@ -19,6 +19,7 @@ export class CaptchaDetailsComponent {
   ngOnInit(){
     this.generateCaptch();
   }
+
   //Submitting the captcha details.
   captchaDetailSubmitForm(){
     if(this.capthaCode==this.captchaCodeValue){
